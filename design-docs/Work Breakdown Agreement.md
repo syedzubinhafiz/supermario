@@ -1,4 +1,4 @@
-# Work Breakdown Agreement
+# Work Breakdown Agreement - ASSIGNMENT 1
 ##### Team Members: Jia Yao, Vanessa, Zubin (MA_LAB02_Team1)
 
 #### Tasks & Deliverables
@@ -21,3 +21,7 @@
 |**3**| **Final Assignment Submission** | Push the 1) PDF file, 2) make sure WBA is there, 3) Submit Files to Moodle |  |  |  |  | 
 |**3.1**| **Final GitLab Push for PDF file** | Push the 1) PDF file and 2) make sure there's a copy of our WBA. | Submission Made | Jia Yao, Vanessa, Zubin | 8 Apr | Jia Yao, Vanessa, Zubin | 9 Apr 
 |**3.2**| **Final Moodle Submission** | ONE of us to submit the 1) PDF file and 2) a copy of our WBA. | Submission Made | Jia Yao, Vanessa, Zubin | 8 Apr | Jia Yao, Vanessa, Zubin | 9 Apr
+
+
+###### Contract Signing
+I accept the WBA (Vanessa)
