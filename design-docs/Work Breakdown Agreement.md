@@ -25,3 +25,5 @@
 
 ###### Contract Signing
 I accept the WBA (Vanessa)
+
+I accept the WBA (Chong Jin Yao)
