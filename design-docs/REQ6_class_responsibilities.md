@@ -1,4 +1,6 @@
-#### REQ 5 CLASS RESPONSIBILITIES
+#### REQ 6 CLASS RESPONSIBILITIES 
+
+Note: Wallet, TradeAction, Coin, AddToWalletAction, Toad class are the same as in REQ 5.
 
 **Wallet**
 1. Class Overall Responsibility:
@@ -31,7 +33,7 @@
     private useCoins() to use coins in wallet to purchase an item
     
     
-**Trade Action**
+**TradeAction**
 1. Class Overall Responsibility:
 
     This class is used to implement an action where each player can trade some coins to purchase an item from Toad actor.
@@ -46,7 +48,8 @@
 3. Attributes: 
     
     private Player player;
-    private String itemToTrade, 
+    private String itemToTrade;
+    String hotKey;
     
 4. Constructor: 
     
@@ -98,7 +101,8 @@
 **AddToWalletAction**
 1. Class Overall Responsibility:
 
-    This class is used to represent an adding item to Wallet Action. Note that this class will only ever be used for adding coints to the wallet.
+    This class is used to represent an adding item to Wallet Action. 
+    Note that this class will only ever be used for adding coins to the wallet.
 
 2. Relationship with other classes:
     
@@ -110,7 +114,7 @@
     
 4. Constructor: 
     
-    creates instance of AddToWalletInstance with the coin item attached to it.
+    creates instance of AddToWalletAction with the coin item attached to it.
  
 5. Methods: 
     overrides PickUpItemActions's execute method
@@ -150,3 +154,71 @@
     
     addCoins() method for receiving an arraylist of coins and added those coins to Toad's own coins list    
     
+    
+
+**TalkToadBehaviour**
+1. Class Overall Responsibility:
+
+    This class is a behaviour class that represents a behaviour that certain actors can have. (in our case, only player actor). 
+    
+2. Relationship with other classes:
+    
+    Implements the Behaviour interface.
+    *ASK: Do I need to show rel to actor & gamemap class or is that not needed cus Behaviour class already has that?
+
+3. Attributes: 
+    
+    
+4. Constructor:
+    
+ 
+5. Methods: 
+
+    getAction() method for instantiating and returning a TalkWithToadAction.
+    
+  
+  
+**TalkWithToadAction**
+1. Class Overall Responsibility:
+
+    This class is used to represent an talking with a Toad Action. 
+    Note that this class will only be used for talking with the Toad actor.
+
+2. Relationship with other classes:
+    
+    Inherits from Action class (extends this class).
+
+3. Attributes: 
+
+    private Player player;
+    private String itemToTrade;
+    private String hotKey;
+    private static final ENUM sentence;
+    
+4. Constructor: 
+    
+    creates instance of TalkWithToadAction with the item to trade and player attached to it.
+ 
+5. Methods: 
+    overrides Action's execute method
+        
+    in public execute() method:
+        - pick & print a monologue based on player's inventory,
+          if player's inventory has wrench: either sentence 2, 3, 4 from sentences enumeration
+          if powerstar effect is there: either sentence 1, 3, 4 from sentences enumeration
+          else randomly pick any of sentence 1,2,3,4 from sentences enumeration
+
+**ToadSentences**
+1. Class Overall Responsibility:
+
+    This enumeration class is used to store the specific sentences that a Toad can say.
+
+2. Relationship with other classes:
+    
+    Has an association with TalkWithToadAction.
+
+3. Attributes: None
+    
+4. Constructor: None
+ 
+5. Methods: None
