@@ -5,18 +5,19 @@ Koopa, DestroyShellAction, Suicide/GoombaHandler, Wrench, Dormant behaviour, Sup
 
 
 **Goomba**
-1. Changes to class
+1. Changes to class:
+
    Add logic to playTurn() method to use RandomBias from Utils class to perform 10% suicide
    possibility ( through removal from map ).
 
-2. Relationship with other classes
+2. Relationship with other classes:
 
    Association with Suicide/GoombaHandler and BehaviourClasses ( Wander/Dormant )
    Dependency on ActionList class, DoNothingAction
 
 
 **Koopa**
-1. Class Overall Responsibility
+1. Class Overall Responsibility:
 
    This class implements a new enemy type that will attack the player actor and follow it around.
    It will implement a new dormant behaviour when knocked unconscious by the player and remain on
@@ -141,16 +142,21 @@ Koopa, DestroyShellAction, Suicide/GoombaHandler, Wrench, Dormant behaviour, Sup
 
 **DormantBehaviour**
 1. Class Overall Responsibility:
+
    To be applied to Koopa objects that have been defeated by the player. Responsible for making sure
    defeated Koopa objects do not move carry out any actions or behaviour. They cannot move, attack, wander,
    follow or interact with anything.
 
 2. Relationship with other classes:
+
    none
+
 3. Attributes:
+
    none
 
 4. Constructor:
+
    none
 
 5. Methods:
@@ -161,15 +167,18 @@ Koopa, DestroyShellAction, Suicide/GoombaHandler, Wrench, Dormant behaviour, Sup
 
 **SuperMushroom**
 1. Class Overall Responsibility:
+
    Increases maxHP of players by 50 and changes the display character from 'm' to 'M'. Gives play SuperMushroom
    status and allows them to freely jump until they receive any damage.
 
 2. Relationship with other classes:
+
    Implements TradableItems and ConsumableItems interfaces
    Association with ActionList class
    Association with CapabilitySet class
 
 3. Attributes:
+
    Similar to items class...
    String representing name of item
    char representing displayChar of item '^'
@@ -177,11 +186,13 @@ Koopa, DestroyShellAction, Suicide/GoombaHandler, Wrench, Dormant behaviour, Sup
    ActionList object
    CapabilitySet object
 
-4. Constructor:
+4. Constructor: 
+
    Requires input for attributes relating to name, displayChar, and portability
    Assigns input to attributes and intialises empty ActionList
 
 5. Methods:
+
    Similar to items class...
 
 
