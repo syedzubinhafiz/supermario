@@ -1,4 +1,4 @@
-﻿#####Jump Action Class
+﻿##Jump Action Class
 
 
 #####1. Class Overall Responsibilities: 

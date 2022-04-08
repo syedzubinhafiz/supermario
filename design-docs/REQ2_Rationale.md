@@ -1,4 +1,5 @@
-﻿For this class, we have decided to create a new class called Jump Action, and inherit the Action abstract class. This makes sense because the jump action is an addition to all the possible actions the game provides that a player can perform. To make the appropriate things work for this requirement we need to make changes to a couple of other classes, namely: Wall & Tree.
+﻿#### Jump Action Class
+For this class, we have decided to create a new class called Jump Action, and inherit the Action abstract class. This makes sense because the jump action is an addition to all the possible actions the game provides that a player can perform. To make the appropriate things work for this requirement we need to make changes to a couple of other classes, namely: Wall & Tree.
 
 In the Wall class, we set the final attributes of success rate and damage referring to the that these values do not change and then override the allowable actions list.
 
