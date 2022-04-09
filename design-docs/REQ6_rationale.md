@@ -22,5 +22,5 @@ Both designs are okay and do not break any object-oriented principles.
 Also, in terms of extensibility for other behaviours/actions player might have, we can go ahead and add a behaviours list in the future,
 however of as now with the current requirement and actions player can do, this shouldn't be needed.
 But, with our current design, we discard the alternative since it goes agains the Reduce Dependency Principle.
-And in our design only TalkWithToadAction has an association to Player.
+So, in our design only TalkWithToadAction has an association to Player and we will go with this implementation.
 
