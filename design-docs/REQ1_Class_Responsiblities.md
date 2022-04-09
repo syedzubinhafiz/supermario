@@ -1,4 +1,8 @@
-﻿##Tree Class
+﻿# REQ1 Class Responsibilities
+#### Note that the Coin class will be explained in more detail in REQ5 (Trading).
+
+
+##Tree Class
 
 
 #####1. Class Overall Responsibilities: 
@@ -16,12 +20,15 @@ Has dependencies with Ground, Coin, Goomba, and Koopa
 
 #####TreeCycleStage enum class :
 
-      i) Has SPROUT, SAPLING & MATURE attributes
+      i) Has SPROUT, SAPLING & MATURE enum values
 
 ii) Extends the Tree class
 
 #####4.  Constructor:
-Modify the constructor so, as to display a character “+” when a Tree object is instantiated within the sproutTick() method; “t” is displayed when saplingTick() method is called and finally “T” is called when matureTick() method is called.
+Modify the constructor so, as to display a character “+” when a Tree object is instantiated as a sprout
+and to set the stage as the TreeCycleStage.SPROUT. 
+
+“t” is displayed when saplingTick() method is called and finally “T” is called when matureTick() method is called.
 
 
 #####5. Overridden method/s:
@@ -43,32 +50,40 @@ Override the ground.tick() method so that it  is as follows:
 
 #####1.sproutTick() method:
 
-i) Use a random bias generator to calculate the probability. If randomBias =0.1,
+i) Use a random bias generator to calculate the probability. If randomBias<=0.1,
 
 Spawn a Goomba. We first get the location of the ground the argument given in the tick() function). Then, Location.addActor(new Goomba());
 
-ii) We also need to check if an actor stands on it. So we call the ground.tick() method to check the current location for an actor object, the Goomba spawns else, nothing happens.
+ii) We also need to check if an actor stands on it. So we call the ground.tick() method to check the current location for an actor object, 
+the Goomba spawns else, nothing happens.
 
-iii) A turnCounter will keep iterating every time this method is called.Once turnCounter reaches a value of 10,setDisplayChar(“t”); & setStage() to set stage attribute of Tree to be a SAPLING.Reset the turnCounter to 0 before exiting the method.
+iii) A turnCounter will keep iterating every time this method is called.Once turnCounter reaches a value of 10,setDisplayChar(“t”); 
+& setStage() to set stage attribute of Tree to be a SAPLING.Reset the turnCounter to 0 before exiting the method.
 
 
 #####2. saplingTick() method:
 
-i) Use the random bias generator again, and if randomBias=0.1, a Coin object is instantiated. The coin is dropped on the current location of the sapling which can be found using the location argument within the groundTick() method.
+i) Use the random bias generator again, and if randomBias<=0.1, a Coin object is instantiated. 
+The coin is dropped on the current location of the sapling which can be found using the location argument within the groundTick() method.
 
-ii) Once turnCounter reaches a value of 10, setDisplayChar(“T”); & setStage() to set stage attribute of Tree to be MATURE.Reset the turnCounter to 0 before exiting the method.
+ii) Once turnCounter reaches a value of 10, setDisplayChar(“T”); & setStage() to set stage attribute of Tree to be MATURE.
+Reset the turnCounter to 0 before exiting the method.
 
 
 #####3. matureTick() method:
 
-   1) Use the random bias generator, if randomBias=0.15, we spawn a Koopa object on the current location of the actor using the ground.Tick() method.Then,Location.addActor(new Koopa());
-   2) Now, check for ‘Dirt’ object in the surrounding.Have list of dirtDestinations in Mature for exitDestinations that have a dirt ground.
+i) Use the random bias generator, if randomBias<=0.15, we spawn a Koopa object on the current location of the actor using the ground.Tick()
+ method.Then,Location.addActor(new Koopa());
+ii) Now, check for ‘Dirt’ object in the surrounding. Have list of dirtDestinations in matureTick() method for exitDestinations 
+that have a dirt ground.
 
-Find dirtDestinations:
+   Find dirtDestinations:
 
-a) Location of mature.getExits() -> returns exits, for each exit-> exit.getDestination(),getGround() to check if the ground is a dirt. If yes, add location to dirtDestinations.
+   a) Location of mature.getExits() -> returns exits, for each exit-> exit.getDestination(),getGround() to check if the ground is a dirt. 
+   If yes, add location to dirtDestinations.
+        
+   b) If turnCounter%5==0 && dirtDestination is true, we spawn a sprout using the setDisplayChar() method.
 
-b) If turnCounter%5==0 && dirtDestination is true, we spawn a sprout using the      setDisplayChar() method.
 
 c) Again, if randomBias<=0.20, get location of ground using ground.Tick() method and then, Location.setGround(new Dirt()).
 Meaning the sprout has withered and died.
