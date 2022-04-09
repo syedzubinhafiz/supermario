@@ -1,7 +1,7 @@
 #### REQ 5 CLASS RESPONSIBILITIES
 
 New classes added for REQ5:
-Wallet, TradeAction, Coin, AddToWalletAction, Toad, TradeableItem.
+Wallet, TradeAction, Coin, AddToWalletAction, Toad, Tradeable.
 
 Note that in the UML Class diagram for REQ5 that the yellow highlighted classes represent the modified/added classes for REQ5 specifically.
 Classes that are black represent classes existing in the basecode.
@@ -17,9 +17,9 @@ Classes that have other colours (other than black & yellow) are classes added/mo
 **Wallet**
 1. Class Overall Responsibility:
 
-    This class is used to implement a wallet system where each player can have an assigned wallet item that contains coins and monetary value 
-    for trading items within the game.
-    It is also used to get the total balance of value of coins that the player has during the game.
+    This class is a class that is used to implement a wallet system where only the player can have an 
+    assigned wallet item that contains coins and monetary value for trading items within the game.
+    It is also used to get/reduce/add the total balance of value of coins that the player has during the game.
     This assigned item should automatically be in the inventory list of the player during player construction,
     since it is fixed and cannot be removed from every player.
 
@@ -35,17 +35,20 @@ Classes that have other colours (other than black & yellow) are classes added/mo
 
     private ArrayList<Coin> coins,
     
+    String name = 'Wallet', String displayChar = 'w', Boolean portable = false (inherited from Item abstract class)
+    
     *When instantiated, it will NOT be portable (boolean inherited from item abstract class)
     
 4. Constructor: 
     
-    Creates instances of tradeAction, one for each of Toad's tradeableItems in its inventory.
+    Creates instances of tradeAction, one for each of Toad's tradeableItems.
     These tradeActions are added to the list of allowable actions for the Wallet item.
     
 5. Methods: 
+
     private getBalance() to return the balance
-    private addCoin() to add a collected coin to its arraylist
-    private useCoins() to use coins in wallet to purchase an item
+    private reduceBalance() to reduce the balance
+    private addBalance(ArrayList<Coin> coins) to add to balance
     
     
 **TradeAction**
@@ -56,15 +59,15 @@ Classes that have other colours (other than black & yellow) are classes added/mo
 2. Relationship with other classes:
     
     Inherits from Action abstract class (extends this class).
-    Has a association on Player class & TradeableItem interface.
+    Has a association on Player class & Tradeable interface.
     Has a dependency on singleton Toad class.
 
 3. Attributes: 
     
     private Player player;
-    private TradeableItem itemToTrade;
+    private Tradeable itemToTrade;
     private int tradeValue;
-    private String hotkey;
+    private String hotkey; (inherited from abstract class)
     
 4. Constructor: 
     
@@ -75,11 +78,11 @@ Classes that have other colours (other than black & yellow) are classes added/mo
         
     in public execute() method:
     
-    - Retrives wallet from Player
+    - Retrieves wallet from Player
     
-    - Retrieves coins from Player's wallet (if balance is enough for the item)
+    - Remove coins from Player's wallet (if balance is enough for the item)
     
-    - Passes on coins to Toad instance
+    - Removes item from Toad's inventory
     
     - Adds the item that was purchased to player's inventory
     
@@ -101,6 +104,8 @@ Classes that have other colours (other than black & yellow) are classes added/mo
 
     private int coinValue, 
     
+    String name = 'Coin', String displayChar = '$', Boolean portable = false (inherited from Item abstract class)
+    
 4. Constructor: 
     
     creates instance of Coin with the value of the coin attached to it.
@@ -113,6 +118,7 @@ Classes that have other colours (other than black & yellow) are classes added/mo
         - instantiates AddToWalletAction object INSTEAD OF a PickUpItemAction, because PickUpItemAction adds the item to the inventory of the player
         
           Thus, AddToWalletAction will help to add the Coin to the Player's wallet instead of its inventory.
+          AddToWalletAction should also remove the coin object from the map position.
         
         - returns the AddToWalletAction object
     
@@ -158,15 +164,16 @@ Classes that have other colours (other than black & yellow) are classes added/mo
 2. Relationship with other classes:
     
     TradeAction has a dependency with this class.
-    Extends Actor asbtract class.
+    Extends Actor abstract class.
 
 3. Attributes: 
     
     private static Toad instance;
     
-    public ArrayList<Coin> coins;
-    
-    
+    public ArrayList<Tradeable> tradeableInventory;
+   
+    Set String name='Toad'; String displayChar = 'O'; in constructor.
+
 4. Constructor:
     
     a private constructor that creates an instance of Toad, and instantiates PowerStar, SuperMushroom & Wrench items 
@@ -174,29 +181,26 @@ Classes that have other colours (other than black & yellow) are classes added/mo
  
 5. Methods: 
 
-    getInstance() method for instantiating a new instance if one hasn't yet been instantiated, else it returns the first instantiated Toad instance.
+    getInstance() factory method for instantiating a new instance if one hasn't yet been instantiated, else it returns the first instantiated Toad instance.
     
-    addCoins() method for receiving an arraylist of coins and adding those coins to Toad's own coins list. 
+    getTradeableItems() method for returning an arraylist of items/weapons Toad can trade.
     
-    getTradeableItems() method for returning an arraylist of items Toad can trade.
-    
-    purchaseItem(itemToTrade, usedCoinsList) method for 
-    - removing the itemToTrade from the Toad's inventory, and 
-    adding a new instance of the type of that item traded into the Toad's inventory.
-    - adding the used Coin instances to Toad's inventory
+    purchaseItem(itemToTrade) method for 
+    - removing the itemToTrade from the Toad's tradeableInventory list, and 
+    adding a new instance of the type of that item traded into the Toad's tradeableInventory LIst.
             
             
-**TradeableItem**
+**Tradeable**
 1. Class Overall Responsibility:
 
     This class is an interface that represents the functionality of an item being tradeable.
     
 2. Relationship with other classes:
     
-    TradeAction has an association with TradeableItem.
-    Wench, SuperMushroom and PowerStar (as of now only these 3) implements TradeableItem.
+    TradeAction has an association with Tradeable.
+    Wench, SuperMushroom and PowerStar (as of now only these 3) implements Tradeable.
 
 3. Methods:
     getTradeAction();
-    This is to get the TradeAction of the current TradeableItem item object.
+    This is to get the TradeAction of the current Tradeable item object.
     

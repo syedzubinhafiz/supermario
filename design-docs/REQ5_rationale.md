@@ -56,6 +56,10 @@ can help for future trading if the coins are to be used for other functionality 
 Therefore, our final design is in line with the  "Single Responsibility Principle" and  "Open-Closed Principle", and thus we have decided
 to go with this design for these 3 classes.
 
+** ADD: WHY IS WALLET NOT A SINGLETON CLASS
+** ADD: WHY IS COIN IN COIN ARRAYLIST AND NOT DESTROYED
+        - could be scoring system for the game later on
+        
 
 **3: Toad and Tradeable**
 Tradeable is an interface by which the Toad singleton class keeps an arraylist of, and that the items or weapons that are tradeable will 

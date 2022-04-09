@@ -1,4 +1,4 @@
-#### REQ 4 CLASS RESPONSIBILITIES ####
+#### REQ 4 CLASS RESPONSIBILITIES
 
 New classes for REQ4:
 SuperMushroom, ConsumeAction, PowerStar, InstaKillAction, DestroyGroundAction, ConsumableItem
@@ -40,7 +40,7 @@ SuperMushroom, ConsumeAction, PowerStar, InstaKillAction, DestroyGroundAction, C
 **ConsumeAction**
 1. Class Overall Responsibility:
 
-   Responsible for providing player with buffs in relation to consuming any consumables.
+   Responsible for providing player with status/buffs in relation to consuming any consumables.
    Has to change hp values, display characters and update capabilities of player by assigning
    new Statuses.
 
@@ -62,7 +62,7 @@ SuperMushroom, ConsumeAction, PowerStar, InstaKillAction, DestroyGroundAction, C
 
    Overridden execute() method which requires item object being consumed and player object.
    Checks what item is being consumed and proceeds with making respective changes based on what item is consumed.
-   Also has to provide player with required Statuses, either TALL/SUPERMUSHROOM or STARBUFF/INVINCIBLE.
+   Also has to provide player with required Statuses, either TALL or INVINCIBLE.
    Has to remove item from player inventory after consumption.
 
    Display method to notify user item has been consumed
@@ -111,7 +111,7 @@ SuperMushroom, ConsumeAction, PowerStar, InstaKillAction, DestroyGroundAction, C
 1. Class Overall Responsibility:
 
    Class provides player with the ability to instantly kill any enemy it comes across on the map
-   when actively having the STARBUFF/INVINCIBLE status.
+   when actively having the INVINCIBLE status.
 
 2. Relationship with other classes:
 
@@ -141,8 +141,8 @@ SuperMushroom, ConsumeAction, PowerStar, InstaKillAction, DestroyGroundAction, C
 1. Class Overall Responsibility:
 
    Class provides player with the ability to walk freely on the map and destroy
-   all Trees and Floors the player may come across when actively having the STARBUFF/INVINCIBLE status
-   Should not allow any JumpAction to occur. Allows actor to move into Floor or Tree, destroys it and
+   all Trees and Walls the player may come across when actively having the INVINCIBLE status
+   Should not allow any JumpAction to occur. Allows actor to move into Wall or Tree, destroys it and
    changes it to dirt as well as drops $5 coin at the location.
 
 2. Relationship with other classes:
@@ -167,7 +167,11 @@ SuperMushroom, ConsumeAction, PowerStar, InstaKillAction, DestroyGroundAction, C
    Execute should take Actor object and GameMap object
    Need to override allowableActions() method in ground to check if
    ( actor at location != current actor ), this makes sure it isn't going to its current
-   position and player is checked to see if it has INVICIBLE/STARBUFF status with hasCapability().
+   position and player is checked to see if it has INVICIBLE status with hasCapability().
+  
 
 
-**ConsumableItem interface**
+**Consumable interface**
+getConsumeAction()
+
+
