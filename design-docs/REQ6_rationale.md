@@ -14,13 +14,13 @@ This allows the Player's actions shown in the menu to have an action to talk wit
 
 Alternatively, we can have a behaviours hashmap, and have a TalkToadBehaviour class that is added to the behaviours of the player.
 And in playTurn method can go through the behaviours of the player to get the action from that behaviour for the player.
-While this alternative accounts for extensibility, however it would cause Player to an association with behaviour class,
-which is an added strong dependency. Thus, would go against the Reduce Dependency Principle.
-Both designs are okay and do not break any object-oriented principles. 
+While this alternative accounts for extensibility, however it would cause Player to have an association with behaviour class,
+which is an added strong dependency for the Player class. Thus, would go against the "Reduce Dependency Principle."
+Note that both designs are alright and do not break any object-oriented principles. 
 
-
-Also, in terms of extensibility for other behaviours/actions player might have, we can go ahead and add a behaviours list in the future,
-however of as now with the current requirement and actions player can do, this shouldn't be needed.
-But, with our current design, we discard the alternative since it goes agains the Reduce Dependency Principle.
+Thus, with our current design, we discard the alternative since it goes against the Reduce Dependency Principle, and also
+because we should not need a list of behaviours for the player to choose from (not in the requirements).
 So, in our design only TalkWithToadAction has an association to Player and we will go with this implementation.
+
+
 

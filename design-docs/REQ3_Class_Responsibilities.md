@@ -3,6 +3,8 @@
 New classes added for REQ3:
 Koopa, DestroyShellAction, Suicide/GoombaHandler, Wrench, Dormant behaviour, SuperMushroom
 
+*note: remove suicide class, add Enemy interface
+
 
 **Goomba**
 1. Changes to class:
@@ -36,7 +38,7 @@ Koopa, DestroyShellAction, Suicide/GoombaHandler, Wrench, Dormant behaviour, Sup
 
 4. Constructor:
 
-   Takes no input but uses super( "Koopa", "K", 100) and puts WanderBehaviour
+   Takes no input but uses super("Koopa", "K", 100) and puts WanderBehaviour
    into the TreeMap with priority (Integer) as 10.
 
 5. Methods:
@@ -117,7 +119,7 @@ Koopa, DestroyShellAction, Suicide/GoombaHandler, Wrench, Dormant behaviour, Sup
 2. Relationship with other classes:
 
    Extends WeaponItem class
-   Implements TradableItem interface
+   Implements Tradable interface
    AttackAction has dependency on this class
 
 3. Attributes:
@@ -168,12 +170,12 @@ Koopa, DestroyShellAction, Suicide/GoombaHandler, Wrench, Dormant behaviour, Sup
 **SuperMushroom**
 1. Class Overall Responsibility:
 
-   Increases maxHP of players by 50 and changes the display character from 'm' to 'M'. Gives play SuperMushroom
+   Increases maxHP of players by 50 and changes the display character from 'm' to 'M'. Gives player SuperMushroom
    status and allows them to freely jump until they receive any damage.
 
 2. Relationship with other classes:
 
-   Implements TradableItems and ConsumableItems interfaces
+   Implements Tradeable and Consumable interfaces
    Association with ActionList class
    Association with CapabilitySet class
 
