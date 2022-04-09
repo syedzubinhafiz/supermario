@@ -40,6 +40,6 @@ In the Wall class: Override ground’s allowableActions(Location location) metho
 
 In the Tree class: We again override the ground’s allowableActions() method within every single ‘tick’ method but change the pre-condition before executing the jumpActions’s execute method that corresponds to sprout,sapling and mature’s success rate.
 
-##Player class & Status enum class:
+##Player Class & Status Enum Class:
 We modify Status enum class to include enum value MUST_JUMP, which signifies that the actor cannot walk over certain tall objects.
-Thus, in player class's constructor, we add MUST_JUMP to its capabilitySet. (This MUST_JUMP will be checked for in JumpAction class)
+Thus, in player class's constructor, we add MUST_JUMP to its capabilitySet. (This MUST_JUMP will be checked in JumpAction class)
