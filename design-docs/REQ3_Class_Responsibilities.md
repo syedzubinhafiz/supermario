@@ -3,20 +3,29 @@
 New classes added for REQ3:
 Koopa, DestroyShellAction, Suicide/GoombaHandler, Wrench, Dormant behaviour, SuperMushroom
 
-*note: remove suicide class, add Enemy interface
+
 
 
 **Goomba**
 1. Changes to class:
 
-   Add logic to playTurn() method to use RandomBias from Utils class to perform 10% suicide
-   possibility ( through removal from map ).
+    Add logic to playTurn() method to use RandomBias from Utils class to perform 10% suicide
+    possibility ( through removal from map ).
+
+    Has new attribute to count whenever Goomba is added or removed from map 
+    Has new attribute called Max_Goomba_Limit, final number limit for Goomba spawns
 
 2. Relationship with other classes:
 
-   Association with Suicide/GoombaHandler and BehaviourClasses ( Wander/Dormant )
-   Dependency on ActionList class, DoNothingAction
+    Implements Enemy interface
+    Association with Suicide/GoombaHandler and BehaviourClasses ( Wander/Dormant )
+    Dependency on ActionList class, DoNothingAction
 
+3. Methods:
+
+    Boolean method canSpawn returns true or false based on GoombaCount and Max_Goomba_Limit
+
+    Getters for new attributes
 
 **Koopa**
 1. Class Overall Responsibility:
@@ -28,86 +37,61 @@ Koopa, DestroyShellAction, Suicide/GoombaHandler, Wrench, Dormant behaviour, Sup
 
 2. Relationship with other classes:
 
-   Extends actor class
-   Association with Behaviours and BehaviourClasses ( Wander/Dormant )
-   Dependency on ActionList class, DoNothingAction, DestroyShellAction
+    Extends actor class
+    Implements Enemy interface
+    Association with Behaviours and BehaviourClasses ( Wander/Dormant )
+    Dependency on ActionList class, DoNothingAction, DestroyShellAction
 
 3. Attributes:
 
-   TreeMap of Behaviours
+    TreeMap of Behaviours
 
 4. Constructor:
 
-   Takes no input but uses super("Koopa", "K", 100) and puts WanderBehaviour
-   into the TreeMap with priority (Integer) as 10.
+    Takes no input but uses super("Koopa", "K", 100) and puts WanderBehaviour
+    into the TreeMap with priority (Integer) as 10.
 
 5. Methods:
 
-   Has its own implementation of playTurn method with added checks to see if TreeMap for behaviours
-   contains Dormant behaviour, returns new DoNothingAction() whenever Dormant behaviour is found.
+    Has its own implementation of playTurn method with added checks to see if TreeMap for behaviours
+    contains Dormant behaviour, returns new DoNothingAction() whenever Dormant behaviour is found.
 
-   Overrides allowableActions() and implements its own version, which checks if player has
-   a Wrench in their inventory, adds the newly created DestroyShellAction to ActionList instance
+    Overrides allowableActions() and implements its own version, which checks if player has
+    a Wrench in their inventory, adds the newly created DestroyShellAction to ActionList instance
 
 
 **DestroyShellAction**
 1. Class Overall Responsibility:
 
-   This class provides the player with a new action to destroy any dormant Koopa objects on the map.
-   The action requires a wrench and has 100% accuracy. Drops a SuperMushroom object when action successfully
-   carried out.
+    This class provides the player with a new action to destroy any dormant Koopa objects on the map.
+    The action requires a wrench and has 100% accuracy. Drops a SuperMushroom object when action successfully
+    carried out.
 
 2. Relationship with other classes:
 
-   Extends AttackAction
+    Extends AttackAction
 
 3. Attributes:
 
-   Similar to AttackAction...
-   an Actor that represents the target of the attack
-   String to represent attack direction
-   No need for random number attribute
+    Similar to AttackAction...
+    an Actor that represents the target of the attack
+    String to represent attack direction
+    No need for random number attribute
 
 4. Constructor:
 
-   Takes input for target Actor and String for direction
-   Assigns attributes to input.
+    Takes input for target Actor and String for direction
+    Assigns attributes to input.
 
 5. Methods:
 
-   Overrides execute() and removes Koopa actor from the map, no need to ensure actor is Koopa as Dormant behaviour
-   currently only used by Koopas. No need to ensure player has wrench as it is done in playTurn(). Returns message telling player that Koopa shell has been hit with Wrench.
-   Needs to create a SuperMushroom object on the map at the location of Koopa object.
+    Overrides execute() and removes Koopa actor from the map, no need to ensure actor is Koopa as Dormant behaviour
+    currently only used by Koopas. No need to ensure player has wrench as it is done in playTurn(). Returns message telling player that Koopa shell has been hit with Wrench.
+    Needs to create a SuperMushroom object on the map at the location of Koopa object.
 
    Overrides menuDescription() to return different message notifying player shell has been destroyed successfully,
    e.g "KAPLOW KOOPA SHELL HAS BEEN OBLITERATED!!".
 
-
-**Suicide/GoombaHandler**
-1. Class Overall Responsibility:
-
-   Stores Goomba objects to maintain a safe amount of spawns so the game does not self-destruct.
-   Gives future programmers options and tools to work with and tweak Goomba spawns in future.
-
-2. Relationship with other classes:
-
-   Association with Goomba class
-   Association with Sprout class
-
-3. Attributes:
-   ArrayList or any form of storage to keep track of Goomba objects
-   An int representing the max number of Goombas
-
-4. Constructor:
-
-   Initialises empty ArrayList of Goomba object and assigns it to attribute
-
-5. Methods:
-
-   A getter likely called getGoombaCount() to return size of the ArrayList
-   Or a better option could be a boolean method returning True or False to see if Goomba objects can still
-   be spawned on the map, by checking ArrayList size with MaxGoomba attribute. Sprout class can use this to
-   check if Goombas can spawn.
 
 
 **Wrench**
@@ -147,11 +131,11 @@ Koopa, DestroyShellAction, Suicide/GoombaHandler, Wrench, Dormant behaviour, Sup
 
    To be applied to Koopa objects that have been defeated by the player. Responsible for making sure
    defeated Koopa objects do not move carry out any actions or behaviour. They cannot move, attack, wander,
-   follow or interact with anything.
+   follow or interact with anything. To be added to Koopa's behaviours.
 
 2. Relationship with other classes:
 
-   none
+   Implements Behaviour
 
 3. Attributes:
 
@@ -163,7 +147,7 @@ Koopa, DestroyShellAction, Suicide/GoombaHandler, Wrench, Dormant behaviour, Sup
 
 5. Methods:
 
-   Overriden getAction() method that requires Koopa object and game map as input. Will check if Koopa is on map
+   Overriden getAction() method that requires Koopa object and game map as input. Will check if Koopa is on map.
    Returns null always so playTurn does not receive any actions for Koopa object.
 
 
@@ -196,5 +180,18 @@ Koopa, DestroyShellAction, Suicide/GoombaHandler, Wrench, Dormant behaviour, Sup
 5. Methods:
 
    Similar to items class...
+
+**Enemy Interface**
+getAttackAction()
+
+Allows enemy Actors to implement and use all methods within it.
+Provides enemy actors with a getAction method to so the player can attack it. 
+For future extensibility, can provide actions for attacking playeyrs in future.
+
+Implementation in PowerStar and SuperMushroom would require the implementation of the getAction method by...
+
+Taking an Actor, the player and an Item, the magical item as input and returns to the player
+the ConsumeAction.
+
 
 
