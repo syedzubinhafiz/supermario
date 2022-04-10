@@ -1,7 +1,7 @@
 #### REQ 4 CLASS RESPONSIBILITIES
 
 New classes for REQ4:
-SuperMushroom, ConsumeAction, PowerStar, InstaKillAction, Consumable
+SuperMushroom, ConsumeAction, PowerStar, InstaKillAction, Consumable interface, HigherGround interface
 
 **SuperMushroom**
 1. Class Overall Responsibility:

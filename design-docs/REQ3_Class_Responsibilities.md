@@ -1,7 +1,7 @@
 #### REQ 3 CLASS RESPONSIBILITIES
 
 New classes added for REQ3:
-Koopa, DestroyShellAction, Wrench, Dormant behaviour, SuperMushroom
+Koopa, DestroyShellAction, Wrench, Dormant behaviour, SuperMushroom, Enemy interface
 
 
 
