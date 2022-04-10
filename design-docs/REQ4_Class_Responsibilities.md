@@ -1,7 +1,7 @@
 #### REQ 4 CLASS RESPONSIBILITIES
 
 New classes for REQ4:
-SuperMushroom, ConsumeAction, PowerStar, InstaKillAction, DestroyGroundAction, ConsumableItem
+SuperMushroom, ConsumeAction, PowerStar, InstaKillAction, Consumable
 
 **SuperMushroom**
 1. Class Overall Responsibility:
@@ -9,7 +9,7 @@ SuperMushroom, ConsumeAction, PowerStar, InstaKillAction, DestroyGroundAction, C
    To give player ability to jump freely and increase max health points.
    Buff lasts until damage of any form is taken. Needs to change display character
    of player. Execute methods of any actions that damage player actor have to be
-   changed to check for TALL/SUPERMUSHROOM status.
+   changed to check for TALL status.
 
 2. Relationship with other classes:
 
@@ -72,8 +72,9 @@ SuperMushroom, ConsumeAction, PowerStar, InstaKillAction, DestroyGroundAction, C
 
    To give player ability to walk freely and heal player by 200 health points.
    Buff lasts 10 ticks in game. Needs to make player invincible to damage. Execute methods of any actions that
-   damage player actor have to be changed to check for STARBUFF/INVINCIBLE status.
-   Allows player to use DestroyGroundAction and InstaKillAction when having status
+   damage player actor have to be changed to check for INVINCIBLE status.
+   Allows player to use InstaKillAction when having status and walk over walls and trees.
+   Has to convert walls and trees into dirt and drop a coin ($5)
 
 2. Relationship with other classes:
 
@@ -137,41 +138,27 @@ SuperMushroom, ConsumeAction, PowerStar, InstaKillAction, DestroyGroundAction, C
    Overrides menuDescription() to return different message notifying player shell has been destroyed successfully,
    e.g "OBLITERATED TARGET_ACTOR_NAME!!".
 
-**DestroyGroundAction**
-1. Class Overall Responsibility:
-
-   Class provides player with the ability to walk freely on the map and destroy
-   all Trees and Walls the player may come across when actively having the INVINCIBLE status
-   Should not allow any JumpAction to occur. Allows actor to move into Wall or Tree, destroys it and
-   changes it to dirt as well as drops $5 coin at the location.
-
-2. Relationship with other classes:
-
-   Extends MoveActorAction
-
-3. Attributes:
-
-   Location object to represent target location
-   String representing direction
-   String representing the command key/ hot key
-
-4. Constructor:
-
-   Follows MoveActorActions constructor, has to use super()
-   Requires Location object to use as a location to move to, requires String representing direction
-
-5. Methods:
-
-   Overrides execute() method to convert Floor or Tree type into Dirt, then
-   move player into that location as well as create a new coin object worth $5 at the location.
-   Execute should take Actor object and GameMap object
-   Need to override allowableActions() method in ground to check if
-   ( actor at location != current actor ), this makes sure it isn't going to its current
-   position and player is checked to see if it has INVICIBLE status with hasCapability().
-  
 
 
 **Consumable interface**
 getConsumeAction()
+
+Allows items to implement and use all methods within it.
+Provides Magical items with a getAction method so the player can successfully consume an item.
+
+For future extensibility of program.
+
+Implementation in PowerStar and SuperMushroom would require the implementation of the getAction method by...
+
+Taking an Actor, the player and an Item, the magical item as input and returns to the player
+the ConsumeAction.
+
+**HigherGround interface**
+convertToDirt()
+
+Allows higher ground(Wall and Tree currently), Ground types to use methods within it.
+Provides all types of higher ground with a convertToDirt() method that changes the ground to dirt and drops a coin ($5).
+
+For future extensibility of program.
 
 
