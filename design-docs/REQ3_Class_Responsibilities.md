@@ -1,7 +1,7 @@
 #### REQ 3 CLASS RESPONSIBILITIES
 
 New classes added for REQ3:
-Koopa, DestroyShellAction, Suicide/GoombaHandler, Wrench, Dormant behaviour, SuperMushroom
+Koopa, DestroyShellAction, Wrench, Dormant behaviour, SuperMushroom, Enemy interface
 
 
 
@@ -186,7 +186,7 @@ getAttackAction()
 
 Allows enemy Actors to implement and use all methods within it.
 Provides enemy actors with a getAction method to so the player can attack it. 
-For future extensibility, can provide actions for attacking playeyrs in future.
+For future extensibility, can provide actions for attacking players in future.
 
 Implementation in PowerStar and SuperMushroom would require the implementation of the getAction method by...
 

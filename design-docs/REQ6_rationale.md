@@ -1,4 +1,4 @@
-#### Design Rationale
+#### REQ 6 Design Rationale
 
 **1: TalkWithToadAction**
 

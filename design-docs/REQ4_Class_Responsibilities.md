@@ -1,7 +1,7 @@
 #### REQ 4 CLASS RESPONSIBILITIES
 
 New classes for REQ4:
-SuperMushroom, ConsumeAction, PowerStar, InstaKillAction, Consumable
+SuperMushroom, ConsumeAction, PowerStar, InstaKillAction, Consumable interface, HigherGround interface
 
 **SuperMushroom**
 1. Class Overall Responsibility:
@@ -34,6 +34,7 @@ SuperMushroom, ConsumeAction, PowerStar, InstaKillAction, Consumable
 
 5. Methods:
 
+   allowableActions() returns to player ConsumeAction instance
    Getters for name, hpIncrease attribute, displayChar
    two tick() methods for when on ground or actor inventory
 
@@ -63,7 +64,7 @@ SuperMushroom, ConsumeAction, PowerStar, InstaKillAction, Consumable
    Overridden execute() method which requires item object being consumed and player object.
    Checks what item is being consumed and proceeds with making respective changes based on what item is consumed.
    Also has to provide player with required Statuses, either TALL or INVINCIBLE.
-   Has to remove item from player inventory after consumption.
+   Has to remove item from player inventory after consumption if item is SuperMushroom.
 
    Display method to notify user item has been consumed
 
@@ -101,6 +102,7 @@ SuperMushroom, ConsumeAction, PowerStar, InstaKillAction, Consumable
 
 5. Methods:
 
+   allowableActions() returns to player ConsumeAction instance
    Getters for name, hpIncrease attribute, displayChar
    Override item.tick() to increment numberOfTicks by 1 each time it is called.
    Before incrementing, should check if boolean attribute representing consumption is true or false
@@ -141,7 +143,9 @@ SuperMushroom, ConsumeAction, PowerStar, InstaKillAction, Consumable
 
 
 **Consumable interface**
-getConsumeAction()
+getConsumeAction(), boolean attribute isConsumed
+
+isConsumed returns True or False depending on whether item is consumed
 
 Allows items to implement and use all methods within it.
 Provides Magical items with a getAction method so the player can successfully consume an item.

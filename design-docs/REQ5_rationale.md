@@ -1,4 +1,4 @@
-#### Design Rationale
+#### REQ 5 Design Rationale
 
 **1: Purchasing an item: TradeAction and Wallet class**
 
