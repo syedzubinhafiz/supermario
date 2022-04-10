@@ -45,7 +45,8 @@ that is responsible for providing the player with any health and behavioural
 changes. This form of implementation adheres to the Single Responsibility Principle as we once again delegate the
 functionality of consuming PowerStar or SuperMushroom to another class.
 
-We also plan to implement a Consumable interface with a getAction method that returns ConsumeAction for the player to use.
+We also plan to implement a Consumable interface with a getAction method that returns ConsumeAction for the allowableActions method
+in the PowerStar/SuperMushrooms class to use. Has to check if item is consumed using it's isConsumed() method. Returns consumeAction if isConsumed() returns False.
 This implementation of the Consumable interface will allow us to code with the Open-Closed Principle. This is because
 any new consumable items added to the game after the initial implementation of the action in the player class
 will be able to be consumed without having to modify any code. You would only have to add the item itself. 
