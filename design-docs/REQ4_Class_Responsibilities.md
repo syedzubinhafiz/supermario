@@ -61,7 +61,7 @@ SuperMushroom, ConsumeAction, PowerStar, InstaKillAction, Consumable interface, 
 
 5. Methods:
 
-   Overridden execute() method which requires item object being consumed and player object.
+   Overridden execute() method.
    Checks what item is being consumed and proceeds with making respective changes based on what item is consumed.
    Also has to provide player with required Statuses, either TALL or INVINCIBLE.
    Has to remove item from player inventory after consumption if item is SuperMushroom.
