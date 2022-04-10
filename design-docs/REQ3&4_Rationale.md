@@ -82,3 +82,4 @@ an interface would be much better for future extensibility.
 Another alternative we tried was implementing a DestroyGroundAction to follow the Single Responsibility Principle 
 but doing so would require the actor to perform the action. Using allowableActions() also causes the DestroyGroundAction
 to be shown in the player's menu as an option. 
+

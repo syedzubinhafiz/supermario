@@ -160,3 +160,5 @@ Allows higher ground(Wall and Tree currently), Ground types to use methods withi
 Provides all types of higher ground with a convertToDirt() method that changes the ground to dirt and drops a coin ($5).
 
 For future extensibility of program.
+
+
