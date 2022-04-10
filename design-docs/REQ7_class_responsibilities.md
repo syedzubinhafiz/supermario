@@ -1,4 +1,4 @@
-#### REQ 6 CLASS RESPONSIBILITIES 
+#### REQ 7 CLASS RESPONSIBILITIES 
 
 Player class has added attributes and methods.
 ResetGameAction is a new class.
