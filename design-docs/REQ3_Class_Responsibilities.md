@@ -65,7 +65,7 @@ Koopa, DestroyShellAction, Wrench, Dormant behaviour, SuperMushroom, Enemy inter
 
     This class provides the player with a new action to destroy any dormant Koopa objects on the map.
     The action requires a wrench and has 100% accuracy. Drops a SuperMushroom object when action successfully
-    carried out.
+    carried out. Also stores damage, hit rate of the wrench and verb of the wrench.
 
 2. Relationship with other classes:
 
@@ -77,13 +77,14 @@ Koopa, DestroyShellAction, Wrench, Dormant behaviour, SuperMushroom, Enemy inter
     an Actor that represents the target of the attack
     String to represent attack direction
     No need for random number attribute
+    Attribute representing wrench object
 
-4. Constructor:
+5. Constructor:
 
     Takes input for target Actor and String for direction
     Assigns attributes to input.
 
-5. Methods:
+6. Methods:
 
     Overrides execute() and removes Koopa actor from the map, no need to ensure actor is Koopa as Dormant behaviour
     currently only used by Koopas. No need to ensure player has wrench as it is done in playTurn(). Returns message telling player that Koopa shell has been hit with Wrench.
@@ -100,25 +101,25 @@ Koopa, DestroyShellAction, Wrench, Dormant behaviour, SuperMushroom, Enemy inter
    New weapon for player class to use. Can be picked up and dropped and has 50 damage and 80% acccuracy.
    Used for destroying Koopa shells and can be used for basic attacks as well (AttackAction).
 
-2. Relationship with other classes:
+3. Relationship with other classes:
 
    Extends WeaponItem class
    Implements Tradable interface
    AttackAction has dependency on this class
 
-3. Attributes:
+4. Attributes:
 
    Integer attribute representing damage, should not be changeable value
    Integer attribute representing hitRate of weapon, should not be changeable value
    String attribute representing UI display verb for attacking with weapon, e.g "KRONK" or "BONK"
 
-4. Constructor:
+5. Constructor:
 
    Requires 5 input values. All representing name of weapon, display character of weapon, damage of weapon
    , attacking verb and hit rate of weapon.
    Will be required to use super(name, displayChar, True/False(weapon portability))
 
-5. Methods:
+6. Methods:
 
    Overrides all methods from parent class
    damage(), returns damage dealt by weapon
@@ -154,32 +155,37 @@ Koopa, DestroyShellAction, Wrench, Dormant behaviour, SuperMushroom, Enemy inter
 **SuperMushroom**
 1. Class Overall Responsibility:
 
-   Increases maxHP of players by 50 and changes the display character from 'm' to 'M'. Gives player SuperMushroom
-   status and allows them to freely jump until they receive any damage.
+   To give player ability to jump freely and increase max health points.
+   Buff lasts until damage of any form is taken. Needs to change display character
+   of player. Execute methods of any actions that damage player actor have to be
+   changed to check for TALL status. ( For this requirement it has to drop when Koopa Shell is destroyed )
 
 2. Relationship with other classes:
 
-   Implements Tradeable and Consumable interfaces
-   Association with ActionList class
-   Association with CapabilitySet class
+   Implements ConsumableItem interface
+   Extends item class
 
 3. Attributes:
 
-   Similar to items class...
+   Similar to items...
+   Int representing hp increase value
+   Boolean representing consumption of item
    String representing name of item
    char representing displayChar of item '^'
    boolean representing portability of item
    ActionList object
    CapabilitySet object
 
-4. Constructor: 
+4. Constructor:
 
-   Requires input for attributes relating to name, displayChar, and portability
-   Assigns input to attributes and intialises empty ActionList
+   super( name, displayChar, portable )
+   assigns hp increase value attribute 50
 
 5. Methods:
 
-   Similar to items class...
+   allowableActions() returns to player ConsumeAction instance
+   Getters for name, hpIncrease attribute, displayChar
+   two tick() methods for when on ground or actor inventory
 
 **Enemy Interface**
 getAttackAction()
