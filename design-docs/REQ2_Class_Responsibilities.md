@@ -36,10 +36,10 @@ Let the player go to jumped over location straight away and print a line on the 
 
 #####Additional Actions:
 
-In the Wall class: Override ground’s allowableActions(Location location) method to also add a new JumpAction(Location location, damage, SUCCESS_RATE) to each of these IF the player has capability MUST_JUMP & doesn’t have POWERSTAR capability & if (actor at location != current actor)
+In the Wall class: The HigherGround interface is implemented. We override the ground’s allowableActions(Location location) method to also add a new JumpAction(Location location, damage, SUCCESS_RATE) to each of these IF the player has capability MUST_JUMP & doesn’t have the INVINCIBLE capability & if (actor at location != current actor). Finally, a new jumpAction is returned for the allowableAction list.
 
-In the Tree class: We again override the ground’s allowableActions() method within every single ‘tick’ method but change the pre-condition before executing the jumpActions’s execute method that corresponds to sprout,sapling and mature’s success rate.
-
+In the Tree class: The HigherGround interface is implemented We again override the ground’s allowableActions() method within every single ‘tick’ method but change the pre-condition before executing the jumpActions’s execute method that corresponds to sprout, sapling, and mature’s success rate. Similar to Wall, a new jump
+Action object using the jumpAction() method is returned for the allowableActions list.
 ##Player Class & Status Enum Class:
 We modify Status enum class to include enum value MUST_JUMP, which signifies that the actor cannot walk over certain tall objects.
 Thus, in player class's constructor, we add MUST_JUMP to its capabilitySet. (This MUST_JUMP will be checked in JumpAction class)
