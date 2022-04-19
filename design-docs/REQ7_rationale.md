@@ -37,3 +37,4 @@ won't have to look through different ResetManager classes
 
 ResetManager run method will make all changes by going through the resettableList, each resettable item have to have implemented resetInstance()
 as a method to make whatever changes needed. This method is called on all item in resettableList
+
