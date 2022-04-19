@@ -19,3 +19,21 @@ within the ResetGameAction allows for the responsibility to be completed in a si
 
 Therefore, due to the rationale above, we believe that the introduced dependencies make the implementation straightforward and supports
 the single responsibility principle and thus we decided to go with this implementation.
+
+
+
+//NEW IMPLEMENTATION
+
+Will be using ResetManager class, the class will store all other classes needed to be
+reset in a private attribute resettableList.
+
+ResetManager will have associations with classes it stores in ArrayList
+
+All classes that need to be reset will have to implement resettable. Will likely have to implement registerInstance in constructor
+of class. What this does is adds the instance of the class to the resetmanager singleton class' list.
+
+ResetManager will be Singleton so that it keeps track of all resettable items without having to be too complicated,
+won't have to look through different ResetManager classes
+
+ResetManager run method will make all changes by going through the resettableList, each resettable item have to have implemented resetInstance()
+as a method to make whatever changes needed. This method is called on all item in resettableList
