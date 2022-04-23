@@ -27,7 +27,6 @@
 |1.15| REQ 7 | To update: Use Resettable, ResetManager, and have a ResetAction | Class Diagram, Class Responsibilities (Sequence Diagram no need since its simple) | Vanessa | 15 Apr | Jin Yao, Zubin | 20 Apr
 |1.16| REQ 7 | Clarify REQ 7 Implementation on 15 Apr Friday consultation | Class Diagram, Class Responsibilities (Sequence Diagram no need since its simple) | Vanessa | 15 Apr | Jin Yao, Zubin | 20 Apr
 |1.17| REQ 7 | Start Coding | Start coding and making it work (pull+push to git) | Vanessa | 17 Apr need >= 15% progress | Jin Yao, Zubin | 20 Apr
-
 |**2**| **2nd Phase (when we receive feedback on our Asgn1 design)** |  |  |  |  |  |
 |2.1| Meeting to discuss things to change | 1) Discuss & go through each requirment <br /> 2) List down update & to-dos | | Jin Yao, Vanessa, Zubin | 20 Apr | Jin Yao, Vanessa, Zubin | 20 Apr
 |2.2| REQ1-7 | 2) Make sure class diagrams, sequence diagrams, responsibilities & rationale are UPDATED | FINAL design documents ready | Jin Yao, Vanessa, Zubin | 22 Apr | Jin Yao, Vanessa, Zubin | 26 Apr

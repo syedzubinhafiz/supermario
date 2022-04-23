@@ -2,6 +2,9 @@ package game;
 
 import java.util.Random;
 public class Utils {
-    Random rand= new Random();
-           double randomBias= rand.nextDouble();
+    private static Random rand= new Random();
+
+    public double getRandomBias() {
+        return rand.nextDouble();
+    }
 }

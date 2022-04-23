@@ -1,10 +1,12 @@
-package game;
+package game.actions;
 
 import edu.monash.fit2099.engine.actions.Action;
+import edu.monash.fit2099.engine.actions.MoveActorAction;
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
+import game.enums.Status;
+import game.Utils;
 
 public class JumpAction extends Action {
 private Location location;
@@ -21,7 +23,7 @@ Utils utils=new Utils();
     @Override
     public String execute(Actor actor, GameMap map) {
         if(!actor.hasCapability(Status.TALL)){
-            if(utils.randomBias<=SUCCESS_RATE){
+            if(utils.getRandomBias()<=SUCCESS_RATE){
                 //jump onto the surface
                 map.moveActor(actor,location);
             }

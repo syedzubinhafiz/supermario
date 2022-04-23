@@ -1,10 +1,16 @@
-package game;
+package game.grounds;
 
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
+import game.Utils;
+import game.actions.JumpAction;
+import game.actors.Goomba;
+import game.enums.Status;
+import game.grounds.Dirt;
+import game.interfaces.HigherGround;
 
 
 import java.util.*;
@@ -59,14 +65,14 @@ public class Tree extends Ground implements HigherGround {
     @Override
     public ActionList allowableActions(Actor actor, Location location, String direction) {
         if (actor != location.getActor() && actor.hasCapability(Status.MUST_JUMP) && actor.hasCapability(Status.INVINCIBLE)) {
-            this.allowableActions.add(getJumpAction());
+            this.allowableActions.add(getJumpAction(location));
         }
         return allowableActions;
     }
+
     @Override
-    public JumpAction getJumpAction() {
+    public JumpAction getJumpAction(Location location) {
        if(stage==TreeCycleStage.SPROUT){
-           Location sproutLocation=sproutTick().location;
            return new JumpAction(location, SUCCESS_RATE_SPROUT, DAMAGE_SPROUT);
        }
        else if (stage==TreeCycleStage.SAPLING){
@@ -77,8 +83,11 @@ public class Tree extends Ground implements HigherGround {
 
     public void sproutTick() {
         turnCounter++;
-        if (utils.randomBias <= 0.1) {
+        if (utils.getRandomBias() <= 0.1) {
             Ground ground = new Ground('+') {
+
+                // Shouldn't do this because super.tick() should be called in the overriden tick() method as
+                // this one inside this method doesn't actually get called.
                 @Override
                 public void tick(Location location) {
                     super.tick(location);
@@ -94,10 +103,14 @@ public class Tree extends Ground implements HigherGround {
     public void saplingTick() {
         turnCounter = 0;
         turnCounter++;
-        if (utils.randomBias<=SUCCESS_RATE_SAPLING)
-            getJumpAction();
-        if (utils.randomBias <= 0.2) {
+        // The below getJumpAction shouldn't be needed
+//        if (utils.getRandomBias()<=SUCCESS_RATE_SAPLING)
+//            getJumpAction();
+        if (utils.getRandomBias() <= 0.2) {
             Ground ground = new Ground('t') {
+
+                // Shouldn't do this because super.tick() should be called in the overriden tick() method as
+                // this one inside this method doesn't actually get called.
                 @Override
                 public void tick(Location location) {
                     super.tick(location);
@@ -110,14 +123,29 @@ public class Tree extends Ground implements HigherGround {
         }
     }
 
+    @Override
+    public boolean canActorEnter(Actor actor) {
+        if (actor.hasCapability(Status.MUST_JUMP) && actor.hasCapability(Status.INVINCIBLE)) {
+            return true;
+        }
+        else if (actor.hasCapability(Status.MUST_JUMP) && !actor.hasCapability(Status.INVINCIBLE)) {
+            return false;
+        }
+        return false;
+    }
+
     public void matureTick() {
         turnCounter = 0;
         turnCounter++;
-        if (utils.randomBias<=SUCCESS_RATE_MATURE)
-            getJumpAction();
+        // The below getJumpAction shouldn't be needed
+//        if (utils.getRandomBias()<=SUCCESS_RATE_MATURE)
+//            getJumpAction();
         List<Exit> dirtDestination = new ArrayList<Exit>();
-        if (utils.randomBias <= 0.15) {
+        if (utils.getRandomBias()<= 0.15) {
             Ground ground = new Ground('T') {
+
+                // Shouldn't do this because super.tick() should be called in the overriden tick() method as
+                // this one inside this method doesn't actually get called.
                 @Override
                 public void tick(Location location) {
                     super.tick(location);
@@ -137,7 +165,7 @@ public class Tree extends Ground implements HigherGround {
         }
         if (turnCounter % 5 == 0 && dirtDestination.size() != 0) {
             setStage(TreeCycleStage.SPROUT);
-            if (utils.randomBias <= 0.20) {
+            if (utils.getRandomBias() <= 0.20) {
                 Ground ground = new Ground('+') {
                     @Override
                     public void tick(Location location) {
