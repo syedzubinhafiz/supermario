@@ -11,6 +11,7 @@ import game.actors.Goomba;
 import game.enums.Status;
 import game.grounds.Dirt;
 import game.interfaces.HigherGround;
+import game.items.Coin;
 
 
 import java.util.*;
@@ -114,7 +115,7 @@ public class Tree extends Ground implements HigherGround {
                 @Override
                 public void tick(Location location) {
                     super.tick(location);
-                    location.addItem(new Coin());
+                    location.addItem(new Coin(20));
                 }
             };
         }

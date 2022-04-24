@@ -4,6 +4,9 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.actors.Player;
+import game.actors.Toad;
+import game.interfaces.Tradeable;
+import game.items.Wallet;
 
 public class TradeAction extends Action {
 
@@ -22,7 +25,14 @@ public class TradeAction extends Action {
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        Wallet wallet = this.player.getWallet
+        Wallet wallet = getPlayer().getWallet();
+        boolean reduced = wallet.reduceBalance(tradeValue);
+        if (reduced) {
+           // remove tradeableItem from Toad's inventory
+            Toad.purchaseItem(itemToTrade);
+           // Add tradeableItem to Player's inventory
+           getPlayer().addItemToInventory(itemToTrade);
+        }
         return null;
     }
 
@@ -33,5 +43,9 @@ public class TradeAction extends Action {
 
     public String hotkey() {
         return this.hotkey;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 }

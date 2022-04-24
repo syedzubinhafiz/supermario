@@ -4,9 +4,11 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
+import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 import game.enums.Status;
+import game.items.Coin;
 import game.items.Wallet;
 
 /**
@@ -28,7 +30,7 @@ public class Player extends Actor  {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Status.MUST_JUMP);
-		this.wallet = new Wallet("wallet", 'w', false);
+		this.wallet = new Wallet("Wallet", 'w', false);
 	}
 
 	@Override
@@ -44,5 +46,24 @@ public class Player extends Actor  {
 	@Override
 	public char getDisplayChar(){
 		return this.hasCapability(Status.TALL) ? Character.toUpperCase(super.getDisplayChar()): super.getDisplayChar();
+	}
+
+	public Wallet getWallet() {
+		return wallet;
+	}
+
+	public void addCoinToWallet(Coin coin) {
+ 		int amt = coin.getCoinValue();
+		this.wallet.addBalance(amt);
+	}
+
+	@Override
+	public void addItemToInventory(Item item) {
+		if (item instanceof Coin) {
+			addCoinToWallet((Coin) item);
+		}
+		else {
+			super.addItemToInventory(item);
+		}
 	}
 }
