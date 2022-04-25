@@ -73,33 +73,8 @@ Classes that have other colours (other than black & yellow) are classes added/mo
 
     This class is used to provide utility methods which other classes can use.
 
-2. Relationship with other classes:
+2. Methods: 
     
-    T
-
-3. Attributes: 
-
-    private Player player;
+    getRandomFrom(ArrayList<integer> list), which returns a random integer from the given integer arraylist.
     
-4. Constructor: 
-    
-    creates instance of TalkWithToadAction with the player attached to it.
- 
-5. Methods: 
-    overrides Action's execute method
-        
-    in public execute() method:
-    
-        - check if Player has wrench.
-        
-        - check if Player has powerstar effect. (player.hasCapability(INVINCIBLE)).
-        
-          if player's inventory has wrench && powerstar effect not there: 
-            get random sentence from toad's sentences array (2, 3, 4th sentences only);
-          elif has wrench && powerstar effect is there: 
-            get random sentence from toad's sentences array (3, 4th sentences only);
-          elif powerstar effect is there:
-            get random sentence from toad's sentences array (1, 3, 4th sentences only);
-          else randomly pick any of sentence 1,2,3,4 from sentences array.
-          
-    overrides Action's getHotKey() method to return the specific hotkey, which is: "d".
+   

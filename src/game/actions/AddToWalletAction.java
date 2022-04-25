@@ -11,6 +11,8 @@ import game.items.Wallet;
 public class AddToWalletAction extends PickUpItemAction {
     // might change to be removed
 
+    //attribute
+    Coin coin;
 
     /**
      * Constructor.
@@ -18,12 +20,15 @@ public class AddToWalletAction extends PickUpItemAction {
      * @param item the item to pick up
      */
     public AddToWalletAction(Item item) {
-        super(item);
+        super(item); // since item is a private attribute in PickUpItemAction, it is NOT inherited
+        this.coin = (Coin) item;
     }
 
 
     @Override
     public String execute(Actor actor, GameMap map) {
+        Wallet w = ((Player) actor).getWallet();
+        w.addBalance(coin.getCoinValue());
         return super.execute(actor, map);
     }
 }

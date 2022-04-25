@@ -18,6 +18,7 @@ public class Player extends Actor  {
 
 	private final Menu menu = new Menu();
 	private Wallet wallet;
+	private ActionList additionalActions;
 
 	/**
 	 * Constructor.
@@ -31,6 +32,7 @@ public class Player extends Actor  {
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Status.MUST_JUMP);
 		this.wallet = new Wallet("Wallet", 'w', false);
+		this.additionalActions = new ActionList();
 	}
 
 	@Override
@@ -52,18 +54,12 @@ public class Player extends Actor  {
 		return wallet;
 	}
 
-	public void addCoinToWallet(Coin coin) {
- 		int amt = coin.getCoinValue();
-		this.wallet.addBalance(amt);
-	}
 
 	@Override
 	public void addItemToInventory(Item item) {
-		if (item instanceof Coin) {
-			addCoinToWallet((Coin) item);
-		}
-		else {
-			super.addItemToInventory(item);
-		}
+		super.addItemToInventory(item);
+
 	}
+
+
 }

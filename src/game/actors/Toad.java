@@ -13,7 +13,10 @@ import java.util.ArrayList;
 public class Toad extends Actor {
 
     private static Toad instance;
-    public ArrayList<Tradeable> tradeableInventory;
+    private static ArrayList<Tradeable> tradeableInventory;
+    private static final String[] sentences = new String[] {"You might need a wrench to smash Koopa's hard shells.",
+        "You better get back to finding the Power Stars.", "The Princess is depending on you! You are our only hope.",
+        "Being imprisoned in these walls can drive a fungus crazy :("};
 
     public Toad(String name, char displayChar, int hitPoints) {
         super("Toad", 'O', hitPoints);
@@ -35,7 +38,7 @@ public class Toad extends Actor {
 
     public static Toad getInstance() {
         if (instance == null) {
-            instance = new Toad();
+            instance = new Toad("Toad", 'O', 100);
         }
         return instance;
     }
@@ -57,6 +60,10 @@ public class Toad extends Actor {
         else if (itemToTrade instanceof Wrench) {
             tradeableInventory.add(new Wrench());
         }
+    }
+
+    public static String getSentence(int index) {
+        return sentences[index];
     }
 
 }
