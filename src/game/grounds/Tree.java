@@ -104,9 +104,7 @@ public class Tree extends Ground implements HigherGround {
     public void saplingTick() {
         turnCounter = 0;
         turnCounter++;
-        // The below getJumpAction shouldn't be needed
-//        if (utils.getRandomBias()<=SUCCESS_RATE_SAPLING)
-//            getJumpAction();
+
         if (utils.getRandomBias() <= 0.2) {
             Ground ground = new Ground('t') {
 
@@ -138,9 +136,7 @@ public class Tree extends Ground implements HigherGround {
     public void matureTick() {
         turnCounter = 0;
         turnCounter++;
-        // The below getJumpAction shouldn't be needed
-//        if (utils.getRandomBias()<=SUCCESS_RATE_MATURE)
-//            getJumpAction();
+
         List<Exit> dirtDestination = new ArrayList<Exit>();
         if (utils.getRandomBias()<= 0.15) {
             Ground ground = new Ground('T') {

@@ -1,7 +1,8 @@
 package game.items;
 
-import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.items.Item;
+import game.actors.Toad;
+import game.interfaces.Tradeable;
 
 import java.util.List;
 
@@ -18,12 +19,33 @@ public class Wallet extends Item {
      */
     public Wallet(String name, char displayChar, boolean portable) {
         super(name, displayChar, portable);
-        this.totalBalance=0;
 
-        //creates instances of tradeAction, once for each of Toad's tradableItems
-
-        // add these instances to actionslist using addAction function
+        // get tradeAction for each tradeable item in toad's inventory & add to actionlist of wallet
+        for (Tradeable item : Toad.getTradeableInventory()) {
+            addAction(item.getTradeAction());
+        }
     }
+    public Wallet(){
+        super("Wallet", 'u', false);
+        for (Tradeable item : Toad.getTradeableInventory()) {
+            addAction(item.getTradeAction());
+        }
+    }
+
+
+    public boolean reduceBalance(int amount) {
+        int offset = this.getTotalBalance()-amount;
+        if (offset >=0) {
+            this.setTotalBalance(offset);
+            return true;
+        }
+        return false;
+    }
+
+    public void addBalance(int amount) {
+        this.setTotalBalance(this.totalBalance+amount);
+    }
+
 
     public int getTotalBalance() {
         return totalBalance;
@@ -33,16 +55,5 @@ public class Wallet extends Item {
         this.totalBalance = totalBalance;
     }
 
-    public boolean reduceBalance(int amount) {
-        int offset = this.getTotalBalance()-amount;
-        if (offset >=0) {
-            this.setTotalBalance(this.getTotalBalance()-amount);
-            return true;
-        }
-        return false;
-    }
 
-    public void addBalance(int amount) {
-        this.setTotalBalance(this.getTotalBalance()+amount);
-    }
 }

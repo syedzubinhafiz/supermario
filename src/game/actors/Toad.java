@@ -7,8 +7,12 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.interfaces.Tradeable;
+import game.items.PowerStar;
+import game.items.SuperMushroom;
+import game.weapons.Wrench;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Toad extends Actor {
 
@@ -18,15 +22,12 @@ public class Toad extends Actor {
         "You better get back to finding the Power Stars.", "The Princess is depending on you! You are our only hope.",
         "Being imprisoned in these walls can drive a fungus crazy :("};
 
-    public Toad(String name, char displayChar, int hitPoints) {
-        super("Toad", 'O', hitPoints);
+    public Toad() {
+        super("Toad", 'O', 100); //ask tutor about hitpoints amt for toad
         this.tradeableInventory = new ArrayList<>();
-        PowerStar ps = new PowerStar();
-        SuperMushroom sm = new SuperMushroom();
-        Wrench w = new Wrench();
-        this.tradeableInventory.add(ps);
-        this.tradeableInventory.add(sm);
-        this.tradeableInventory.add(w);
+        addItemToTradeableInventory(new PowerStar());
+        addItemToTradeableInventory(new SuperMushroom());
+        addItemToTradeableInventory(new Wrench());
 
         getInstance(); //double check with bootcamp
     }
@@ -38,28 +39,32 @@ public class Toad extends Actor {
 
     public static Toad getInstance() {
         if (instance == null) {
-            instance = new Toad("Toad", 'O', 100);
+            instance = new Toad();
         }
         return instance;
     }
 
-    public ArrayList<Tradeable> getTradeableInventory() {
+    public static ArrayList<Tradeable> getTradeableInventory() {
         return tradeableInventory;
     }
 
-    public static void purchaseItem(Tradeable itemToTrade) {
-        // REMEMBER TO USE THIS in TradeAction!! (add it in)
+    public static void removeTradeableItem(Tradeable itemToTrade) {
         tradeableInventory.remove(itemToTrade);
-        // replenish inventory - (think of better way)
+        Tradeable item=null;
         if (itemToTrade instanceof PowerStar) {
-            tradeableInventory.add(new PowerStar());
+            item = new PowerStar();
         }
         else if (itemToTrade instanceof SuperMushroom) {
-            tradeableInventory.add(new SuperMushroom());
+            item = new SuperMushroom();
         }
         else if (itemToTrade instanceof Wrench) {
-            tradeableInventory.add(new Wrench());
+            item = new Wrench();
         }
+        addItemToTradeableInventory(item);
+    }
+
+    public static void addItemToTradeableInventory(Tradeable item) {
+        tradeableInventory.add(item);
     }
 
     public static String getSentence(int index) {

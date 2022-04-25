@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
+import game.actions.TalkWithToadAction;
 import game.enums.Status;
 import game.items.Coin;
 import game.items.Wallet;
@@ -18,7 +19,6 @@ public class Player extends Actor  {
 
 	private final Menu menu = new Menu();
 	private Wallet wallet;
-	private ActionList additionalActions;
 
 	/**
 	 * Constructor.
@@ -31,8 +31,7 @@ public class Player extends Actor  {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Status.MUST_JUMP);
-		this.wallet = new Wallet("Wallet", 'w', false);
-		this.additionalActions = new ActionList();
+		this.wallet = new Wallet();
 	}
 
 	@Override
@@ -40,6 +39,8 @@ public class Player extends Actor  {
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
+
+		actions.add(new TalkWithToadAction());
 
 		// return/print the console menu
 		return menu.showMenu(this, actions, display);
