@@ -17,12 +17,12 @@ import game.items.Coin;
 import java.util.*;
 
 public class Tree extends Ground implements HigherGround {
-    private final double SUCCESS_RATE_SPROUT=0.9;
-    private final double SUCCESS_RATE_SAPLING=0.8;
-    private final double SUCCESS_RATE_MATURE=0.7;
-    private final int DAMAGE_SPROUT=10;
-    private final int DAMAGE_SAPLING=20;
-    private final int DAMAGE_MATURE=30;
+    private final double SUCCESS_RATE_SPROUT = 0.9;
+    private final double SUCCESS_RATE_SAPLING = 0.8;
+    private final double SUCCESS_RATE_MATURE = 0.7;
+    private final int DAMAGE_SPROUT = 10;
+    private final int DAMAGE_SAPLING = 20;
+    private final int DAMAGE_MATURE = 30;
 
 
 
@@ -50,7 +50,7 @@ public class Tree extends Ground implements HigherGround {
     public Tree() {
         super('+');
         setStage(TreeCycleStage.SPROUT);
-        this.allowableActions=new ActionList();
+        this.allowableActions = new ActionList();
     }
 
     @Override
@@ -73,13 +73,16 @@ public class Tree extends Ground implements HigherGround {
 
     @Override
     public JumpAction getJumpAction(Location location) {
-       if(stage==TreeCycleStage.SPROUT){
-           return new JumpAction(location, SUCCESS_RATE_SPROUT, DAMAGE_SPROUT);
-       }
-       else if (stage==TreeCycleStage.SAPLING){
-           return new JumpAction(location,SUCCESS_RATE_SAPLING,DAMAGE_SAPLING);
-        }
-       else return new JumpAction(location,SUCCESS_RATE_MATURE,DAMAGE_MATURE);
+        if (stage == TreeCycleStage.SPROUT) {
+            return new JumpAction(location, SUCCESS_RATE_SPROUT, DAMAGE_SPROUT);
+        } else if (stage == TreeCycleStage.SAPLING) {
+            return new JumpAction(location, SUCCESS_RATE_SAPLING, DAMAGE_SAPLING);
+        } else return new JumpAction(location, SUCCESS_RATE_MATURE, DAMAGE_MATURE);
+    }
+
+    @Override
+    public JumpAction getJumpAction() {
+        return null;
     }
 
     public void sproutTick() {
@@ -104,7 +107,6 @@ public class Tree extends Ground implements HigherGround {
     public void saplingTick() {
         turnCounter = 0;
         turnCounter++;
-
         if (utils.getRandomBias() <= 0.2) {
             Ground ground = new Ground('t') {
 
@@ -138,7 +140,7 @@ public class Tree extends Ground implements HigherGround {
         turnCounter++;
 
         List<Exit> dirtDestination = new ArrayList<Exit>();
-        if (utils.getRandomBias()<= 0.15) {
+        if (utils.getRandomBias() <= 0.15) {
             Ground ground = new Ground('T') {
 
                 // Shouldn't do this because super.tick() should be called in the overriden tick() method as

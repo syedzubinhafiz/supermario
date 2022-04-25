@@ -43,5 +43,10 @@ public class Wall extends Ground implements HigherGround {
 	public JumpAction getJumpAction(Location location) {
 		return new JumpAction(location, SUCCESS_RATE, DAMAGE);
 	}
+
+	@Override
+	public JumpAction getJumpAction() {
+		return null;
+	}
 }
 
