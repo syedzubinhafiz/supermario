@@ -33,14 +33,19 @@ public class Wall extends Ground implements HigherGround {
 	@Override
 	public ActionList allowableActions(Actor actor, Location location, String direction) {
 		if (actor != location.getActor() && actor.hasCapability(Status.MUST_JUMP) && actor.hasCapability(Status.INVINCIBLE)) {
-			this.allowableActions.add(getJumpAction());
+			this.allowableActions.add(getJumpAction(location));
 		}
 		return allowableActions;
 	}
 
 	@Override
-	public JumpAction getJumpAction() {
+	public JumpAction getJumpAction(Location location) {
 		return new JumpAction(location, SUCCESS_RATE, DAMAGE);
+	}
+
+	@Override
+	public JumpAction getJumpAction() {
+		return null;
 	}
 }
 

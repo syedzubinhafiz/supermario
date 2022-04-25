@@ -6,4 +6,5 @@ import game.actions.JumpAction;
 public interface HigherGround {
     public JumpAction getJumpAction(Location location);
 
+    JumpAction getJumpAction();
 }
