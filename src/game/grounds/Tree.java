@@ -8,23 +8,23 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.Utils;
 import game.actions.JumpAction;
 import game.actors.Goomba;
-import game.actors.Koopa;
 import game.enums.Status;
 import game.grounds.Dirt;
 import game.interfaces.HigherGround;
-import game.interfaces.Resettable;
 import game.items.Coin;
 
 
 import java.util.*;
 
-public class Tree extends Ground implements HigherGround, Resettable {
+public class Tree extends Ground implements HigherGround {
     private final double SUCCESS_RATE_SPROUT = 0.9;
     private final double SUCCESS_RATE_SAPLING = 0.8;
     private final double SUCCESS_RATE_MATURE = 0.7;
     private final int DAMAGE_SPROUT = 10;
     private final int DAMAGE_SAPLING = 20;
     private final int DAMAGE_MATURE = 30;
+
+
 
 
 
@@ -35,7 +35,7 @@ public class Tree extends Ground implements HigherGround, Resettable {
     private int turnCounter;
     private TreeCycleStage stage;
     Utils utils = new Utils();
-    protected ActionList allowableActions;
+    private ActionList allowableActions;
 
     //setter for treecyclestage
     public void setStage(TreeCycleStage stage) {
@@ -51,12 +51,6 @@ public class Tree extends Ground implements HigherGround, Resettable {
         super('+');
         setStage(TreeCycleStage.SPROUT);
         this.allowableActions = new ActionList();
-        Resettable.super.registerInstance();
-    }
-
-    @Override
-    public void resetInstance() {
-        this.addCapability(Status.RESET);
     }
 
     @Override
@@ -95,42 +89,43 @@ public class Tree extends Ground implements HigherGround, Resettable {
         return null;
     }
 
-    public void sproutTick() {
+    public void sproutTick(Location location) {
         turnCounter++;
         if (utils.getRandomBias() <= 0.1) {
-            Ground ground = new Ground('+') {
+//            Ground ground = new Ground('+') {
 
                 // Shouldn't do this because super.tick() should be called in the overriden tick() method as
                 // this one inside this method doesn't actually get called.
-                @Override
-                public void tick(Location location) {
-                    super.tick(location);
-                    location.addActor(new Goomba());
+              if(!location.containsAnActor())
+                  location.addActor(new Goomba());
+              if(turnCounter ==10)
+                {
+                    setStage(TreeCycleStage.SAPLING);
                 }
-            };
-            if (turnCounter == 10) {
-                setStage(TreeCycleStage.SAPLING);
             }
         }
-    }
 
-    public void saplingTick() {
+
+    public void saplingTick(Location location) {
         turnCounter = 0;
         turnCounter++;
         if (utils.getRandomBias() <= 0.2) {
-            Ground ground = new Ground('t') {
 
-                // Shouldn't do this because super.tick() should be called in the overriden tick() method as
-                // this one inside this method doesn't actually get called.
-                @Override
-                public void tick(Location location) {
-                    super.tick(location);
-                    location.addItem(new Coin(20));
+//            Ground ground = new Ground('t') {
+//
+//                // Shouldn't do this because super.tick() should be called in the overriden tick() method as
+//                // this one inside this method doesn't actually get called.
+//                @Override
+//                public void tick(Location location) {
+//                    super.tick(location);
+//                    location.addItem(new Coin(20));
+//                }
+//            };
+//        }
+            location.addItem(new Coin(20));
+                if (turnCounter == 10) {
+                    setStage(TreeCycleStage.MATURE);
                 }
-            };
-        }
-        if (turnCounter == 10) {
-            setStage(TreeCycleStage.MATURE);
         }
     }
 
@@ -145,20 +140,23 @@ public class Tree extends Ground implements HigherGround, Resettable {
         return false;
     }
 
-    public void matureTick() {
+    public void matureTick(Location location) {
         turnCounter = 0;
         turnCounter++;
 
         List<Exit> dirtDestination = new ArrayList<Exit>();
         if (utils.getRandomBias() <= 0.15) {
-            Ground ground = new Ground('T') {
-
-                // Shouldn't do this because super.tick() should be called in the overriden tick() method as
-                // this one inside this method doesn't actually get called.
-                @Override
-                public void tick(Location location) {
-                    super.tick(location);
-                    location.addActor(new Koopa());
+//            Ground ground = new Ground('T') {
+//
+//                // Shouldn't do this because super.tick() should be called in the overriden tick() method as
+//                // this one inside this method doesn't actually get called.
+//                @Override
+//                public void tick(Location location) {
+//                    super.tick(location);
+//                    location.addActor(new Koopa());
+                    if(!location.containsAnActor()){
+                        location.addActor(new Koopa());
+                    }
                     // make an empty list of all exits in the game map
                     List<Exit> matureExits = new ArrayList<Exit>();
                     //store all the exits in the list created
@@ -170,19 +168,11 @@ public class Tree extends Ground implements HigherGround, Resettable {
                         }
                     }
                 }
-            };
-        }
         if (turnCounter % 5 == 0 && dirtDestination.size() != 0) {
             setStage(TreeCycleStage.SPROUT);
             if (utils.getRandomBias() <= 0.20) {
-                Ground ground = new Ground('+') {
-                    @Override
-                    public void tick(Location location) {
-                        super.tick(location);
                         location.setGround(new Dirt());
                     }
-                };
             }
         }
     }
-}
