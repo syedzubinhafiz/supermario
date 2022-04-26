@@ -13,6 +13,8 @@ public abstract class Tree extends Ground implements Resettable, HigherGround{
     double success_rate;
     int damage;
 
+
+
     /**
      * Constructor.
      *
@@ -21,6 +23,7 @@ public abstract class Tree extends Ground implements Resettable, HigherGround{
     public Tree(char displayChar) {
         super(displayChar);
         this.allowableActions = new ActionList();
+        System.out.println("yes");
         Resettable.super.registerInstance();
     }
 
