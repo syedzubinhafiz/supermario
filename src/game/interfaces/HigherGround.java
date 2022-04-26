@@ -7,5 +7,4 @@ public interface HigherGround {
 
     JumpAction getJumpAction(Location location);
 
-    JumpAction getJumpAction();
 }
