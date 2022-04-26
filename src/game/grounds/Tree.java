@@ -56,11 +56,11 @@ public class Tree extends Ground implements HigherGround {
     @Override
     public void tick(Location location) {
         if (stage == TreeCycleStage.SPROUT) {
-            sproutTick();
+            sproutTick(location);
         } else if (stage == TreeCycleStage.SAPLING) {
-            saplingTick();
+            saplingTick(location);
         } else
-            matureTick();
+            matureTick(location);
     }
 
     @Override
@@ -85,42 +85,43 @@ public class Tree extends Ground implements HigherGround {
         return null;
     }
 
-    public void sproutTick() {
+    public void sproutTick(Location location) {
         turnCounter++;
         if (utils.getRandomBias() <= 0.1) {
-            Ground ground = new Ground('+') {
+//            Ground ground = new Ground('+') {
 
                 // Shouldn't do this because super.tick() should be called in the overriden tick() method as
                 // this one inside this method doesn't actually get called.
-                @Override
-                public void tick(Location location) {
-                    super.tick(location);
-                    location.addActor(new Goomba());
+              if(!location.containsAnActor())
+                  location.addActor(new Goomba());
+              if(turnCounter ==10)
+                {
+                    setStage(TreeCycleStage.SAPLING);
                 }
-            };
-            if (turnCounter == 10) {
-                setStage(TreeCycleStage.SAPLING);
             }
         }
-    }
 
-    public void saplingTick() {
+
+    public void saplingTick(Location location) {
         turnCounter = 0;
         turnCounter++;
         if (utils.getRandomBias() <= 0.2) {
-            Ground ground = new Ground('t') {
 
-                // Shouldn't do this because super.tick() should be called in the overriden tick() method as
-                // this one inside this method doesn't actually get called.
-                @Override
-                public void tick(Location location) {
-                    super.tick(location);
-                    location.addItem(new Coin(20));
+//            Ground ground = new Ground('t') {
+//
+//                // Shouldn't do this because super.tick() should be called in the overriden tick() method as
+//                // this one inside this method doesn't actually get called.
+//                @Override
+//                public void tick(Location location) {
+//                    super.tick(location);
+//                    location.addItem(new Coin(20));
+//                }
+//            };
+//        }
+            location.addItem(new Coin(20));
+                if (turnCounter == 10) {
+                    setStage(TreeCycleStage.MATURE);
                 }
-            };
-        }
-        if (turnCounter == 10) {
-            setStage(TreeCycleStage.MATURE);
         }
     }
 
@@ -135,20 +136,23 @@ public class Tree extends Ground implements HigherGround {
         return false;
     }
 
-    public void matureTick() {
+    public void matureTick(Location location) {
         turnCounter = 0;
         turnCounter++;
 
         List<Exit> dirtDestination = new ArrayList<Exit>();
         if (utils.getRandomBias() <= 0.15) {
-            Ground ground = new Ground('T') {
-
-                // Shouldn't do this because super.tick() should be called in the overriden tick() method as
-                // this one inside this method doesn't actually get called.
-                @Override
-                public void tick(Location location) {
-                    super.tick(location);
-                    location.addActor(new Koopa());
+//            Ground ground = new Ground('T') {
+//
+//                // Shouldn't do this because super.tick() should be called in the overriden tick() method as
+//                // this one inside this method doesn't actually get called.
+//                @Override
+//                public void tick(Location location) {
+//                    super.tick(location);
+//                    location.addActor(new Koopa());
+                    if(!location.containsAnActor()){
+                        location.addActor(new Koopa());
+                    }
                     // make an empty list of all exits in the game map
                     List<Exit> matureExits = new ArrayList<Exit>();
                     //store all the exits in the list created
@@ -160,8 +164,6 @@ public class Tree extends Ground implements HigherGround {
                         }
                     }
                 }
-            };
-        }
         if (turnCounter % 5 == 0 && dirtDestination.size() != 0) {
             setStage(TreeCycleStage.SPROUT);
             if (utils.getRandomBias() <= 0.20) {
