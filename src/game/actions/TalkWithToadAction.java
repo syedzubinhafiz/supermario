@@ -32,6 +32,8 @@ public class TalkWithToadAction extends Action {
         boolean hasPowerStarEffect = actor.hasCapability(Status.INVINCIBLE);
         ArrayList<Integer> indexes = new ArrayList<Integer>();
         String sentence;
+
+        // Checkings
         if (hasWrench && !hasPowerStarEffect) {
             indexes.add(1); indexes.add(2); indexes.add(3);
         }
@@ -44,7 +46,8 @@ public class TalkWithToadAction extends Action {
         else {
             indexes.add(0); indexes.add(1); indexes.add(2); indexes.add(3);
         }
-        sentence = Toad.getSentence(Utils.getRandomFrom(indexes));
+        int index = Utils.getRandomFrom(indexes);
+        sentence = Toad.getSentence(index);
         return sentence;
     }
 

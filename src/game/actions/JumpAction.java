@@ -12,7 +12,6 @@ public class JumpAction extends Action {
 private Location location;
 private final double SUCCESS_RATE;
 private final int DAMAGE;
-Utils utils=new Utils();
 
     public JumpAction(Location location, double SUCCESS_RATE, int DAMAGE) {
         this.location = location;
@@ -23,13 +22,12 @@ Utils utils=new Utils();
     @Override
     public String execute(Actor actor, GameMap map) {
         if(!actor.hasCapability(Status.TALL)){
-            if(utils.getRandomBias()<=SUCCESS_RATE){
-                //jump onto the surface
-                map.moveActor(actor,location);
+            if(Utils.getRandomBias()<=SUCCESS_RATE){
+                map.moveActor(actor,location); //jump onto the surface
             }
         else if (actor.hasCapability(Status.TALL)){
                 map.moveActor(actor,location);
-            }
+        }
         else actor.hurt(DAMAGE);
             System.out.println("Oh no! You couldn't make the jump and fell down :( ");
         }
@@ -38,6 +36,6 @@ Utils utils=new Utils();
 
     @Override
     public String menuDescription(Actor actor) {
-        return null;
+        return actor " jumps to ";
     }
 }

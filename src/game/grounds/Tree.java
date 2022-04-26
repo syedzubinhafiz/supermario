@@ -37,7 +37,7 @@ public abstract class Tree extends Ground implements Resettable, HigherGround{
 
     @Override
     public ActionList allowableActions(Actor actor, Location location, String direction) {
-        if (actor != location.getActor() && actor.hasCapability(Status.MUST_JUMP) && actor.hasCapability(Status.INVINCIBLE)) {
+        if (actor != location.getActor() && canActorEnter(actor)) {
             this.allowableActions.add(getJumpAction(location));
         }
         return allowableActions;
