@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
+import game.actions.ResetGameAction;
 import game.actions.TalkWithToadAction;
 import game.enums.Status;
 import game.interfaces.Resettable;
@@ -39,22 +40,16 @@ public class Player extends Actor implements Resettable {
 
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-		// Reset
-		if (this.hasCapability(Status.RESET)) {
-			//reset player status
-			if (this.hasCapability(Status.INVINCIBLE)) {
-				this.removeCapability(Status.INVINCIBLE);
-			} else if(this.hasCapability(Status.TALL)) {
-				this.removeCapability(Status.TALL);
-			}
-			// heal player to maximum
-			this.resetMaxHp(100);
-		}
+
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
 
 		actions.add(new TalkWithToadAction());
+		// If player has NOT YET BEEN reset, add the resetgameAction
+		if (!this.hasCapability(Status.RESET)) {
+			actions.add(new ResetGameAction());
+		}
 
 		// return/print the console menu
 		return menu.showMenu(this, actions, display);
@@ -79,7 +74,18 @@ public class Player extends Actor implements Resettable {
 
 	@Override
 	public void resetInstance() {
-		//resets player status
-		this.addCapability(Status.RESET);
+		//resets player straight away here instead
+		//reset player status
+		if (this.hasCapability(Status.INVINCIBLE)) {
+			this.removeCapability(Status.INVINCIBLE);
+		} else if(this.hasCapability(Status.TALL)) {
+			this.removeCapability(Status.TALL);
+		}
+		// heal player to maximum
+		this.resetMaxHp(100);
+
+		// Make a note that player has been reset once
+		this.addCapability(Status.RESET); // for player ONLY, Status.RESET means that it has been reset before. For others, it means that they must be RESET
+
 	}
 }
