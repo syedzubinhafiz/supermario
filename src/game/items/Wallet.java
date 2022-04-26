@@ -27,9 +27,10 @@ public class Wallet extends Item {
     }
     public Wallet(){
         super("Wallet", 'u', false);
-        for (Tradeable item : Toad.getTradeableInventory()) {
+        if (Toad.getInstance()!=null && (Toad.getInstance().getTradeableInventory().size() > 0)) {
+        for (Tradeable item : Toad.getInstance().getTradeableInventory()) {
             addAction(item.getTradeAction());
-        }
+        }}
     }
 
 

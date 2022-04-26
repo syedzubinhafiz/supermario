@@ -29,7 +29,7 @@ public class Toad extends Actor {
         addItemToTradeableInventory(new SuperMushroom());
         addItemToTradeableInventory(new Wrench());
 
-        getInstance(); //double check with bootcamp
+
     }
 
     @Override

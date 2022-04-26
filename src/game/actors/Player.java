@@ -44,12 +44,13 @@ public class Player extends Actor implements Resettable {
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
-
-		actions.add(new TalkWithToadAction());
 		// If player has NOT YET BEEN reset, add the resetgameAction
 		if (!this.hasCapability(Status.RESET)) {
 			actions.add(new ResetGameAction());
 		}
+
+		actions.add(new TalkWithToadAction());
+
 
 		// return/print the console menu
 		return menu.showMenu(this, actions, display);

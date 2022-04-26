@@ -8,23 +8,23 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.Utils;
 import game.actions.JumpAction;
 import game.actors.Goomba;
+import game.actors.Koopa;
 import game.enums.Status;
 import game.grounds.Dirt;
 import game.interfaces.HigherGround;
+import game.interfaces.Resettable;
 import game.items.Coin;
 
 
 import java.util.*;
 
-public class Tree extends Ground implements HigherGround {
+public class Tree extends Ground implements HigherGround, Resettable {
     private final double SUCCESS_RATE_SPROUT = 0.9;
     private final double SUCCESS_RATE_SAPLING = 0.8;
     private final double SUCCESS_RATE_MATURE = 0.7;
     private final int DAMAGE_SPROUT = 10;
     private final int DAMAGE_SAPLING = 20;
     private final int DAMAGE_MATURE = 30;
-
-
 
 
 
@@ -35,7 +35,7 @@ public class Tree extends Ground implements HigherGround {
     private int turnCounter;
     private TreeCycleStage stage;
     Utils utils = new Utils();
-    private ActionList allowableActions;
+    protected ActionList allowableActions;
 
     //setter for treecyclestage
     public void setStage(TreeCycleStage stage) {
@@ -51,11 +51,21 @@ public class Tree extends Ground implements HigherGround {
         super('+');
         setStage(TreeCycleStage.SPROUT);
         this.allowableActions = new ActionList();
+        Resettable.super.registerInstance();
+    }
+
+    @Override
+    public void resetInstance() {
+        this.addCapability(Status.RESET);
     }
 
     @Override
     public void tick(Location location) {
-        if (stage == TreeCycleStage.SPROUT) {
+        if (this.hasCapability(Status.RESET) && (Utils.getRandomBias() <= 0.5)) {
+            Dirt d = new Dirt();
+            location.setGround(d);
+        }
+        else if (stage == TreeCycleStage.SPROUT) {
             sproutTick();
         } else if (stage == TreeCycleStage.SAPLING) {
             saplingTick();

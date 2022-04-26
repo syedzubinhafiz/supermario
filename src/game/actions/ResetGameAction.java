@@ -13,12 +13,12 @@ public class ResetGameAction extends Action {
         ResetManager manager = ResetManager.getInstance();
         manager.run(map);
 
-        return null;
+        return "You have reset the game!";
     }
 
     @Override
     public String menuDescription(Actor actor) {
-        return null;
+        return "Reset the game.";
     }
 
     @Override
