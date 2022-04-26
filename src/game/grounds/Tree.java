@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.Utils;
 import game.actions.JumpAction;
 import game.actors.Goomba;
+import game.actors.Koopa;
 import game.enums.Status;
 import game.grounds.Dirt;
 import game.interfaces.HigherGround;
@@ -167,14 +168,8 @@ public class Tree extends Ground implements HigherGround {
         if (turnCounter % 5 == 0 && dirtDestination.size() != 0) {
             setStage(TreeCycleStage.SPROUT);
             if (utils.getRandomBias() <= 0.20) {
-                Ground ground = new Ground('+') {
-                    @Override
-                    public void tick(Location location) {
-                        super.tick(location);
                         location.setGround(new Dirt());
                     }
-                };
             }
         }
     }
-}
