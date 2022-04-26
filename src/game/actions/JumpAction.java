@@ -36,6 +36,11 @@ private final int DAMAGE;
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor " jumps to ";
+        return actor + " jumps to " + location.getGround();
+    }
+
+    @Override
+    public String hotkey() {
+        return "J";
     }
 }
