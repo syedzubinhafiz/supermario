@@ -11,13 +11,14 @@ import game.enums.Status;
 import game.behaviours.WanderBehaviour;
 import game.actions.AttackAction;
 import game.interfaces.Behaviour;
+import game.interfaces.Resettable;
 
 import java.util.HashMap;
 import java.util.Map;
 /**
  * A little fungus guy.
  */
-public class Goomba extends Actor {
+public class Goomba extends Actor implements Resettable {
 	private final Map<Integer, Behaviour> behaviours = new HashMap<>(); // priority, behaviour
 
 	/**
@@ -26,6 +27,7 @@ public class Goomba extends Actor {
 	public Goomba() {
 		super("Goomba", 'g', 50);
 		this.behaviours.put(10, new WanderBehaviour());
+		Resettable.super.registerInstance();
 	}
 
 	/**
@@ -53,6 +55,9 @@ public class Goomba extends Actor {
 	 */
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+		if (this.hasCapability(Status.RESET)) {
+			map.removeActor(this);
+		}
 		for(Behaviour Behaviour : behaviours.values()) {
 			Action action = Behaviour.getAction(this, map);
 			if (action != null)
@@ -61,4 +66,9 @@ public class Goomba extends Actor {
 		return new DoNothingAction();
 	}
 
+	@Override
+	public void resetInstance() {
+		// be killed (removed from map)
+		this.addCapability(Status.RESET);
+	}
 }

@@ -9,13 +9,14 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 import game.actions.TalkWithToadAction;
 import game.enums.Status;
+import game.interfaces.Resettable;
 import game.items.Coin;
 import game.items.Wallet;
 
 /**
  * Class representing the Player.
  */
-public class Player extends Actor  {
+public class Player extends Actor implements Resettable {
 
 	private final Menu menu = new Menu();
 	private Wallet wallet;
@@ -32,10 +33,23 @@ public class Player extends Actor  {
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Status.MUST_JUMP);
 		this.wallet = new Wallet();
+		this.resetMaxHp(100);
+		Resettable.super.registerInstance();
 	}
 
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+		// Reset
+		if (this.hasCapability(Status.RESET)) {
+			//reset player status
+			if (this.hasCapability(Status.INVINCIBLE)) {
+				this.removeCapability(Status.INVINCIBLE);
+			} else if(this.hasCapability(Status.TALL)) {
+				this.removeCapability(Status.TALL);
+			}
+			// heal player to maximum
+			this.resetMaxHp(100);
+		}
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
@@ -63,4 +77,9 @@ public class Player extends Actor  {
 	}
 
 
+	@Override
+	public void resetInstance() {
+		//resets player status
+		this.addCapability(Status.RESET);
+	}
 }
