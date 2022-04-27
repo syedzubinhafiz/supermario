@@ -1,12 +1,21 @@
 package game.items;
 
 import edu.monash.fit2099.engine.items.Item;
+import game.actions.ConsumeAction;
 import game.actions.TradeAction;
+import game.actors.Player;
+import game.enums.Status;
+import game.interfaces.ConsumableItem;
 import game.interfaces.Tradeable;
 
-public class SuperMushroom extends Item implements Tradeable {
+public class SuperMushroom extends Item implements Tradeable, ConsumableItem {
 
     private final int VALUE = 400;
+
+    private final int healthIncrease = 50;
+    private final char charChange = 'M';
+    private final Status buffStatus = Status.TALL;
+
 
     /***
      * Constructor.
@@ -17,9 +26,29 @@ public class SuperMushroom extends Item implements Tradeable {
     public SuperMushroom(String name, char displayChar, boolean portable) {
         super(name, displayChar, portable);
     }
+
     public SuperMushroom() {
         super("Super Mushroom", '^', false);
     }
+
+    @Override
+    public ConsumeAction getConsumeAction(SuperMushroom this, Player player){
+        return new ConsumeAction(this, player  );
+    }
+
+    public int getHealthIncrease(){
+        return healthIncrease;
+    }
+
+    public char getCharChange(){
+        return charChange;
+    }
+
+    public Status getBuffStatus(){
+        return buffStatus;
+    }
+
+
 
     @Override
     public TradeAction getTradeAction() {

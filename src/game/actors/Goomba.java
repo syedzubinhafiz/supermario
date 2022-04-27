@@ -23,6 +23,7 @@ import java.util.Map;
 public class Goomba extends Actor implements Resettable, Enemy {
 	private final Map<Integer, Behaviour> behaviours = new HashMap<>(); // priority, behaviour
 	private Utils rNG;
+	private static int goombaCount = 0;
 
 	/**
 	 * Constructor.
@@ -32,6 +33,10 @@ public class Goomba extends Actor implements Resettable, Enemy {
 		this.behaviours.put(10, new WanderBehaviour());
 		Resettable.super.registerInstance();
 		rNG = new Utils();
+
+		//Keep track of number of Goombas
+		goombaCount += 1;
+		//WHAT WE CAN DO IS IN PLAYTURN OF EACH GOOMBA, CHECK THE GOOMBACOUNT AND KILL THAT GOOMBA IF THE LIMIT IS EXCEEDED.
 	}
 
 
@@ -93,5 +98,11 @@ public class Goomba extends Actor implements Resettable, Enemy {
 	@Override
 	public AttackAction getAttackAction(Actor targetActor, String direction) {
 		return new AttackAction( targetActor, direction );
+	}
+
+
+	//getter for number of Goombas
+	public int getGoombaCount() {
+		return goombaCount;
 	}
 }

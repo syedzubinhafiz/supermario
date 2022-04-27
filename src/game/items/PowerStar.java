@@ -1,13 +1,27 @@
 package game.items;
 
+import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
+import edu.monash.fit2099.engine.positions.Location;
+import game.actions.ConsumeAction;
 import game.actions.TradeAction;
+import game.actors.Player;
+import game.enums.Status;
+import game.interfaces.ConsumableItem;
 import game.interfaces.Tradeable;
 
-public class PowerStar extends Item implements Tradeable {
+public class PowerStar extends Item implements Tradeable, ConsumableItem {
 
 
     private final int VALUE = 600;
+
+    private final int healthHealAmt = 50;
+    private final Status buffStatus = Status.INVINCIBLE;
+
+    private int fadingTimeOnFloor;
+    private int fadingTimeOnPlayer;
+
+    private boolean isConsumed = false;
 
 
     /***
@@ -18,10 +32,14 @@ public class PowerStar extends Item implements Tradeable {
      */
     public PowerStar(String name, char displayChar, boolean portable) {
         super(name, displayChar, portable);
+        fadingTimeOnFloor = 0;
+        fadingTimeOnPlayer = 0;
     }
 
     public PowerStar() {
         super("Power Star", '*', false);
+        fadingTimeOnFloor = 0;
+        fadingTimeOnPlayer = 0;
     }
 
     @Override
@@ -32,6 +50,61 @@ public class PowerStar extends Item implements Tradeable {
     @Override
     public int getValue() {
         return VALUE;
+    }
+
+    @Override
+    public ConsumeAction getConsumeAction(PowerStar this, Player player) {
+        return new ConsumeAction( this, player );
+    }
+
+    public int getHealthHealAmt(){
+        return healthHealAmt;
+    }
+
+    public Status getBuffStatus(){
+        return buffStatus;
+    }
+
+    public int getFadingTimeOnFloor(){
+        return fadingTimeOnFloor;
+    }
+
+    public int getFadingTimeOnPlayer(){
+        return fadingTimeOnPlayer;
+    }
+
+    public boolean getIsConsumed(){
+        return isConsumed;
+    }
+
+    public void setIsConsumed( boolean isConsumed ){
+        this.isConsumed = isConsumed;
+    }
+
+    public void setFadingTimeOnPlayer( int fadingTimeOnPlayer ){
+        this.fadingTimeOnPlayer = fadingTimeOnPlayer;
+    }
+
+    //Ticking/Fading when powerstar in players inventory
+    //Also removes item from inventory
+    public void tick(Location currentLocation, Actor actor) {
+        fadingTimeOnPlayer += 1;
+        if ( fadingTimeOnPlayer >= 10 && isConsumed ) {
+            ((Player)actor).removeItemFromInventory( this );
+            ((Player)actor).removeCapability( buffStatus );
+        }
+
+        if ( fadingTimeOnPlayer >= 10 && !isConsumed ) {
+            ((Player)actor).removeItemFromInventory( this );
+        }
+
+    }
+
+    public void tick(Location currentLocation) {
+        fadingTimeOnFloor += 1;
+        if ( fadingTimeOnFloor >= 10 ) {
+            currentLocation.removeItem( this );
+        }
     }
 
 }

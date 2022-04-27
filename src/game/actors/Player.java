@@ -7,11 +7,15 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
+import game.actions.ConsumeAction;
 import game.actions.ResetGameAction;
 import game.actions.TalkWithToadAction;
 import game.enums.Status;
+import game.interfaces.ConsumableItem;
 import game.interfaces.Resettable;
 import game.items.Coin;
+import game.items.PowerStar;
+import game.items.SuperMushroom;
 import game.items.Wallet;
 import game.weapons.Wrench;
 
@@ -39,6 +43,11 @@ public class Player extends Actor implements Resettable {
 		Resettable.super.registerInstance();
 	}
 
+	//New method to call SetDisplayChar from the Actor abstract class, instead of changing it from final to something else
+	public void callSetDisplayChar( char displayChar ){
+		this.setDisplayChar( displayChar );
+	}
+
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
 
@@ -48,6 +57,26 @@ public class Player extends Actor implements Resettable {
 		// If player has NOT YET BEEN reset, add the resetgameAction
 		if (!this.hasCapability(Status.RESET)) {
 			actions.add(new ResetGameAction());
+		}
+
+		//Need to update how to implement consuming items
+		//Probably want this at the bottom to be the bottom two or top two options in console menu (aesthetic purpose)
+		//item flags are present currently so actions wont be repeatedly added
+		boolean itemFlagPS = false;
+		boolean itemFlagSM = false;
+		for ( Item item : this.getInventory() ) {
+
+			if ( item instanceof PowerStar && !itemFlagPS ) {
+				actions.add(new ConsumeAction((PowerStar) item, this));
+				itemFlagPS = true;
+			}
+			if ( item instanceof SuperMushroom ) {
+				actions.add(new ConsumeAction((SuperMushroom) item, this));
+				itemFlagSM = true;
+			}
+			if ( itemFlagPS && itemFlagSM ) {
+				break;
+			}
 		}
 
 		actions.add(new TalkWithToadAction());
@@ -89,6 +118,18 @@ public class Player extends Actor implements Resettable {
 		// Make a note that player has been reset once
 		this.addCapability(Status.RESET); // for player ONLY, Status.RESET means that it has been reset before. For others, it means that they must be RESET
 
+	}
+
+	//Method to check if player has wrench
+	public boolean hasWrench() {
+		boolean retVal = false;
+		for (Item item : this.getInventory()) {
+			if (item instanceof Wrench) {
+				retVal = true;
+				break;
+			}
+		}
+		return retVal;
 	}
 
 

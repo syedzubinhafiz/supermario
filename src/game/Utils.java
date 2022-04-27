@@ -9,6 +9,11 @@ public class Utils {
         return rand.nextDouble();
     }
 
+    //new method to use for any percentage based interactions
+    public static boolean getRandomBias( int percentageNum ) {
+        return rand.nextDouble() <= percentageNum;
+    }
+
     public static int getRandomFrom(ArrayList<Integer> list) {
         int index = rand.nextInt(list.size()-1);
         return list.get(index);

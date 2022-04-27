@@ -26,8 +26,10 @@ public class DestroyShellAction extends AttackAction {
     public String execute(Actor actor, GameMap map) {
         //think about implementing mushroom to drop from koopa inventory, mention how you could implement future game mechanics about stunning koopas or certain weapons have
         //chances to allow players to make enemies drop their items
-        map.removeActor( actor );
+
         map.locationOf(actor).addItem(mushroomDrop);
+        map.removeActor( actor );
         return null;
     }
+
 }

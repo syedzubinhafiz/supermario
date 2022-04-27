@@ -5,6 +5,7 @@ import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
+import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.actions.AttackAction;
 import game.actions.DestroyShellAction;
@@ -23,7 +24,7 @@ public class Koopa extends Actor implements Resettable, Enemy {
     private final Map<Integer, Behaviour> behaviours = new HashMap<>();
 
     //CHECK FOR ERROR
-    private final DormantAction dormantState = new DormantAction( this );
+    private DormantAction dormantState;
     private Wrench wrench;
 
     /**
@@ -33,16 +34,18 @@ public class Koopa extends Actor implements Resettable, Enemy {
      * @param displayChar the character that will represent the Actor in the display
      * @param hitPoints   the Actor's starting hit points
      */
-    public Koopa(String name, char displayChar, int hitPoints) {
-        super(name, displayChar, hitPoints);
-        this.behaviours.put(10, new WanderBehaviour());
-        Resettable.super.registerInstance();
-    }
+//Commented out, incase some error, comment back in
+//    public Koopa(String name, char displayChar, int hitPoints) {
+//        super(name, displayChar, hitPoints);
+//        this.behaviours.put(10, new WanderBehaviour());
+//        Resettable.super.registerInstance();
+//    }
 
     public Koopa() {
         super("Koopa", 'K', 100);
         this.behaviours.put(10, new WanderBehaviour());
         Resettable.super.registerInstance();
+        dormantState = new DormantAction( this );
     }
 
     //New method to call SetDisplayChar from the Actor abstract class, instead of changing it from final to something else
@@ -56,7 +59,8 @@ public class Koopa extends Actor implements Resettable, Enemy {
         ActionList actions = new ActionList();
 
         //Check for better way to check for wrench
-        if( this.hasCapability(Status.DORMANT) && otherActor.getInventory().contains(wrench) ){
+
+        if( this.hasCapability(Status.DORMANT) && ( (Player)otherActor).hasWrench() ) {
             actions.add( new DestroyShellAction( this, direction ) );
         }
 
@@ -69,6 +73,7 @@ public class Koopa extends Actor implements Resettable, Enemy {
 
         return actions;
     }
+
 
     //Implementation of enemy interface method
     @Override
