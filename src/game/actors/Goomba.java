@@ -7,10 +7,12 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.positions.GameMap;
+import game.Utils;
 import game.enums.Status;
 import game.behaviours.WanderBehaviour;
 import game.actions.AttackAction;
 import game.interfaces.Behaviour;
+import game.interfaces.Enemy;
 import game.interfaces.Resettable;
 
 import java.util.HashMap;
@@ -18,8 +20,9 @@ import java.util.Map;
 /**
  * A little fungus guy.
  */
-public class Goomba extends Actor implements Resettable {
+public class Goomba extends Actor implements Resettable, Enemy {
 	private final Map<Integer, Behaviour> behaviours = new HashMap<>(); // priority, behaviour
+	private Utils rNG;
 
 	/**
 	 * Constructor.
@@ -28,7 +31,9 @@ public class Goomba extends Actor implements Resettable {
 		super("Goomba", 'g', 50);
 		this.behaviours.put(10, new WanderBehaviour());
 		Resettable.super.registerInstance();
+		rNG = new Utils();
 	}
+
 
 	/**
 	 * At the moment, we only make it can be attacked by Player.
@@ -44,7 +49,8 @@ public class Goomba extends Actor implements Resettable {
 		ActionList actions = new ActionList();
 		// it can be attacked only by the HOSTILE opponent, and this action will not attack the HOSTILE enemy back.
 		if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
-			actions.add(new AttackAction(this,direction));
+			actions.add( this.getAttackAction( this, direction ) );
+			//New way to get AttackAction using the interface's method
 		}
 		return actions;
 	}
@@ -55,14 +61,25 @@ public class Goomba extends Actor implements Resettable {
 	 */
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+
+		//can combine these two for an or
+		//check with Zubin on how Utils works, needs to have a method for calculating number between 1 - 100
+		if ( rNG.getRandomBias() <= 10 ) {
+			map.removeActor(this);
+		}
+
 		if (this.hasCapability(Status.RESET)) {
 			map.removeActor(this);
 		}
+
 		for(Behaviour Behaviour : behaviours.values()) {
 			Action action = Behaviour.getAction(this, map);
+
 			if (action != null)
 				return action;
+
 		}
+
 		return new DoNothingAction();
 	}
 
@@ -70,5 +87,11 @@ public class Goomba extends Actor implements Resettable {
 	public void resetInstance() {
 		// be killed (removed from map)
 		this.addCapability(Status.RESET);
+	}
+
+	//Implementation of enemy interface method
+	@Override
+	public AttackAction getAttackAction(Actor targetActor, String direction) {
+		return new AttackAction( targetActor, direction );
 	}
 }

@@ -13,6 +13,7 @@ import game.enums.Status;
 import game.interfaces.Resettable;
 import game.items.Coin;
 import game.items.Wallet;
+import game.weapons.Wrench;
 
 /**
  * Class representing the Player.
@@ -89,4 +90,6 @@ public class Player extends Actor implements Resettable {
 		this.addCapability(Status.RESET); // for player ONLY, Status.RESET means that it has been reset before. For others, it means that they must be RESET
 
 	}
+
+
 }
