@@ -1,6 +1,7 @@
 package game.grounds;
 
 import edu.monash.fit2099.engine.actions.ActionList;
+import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.Location;
 import game.Utils;
@@ -19,14 +20,15 @@ public class Mature extends Tree {
         super('T');
         this.allowableActions = new ActionList();
         this.turnCounter = 0;
+        this.success_rate = 0.7;
+        this.damage=30;
+        this.jumpActionProvided=false;
     }
 
     public void tick(Location location){
         turnCounter++;
         if (Utils.getRandomBias() <= 0.15 && !location.containsAnActor()) {
-
                 location.addActor(new Koopa());
-
         }
         else if (Utils.getRandomBias() <= 0.2) {
             location.setGround(new Dirt());
@@ -48,8 +50,10 @@ public class Mature extends Tree {
                 }
             }
             ArrayList<Integer> indexes = new ArrayList();
-            indexes.add(0); indexes.add(1); indexes.add(2); indexes.add(3);
-            if ((dirtDestinations.size() != 0)) {
+            for (int i=0;i < dirtDestinations.size();i++){
+                indexes.add(i);
+            }
+            if ((dirtDestinations.size() > 0)) {
                 dirtDestinations.get(Utils.getRandomFrom(indexes)).getDestination().setGround(new Sprout());
             }
         }
@@ -61,8 +65,9 @@ public class Mature extends Tree {
     }
 
     @Override
-    public JumpAction getJumpAction(Location location) {
-        return new JumpAction(location, success_rate, damage);
+    public JumpAction getJumpAction(Location location, double success, int damage, String direction) {
+        return new JumpAction(location, success, damage, direction);
     }
+
 
 }

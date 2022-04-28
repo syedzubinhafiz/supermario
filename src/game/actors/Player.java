@@ -39,7 +39,7 @@ public class Player extends Actor implements Resettable {
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Status.MUST_JUMP);
 		this.wallet = new Wallet();
-		this.resetMaxHp(100);
+		this.resetMaxHp(500);
 		Resettable.super.registerInstance();
 	}
 
@@ -78,6 +78,13 @@ public class Player extends Actor implements Resettable {
 				break;
 			}
 		}
+
+		//print player position
+		Display display1 = new Display();
+		display1.println(this.name+printHp()+" at ("+map.locationOf(this).x()+", "+map.locationOf(this).y()+")");
+
+		//print wallet balance
+		display1.println("wallet: $"+this.getWallet().getTotalBalance());
 
 		actions.add(new TalkWithToadAction());
 

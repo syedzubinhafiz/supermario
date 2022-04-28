@@ -10,6 +10,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
 import game.actors.Goomba;
 import game.actors.Player;
+import game.actors.Toad;
 import game.grounds.*;
 
 /**
@@ -47,12 +48,18 @@ public class Application {
 
 			GameMap gameMap = new GameMap(groundFactory, map);
 			world.addGameMap(gameMap);
+			// add toad here
+			Actor toad = new Toad();
+			world.addPlayer(toad, gameMap.at(42, 13));
 
 			Actor mario = new Player("Mario", 'm', 100);
 			world.addPlayer(mario, gameMap.at(42, 10));
 
 //			// FIXME: the Goomba should be generated from the Tree
 //			gameMap.at(35, 10).addActor(new Goomba());
+
+
+			// add some magical items (supermushroom & powerstar)
 
 			world.run();
 

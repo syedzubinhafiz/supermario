@@ -1,6 +1,7 @@
 package game.grounds;
 
 import edu.monash.fit2099.engine.actions.ActionList;
+import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Location;
 import game.Utils;
 import game.actions.JumpAction;
@@ -15,18 +16,22 @@ public class Sprout extends Tree {
         this.turnCounter = 0;
         this.success_rate = 0.9;
         this.damage=10;
+        this.jumpActionProvided=false;
     }
 
     public void tick(Location location){
         if (this.hasCapability(Status.RESET)){
-            //
+            // do reset
+            return;
         }
+
         turnCounter++;
         if (Utils.getRandomBias() <= 0.1 && (!location.containsAnActor())) {
-            location.addActor(new Goomba());
+            Goomba g = new Goomba();
+            location.addActor(g);
         }
         if (turnCounter == 10) {
-            location.setGround(new Mature());
+            location.setGround(new Sapling());
         }
     }
 
@@ -36,7 +41,9 @@ public class Sprout extends Tree {
     }
 
     @Override
-    public JumpAction getJumpAction(Location location) {
-        return new JumpAction(location, success_rate, damage);
+    public JumpAction getJumpAction(Location location, double success, int damage, String direction) {
+        return new JumpAction(location, success, damage, direction);
     }
+
+
 }

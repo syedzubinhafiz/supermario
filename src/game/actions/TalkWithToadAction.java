@@ -48,7 +48,7 @@ public class TalkWithToadAction extends Action {
         }
         int index = Utils.getRandomFrom(indexes);
         sentence = Toad.getSentence(index);
-        return sentence;
+        return "Toad: "+"\""+sentence+"\"";
     }
 
     @Override

@@ -22,7 +22,6 @@ import java.util.Map;
  */
 public class Goomba extends Actor implements Resettable, Enemy {
 	private final Map<Integer, Behaviour> behaviours = new HashMap<>(); // priority, behaviour
-	private Utils rNG;
 	private static int goombaCount = 0;
 
 	/**
@@ -32,7 +31,7 @@ public class Goomba extends Actor implements Resettable, Enemy {
 		super("Goomba", 'g', 50);
 		this.behaviours.put(10, new WanderBehaviour());
 		Resettable.super.registerInstance();
-		rNG = new Utils();
+
 
 		//Keep track of number of Goombas
 		goombaCount += 1;
@@ -69,12 +68,14 @@ public class Goomba extends Actor implements Resettable, Enemy {
 
 		//can combine these two for an or
 		//check with Zubin on how Utils works, needs to have a method for calculating number between 1 - 100
-		if ( rNG.getRandomBias() <= 10 ) {
+		if ( Utils.getRandomBias() <= 10 ) {
 			map.removeActor(this);
+			return new DoNothingAction();
 		}
 
 		if (this.hasCapability(Status.RESET)) {
 			map.removeActor(this);
+			return new DoNothingAction();
 		}
 
 		for(Behaviour Behaviour : behaviours.values()) {
@@ -99,7 +100,6 @@ public class Goomba extends Actor implements Resettable, Enemy {
 	public AttackAction getAttackAction(Actor targetActor, String direction) {
 		return new AttackAction( targetActor, direction );
 	}
-
 
 	//getter for number of Goombas
 	public int getGoombaCount() {
