@@ -29,8 +29,6 @@ public class JumpAction extends Action {
         put("North-East", "9");
     }};
 
-
-
     public JumpAction(Location location, double SUCCESS_RATE, int DAMAGE, String direction) {
         this.location = location;
         this.SUCCESS_RATE = SUCCESS_RATE;

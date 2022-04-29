@@ -12,7 +12,6 @@ public class Wall extends Ground implements HigherGround {
     private final double SUCCESS_RATE = 0.8;
     private final int DAMAGE = 20;
 	private ActionList allowableActions;
-	Location location;
 	private boolean jumpActionProvided;
 	private JumpAction lastAddedAction;
 

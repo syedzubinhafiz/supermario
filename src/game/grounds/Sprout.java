@@ -20,10 +20,7 @@ public class Sprout extends Tree {
     }
 
     public void tick(Location location){
-        if (this.hasCapability(Status.RESET)){
-            // do reset
-            return;
-        }
+        super.tick(location);
 
         turnCounter++;
         if (Utils.getRandomBias() <= 0.1 && (!location.containsAnActor())) {

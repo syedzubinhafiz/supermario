@@ -51,13 +51,13 @@ public abstract class Tree extends Ground implements Resettable, HigherGround{
         if(this.jumpActionProvided==true) {
             this.allowableActions.remove(lastAddedAction);
         }
-        if (actor != location.getActor() && actor.hasCapability(Status.MUST_JUMP) && !actor.hasCapability(Status.INVINCIBLE)) {
+        if (actor != location.getActor() && actor.hasCapability(Status.MUST_JUMP) && !actor.hasCapability(Status.TALL)) {
             JumpAction j= getJumpAction(location, success_rate, damage, direction);
             this.allowableActions.add(j);
             this.jumpActionProvided=true;
             lastAddedAction=j;
         }
-        else if (actor != location.getActor() && actor.hasCapability(Status.MUST_JUMP) && actor.hasCapability(Status.INVINCIBLE)) {
+        else if (actor != location.getActor() && actor.hasCapability(Status.MUST_JUMP) && actor.hasCapability(Status.TALL)) {
             JumpAction j= getJumpAction(location, 1, 0, direction);
             this.allowableActions.add(j);
             this.jumpActionProvided=true;

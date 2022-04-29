@@ -25,7 +25,9 @@ public class Mature extends Tree {
         this.jumpActionProvided=false;
     }
 
+    @Override
     public void tick(Location location){
+        super.tick(location);
         turnCounter++;
         if (Utils.getRandomBias() <= 0.15 && !location.containsAnActor()) {
                 location.addActor(new Koopa());

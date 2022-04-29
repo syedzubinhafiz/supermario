@@ -22,6 +22,7 @@ public class Sapling extends Tree{
     }
 
     public void tick(Location location){
+        super.tick(location);
         turnCounter++;
         if (Utils.getRandomBias() <= 0.1) {
             location.addItem(new Coin(20));
