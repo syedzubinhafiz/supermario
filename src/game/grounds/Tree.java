@@ -5,7 +5,6 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
 import game.Utils;
-import game.actions.JumpAction;
 import game.enums.Status;
 import game.interfaces.HigherGround;
 import game.interfaces.Resettable;
@@ -59,7 +58,7 @@ public abstract class Tree extends Ground implements Resettable, HigherGround {
     @Override
     public ActionList allowableActions(Actor actor, Location location, String direction) {
         actions = new ActionList();
-        addJumpAction(actions, actor, location, direction, SUCCESS_RATE, DAMAGE); // from default interface method
+        addMoveAction(actions, actor, location, direction, SUCCESS_RATE, DAMAGE); // from default interface method
         return actions;
     }
 

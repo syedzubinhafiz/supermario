@@ -1,13 +1,13 @@
 package game.actions;
 
 import edu.monash.fit2099.engine.actions.Action;
+import edu.monash.fit2099.engine.actions.MoveActorAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.Utils;
 
-public class JumpAction extends Action {
-    private final Location LOCATION;
+public class JumpAction extends MoveActorAction {
     private final double SUCCESS_RATE;
     private final int DAMAGE;
     private final String DIRECTION;
@@ -15,7 +15,7 @@ public class JumpAction extends Action {
 
 
     public JumpAction(Location location, double success_rate, int damage, String direction, String name) {
-        this.LOCATION = location;
+        super(location, direction);
         this.SUCCESS_RATE = success_rate;
         this.DAMAGE = damage;
         this.DIRECTION = direction;
@@ -26,7 +26,7 @@ public class JumpAction extends Action {
     public String execute(Actor actor, GameMap map) {
         String result = "";
         if(Utils.getRandomBias() <= this.SUCCESS_RATE){
-            map.moveActor(actor, this.LOCATION); //jump onto the surface
+            map.moveActor(actor, this.moveToLocation); //jump onto the surface
             result = "You have successfully jumped onto the " + this.NAME+"!";
             return result;
         }
@@ -40,7 +40,7 @@ public class JumpAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " jumps to the " + this.DIRECTION + " " + this.NAME + " ("+ this.LOCATION.x() + ", " + this.LOCATION.y()+")";
+        return actor + " jumps to the " + this.DIRECTION + " " + this.NAME + " ("+ this.moveToLocation.x() + ", " + this.moveToLocation.y()+")";
     }
 
 

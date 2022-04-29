@@ -20,9 +20,10 @@ public class PowerStar extends Item implements Tradeable, ConsumableItem {
     private final int healthHealAmt = 200;
     private final Status buffStatus = Status.INVINCIBLE;
 
-    private int fadingTimeOnFloor;
-    private int fadingTimeOnPlayer;
+    private int fadingTimeOnFloorInventory;
 
+    // These not needed anymore
+    private int fadingTimeOnPlayer;
     private boolean isConsumed = false;
 
 
@@ -34,13 +35,13 @@ public class PowerStar extends Item implements Tradeable, ConsumableItem {
      */
     public PowerStar(String name, char displayChar, boolean portable) {
         super(name, displayChar, portable);
-        fadingTimeOnFloor = 0;
+        fadingTimeOnFloorInventory = 0;
         fadingTimeOnPlayer = 0;
     }
 
     public PowerStar() {
         super("Power Star", '*', true);
-        fadingTimeOnFloor = 0;
+        fadingTimeOnFloorInventory = 0;
         fadingTimeOnPlayer = 0;
     }
 
@@ -55,8 +56,8 @@ public class PowerStar extends Item implements Tradeable, ConsumableItem {
     }
 
     @Override
-    public ConsumeAction getConsumeAction(PowerStar this, Player player) {
-        return new ConsumeAction( this, player );
+    public ConsumeAction getConsumeAction(PowerStar this, Actor actor) {
+        return new ConsumeAction( this, actor );
     }
 
     public int getHealthHealAmt(){
@@ -67,8 +68,8 @@ public class PowerStar extends Item implements Tradeable, ConsumableItem {
         return buffStatus;
     }
 
-    public int getFadingTimeOnFloor(){
-        return fadingTimeOnFloor;
+    public int getFadingTimeOnFloorInventory(){
+        return fadingTimeOnFloorInventory;
     }
 
     public int getFadingTimeOnPlayer(){
@@ -90,21 +91,28 @@ public class PowerStar extends Item implements Tradeable, ConsumableItem {
     //Ticking/Fading when powerstar in players inventory
     //Also removes item from inventory
     public void tick(Location currentLocation, Actor actor) {
-        fadingTimeOnPlayer += 1;
-        if ( fadingTimeOnPlayer >= 10 && isConsumed ) {
-            ((Player)actor).removeItemFromInventory( this );
-            ((Player)actor).removeCapability( buffStatus );
+        // These not needed anymore
+        if (!isConsumed) {
+            fadingTimeOnFloorInventory +=1;
         }
+        else {
+            fadingTimeOnPlayer += 1;
+        }
+        // These not needed anymore
+        //        if ( fadingTimeOnPlayer >= 10 && isConsumed ) {
+        //            actor.removeItemFromInventory( this );
+        //            actor.removeCapability( buffStatus );
+        //        }
 
-        if ( fadingTimeOnPlayer >= 10 && !isConsumed ) {
-            ((Player)actor).removeItemFromInventory( this );
+        if ( fadingTimeOnFloorInventory >= 10 ) {
+            actor.removeItemFromInventory( this );
         }
 
     }
 
     public void tick(Location currentLocation) {
-        fadingTimeOnFloor += 1;
-        if ( fadingTimeOnFloor >= 10 ) {
+        fadingTimeOnFloorInventory += 1;
+        if ( fadingTimeOnFloorInventory >= 10 ) {
             currentLocation.removeItem( this );
         }
     }
@@ -116,7 +124,9 @@ public class PowerStar extends Item implements Tradeable, ConsumableItem {
 
     @Override
     public PickUpItemAction getPickUpAction(Actor actor) {
-        return new ConsumeAction(this,actor);
+        //add a consumeAction after picking up
+        addAction(getConsumeAction(actor));
+        return super.getPickUpAction(actor);
     }
 
     @Override
@@ -124,11 +134,24 @@ public class PowerStar extends Item implements Tradeable, ConsumableItem {
 
         actor.heal( healthHealAmt );
         actor.addCapability( buffStatus );
-        //This line resets the fading time of the powerStar after consumption. isConsumed is still needed to allow logic in PowerStar to remove the
-        //Status away from the player once the fading duration has been reached.
+        // remove from inventory
+        actor.removeItemFromInventory(this);
+        //add invincibilityeffectcounter to player
+        addInvincibility((Player)actor);
+
+
+        // These not needed anymore
+        //This line resets the fading time of the powerStar after consumption.
+        // isConsumed is still needed to allow logic in PowerStar to remove the
+        // Status away from the player once the fading duration has been reached.
         this.setFadingTimeOnPlayer( 0 );
         this.setIsConsumed( true );
 
+    }
+
+    public void addInvincibility(Player player) {
+        player.addCapability( buffStatus );
+        player.addInvincibility();
     }
 
 }

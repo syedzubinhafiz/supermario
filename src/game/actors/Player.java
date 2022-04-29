@@ -26,6 +26,7 @@ public class Player extends Actor implements Resettable {
 
 	private final Menu menu = new Menu();
 	private Wallet wallet;
+	private int invincibilityEffectTick;
 
 	/**
 	 * Constructor.
@@ -61,7 +62,9 @@ public class Player extends Actor implements Resettable {
 			actions.add(new ResetGameAction());
 		}
 
-		//Need to update how to implement consuming items
+		// VANESSA: I changed to add consumeAction to PowerStar's actions once its Picked up, same as supermushroom
+
+		//Need to update how to implement consuming items -
 		//Probably want this at the bottom to be the bottom two or top two options in console menu (aesthetic purpose)
 		//item flags are present currently so actions wont be repeatedly added
 		boolean itemFlagPS = false;
@@ -90,6 +93,8 @@ public class Player extends Actor implements Resettable {
 
 		actions.add(new TalkWithToadAction());
 
+		//reduce invincibilityEffect if there is & if effect <=0, this means it has worn off
+		decrementInvincibility();
 
 		// return/print the console menu
 		return menu.showMenu(this, actions, display);
@@ -104,6 +109,17 @@ public class Player extends Actor implements Resettable {
 		return wallet;
 	}
 
+	public void decrementInvincibility() {
+		if(this.invincibilityEffectTick > 0) {
+			invincibilityEffectTick -=1;
+		}
+		if (this.invincibilityEffectTick <= 0) {
+			this.removeCapability(Status.INVINCIBLE);
+		}
+	}
+	public void addInvincibility() {
+		this.invincibilityEffectTick+=10;
+	}
 
 	@Override
 	public void addItemToInventory(Item item) {

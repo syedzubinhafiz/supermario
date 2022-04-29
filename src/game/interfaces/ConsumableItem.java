@@ -6,7 +6,7 @@ import game.actors.Player;
 
 public interface ConsumableItem {
 
-    ConsumeAction getConsumeAction(ConsumableItem this, Player player);
+    ConsumeAction getConsumeAction(ConsumableItem this, Actor actor);
 
     void consumedBy(Actor actor);
 }
