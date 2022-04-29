@@ -6,6 +6,8 @@ import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
+import edu.monash.fit2099.engine.weapons.Weapon;
 import game.actions.AttackAction;
 import game.actions.DestroyShellAction;
 import game.actions.DormantAction;
@@ -131,4 +133,13 @@ public class Koopa extends Actor implements Resettable, Enemy, Dormant {
         return this.hasCapability(Status.DORMANT);
     }
 
+    @Override
+    public Weapon getWeapon() {
+        return this.getIntrinsicWeapon();
+    }
+
+    @Override
+    public IntrinsicWeapon getIntrinsicWeapon() {
+        return new IntrinsicWeapon(30, "punches");
+    }
 }

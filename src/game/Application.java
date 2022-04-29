@@ -12,6 +12,7 @@ import game.actors.Goomba;
 import game.actors.Player;
 import game.actors.Toad;
 import game.grounds.*;
+import game.items.SuperMushroom;
 
 /**
  * The main class for the Mario World game.
@@ -51,6 +52,7 @@ public class Application {
 			// add toad here
 			Actor toad = new Toad();
 			world.addPlayer(toad, gameMap.at(42, 12));
+
 
 			Actor mario = new Player("Mario", 'm', 100);
 			world.addPlayer(mario, gameMap.at(42, 10));

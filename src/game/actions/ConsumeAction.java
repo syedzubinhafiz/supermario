@@ -35,6 +35,7 @@ public class ConsumeAction extends PickUpItemAction {
     public String execute(Actor actor, GameMap map) {
 
         consumableItem.consumedBy(actor);
+        map.locationOf(actor).removeItem((Item) consumableItem);
 //        if ( consumableItem instanceof SuperMushroom ) {
 //            ((Player)actor).increaseMaxHp( maxHealthIncrease );
 //            ((Player)actor).callSetDisplayChar( charChange );
@@ -58,6 +59,6 @@ public class ConsumeAction extends PickUpItemAction {
 
     @Override
     public String menuDescription(Actor actor) {
-        return consumableItem + "has been consumed by the player!!!";
+        return "Consume the "+consumableItem;
     }
 }

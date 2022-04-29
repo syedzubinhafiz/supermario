@@ -19,6 +19,9 @@ public class Wall extends Ground implements HigherGround {
 
     @Override
     public boolean canActorEnter(Actor actor) {
+    	if(actor.hasCapability(Status.INVINCIBLE) && actor.hasCapability(Status.MUST_JUMP)) {
+    		return true;
+		}
 		if (actor.hasCapability(Status.MUST_JUMP)) {
 			return false;
 		}
@@ -38,12 +41,14 @@ public class Wall extends Ground implements HigherGround {
 	@Override
 	public ActionList allowableActions(Actor actor, Location location, String direction) {
     	ActionList actions = new ActionList();
-
-		if (actor != location.getActor() && actor.hasCapability(Status.MUST_JUMP) && !actor.hasCapability(Status.INVINCIBLE)) {
+		if (actor != location.getActor() && actor.hasCapability(Status.MUST_JUMP) && !actor.hasCapability(Status.TALL)
+				&& !actor.hasCapability(Status.INVINCIBLE)) {
 			JumpAction j= getJumpAction(location, SUCCESS_RATE, DAMAGE, direction);
 			actions.add(j);
 		}
-		else if (actor != location.getActor() && actor.hasCapability(Status.MUST_JUMP) && actor.hasCapability(Status.INVINCIBLE)) {
+		else if (actor != location.getActor() && actor.hasCapability(Status.MUST_JUMP) && actor.hasCapability(Status.TALL)
+				&& !actor.hasCapability(Status.INVINCIBLE)) {
+			System.out.println("success jumpaction ADDED!");
 			JumpAction j= getJumpAction(location, 1, 0, direction);
 			actions.add(j);
 		}

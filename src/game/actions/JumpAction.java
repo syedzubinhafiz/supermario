@@ -42,24 +42,21 @@ public class JumpAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         String result = "";
-        if(!actor.hasCapability(Status.TALL)){
-            if(Utils.getRandomBias()<=SUCCESS_RATE){
+        if(Utils.getRandomBias()<=SUCCESS_RATE){
                 map.moveActor(actor,this.location); //jump onto the surface
                 result = "You have successfully jumped onto the " + this.NAME+"!";
                 return result;
-            }
-        else if (actor.hasCapability(Status.TALL)){
-                map.moveActor(actor,this.location);
-                result =  "You have successfully jumped onto the " + this.NAME+"!";
-                return result;
         }
-        else actor.hurt(DAMAGE);
+
+
+        else {
+            actor.hurt(DAMAGE);
             result = "Oh no! You couldn't make the jump and fell down :(. \n" +
                     "Damage Received: " + this.DAMAGE;
 
             return result;
         }
-        return result;
+
     }
 
     @Override

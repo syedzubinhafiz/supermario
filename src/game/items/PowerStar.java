@@ -17,7 +17,7 @@ public class PowerStar extends Item implements Tradeable, ConsumableItem {
 
     private final int VALUE = 600;
 
-    private final int healthHealAmt = 50;
+    private final int healthHealAmt = 200;
     private final Status buffStatus = Status.INVINCIBLE;
 
     private int fadingTimeOnFloor;
@@ -124,7 +124,6 @@ public class PowerStar extends Item implements Tradeable, ConsumableItem {
 
         actor.heal( healthHealAmt );
         actor.addCapability( buffStatus );
-
         //This line resets the fading time of the powerStar after consumption. isConsumed is still needed to allow logic in PowerStar to remove the
         //Status away from the player once the fading duration has been reached.
         this.setFadingTimeOnPlayer( 0 );

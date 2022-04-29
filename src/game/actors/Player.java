@@ -49,6 +49,7 @@ public class Player extends Actor implements Resettable {
 		this.setDisplayChar( displayChar );
 	}
 
+
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
 
