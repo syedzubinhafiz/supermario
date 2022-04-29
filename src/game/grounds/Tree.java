@@ -11,10 +11,11 @@ import game.interfaces.HigherGround;
 import game.interfaces.Resettable;
 
 public abstract class Tree extends Ground implements Resettable, HigherGround {
-    protected double success_rate;
-    protected int damage;
+    protected final double SUCCESS_RATE;
+    protected final int DAMAGE;
+    protected final String NAME;
     protected int turnCounter;
-    protected String name;
+    protected ActionList actions;
 
     /**
      * Constructor.
@@ -23,20 +24,15 @@ public abstract class Tree extends Ground implements Resettable, HigherGround {
      */
     public Tree(char displayChar, double success_rate, int damage, String name) {
         super(displayChar);
-        this.success_rate=success_rate;
-        this.damage=damage;
-        this.turnCounter=0;
-        this.name = name;
+        this.SUCCESS_RATE = success_rate;
+        this.DAMAGE = damage;
+        this.NAME = name;
+        this.turnCounter = 0;
         Resettable.super.registerInstance();
     }
 
     public String getName() {
-        return this.name;
-    }
-
-    @Override
-    public JumpAction getJumpAction(Location location, double success, int damage, String direction) {
-        return new JumpAction(location, success, damage, direction, getName());
+        return this.NAME;
     }
 
 
@@ -62,17 +58,12 @@ public abstract class Tree extends Ground implements Resettable, HigherGround {
 
     @Override
     public ActionList allowableActions(Actor actor, Location location, String direction) {
-        ActionList actions = new ActionList();
-        if (actor != location.getActor() && actor.hasCapability(Status.MUST_JUMP) && !actor.hasCapability(Status.TALL)) {
-            JumpAction j= getJumpAction(location, success_rate, damage, direction);
-            actions.add(j);
-        }
-        else if (actor != location.getActor() && actor.hasCapability(Status.MUST_JUMP) && actor.hasCapability(Status.TALL)) {
-            JumpAction j= getJumpAction(location, 1, 0, direction);
-            actions.add(j);
-        }
+        actions = new ActionList();
+        addJumpAction(actions, actor, location, direction, SUCCESS_RATE, DAMAGE); // from default interface method
         return actions;
     }
+
+
 
     @Override
     public void resetInstance() {

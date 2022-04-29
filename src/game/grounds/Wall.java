@@ -11,9 +11,10 @@ import game.interfaces.HigherGround;
 public class Wall extends Ground implements HigherGround {
     private final double SUCCESS_RATE = 0.8;
     private final int DAMAGE = 20;
+    protected ActionList actions;
 
 
-    public Wall() {
+	public Wall() {
         super('#');
     }
 
@@ -40,25 +41,9 @@ public class Wall extends Ground implements HigherGround {
 
 	@Override
 	public ActionList allowableActions(Actor actor, Location location, String direction) {
-    	ActionList actions = new ActionList();
-		if (actor != location.getActor() && actor.hasCapability(Status.MUST_JUMP) && !actor.hasCapability(Status.TALL)
-				&& !actor.hasCapability(Status.INVINCIBLE)) {
-			JumpAction j= getJumpAction(location, SUCCESS_RATE, DAMAGE, direction);
-			actions.add(j);
-		}
-		else if (actor != location.getActor() && actor.hasCapability(Status.MUST_JUMP) && actor.hasCapability(Status.TALL)
-				&& !actor.hasCapability(Status.INVINCIBLE)) {
-			System.out.println("success jumpaction ADDED!");
-			JumpAction j= getJumpAction(location, 1, 0, direction);
-			actions.add(j);
-		}
+    	actions = new ActionList();
+		addJumpAction(actions, actor, location, direction, SUCCESS_RATE, DAMAGE);
 		return actions;
-	}
-
-
-	@Override
-	public JumpAction getJumpAction(Location location, double success, int damage, String direction) {
-		return new JumpAction(location, success, damage, direction, getName());
 	}
 
 
