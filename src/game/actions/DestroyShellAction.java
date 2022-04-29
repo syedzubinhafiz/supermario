@@ -6,9 +6,8 @@ import game.items.SuperMushroom;
 
 public class DestroyShellAction extends AttackAction {
 
-    protected Actor target;
-    protected String direction;
-    protected SuperMushroom mushroomDrop;
+
+    SuperMushroom mushroomDrop;
 
 
     /**
@@ -26,10 +25,13 @@ public class DestroyShellAction extends AttackAction {
     public String execute(Actor actor, GameMap map) {
         //think about implementing mushroom to drop from koopa inventory, mention how you could implement future game mechanics about stunning koopas or certain weapons have
         //chances to allow players to make enemies drop their items
-
-        map.locationOf(actor).addItem(mushroomDrop);
-        map.removeActor( actor );
-        return null;
+        map.locationOf(target).addItem(mushroomDrop);
+        map.removeActor(target);
+        return "You have destoyed"+ target+"'s shell!";
     }
 
+    @Override
+    public String menuDescription(Actor actor) {
+        return actor + " destroys the "+ target + "\'s shell at "+direction;
+    }
 }

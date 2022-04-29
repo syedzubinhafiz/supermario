@@ -12,11 +12,13 @@ public class Sprout extends Tree {
 
     public Sprout() {
         super('+');
-        this.allowableActions = new ActionList();
         this.turnCounter = 0;
         this.success_rate = 0.9;
         this.damage=10;
-        this.jumpActionProvided=false;
+    }
+    @Override
+    public String getName() {
+        return "Sprout";
     }
 
     public void tick(Location location){
@@ -39,7 +41,7 @@ public class Sprout extends Tree {
 
     @Override
     public JumpAction getJumpAction(Location location, double success, int damage, String direction) {
-        return new JumpAction(location, success, damage, direction);
+        return new JumpAction(location, success, damage, direction, getName());
     }
 
 

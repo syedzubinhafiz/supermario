@@ -8,6 +8,8 @@ import game.enums.Status;
 
 public interface HigherGround {
 
+    String getName();
+
     JumpAction getJumpAction(Location location, double success, int damage, String direction);
 
 }

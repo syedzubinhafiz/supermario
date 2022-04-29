@@ -1,7 +1,9 @@
 package game.items;
 
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.items.DropItemAction;
 import edu.monash.fit2099.engine.items.Item;
+import edu.monash.fit2099.engine.items.PickUpItemAction;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actions.ConsumeAction;
 import game.actions.TradeAction;
@@ -37,7 +39,7 @@ public class PowerStar extends Item implements Tradeable, ConsumableItem {
     }
 
     public PowerStar() {
-        super("Power Star", '*', false);
+        super("Power Star", '*', true);
         fadingTimeOnFloor = 0;
         fadingTimeOnPlayer = 0;
     }
@@ -105,6 +107,29 @@ public class PowerStar extends Item implements Tradeable, ConsumableItem {
         if ( fadingTimeOnFloor >= 10 ) {
             currentLocation.removeItem( this );
         }
+    }
+
+    @Override
+    public DropItemAction getDropAction(Actor actor) {
+        return null;
+    }
+
+    @Override
+    public PickUpItemAction getPickUpAction(Actor actor) {
+        return new ConsumeAction(this,actor);
+    }
+
+    @Override
+    public void consumedBy(Actor actor) {
+
+        actor.heal( healthHealAmt );
+        actor.addCapability( buffStatus );
+
+        //This line resets the fading time of the powerStar after consumption. isConsumed is still needed to allow logic in PowerStar to remove the
+        //Status away from the player once the fading duration has been reached.
+        this.setFadingTimeOnPlayer( 0 );
+        this.setIsConsumed( true );
+
     }
 
 }

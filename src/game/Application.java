@@ -50,7 +50,7 @@ public class Application {
 			world.addGameMap(gameMap);
 			// add toad here
 			Actor toad = new Toad();
-			world.addPlayer(toad, gameMap.at(42, 13));
+			world.addPlayer(toad, gameMap.at(42, 12));
 
 			Actor mario = new Player("Mario", 'm', 100);
 			world.addPlayer(mario, gameMap.at(42, 10));

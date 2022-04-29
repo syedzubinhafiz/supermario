@@ -18,11 +18,13 @@ public class Mature extends Tree {
 
     public Mature() {
         super('T');
-        this.allowableActions = new ActionList();
         this.turnCounter = 0;
         this.success_rate = 0.7;
         this.damage=30;
-        this.jumpActionProvided=false;
+    }
+    @Override
+    public String getName() {
+        return "Mature";
     }
 
     @Override
@@ -55,7 +57,7 @@ public class Mature extends Tree {
             for (int i=0;i < dirtDestinations.size();i++){
                 indexes.add(i);
             }
-            if ((dirtDestinations.size() > 0)) {
+            if ((dirtDestinations.size() > 0 && indexes.size() > 0)) {
                 dirtDestinations.get(Utils.getRandomFrom(indexes)).getDestination().setGround(new Sprout());
             }
         }
@@ -68,7 +70,7 @@ public class Mature extends Tree {
 
     @Override
     public JumpAction getJumpAction(Location location, double success, int damage, String direction) {
-        return new JumpAction(location, success, damage, direction);
+        return new JumpAction(location, success, damage, direction, getName());
     }
 
 

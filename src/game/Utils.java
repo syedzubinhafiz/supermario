@@ -15,7 +15,7 @@ public class Utils {
     }
 
     public static int getRandomFrom(ArrayList<Integer> list) {
-        int index = rand.nextInt(list.size()-1);
+        int index = rand.nextInt(list.size());
         return list.get(index);
     }
 }

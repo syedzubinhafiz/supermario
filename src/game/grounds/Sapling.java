@@ -14,11 +14,9 @@ public class Sapling extends Tree{
 
     public Sapling() {
         super('t');
-        this.allowableActions = new ActionList();
         this.turnCounter = 0;
         this.success_rate = 0.8;
         this.damage=20;
-        this.jumpActionProvided=false;
     }
 
     public void tick(Location location){
@@ -33,13 +31,19 @@ public class Sapling extends Tree{
     }
 
     @Override
+    public String getName() {
+        return "Sapling";
+    }
+
+
+    @Override
     public void resetInstance() {
         this.addCapability(Status.RESET);
     }
 
     @Override
     public JumpAction getJumpAction(Location location, double success, int damage, String direction) {
-        return new JumpAction(location, success, damage, direction);
+        return new JumpAction(location, success, damage, direction, getName());
     }
 
 

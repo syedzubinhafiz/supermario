@@ -7,7 +7,12 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.actions.DoNothingAction;
 import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
+import edu.monash.fit2099.engine.weapons.Weapon;
 import game.Utils;
+import game.actions.GetRemovedAction;
+import game.behaviours.AttackBehaviour;
+import game.behaviours.FollowBehaviour;
 import game.enums.Status;
 import game.behaviours.WanderBehaviour;
 import game.actions.AttackAction;
@@ -28,8 +33,9 @@ public class Goomba extends Actor implements Resettable, Enemy {
 	 * Constructor.
 	 */
 	public Goomba() {
-		super("Goomba", 'g', 50);
+		super("Goomba", 'g', 20);
 		this.behaviours.put(10, new WanderBehaviour());
+		this.behaviours.put(1, new AttackBehaviour());
 		Resettable.super.registerInstance();
 
 
@@ -53,9 +59,11 @@ public class Goomba extends Actor implements Resettable, Enemy {
 		ActionList actions = new ActionList();
 		// it can be attacked only by the HOSTILE opponent, and this action will not attack the HOSTILE enemy back.
 		if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
-			actions.add( this.getAttackAction( this, direction ) );
+			actions.add( this.getAttackedAction( this, direction ) );
 			//New way to get AttackAction using the interface's method
 		}
+
+
 		return actions;
 	}
 
@@ -66,23 +74,19 @@ public class Goomba extends Actor implements Resettable, Enemy {
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
 
-		//can combine these two for an or
-		//check with Zubin on how Utils works, needs to have a method for calculating number between 1 - 100
-		if ( Utils.getRandomBias() <= 10 ) {
-			map.removeActor(this);
-			return new DoNothingAction();
-		}
-
-		if (this.hasCapability(Status.RESET)) {
-			map.removeActor(this);
-			return new DoNothingAction();
+		if ( Utils.getRandomBias() <= 0.10 || this.hasCapability(Status.RESET)) {
+			return new GetRemovedAction();
 		}
 
 		for(Behaviour Behaviour : behaviours.values()) {
 			Action action = Behaviour.getAction(this, map);
+			// for attackBehaviour the finding of the player is done in getAction method
+			// if player is not found the action would be null
 
-			if (action != null)
+
+			if (action != null) {
 				return action;
+			}
 
 		}
 
@@ -95,14 +99,29 @@ public class Goomba extends Actor implements Resettable, Enemy {
 		this.addCapability(Status.RESET);
 	}
 
+	@Override
+	public void addFollowBehaviour(Actor player) {
+		this.behaviours.put(2, new FollowBehaviour(player));
+	}
+
 	//Implementation of enemy interface method
 	@Override
-	public AttackAction getAttackAction(Actor targetActor, String direction) {
+	public AttackAction getAttackedAction(Actor targetActor, String direction) {
 		return new AttackAction( targetActor, direction );
 	}
 
 	//getter for number of Goombas
 	public int getGoombaCount() {
 		return goombaCount;
+	}
+
+	@Override
+	public Weapon getWeapon() {
+		return this.getIntrinsicWeapon();
+	}
+
+	@Override
+	public IntrinsicWeapon getIntrinsicWeapon() {
+		return new IntrinsicWeapon(10, "kicks");
 	}
 }

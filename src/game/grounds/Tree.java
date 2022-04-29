@@ -13,8 +13,7 @@ import game.interfaces.Resettable;
 public abstract class Tree extends Ground implements Resettable, HigherGround{
     double success_rate;
     int damage;
-    boolean jumpActionProvided;
-    JumpAction lastAddedAction;
+    int turnCounter;
     /**
      * Constructor.
      *
@@ -22,13 +21,11 @@ public abstract class Tree extends Ground implements Resettable, HigherGround{
      */
     public Tree(char displayChar) {
         super(displayChar);
-        this.allowableActions = new ActionList();
-        this.jumpActionProvided=false;
         Resettable.super.registerInstance();
     }
 
-    int turnCounter;
-    ActionList allowableActions;
+
+
 
     @Override
     public void tick(Location location) {
@@ -48,22 +45,18 @@ public abstract class Tree extends Ground implements Resettable, HigherGround{
 
     @Override
     public ActionList allowableActions(Actor actor, Location location, String direction) {
-        if(this.jumpActionProvided==true) {
-            this.allowableActions.remove(lastAddedAction);
-        }
+        ActionList actions = new ActionList();
         if (actor != location.getActor() && actor.hasCapability(Status.MUST_JUMP) && !actor.hasCapability(Status.TALL)) {
             JumpAction j= getJumpAction(location, success_rate, damage, direction);
-            this.allowableActions.add(j);
-            this.jumpActionProvided=true;
-            lastAddedAction=j;
+            actions.add(j);
+
         }
         else if (actor != location.getActor() && actor.hasCapability(Status.MUST_JUMP) && actor.hasCapability(Status.TALL)) {
             JumpAction j= getJumpAction(location, 1, 0, direction);
-            this.allowableActions.add(j);
-            this.jumpActionProvided=true;
-            lastAddedAction=j;
+            actions.add(j);
+
         }
-        return allowableActions;
+        return actions;
     }
 
 

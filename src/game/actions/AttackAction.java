@@ -8,6 +8,9 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.weapons.Weapon;
+import game.actors.Koopa;
+import game.interfaces.Dormant;
+import game.interfaces.Enemy;
 
 /**
  * Special Action for attacking other Actors.
@@ -58,11 +61,15 @@ public class AttackAction extends Action {
 				dropActions.add(item.getDropAction(actor));
 			for (Action drop : dropActions)
 				drop.execute(target, map);
-			// remove actor
-			map.removeActor(target);
+			// remove actor if it can't be dormant
+			if(!(target instanceof Dormant)) {
+				map.removeActor(target);
+			}
 			result += System.lineSeparator() + target + " is killed.";
 		}
-
+		if (target instanceof Enemy) {
+			((Enemy) target).addFollowBehaviour(actor);
+		}
 		return result;
 	}
 

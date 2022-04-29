@@ -30,6 +30,11 @@ public class AddToWalletAction extends PickUpItemAction {
         map.locationOf(actor).removeItem(coin);
         Wallet w = ((Player) actor).getWallet();
         w.addBalance(coin.getCoinValue());
-        return actor + " adds the " + coin + "to its Wallet.";
+        return actor + " adds the " + coin + " to its Wallet.";
+    }
+
+    @Override
+    public String menuDescription(Actor actor) {
+        return super.menuDescription(actor) + " ("+ coin.getCoinValue()+")";
     }
 }

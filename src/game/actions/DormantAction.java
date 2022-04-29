@@ -5,27 +5,25 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.actors.Koopa;
 import game.enums.Status;
+import game.interfaces.Dormant;
 
 public class DormantAction extends Action {
 
-    protected Koopa target;
+    protected Actor target;
     protected char newDisplayChar;
 
 
-    public DormantAction( Koopa toBeDormantKoopa ){
-        target = toBeDormantKoopa;
+    public DormantAction( Actor toBeDormantActor ){
+        target = toBeDormantActor;
         newDisplayChar = 'D';
-
-
     }
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        target.addCapability( Status.DORMANT );
-        target.callSetDisplayChar( newDisplayChar );
+        target.addCapability(Status.DORMANT);
+        ((Koopa)target).callSetDisplayChar( newDisplayChar );
 
-
-        return null;
+        return target + " is now Dormant!";
     }
 
     @Override
