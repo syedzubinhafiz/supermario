@@ -92,18 +92,19 @@ public class PowerStar extends Item implements Tradeable, ConsumableItem {
     //Also removes item from inventory
     public void tick(Location currentLocation, Actor actor) {
         // These not needed anymore
-        if (!isConsumed) {
-            fadingTimeOnFloorInventory +=1;
-        }
-        else {
-            fadingTimeOnPlayer += 1;
-        }
+//        if (!isConsumed) {
+//            fadingTimeOnFloorInventory +=1;
+//        }
+//        else {
+//            fadingTimeOnPlayer += 1;
+//        }
         // These not needed anymore
         //        if ( fadingTimeOnPlayer >= 10 && isConsumed ) {
         //            actor.removeItemFromInventory( this );
         //            actor.removeCapability( buffStatus );
         //        }
 
+        fadingTimeOnFloorInventory += 1;
         if ( fadingTimeOnFloorInventory >= 10 ) {
             actor.removeItemFromInventory( this );
         }
