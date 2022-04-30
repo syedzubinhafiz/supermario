@@ -41,7 +41,7 @@ public class Wall extends Ground implements HigherGround {
 	@Override
 	public ActionList allowableActions(Actor actor, Location location, String direction) {
     	actions = new ActionList();
-		addMoveAction(actions, actor, location, direction, SUCCESS_RATE, DAMAGE);
+		getMovementAction(actor, location, direction, SUCCESS_RATE, DAMAGE);
 		return actions;
 	}
 

@@ -92,21 +92,20 @@ public class PowerStar extends Item implements Tradeable, ConsumableItem {
     //Also removes item from inventory
     public void tick(Location currentLocation, Actor actor) {
         // These not needed anymore
-//        if (!isConsumed) {
-//            fadingTimeOnFloorInventory +=1;
-//        }
-//        else {
-//            fadingTimeOnPlayer += 1;
-//        }
-        // These not needed anymore
-        //        if ( fadingTimeOnPlayer >= 10 && isConsumed ) {
-        //            actor.removeItemFromInventory( this );
-        //            actor.removeCapability( buffStatus );
-        //        }
+        if (!isConsumed) {
+            fadingTimeOnFloorInventory +=1;
+            if ( fadingTimeOnFloorInventory >= 10 ) {
+                actor.removeItemFromInventory( this );
+            }
+        }
 
-        fadingTimeOnFloorInventory += 1;
-        if ( fadingTimeOnFloorInventory >= 10 ) {
+        else {
+            fadingTimeOnPlayer += 1;
+        }
+
+        if ( fadingTimeOnPlayer >= 10 && isConsumed ) {
             actor.removeItemFromInventory( this );
+            actor.removeCapability( buffStatus );
         }
 
     }
@@ -134,11 +133,9 @@ public class PowerStar extends Item implements Tradeable, ConsumableItem {
     public void consumedBy(Actor actor) {
 
         actor.heal( healthHealAmt );
-        actor.addCapability( buffStatus );
-        // remove from inventory
-        actor.removeItemFromInventory(this);
-        //add invincibilityeffectcounter to player
-        addInvincibility((Player)actor);
+        setIsConsumed(true);
+
+        actor.addCapability(Status.INVINCIBLE);
 
 
         // These not needed anymore
@@ -148,11 +145,6 @@ public class PowerStar extends Item implements Tradeable, ConsumableItem {
         this.setFadingTimeOnPlayer( 0 );
         this.setIsConsumed( true );
 
-    }
-
-    public void addInvincibility(Player player) {
-        player.addCapability( buffStatus );
-        player.addInvincibility();
     }
 
 }

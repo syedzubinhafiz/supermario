@@ -12,6 +12,7 @@ import game.actors.Goomba;
 import game.actors.Player;
 import game.actors.Toad;
 import game.grounds.*;
+import game.items.PowerStar;
 import game.items.SuperMushroom;
 
 /**
@@ -61,7 +62,9 @@ public class Application {
 //			gameMap.at(35, 10).addActor(new Goomba());
 
 
-			// add some magical items (supermushroom & powerstar)
+			// add some magical items (supermushroom & powerstar) - for checking
+			gameMap.at(43, 10).addItem(new SuperMushroom());
+			gameMap.at(43, 12).addItem(new PowerStar());
 
 			world.run();
 

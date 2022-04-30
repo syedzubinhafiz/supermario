@@ -58,7 +58,7 @@ public abstract class Tree extends Ground implements Resettable, HigherGround {
     @Override
     public ActionList allowableActions(Actor actor, Location location, String direction) {
         actions = new ActionList();
-        addMoveAction(actions, actor, location, direction, SUCCESS_RATE, DAMAGE); // from default interface method
+        actions.add(getMovementAction(actor, location, direction, SUCCESS_RATE, DAMAGE)); // from default interface method
         return actions;
     }
 

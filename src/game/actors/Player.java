@@ -26,7 +26,6 @@ public class Player extends Actor implements Resettable {
 
 	private final Menu menu = new Menu();
 	private Wallet wallet;
-	private int invincibilityEffectTick;
 
 	/**
 	 * Constructor.
@@ -53,9 +52,6 @@ public class Player extends Actor implements Resettable {
 
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-		//reduce invincibilityEffect if there is
-		// if effect <=0, this means it has worn off after the previous turn, so it is added here
-		decrementInvincibility();
 
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
@@ -65,27 +61,27 @@ public class Player extends Actor implements Resettable {
 			actions.add(new ResetGameAction());
 		}
 
-		// VANESSA: I changed to add consumeAction to PowerStar's actions once its Picked up, same as supermushroom
-		//         Thus, the below should not be needed.
-		//Need to update how to implement consuming items -
-		//Probably want this at the bottom to be the bottom two or top two options in console menu (aesthetic purpose)
-		//item flags are present currently so actions wont be repeatedly added
-		boolean itemFlagPS = false;
-		boolean itemFlagSM = false;
-		for ( Item item : this.getInventory() ) {
-
-			if ( item instanceof PowerStar && !itemFlagPS ) {
-				actions.add(new ConsumeAction((PowerStar) item, this));
-				itemFlagPS = true;
-			}
-			if ( item instanceof SuperMushroom ) {
-				actions.add(new ConsumeAction((SuperMushroom) item, this));
-				itemFlagSM = true;
-			}
-			if ( itemFlagPS && itemFlagSM ) {
-				break;
-			}
-		}
+//		// VANESSA: I changed to add consumeAction to PowerStar's actions once its Picked up, same as supermushroom
+//		//         Thus, the below should not be needed.
+//		//Need to update how to implement consuming items -
+//		//Probably want this at the bottom to be the bottom two or top two options in console menu (aesthetic purpose)
+//		//item flags are present currently so actions wont be repeatedly added
+//		boolean itemFlagPS = false;
+//		boolean itemFlagSM = false;
+//		for ( Item item : this.getInventory() ) {
+//
+//			if ( item instanceof PowerStar && !itemFlagPS ) {
+//				actions.add(new ConsumeAction((PowerStar) item, this));
+//				itemFlagPS = true;
+//			}
+//			if ( item instanceof SuperMushroom ) {
+//				actions.add(new ConsumeAction((SuperMushroom) item, this));
+//				itemFlagSM = true;
+//			}
+//			if ( itemFlagPS && itemFlagSM ) {
+//				break;
+//			}
+//		}
 
 		//print player position
 		Display display1 = new Display();
@@ -109,18 +105,6 @@ public class Player extends Actor implements Resettable {
 		return wallet;
 	}
 
-	public void decrementInvincibility() {
-		if(this.invincibilityEffectTick > 0) {
-			invincibilityEffectTick -=1;
-		}
-		if (this.invincibilityEffectTick <= 0) {
-			this.removeCapability(Status.INVINCIBLE);
-		}
-	}
-
-	public void addInvincibility() {
-		this.invincibilityEffectTick+=10;
-	}
 
 	@Override
 	public void addItemToInventory(Item item) {
