@@ -26,7 +26,4 @@ public class Sprout extends Tree {
     }
 
 
-
-
-
 }

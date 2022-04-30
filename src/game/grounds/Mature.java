@@ -51,6 +51,15 @@ public class Mature extends Tree {
         }
     }
 
+    @Override
+    public void resetInstance() {
+        this.addCapability(Status.RESET);
+    }
+
+    @Override
+    public JumpAction getMovementAction(Location location, double success, int damage, String direction) {
+        return new JumpAction(location, success, damage, direction, getName());
+    }
 
 
 }
