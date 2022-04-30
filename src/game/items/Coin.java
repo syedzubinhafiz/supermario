@@ -12,29 +12,51 @@ public class Coin extends Item implements Resettable {
 
     private int coinValue;
 
+    /**
+     * Constructor of Coin
+     * Initializes the coinValue object
+     * @param coinValue
+     */
     public Coin(int coinValue) {
         super("Coin", '$', false);
         this.coinValue = coinValue;
         Resettable.super.registerInstance();
     }
 
+    /**
+     * Used to access the value of Coin
+     * @return
+     */
     public int getCoinValue() {
         return coinValue;
     }
 
     @Override
+    /**
+     * This method allows actor to pick up the item on the ground and return it to an instance of addToWallet action
+     * @param actor Actor who picks up the item
+     * @return instance
+     */
     public PickUpItemAction getPickUpAction(Actor actor) {
-        System.out.println("yesh");
+        System.out.println("yes"); // Need a proper print statement
         return new AddToWalletAction(this);
     }
 
     @Override
+    /**
+     * Sets a RESET capability in the enum Status class to invoke the Reset functionality on the Coin class
+     */
     public void resetInstance() {
         this.addCapability(Status.RESET);
     }
 
     //for coins ON THE GROUND (those picked up
     @Override
+    /**
+     * This method overrides the tick method to implement the RESET functionality where all items on the ground are removed
+     * @param currentlocation
+     *
+     */
     public void tick(Location currentLocation) {
         if (this.hasCapability(Status.RESET)) {
             currentLocation.removeItem(this);

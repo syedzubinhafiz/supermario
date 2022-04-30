@@ -14,12 +14,26 @@ import java.util.List;
 
 public class Mature extends Tree {
 
+    /**
+     * Constructor for the Mature stage
+     * Overrides the constructor for tree to change the display char for Mature and sets the appropriate success rate,
+     *damage and name for this particular Tree stage
+     */
     public Mature() {
         super('T', 0.7, 30,  "Mature");
     }
 
 
     @Override
+    /**
+     * Overrides Ground's tick() method
+     * Spawns a Koopa if the randomBias attained agrees with the probability and if there are no other actors in the current
+     * location.
+     * After every 5 turns played, a sprout is spawned in either of the four directions given it has 'dirt'
+     *
+     *
+     * @param location Location of the ground
+     */
     public void tick(Location location){
         super.tick(location);
         turnCounter++;
@@ -52,14 +66,8 @@ public class Mature extends Tree {
     }
 
     @Override
+    /**Sets a RESET capability in the enum Status class to invoke the Reset functionality on the Tree class*/
     public void resetInstance() {
         this.addCapability(Status.RESET);
     }
-
-    @Override
-    public JumpAction getMovementAction(Location location, double success, int damage, String direction) {
-        return new JumpAction(location, success, damage, direction, getName());
-    }
-
-
 }

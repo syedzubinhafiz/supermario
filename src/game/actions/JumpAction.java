@@ -13,6 +13,14 @@ public class JumpAction extends MoveActorAction {
     private final String NAME;
 
 
+    /**
+     * JumpAction Constructor initialising all the input parameters
+     * @param location
+     * @param success_rate
+     * @param damage
+     * @param direction
+     * @param name
+     */
     public JumpAction(Location location, double success_rate, int damage, String direction, String name) {
         super(location, direction);
         this.SUCCESS_RATE = success_rate;
@@ -22,6 +30,16 @@ public class JumpAction extends MoveActorAction {
     }
 
     @Override
+    /**
+     * This method overrides the execute() method which returns a completion statement if the randomBias attained
+     * agrees with the probability resulting in the actor jumping on to the higher ground.
+     * Otherwise, the actor is dealt damage and remains in the same location he was in. A failure statement is returned
+     * instead.
+     *
+     *
+     * @param actor The Actor who might be moving
+     * @param map The map in which the actors move
+     */
     public String execute(Actor actor, GameMap map) {
         String result = "";
         if(Utils.getRandomBias() <= this.SUCCESS_RATE){
@@ -38,6 +56,11 @@ public class JumpAction extends MoveActorAction {
     }
 
     @Override
+    /**
+     * Returns a descriptive statement
+     * @oaram actor The actor who might be performing a certain action
+     * @return a String describing the exact location coordinates once the actor is on the higher ground
+     */
     public String menuDescription(Actor actor) {
         return actor + " jumps to the " + this.DIRECTION + " " + this.NAME + " ("+ this.moveToLocation.x() + ", " + this.moveToLocation.y()+")";
     }
