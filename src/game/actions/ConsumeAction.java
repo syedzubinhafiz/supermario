@@ -4,18 +4,20 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.items.PickUpItemAction;
 import edu.monash.fit2099.engine.positions.GameMap;
-import game.enums.Status;
+import game.actors.Player;
 import game.interfaces.ConsumableItem;
+import game.interfaces.FadeableItem;
 
 public class ConsumeAction extends PickUpItemAction {
 
 
     private ConsumableItem consumableItem;
+    private String message;
 
-
-    public ConsumeAction (Item item, Actor actor ) {
+    public ConsumeAction (Item item, String message) {
         super(item);
         this.consumableItem = (ConsumableItem) item;
+        this.message = message;
 //        this.maxHealthIncrease = ((ConsumableItem)item).getHealthIncrease();
 //        this.charChange = item.getCharChange();
 //        this.buffStatus = item.getBuffStatus();
@@ -36,6 +38,7 @@ public class ConsumeAction extends PickUpItemAction {
 
         consumableItem.consumedBy(actor);
         map.locationOf(actor).removeItem((Item) consumableItem);
+
 //        if ( consumableItem instanceof SuperMushroom ) {
 //            ((Player)actor).increaseMaxHp( maxHealthIncrease );
 //            ((Player)actor).callSetDisplayChar( charChange );
@@ -53,12 +56,16 @@ public class ConsumeAction extends PickUpItemAction {
 //            ((PowerStar)consumableItem).setIsConsumed( true );
 //        }
 
-        return "You have consumed the "+consumableItem;
+        return actor +" is " + this.message+"!";
     }
 
 
     @Override
     public String menuDescription(Actor actor) {
-        return "Consume the "+consumableItem;
+        String result= actor + " consumes "+ consumableItem ;
+        if (consumableItem instanceof FadeableItem) {
+            result = actor + " consumes "+ consumableItem + " - " + ((FadeableItem) consumableItem).getFadingTimeOnFloorInventory() + " turns remaining";
+        }
+        return result;
     }
 }

@@ -45,12 +45,13 @@ public class JumpAction extends MoveActorAction {
         if(Utils.getRandomBias() <= this.SUCCESS_RATE){
             map.moveActor(actor, this.moveToLocation); //jump onto the surface
             result = "You have successfully jumped onto the " + this.NAME+"!";
-            return result;
         }
-        actor.hurt(this.DAMAGE);
-        result = "Oh no! You couldn't make the jump and fell down :(. \n" +
-                "Damage Received from Fall: " + this.DAMAGE;
+        else {
+            actor.hurt(this.DAMAGE);
+            result = "Oh no! You couldn't make the jump and fell down :(. \n" +
+                    "Damage Received from Fall: " + this.DAMAGE;
 
+        }
         return result;
 
     }

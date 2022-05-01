@@ -63,8 +63,10 @@ public class Application {
 
 
 			// add some magical items (supermushroom & powerstar) - for checking
-			gameMap.at(43, 10).addItem(new SuperMushroom());
-			gameMap.at(43, 12).addItem(new PowerStar());
+			gameMap.at(42, 10).addItem(new SuperMushroom());
+			gameMap.at(42, 10).addItem(new SuperMushroom());
+			gameMap.at(42, 10).addItem(new PowerStar());
+			gameMap.at(42, 10).addItem(new PowerStar());
 
 			world.run();
 

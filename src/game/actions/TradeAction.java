@@ -31,9 +31,9 @@ public class TradeAction extends Action {
             Toad.removeTradeableItem(itemToTrade);
            // Add tradeableItem to Player's inventory
            player.addItemToInventory(((Item) itemToTrade));
-            return actor + " bought " + itemToTrade;
+            return actor + " obtained " + itemToTrade;
         }
-        return "You don't have enough coins!";
+        return "Insufficient balance";
     }
 
     @Override

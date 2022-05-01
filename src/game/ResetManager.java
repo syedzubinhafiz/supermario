@@ -62,7 +62,7 @@ public class ResetManager {
      */
     public void appendResetInstance(Resettable reset){
         // Add Tree, Enemies, Player, Coin
-
+        resettableList.add(reset);
     }
 
 
@@ -72,5 +72,6 @@ public class ResetManager {
      * FIXME: it does nothing, you need to implement it :)
      */
     public void cleanUp(Resettable resettable){
+        resettableList.remove(resettable);
     }
 }

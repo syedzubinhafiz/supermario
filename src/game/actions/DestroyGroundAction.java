@@ -29,10 +29,9 @@ public class DestroyGroundAction extends MoveActorAction {
     @Override
     public String execute(Actor actor, GameMap map) {
         map.moveActor(actor, this.moveToLocation); //go to surface
-        moveToLocation.setGround(new Dirt());
-        // drop a coin
-        moveToLocation.addItem(new Coin(5));
-        return super.execute(actor, map);
+        moveToLocation.setGround(new Dirt()); //convertToDirt
+        moveToLocation.addItem(new Coin(5)); // drop a coin
+        return menuDescription(actor);
     }
     @Override
     public String menuDescription(Actor actor) {

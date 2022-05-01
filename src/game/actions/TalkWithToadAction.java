@@ -20,14 +20,7 @@ public class TalkWithToadAction extends Action {
     @Override
     public String execute(Actor actor, GameMap map) {
         // check if player has a wrench
-        boolean hasWrench = false;
-        List<Item> inventory = actor.getInventory();
-        for (Item item : inventory) {
-            if (item instanceof Wrench) {
-                hasWrench = true;
-                break;
-            }
-        }
+        boolean hasWrench = actor.hasCapability(Status.HAS_WRENCH);
         // check if player has powerstar effect
         boolean hasPowerStarEffect = actor.hasCapability(Status.INVINCIBLE);
         ArrayList<Integer> indexes = new ArrayList<Integer>();

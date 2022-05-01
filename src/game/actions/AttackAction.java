@@ -8,9 +8,12 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.weapons.Weapon;
-import game.actors.Koopa;
+import game.actors.Enemy;
+import game.actors.Player;
+import game.enums.Status;
 import game.interfaces.Dormant;
-import game.interfaces.Enemy;
+
+import static java.lang.Character.toLowerCase;
 
 /**
  * Special Action for attacking other Actors.
@@ -47,25 +50,45 @@ public class AttackAction extends Action {
 
 		Weapon weapon = actor.getWeapon();
 
-		if (!(rand.nextInt(100) <= weapon.chanceToHit())) {
+		if (!(rand.nextInt(100) <= weapon.chanceToHit()) && !actor.hasCapability(Status.INVINCIBLE)) {
 			return actor + " misses " + target + ".";
 		}
 
 		int damage = weapon.damage();
 		String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
-		target.hurt(damage);
-		if (!target.isConscious()) {
-			ActionList dropActions = new ActionList();
-			// drop all items
-			for (Item item : target.getInventory())
-				dropActions.add(item.getDropAction(actor));
-			for (Action drop : dropActions)
-				drop.execute(target, map);
-			// remove actor if it can't be dormant
-			if(!(target instanceof Dormant)) {
-				map.removeActor(target);
+
+		if (target.hasCapability(Status.TALL)) {
+			System.out.println("no EFFECT??");
+			((Player)target).callSetDisplayChar('m');
+			System.out.println("no EFFECT??"+target.getDisplayChar());
+		}
+		if(target.hasCapability(Status.INVINCIBLE)) {
+			result = target + " is immune to " + actor+"\'s attack.";
+		}
+        else {
+        	if(actor.hasCapability(Status.INVINCIBLE)) {
+        		// attack until it becomes unconscous, insta kill action not needed
+				while (target.isConscious()) {
+					target.hurt(damage);
+				}
+				result = actor + " instantly kills " + target+".";
 			}
-			result += System.lineSeparator() + target + " is killed.";
+        	else {
+        		target.hurt(damage);
+        	}
+			if (!target.isConscious()) {
+				ActionList dropActions = new ActionList();
+				// drop all items
+				for (Item item : target.getInventory())
+					dropActions.add(item.getDropAction(actor));
+				for (Action drop : dropActions)
+					drop.execute(target, map);
+				// remove actor if it can't be dormant
+				if (!(target instanceof Dormant)) {
+					map.removeActor(target);
+				}
+				result += System.lineSeparator() + target + " is killed.";
+			}
 		}
 		if (target instanceof Enemy) {
 			((Enemy) target).addFollowBehaviour(actor);

@@ -68,9 +68,7 @@ public abstract class Tree extends Ground implements Resettable, HigherGround {
      *
      */
     public boolean canActorEnter(Actor actor) {
-        if (actor.hasCapability(Status.INVINCIBLE) && actor.hasCapability(Status.MUST_JUMP)) {
-            return true;
-        } else if (actor.hasCapability(Status.MUST_JUMP)) {
+        if (actor.hasCapability(Status.MUST_JUMP)) {
             return false;
         }
         return true;

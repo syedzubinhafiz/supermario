@@ -5,6 +5,7 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.items.PickUpItemAction;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.actors.Player;
+import game.enums.Status;
 import game.items.Coin;
 import game.items.Wallet;
 
@@ -28,8 +29,10 @@ public class AddToWalletAction extends PickUpItemAction {
     @Override
     public String execute(Actor actor, GameMap map) {
         map.locationOf(actor).removeItem(coin);
-        Wallet w = ((Player) actor).getWallet();
-        w.addBalance(coin.getCoinValue());
+        if (actor.hasCapability(Status.HAS_WALLET)) {
+            Wallet w = ((Player) actor).getWallet();
+            w.addBalance(coin.getCoinValue());
+        }
         return actor + " adds the " + coin + " to its Wallet.";
     }
 

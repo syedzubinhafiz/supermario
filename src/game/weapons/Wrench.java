@@ -1,7 +1,10 @@
 package game.weapons;
 
+import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.items.PickUpItemAction;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
 import game.actions.TradeAction;
+import game.enums.Status;
 import game.interfaces.Tradeable;
 
 public class Wrench extends WeaponItem implements Tradeable {
@@ -27,6 +30,12 @@ public class Wrench extends WeaponItem implements Tradeable {
     @Override
     public TradeAction getTradeAction() {
         return new TradeAction(this, VALUE, "c");
+    }
+
+    @Override
+    public PickUpItemAction getPickUpAction(Actor actor) {
+        this.addCapability(Status.HAS_WRENCH);
+        return super.getPickUpAction(actor);
     }
 
     @Override

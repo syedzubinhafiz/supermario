@@ -4,9 +4,7 @@ package game.grounds;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.Location;
 import game.Utils;
-import game.actions.JumpAction;
 import game.actors.Koopa;
-import game.enums.Status;
 
 
 import java.util.ArrayList;
@@ -65,9 +63,5 @@ public class Mature extends Tree {
         }
     }
 
-    @Override
-    /**Sets a RESET capability in the enum Status class to invoke the Reset functionality on the Tree class*/
-    public void resetInstance() {
-        this.addCapability(Status.RESET);
-    }
+
 }

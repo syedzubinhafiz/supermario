@@ -7,42 +7,34 @@ import edu.monash.fit2099.engine.items.PickUpItemAction;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actions.ConsumeAction;
 import game.actions.TradeAction;
-import game.actors.Player;
 import game.enums.Status;
 import game.interfaces.ConsumableItem;
+import game.interfaces.FadeableItem;
 import game.interfaces.Tradeable;
 
-public class PowerStar extends Item implements Tradeable, ConsumableItem {
+public class PowerStar extends Item implements Tradeable, ConsumableItem, FadeableItem {
 
 
     private final int VALUE = 600;
-
     private final int healthHealAmt = 200;
     private final Status buffStatus = Status.INVINCIBLE;
-
     private int fadingTimeOnFloorInventory;
-
-    // These not needed anymore
     private int fadingTimeOnPlayer;
-    private boolean isConsumed = false;
-
+    private boolean isConsumed;
+    private ConsumeAction consumeAction;
 
     /***
-     * Constructor.
-     *  @param name the name of this Item
-     * @param displayChar the character to use to represent this item if it is on the ground
-     * @param portable true if and only if the Item can be picked up
-     */
-    public PowerStar(String name, char displayChar, boolean portable) {
-        super(name, displayChar, portable);
-        fadingTimeOnFloorInventory = 0;
-        fadingTimeOnPlayer = 0;
-    }
-
+//     * Constructor.
+//     *  @param name the name of this Item
+//     * @param displayChar the character to use to represent this item if it is on the ground
+//     * @param portable true if and only if the Item can be picked up
+//     */
     public PowerStar() {
         super("Power Star", '*', true);
-        fadingTimeOnFloorInventory = 0;
-        fadingTimeOnPlayer = 0;
+        fadingTimeOnFloorInventory = 10;
+        fadingTimeOnPlayer = 10;
+        isConsumed=false;
+        consumeAction=null;
     }
 
     @Override
@@ -57,7 +49,7 @@ public class PowerStar extends Item implements Tradeable, ConsumableItem {
 
     @Override
     public ConsumeAction getConsumeAction(PowerStar this, Actor actor) {
-        return new ConsumeAction( this, actor );
+        return new ConsumeAction( this, "INVINCIBLE");
     }
 
     public int getHealthHealAmt(){
@@ -91,28 +83,35 @@ public class PowerStar extends Item implements Tradeable, ConsumableItem {
     //Ticking/Fading when powerstar in players inventory
     //Also removes item from inventory
     public void tick(Location currentLocation, Actor actor) {
-        // These not needed anymore
+        if (!isConsumed &&  !actor.hasCapability(buffStatus)) {
+            if(this.consumeAction !=null){
+                removeAction(this.consumeAction);
+            }
+            this.consumeAction = getConsumeAction(actor);
+            addAction(consumeAction);
+        }
         if (!isConsumed) {
-            fadingTimeOnFloorInventory +=1;
-            if ( fadingTimeOnFloorInventory >= 10 ) {
-                actor.removeItemFromInventory( this );
+            fadingTimeOnFloorInventory -= 1;
+            if (fadingTimeOnFloorInventory < 0) {
+                actor.removeItemFromInventory(this);
             }
         }
-
         else {
-            fadingTimeOnPlayer += 1;
+            if(this.consumeAction != null) {
+                removeAction(this.consumeAction);
+                this.consumeAction=null;
+            }
+            fadingTimeOnPlayer -= 1;
         }
-
-        if ( fadingTimeOnPlayer >= 10 && isConsumed ) {
-            actor.removeItemFromInventory( this );
-            actor.removeCapability( buffStatus );
+        // if effect has worn off, remove from inventory and remove capability
+        if ( fadingTimeOnPlayer < 0 && isConsumed ) {
+            actor.removeItemFromInventory(this);
         }
-
     }
 
     public void tick(Location currentLocation) {
-        fadingTimeOnFloorInventory += 1;
-        if ( fadingTimeOnFloorInventory >= 10 ) {
+        fadingTimeOnFloorInventory -= 1;
+        if ( fadingTimeOnFloorInventory <= 0 ) {
             currentLocation.removeItem( this );
         }
     }
@@ -124,26 +123,14 @@ public class PowerStar extends Item implements Tradeable, ConsumableItem {
 
     @Override
     public PickUpItemAction getPickUpAction(Actor actor) {
-        //add a consumeAction after picking up
-        addAction(getConsumeAction(actor));
         return super.getPickUpAction(actor);
     }
 
     @Override
     public void consumedBy(Actor actor) {
-
         actor.heal( healthHealAmt );
         setIsConsumed(true);
-
-        actor.addCapability(Status.INVINCIBLE);
-
-
-        // These not needed anymore
-        //This line resets the fading time of the powerStar after consumption.
-        // isConsumed is still needed to allow logic in PowerStar to remove the
-        // Status away from the player once the fading duration has been reached.
-        this.setFadingTimeOnPlayer( 0 );
-        this.setIsConsumed( true );
+        this.addCapability(Status.INVINCIBLE);
 
     }
 

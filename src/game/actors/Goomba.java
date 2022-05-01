@@ -11,22 +11,15 @@ import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.Utils;
 import game.actions.GetRemovedAction;
-import game.behaviours.AttackBehaviour;
-import game.behaviours.FollowBehaviour;
 import game.enums.Status;
-import game.behaviours.WanderBehaviour;
-import game.actions.AttackAction;
 import game.interfaces.Behaviour;
-import game.interfaces.Enemy;
 import game.interfaces.Resettable;
 
-import java.util.HashMap;
-import java.util.Map;
 /**
  * A little fungus guy.
  */
-public class Goomba extends Actor implements Resettable, Enemy {
-	private final Map<Integer, Behaviour> behaviours = new HashMap<>(); // priority, behaviour
+public class Goomba extends Enemy implements Resettable {
+
 	private static int goombaCount = 0;
 
 	/**
@@ -34,11 +27,6 @@ public class Goomba extends Actor implements Resettable, Enemy {
 	 */
 	public Goomba() {
 		super("Goomba", 'g', 20);
-		this.behaviours.put(10, new WanderBehaviour());
-		this.behaviours.put(1, new AttackBehaviour());
-		Resettable.super.registerInstance();
-
-
 		//Keep track of number of Goombas
 		goombaCount += 1;
 		//WHAT WE CAN DO IS IN PLAYTURN OF EACH GOOMBA, CHECK THE GOOMBACOUNT AND KILL THAT GOOMBA IF THE LIMIT IS EXCEEDED.
@@ -59,7 +47,7 @@ public class Goomba extends Actor implements Resettable, Enemy {
 		ActionList actions = new ActionList();
 		// it can be attacked only by the HOSTILE opponent, and this action will not attack the HOSTILE enemy back.
 		if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
-			actions.add( this.getAttackedAction( this, direction ) );
+			actions.add( super.getAttackedAction( this, direction ) );
 			//New way to get AttackAction using the interface's method
 		}
 
@@ -78,7 +66,7 @@ public class Goomba extends Actor implements Resettable, Enemy {
 			return new GetRemovedAction();
 		}
 
-		for(Behaviour Behaviour : behaviours.values()) {
+		for(Behaviour Behaviour : super.behaviours.values()) {
 			Action action = Behaviour.getAction(this, map);
 			// for attackBehaviour the finding of the player is done in getAction method
 			// if player is not found the action would be null
@@ -99,16 +87,6 @@ public class Goomba extends Actor implements Resettable, Enemy {
 		this.addCapability(Status.RESET);
 	}
 
-	@Override
-	public void addFollowBehaviour(Actor player) {
-		this.behaviours.put(2, new FollowBehaviour(player));
-	}
-
-	//Implementation of enemy interface method
-	@Override
-	public AttackAction getAttackedAction(Actor targetActor, String direction) {
-		return new AttackAction( targetActor, direction );
-	}
 
 	//getter for number of Goombas
 	public int getGoombaCount() {

@@ -5,6 +5,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.DropItemAction;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.items.PickUpItemAction;
+import edu.monash.fit2099.engine.positions.Location;
 import game.actions.ConsumeAction;
 import game.actions.TradeAction;
 import game.actors.Player;
@@ -14,23 +15,50 @@ import game.interfaces.Tradeable;
 
 import java.util.List;
 
+import static java.lang.Character.toUpperCase;
+
 public class SuperMushroom extends Item implements Tradeable, ConsumableItem {
 
     private final int VALUE = 400;
     private final int healthIncrease = 50;
-    private final char charChange = 'M';
     private final Status buffStatus = Status.TALL;
-    private boolean inInventory;
+    private boolean isConsumed;
+    private ConsumeAction consumeAction;
 
 
     public SuperMushroom() {
         super("Super Mushroom", '^', true);
-        this.inInventory=false;
+        isConsumed=false;
+        consumeAction=null;
+    }
+
+    @Override
+    public void tick(Location currentLocation, Actor actor) {
+        //add a consumeAction after picking up
+        if (!isConsumed) {
+            if(this.consumeAction !=null){
+                removeAction(this.consumeAction);
+            }
+            this.consumeAction = getConsumeAction(actor);
+            addAction(this.consumeAction);
+        }
+        else {
+            if(this.consumeAction != null) {
+                removeAction(this.consumeAction);
+                this.consumeAction=null;
+            }
+        }
+        super.tick(currentLocation, actor);
+    }
+
+    @Override
+    public void tick(Location currentLocation) {
+        super.tick(currentLocation);
     }
 
     @Override
     public ConsumeAction getConsumeAction(SuperMushroom this, Actor actor){
-        return new ConsumeAction(this, actor  );
+        return new ConsumeAction(this, "TALL"  );
     }
 
 
@@ -51,19 +79,21 @@ public class SuperMushroom extends Item implements Tradeable, ConsumableItem {
 
     @Override
     public PickUpItemAction getPickUpAction(Actor actor) {
-        //add a consumeAction after picking up
-        addAction(getConsumeAction(actor));
+
         return super.getPickUpAction(actor);
     }
 
     @Override
     public void consumedBy(Actor actor) {
         actor.increaseMaxHp( healthIncrease );
-        ((Player)actor).callSetDisplayChar( charChange );
+        ((Player)actor).callSetDisplayChar( toUpperCase(actor.getDisplayChar()) );
         actor.addCapability( buffStatus );
-        if (inInventory) {
-            actor.removeItemFromInventory(this);
-        }
-
+        setIsConsumed(true);
+        System.out.println("YEAH");
     }
+
+    private void setIsConsumed(boolean b) {
+        isConsumed=b;
+    }
+
 }

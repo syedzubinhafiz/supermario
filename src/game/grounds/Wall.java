@@ -1,6 +1,7 @@
 package game.grounds;
 
 import edu.monash.fit2099.engine.actions.ActionList;
+import edu.monash.fit2099.engine.actions.MoveActorAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
@@ -19,10 +20,10 @@ public class Wall extends Ground implements HigherGround {
 
     @Override
     public boolean canActorEnter(Actor actor) {
-    	if(actor.hasCapability(Status.INVINCIBLE) && actor.hasCapability(Status.MUST_JUMP)) {
-    		return true;
-		}
-		if (actor.hasCapability(Status.MUST_JUMP)) {
+//    	if(actor.hasCapability(Status.INVINCIBLE) && actor.hasCapability(Status.MUST_JUMP)) {
+//    		return true;
+//		}
+		if (actor.hasCapability(Status.MUST_JUMP) ) {
 			return false;
 		}
 		return true;
@@ -40,8 +41,8 @@ public class Wall extends Ground implements HigherGround {
 
 	@Override
 	public ActionList allowableActions(Actor actor, Location location, String direction) {
-    	actions = new ActionList();
-		actions.add(getMovementAction(actor, location, direction, SUCCESS_RATE, DAMAGE));
+		actions = new ActionList();
+		actions.add(getMovementAction(actor, location, direction, SUCCESS_RATE, DAMAGE)); // from default interface method
 		return actions;
 	}
 }

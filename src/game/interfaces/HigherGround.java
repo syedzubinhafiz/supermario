@@ -28,18 +28,18 @@ public interface HigherGround {
      */
     default MoveActorAction getMovementAction(Actor actor, Location location, String direction, double success_rate, int damage) {
         MoveActorAction action = null;
-        if(actor != location.getActor() && actor.hasCapability(Status.MUST_JUMP) && actor.hasCapability(Status.INVINCIBLE)) {
+
+        if (actor != location.getActor() && actor.hasCapability(Status.MUST_JUMP) && actor.hasCapability(Status.INVINCIBLE)) {
             DestroyGroundAction des = new DestroyGroundAction(location, direction);
             action = des;
-        }
-        else if (actor != location.getActor() && actor.hasCapability(Status.MUST_JUMP) && !actor.hasCapability(Status.TALL)) {
-            JumpAction j= new JumpAction(location, success_rate, damage, direction, getName());
+        } else if (actor != location.getActor() && actor.hasCapability(Status.MUST_JUMP) && !actor.hasCapability(Status.TALL)) {
+            JumpAction j = new JumpAction(location, success_rate, damage, direction, getName());
+            action = j;
+        } else if (actor != location.getActor() && actor.hasCapability(Status.MUST_JUMP) && actor.hasCapability(Status.TALL)) {
+            JumpAction j = new JumpAction(location, 1, 0, direction, getName());
             action = j;
         }
-        else if (actor != location.getActor() && actor.hasCapability(Status.MUST_JUMP) && actor.hasCapability(Status.TALL)) {
-            JumpAction j= new JumpAction(location, 1, 0, direction, getName());
-            action = j;
-        }
+
         return action;
     }
 
