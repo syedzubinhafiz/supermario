@@ -4,7 +4,12 @@ package game.grounds;
 import edu.monash.fit2099.engine.positions.Location;
 import game.Utils;
 import game.items.Coin;
-
+/**
+ * The Sapling class represents the second tree cycle stage and handles all the functionalities,the actor has with sapling
+ * @author: Syed Zubin Hafiz
+ * @version: 1.0.0
+ * @see: edu.monash.fit2099.game.grounds
+ */
 public class Sapling extends Tree{
 
 

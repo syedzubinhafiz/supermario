@@ -14,7 +14,7 @@ public class Wall extends Ground implements HigherGround {
     protected ActionList actions;
 
 
-	public Wall() {
+    public Wall() {
         super('#');
     }
 
@@ -23,27 +23,27 @@ public class Wall extends Ground implements HigherGround {
 //    	if(actor.hasCapability(Status.INVINCIBLE) && actor.hasCapability(Status.MUST_JUMP)) {
 //    		return true;
 //		}
-		if (actor.hasCapability(Status.MUST_JUMP) ) {
-			return false;
-		}
-		return true;
+        if (actor.hasCapability(Status.MUST_JUMP)) {
+            return false;
+        }
+        return true;
     }
 
-	@Override
-	public String getName() {
-		return "Wall";
-	}
+    @Override
+    public String getName() {
+        return "Wall";
+    }
 
-	@Override
+    @Override
     public boolean blocksThrownObjects() {
         return true;
     }
 
-	@Override
-	public ActionList allowableActions(Actor actor, Location location, String direction) {
-		actions = new ActionList();
-		actions.add(getMovementAction(actor, location, direction, SUCCESS_RATE, DAMAGE)); // from default interface method
-		return actions;
-	}
+    @Override
+    public ActionList allowableActions(Actor actor, Location location, String direction) {
+        actions = new ActionList();
+        actions.add(getMovementAction(actor, location, direction, SUCCESS_RATE, DAMAGE)); // from default interface method
+        return actions;
+    }
 }
 
