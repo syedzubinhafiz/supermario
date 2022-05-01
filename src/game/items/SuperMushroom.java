@@ -82,7 +82,6 @@ public class SuperMushroom extends Item implements Tradeable, ConsumableItem {
         ((Player)actor).callSetDisplayChar( toUpperCase(actor.getDisplayChar()) );
         actor.addCapability( buffStatus );
         setIsConsumed(true);
-        System.out.println("YEAH");
     }
 
     private void setIsConsumed(boolean b) {
