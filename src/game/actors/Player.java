@@ -57,6 +57,9 @@ public class Player extends Actor implements Resettable {
 
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+		//Display object to display messages in console
+		Display display1 = new Display();
+
 
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
@@ -67,11 +70,15 @@ public class Player extends Actor implements Resettable {
 		}
 
 		//print player position
-		Display display1 = new Display();
 		display1.println(this.name+printHp()+" at ("+map.locationOf(this).x()+", "+map.locationOf(this).y()+")");
 
 		//print wallet balance
 		display1.println(this.getWallet() +": $"+this.getWallet().getTotalBalance());
+
+		//print if powerstar effect is still there
+		if (hasCapability(Status.INVINCIBLE)) {
+			display1.println(this + " is INVINCIBLE!");
+		}
 
 		// Add action to be able to talk with Toad.
 		actions.add(new TalkWithToadAction());

@@ -7,7 +7,9 @@ import game.enums.Status;
 
 public interface ConsumableItem {
 
-    ConsumeAction getConsumeAction(ConsumableItem this, Actor actor);
+    default ConsumeAction getConsumeAction(ConsumableItem this, Actor actor){
+        return new ConsumeAction(this);
+    }
 
     void consumedBy(Actor actor);
 }

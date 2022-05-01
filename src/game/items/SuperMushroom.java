@@ -25,7 +25,6 @@ public class SuperMushroom extends Item implements Tradeable, ConsumableItem {
     private boolean isConsumed;
     private ConsumeAction consumeAction;
 
-
     public SuperMushroom() {
         super("Super Mushroom", '^', true);
         isConsumed=false;
@@ -55,12 +54,6 @@ public class SuperMushroom extends Item implements Tradeable, ConsumableItem {
     public void tick(Location currentLocation) {
         super.tick(currentLocation);
     }
-
-    @Override
-    public ConsumeAction getConsumeAction(SuperMushroom this, Actor actor){
-        return new ConsumeAction(this, "TALL"  );
-    }
-
 
     @Override
     public TradeAction getTradeAction() {

@@ -4,7 +4,6 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.items.PickUpItemAction;
 import edu.monash.fit2099.engine.positions.GameMap;
-import game.actors.Player;
 import game.interfaces.ConsumableItem;
 import game.interfaces.FadeableItem;
 
@@ -14,10 +13,9 @@ public class ConsumeAction extends PickUpItemAction {
     private ConsumableItem consumableItem;
     private String message;
 
-    public ConsumeAction (Item item, String message) {
+    public ConsumeAction (ConsumableItem item) {
         super(item);
         this.consumableItem = (ConsumableItem) item;
-        this.message = message;
 //        this.maxHealthIncrease = ((ConsumableItem)item).getHealthIncrease();
 //        this.charChange = item.getCharChange();
 //        this.buffStatus = item.getBuffStatus();
@@ -56,7 +54,7 @@ public class ConsumeAction extends PickUpItemAction {
 //            ((PowerStar)consumableItem).setIsConsumed( true );
 //        }
 
-        return actor +" is " + this.message+"!";
+        return actor +" consumed " + this+".";
     }
 
 

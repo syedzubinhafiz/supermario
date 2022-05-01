@@ -47,11 +47,6 @@ public class PowerStar extends Item implements Tradeable, ConsumableItem, Fadeab
         return VALUE;
     }
 
-    @Override
-    public ConsumeAction getConsumeAction(PowerStar this, Actor actor) {
-        return new ConsumeAction( this, "INVINCIBLE");
-    }
-
     public int getHealthHealAmt(){
         return healthHealAmt;
     }
