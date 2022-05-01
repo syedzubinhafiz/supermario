@@ -38,7 +38,6 @@ public abstract class Enemy extends Actor implements Resettable {
         this.behaviours.put(2, new FollowBehaviour(player));
     }
 
-    //Implementation of enemy interface method
 
     public AttackAction getAttackedAction(Actor targetActor, String direction) {
         return new AttackAction( targetActor, direction );

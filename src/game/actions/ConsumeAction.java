@@ -14,22 +14,11 @@ public class ConsumeAction extends PickUpItemAction {
     private String message;
 
     public ConsumeAction (ConsumableItem item) {
-        super(item);
+        super((Item) item);
         this.consumableItem = (ConsumableItem) item;
-//        this.maxHealthIncrease = ((ConsumableItem)item).getHealthIncrease();
-//        this.charChange = item.getCharChange();
-//        this.buffStatus = item.getBuffStatus();
 
     }
 
-
-//    public ConsumeAction (PowerStar powerStar, Player player ) {
-//
-//        consumableItem = powerStar;
-//        healthHealAmt = powerStar.getHealthHealAmt();
-//        buffStatus = powerStar.getBuffStatus();
-//
-//    }
 
     @Override
     public String execute(Actor actor, GameMap map) {

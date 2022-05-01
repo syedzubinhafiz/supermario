@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
+import game.actions.TalkWithToadAction;
 import game.interfaces.Tradeable;
 import game.items.PowerStar;
 import game.items.SuperMushroom;
@@ -23,14 +24,12 @@ public class Toad extends Actor {
         "You better get back to finding the Power Stars.", "The Princess is depending on you! You are our only hope.",
         "Being imprisoned in these walls can drive a fungus crazy :("};
 
-    public Toad() {
-        super("Toad", 'O', 100); //ask tutor about hitpoints amt for toad
+    private Toad() {
+        super("Toad", 'O', 100);
         this.tradeableInventory = new ArrayList<>();
         addItemToTradeableInventory(new PowerStar());
         addItemToTradeableInventory(new SuperMushroom());
         addItemToTradeableInventory(new Wrench());
-
-
     }
 
     @Override
@@ -72,4 +71,10 @@ public class Toad extends Actor {
         return sentences[index];
     }
 
+    @Override
+    public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
+        ActionList actions=new ActionList();
+        actions.add(new TalkWithToadAction());
+        return actions;
+    }
 }

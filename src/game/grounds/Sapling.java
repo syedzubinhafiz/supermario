@@ -3,8 +3,6 @@ package game.grounds;
 
 import edu.monash.fit2099.engine.positions.Location;
 import game.Utils;
-import game.actions.JumpAction;
-import game.enums.Status;
 import game.items.Coin;
 
 public class Sapling extends Tree{

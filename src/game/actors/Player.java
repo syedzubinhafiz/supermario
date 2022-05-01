@@ -8,13 +8,11 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 import game.actions.ResetGameAction;
-import game.actions.TalkWithToadAction;
 import game.enums.Status;
 import game.interfaces.Resettable;
 import game.items.Wallet;
 import game.weapons.Wrench;
 
-import java.util.HashMap;
 
 /**
  * Class representing the Player.
@@ -23,7 +21,7 @@ public class Player extends Actor implements Resettable {
 
 	private final Menu menu = new Menu();
 	private Wallet wallet;
-
+	private final int DEFAULT_HP = 100;
 
 
 	/**
@@ -37,10 +35,10 @@ public class Player extends Actor implements Resettable {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Status.MUST_JUMP);
-		this.addCapability(Status.HAS_WALLET);
 		this.wallet = new Wallet();
 		this.addItemToInventory(this.wallet);
-		this.resetMaxHp(500);
+		this.resetMaxHp(DEFAULT_HP);
+		wallet.addBalance(500);
 		Resettable.super.registerInstance();
 	}
 
@@ -81,7 +79,6 @@ public class Player extends Actor implements Resettable {
 		}
 
 		// Add action to be able to talk with Toad.
-		actions.add(new TalkWithToadAction());
 		// return/print the console menu
 		return menu.showMenu(this, actions, display);
 	}
@@ -115,9 +112,10 @@ public class Player extends Actor implements Resettable {
 			this.removeCapability(Status.INVINCIBLE);
 		} else if(this.hasCapability(Status.TALL)) {
 			this.removeCapability(Status.TALL);
+			this.setDisplayChar(Character.toLowerCase(getDisplayChar()));
 		}
 		// heal player to maximum
-		this.resetMaxHp(100);
+		this.heal(getMaxHp());
 
 		// Make a note that player has been reset once
 		this.addCapability(Status.RESET);

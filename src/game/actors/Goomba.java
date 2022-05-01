@@ -11,6 +11,8 @@ import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.Utils;
 import game.actions.GetRemovedAction;
+import game.behaviours.AttackBehaviour;
+import game.behaviours.WanderBehaviour;
 import game.enums.Status;
 import game.interfaces.Behaviour;
 import game.interfaces.Resettable;
@@ -27,6 +29,9 @@ public class Goomba extends Enemy implements Resettable {
 	 */
 	public Goomba() {
 		super("Goomba", 'g', 20);
+		this.behaviours.put(10, new WanderBehaviour());
+		this.behaviours.put(1, new AttackBehaviour());
+		this.addCapability(Status.ENEMY);
 		//Keep track of number of Goombas
 		goombaCount += 1;
 		//WHAT WE CAN DO IS IN PLAYTURN OF EACH GOOMBA, CHECK THE GOOMBACOUNT AND KILL THAT GOOMBA IF THE LIMIT IS EXCEEDED.

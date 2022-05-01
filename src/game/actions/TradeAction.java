@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.actors.Player;
 import game.actors.Toad;
+import game.enums.Status;
 import game.interfaces.Tradeable;
 
 public class TradeAction extends Action {
@@ -27,13 +28,14 @@ public class TradeAction extends Action {
         Player player = (Player) actor;
         boolean reduced = player.getWallet().reduceBalance(tradeValue);
         if (reduced) {
-           // remove tradeableItem from Toad's inventory
+            // remove tradeableItem from Toad's inventory
             Toad.removeTradeableItem(itemToTrade);
-           // Add tradeableItem to Player's inventory
-           player.addItemToInventory(((Item) itemToTrade));
+            // Add tradeableItem to Player's inventory
+            player.addItemToInventory(((Item) itemToTrade));
             return actor + " obtained " + itemToTrade;
         }
-        return "Insufficient balance";
+
+        return "You don't have enough coins!";
     }
 
     @Override

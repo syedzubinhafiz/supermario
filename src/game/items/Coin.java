@@ -38,7 +38,6 @@ public class Coin extends Item implements Resettable {
      * @return instance
      */
     public PickUpItemAction getPickUpAction(Actor actor) {
-        System.out.println("yes"); // Need a proper print statement
         return new AddToWalletAction(this);
     }
 

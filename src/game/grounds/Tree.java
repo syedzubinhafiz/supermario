@@ -14,7 +14,6 @@ public abstract class Tree extends Ground implements Resettable, HigherGround {
     protected final int DAMAGE;
     protected final String NAME;
     protected int turnCounter;
-
     protected ActionList actions;
 
     /**
