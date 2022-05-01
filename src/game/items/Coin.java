@@ -7,9 +7,21 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.actions.AddToWalletAction;
 import game.enums.Status;
 import game.interfaces.Resettable;
-
+/**
+ * This class represents the Coin objects in the game
+ *
+ * @author: Syed Zubin Hafiz
+ * @version: 1.0.0
+ * @see: edu.monash.fit2099.game.items
+ */
 public class Coin extends Item implements Resettable {
+    /**
+     * Private Attributes
+     */
 
+    /**
+     * An integer variable which is assigned to value of a coin
+     */
     private int coinValue;
 
     /**

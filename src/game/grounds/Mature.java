@@ -9,7 +9,12 @@ import game.actors.Koopa;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * The Sprout class represents the first third and final cycle stage and handles all the functionalities,the actor has with mature
+ * @author: Syed Zubin Hafiz
+ * @version: 1.0.0
+ * @see: edu.monash.fit2099.game.grounds
+ */
 public class Mature extends Tree {
 
     /**

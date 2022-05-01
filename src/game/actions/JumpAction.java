@@ -5,11 +5,34 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.Utils;
-
+/**
+ * This class handles the 'jump' functionality of the actor in the game
+ *
+ * @author: Syed Zubin Hafiz
+ * @version: 1.0.0
+ * @see: edu.monash.fit2099.game.actions
+ */
 public class JumpAction extends MoveActorAction {
+    /**
+     * Private Attributes
+     */
+
+    /**
+     * A constant for success_rate which represents the probability of completion of jump
+     */
     private final double SUCCESS_RATE;
+    /**
+     * A constant for damage dealt when actor fails to complete the jump
+     */
     private final int DAMAGE;
+    /**
+     * A constant for direction of the jump
+     */
     private final String DIRECTION;
+
+    /**
+     * A constant for the name of the tree cycle stage
+     */
     private final String NAME;
 
 
