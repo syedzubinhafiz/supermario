@@ -10,9 +10,9 @@ import game.interfaces.HigherGround;
 import game.interfaces.Resettable;
 
 public abstract class Tree extends Ground implements Resettable, HigherGround {
-    protected final double SUCCESS_RATE;
-    protected final int DAMAGE;
-    protected final String NAME;
+    protected final double success_rate;
+    protected final int damage;
+    protected final String name;
     protected int turnCounter;
     protected ActionList actions;
 
@@ -26,9 +26,9 @@ public abstract class Tree extends Ground implements Resettable, HigherGround {
      */
     public Tree(char displayChar, double success_rate, int damage, String name) {
         super(displayChar);
-        this.SUCCESS_RATE = success_rate;
-        this.DAMAGE = damage;
-        this.NAME = name;
+        this.success_rate = success_rate;
+        this.damage = damage;
+        this.name = name;
         this.turnCounter = 0;
         Resettable.super.registerInstance();
     }
@@ -39,7 +39,7 @@ public abstract class Tree extends Ground implements Resettable, HigherGround {
      * @return
      */
     public String getName() {
-        return this.NAME;
+        return this.name;
     }
 
 
@@ -85,7 +85,7 @@ public abstract class Tree extends Ground implements Resettable, HigherGround {
      */
     public ActionList allowableActions(Actor actor, Location location, String direction) {
         actions = new ActionList();
-        actions.add(getMovementAction(actor, location, direction, SUCCESS_RATE, DAMAGE)); // from default interface method
+        actions.add(getMovementAction(actor, location, direction, success_rate, damage)); // from default interface method
         return actions;
     }
 

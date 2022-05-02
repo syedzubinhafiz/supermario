@@ -9,6 +9,7 @@ import game.actors.Koopa;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * The Sprout class represents the first third and final cycle stage and handles all the functionalities,the actor has with mature
  * @author: Syed Zubin Hafiz
@@ -51,10 +52,8 @@ public class Mature extends Tree {
             // make an empty list of all surrounding exits that have fertile ground in the game map
             List<Exit> matureExits = new ArrayList<Exit>();
             for (Exit exit : location.getExits()){
-                if (exit.getName() == "North" || exit.getName() == "South" || exit.getName() == "East" || exit.getName() == "West") {
-                    if (exit.getDestination().getGround().getDisplayChar() == '.') {
+                if (exit.getDestination().getGround().getDisplayChar() == '.') {
                         matureExits.add(exit);
-                    }
                 }
             }
             ArrayList<Integer> indexes = new ArrayList();

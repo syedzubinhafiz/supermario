@@ -11,11 +11,10 @@ public class ConsumeAction extends PickUpItemAction {
 
 
     private ConsumableItem consumableItem;
-    private String message;
 
     public ConsumeAction (ConsumableItem item) {
         super((Item) item);
-        this.consumableItem = (ConsumableItem) item;
+        this.consumableItem = item;
 
     }
 

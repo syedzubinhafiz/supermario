@@ -19,7 +19,7 @@ public class GetRemovedAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " is removed from map.";
+        return actor + " is killed";
     }
 
 }
