@@ -29,7 +29,7 @@ public class ResetGameAction extends Action {
      */
     public String execute(Actor actor, GameMap map) {
         manager.run(map);
-        return "You have reset the edu.monash.fit2099.game!";
+        return "You have reset game";
     }
 
     @Override
@@ -39,7 +39,7 @@ public class ResetGameAction extends Action {
      * @return a String describing actor resetting the edu.monash.fit2099.game
      */
     public String menuDescription(Actor actor) {
-        return "Reset the edu.monash.fit2099.game.";
+        return "Reset the game.";
     }
 
     @Override

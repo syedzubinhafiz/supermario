@@ -11,6 +11,7 @@ import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import edu.monash.fit2099.game.Utils;
 import edu.monash.fit2099.game.actions.GetRemovedAction;
+import edu.monash.fit2099.game.actions.InstaKilledAction;
 import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.Behaviour;
 import edu.monash.fit2099.game.interfaces.Resettable;
@@ -45,7 +46,10 @@ public class Goomba extends Enemy implements Resettable {
 	public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
 		ActionList actions = new ActionList();
 		// it can be attacked only by the HOSTILE opponent, and this action will not attack the HOSTILE enemy back.
-		if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
+		if  (otherActor.hasCapability(Status.INVINCIBLE) &&otherActor.hasCapability(Status.HOSTILE_TO_ENEMY) ) {
+			actions.add(new InstaKilledAction(this, direction));
+		}
+		else if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
 			actions.add( super.getAttackedAction( this, direction ) );
 			//New way to get AttackAction using the interface's method
 		}
