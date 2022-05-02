@@ -19,9 +19,9 @@ import edu.monash.fit2099.game.interfaces.Resettable;
 /**
  * Class that represents a Koopa (like a turtle), who is an enemy to the player.
  *
- * @author: Vanessa Khoo Ming Yi
- * @version: 1.0.0
- * @see: edu.monash.fit2099.edu.monash.fit2099.game.actors
+ * @author Vanessa Khoo Ming Yi
+ * @version 1.0.0
+ * @see edu.monash.fit2099.game.actors
  */
 public class Koopa extends Enemy implements Resettable {
 

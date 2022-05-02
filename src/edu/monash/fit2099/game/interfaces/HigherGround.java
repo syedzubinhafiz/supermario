@@ -10,9 +10,9 @@ import edu.monash.fit2099.game.enums.Status;
 /**
  * This interface handles the interaction player has with higher grounds in the map of the edu.monash.fit2099.game
  *
- * @author: Syed Zubin Hafiz
- * @version: 1.0.0
- * @see: edu.monash.fit2099.edu.monash.fit2099.game.interfaces
+ * @author Vanessa Khoo Ming Yi
+ * @version 1.0.0
+ * @see edu.monash.fit2099.game.interfaces
  */
 public interface HigherGround {
 

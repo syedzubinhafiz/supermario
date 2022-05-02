@@ -13,9 +13,9 @@ import java.util.ArrayList;
 /**
  * A global Singleton class representing the Toad.
  *
- * @author: Vanessa Khoo Ming Yi
- * @version: 1.0.0
- * @see: edu.monash.fit2099.edu.monash.fit2099.game.actors
+ * @author Vanessa Khoo Ming Yi
+ * @version 1.0.0
+ * @see edu.monash.fit2099.game.actors
  */
 public class Toad extends Actor {
 
@@ -72,7 +72,7 @@ public class Toad extends Actor {
 
     /**
      * Method to remove the tradeable item from the inventory and also replenish the inventory of Toad
-     * @param itemToTrade
+     * @param itemToTrade item to be traded
      */
     public static void removeTradeableItem(Tradeable itemToTrade) {
         Tradeable newItem = itemToTrade.newInstance();

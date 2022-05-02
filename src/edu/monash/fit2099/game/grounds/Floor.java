@@ -6,10 +6,10 @@ import edu.monash.fit2099.game.enums.Status;
 
 /**
  * A class that represents the floor inside a building.
- * 
- * @author: Vanessa Khoo Ming Yi
- * @version: 1.0.0
- * @see: edu.monash.fit2099.edu.monash.fit2099.game.grounds
+ *
+ * @author Vanessa Khoo Ming Yi
+ * @version 1.0.0
+ * @see edu.monash.fit2099.game.grounds
  */
 public class Floor extends Ground {
 

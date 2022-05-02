@@ -10,9 +10,9 @@ import java.util.ArrayList;
 /**
  * Special TalkWithToadAction that allows an actor to talk with Toad.
  *
- * @author: Vanessa Khoo Ming Yi
- * @version: 1.0.0
- * @see: edu.monash.fit2099.edu.monash.fit2099.game.actions
+ * @author Vanessa Khoo Ming Yi
+ * @version 1.0.0
+ * @see edu.monash.fit2099.game.actions
  */
 public class TalkWithToadAction extends Action {
 

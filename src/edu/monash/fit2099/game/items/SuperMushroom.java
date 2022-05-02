@@ -16,9 +16,9 @@ import static java.lang.Character.toUpperCase;
 /**
  * This class represents the SuperMushroom objects in the edu.monash.fit2099.game
  *
- * @author: Vanessa Khoo Ming Yi
- * @version: 1.0.0
- * @see: edu.monash.fit2099.edu.monash.fit2099.game.items
+ * @author Vanessa Khoo Ming Yi
+ * @version 1.0.0
+ * @see edu.monash.fit2099.game.items
  */
 public class SuperMushroom extends Item implements Tradeable, ConsumableItem {
     /**

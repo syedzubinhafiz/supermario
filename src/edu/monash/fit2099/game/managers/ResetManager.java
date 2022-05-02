@@ -12,6 +12,10 @@ import java.util.List;
  * HINT: refer to Bootcamp Week 5 about static factory method.
  * A3: Think about how will you improve this implementation in the future assessment.
  * What could be the drawbacks of this implementation?
+ *
+ * @author Vanessa Khoo Ming Yi
+ * @version 1.0.0
+ * @see edu.monash.fit2099.game.managers
  */
 public class ResetManager {
     /**
@@ -46,6 +50,7 @@ public class ResetManager {
     /**
      * Reset the edu.monash.fit2099.game by traversing through all the list
      * By doing this way, it will avoid using `instanceof` all over the place.
+     * @param map gamemap
      */
     public void run(GameMap map){
         for (int i=0;i< resettableList.size();i++) {
@@ -56,7 +61,7 @@ public class ResetManager {
 
     /**
      * Add the Resettable instance to the list
-     * FIXME: it does nothing, you need to implement it :)
+     * @param reset resettable instance
      */
     public void appendResetInstance(Resettable reset){
         // Add Tree, Enemies, Player, Coin
@@ -67,7 +72,7 @@ public class ResetManager {
     /**
      * Remove a Resettable instance from the list
      * @param resettable resettable object
-     * FIXME: it does nothing, you need to implement it :)
+     *
      */
     public void cleanUp(Resettable resettable){
         resettableList.remove(resettable);

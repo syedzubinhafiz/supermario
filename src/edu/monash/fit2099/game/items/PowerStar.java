@@ -13,9 +13,9 @@ import edu.monash.fit2099.game.interfaces.Tradeable;
 /**
  * This class represents the PowerStar objects in the edu.monash.fit2099.game
  *
- * @author: Vanessa Khoo Ming Yi
- * @version: 1.0.0
- * @see: edu.monash.fit2099.edu.monash.fit2099.game.items
+ * @author Vanessa Khoo Ming Yi
+ * @version 1.0.0
+ * @see edu.monash.fit2099.game.items
  */
 public class PowerStar extends Item implements Tradeable, ConsumableItem, FadeableItem {
 

@@ -16,9 +16,9 @@ import edu.monash.fit2099.game.enums.Status;
 /**
  * Special Action for attacking other Actors.
  *
- * @author: Vanessa Khoo Ming Yi
- * @version: 1.0.0
- * @see: edu.monash.fit2099.edu.monash.fit2099.game.actions
+ * @author Vanessa Khoo Ming Yi
+ * @version 1.0.0
+ * @see edu.monash.fit2099.game.actions
  */
 public class AttackAction extends Action {
 

@@ -15,9 +15,9 @@ import java.util.Random;
 /**
  * Behaviour class that represents an attack behaviour of the actor
  *
- * @author: Vanessa Khoo Ming Yi
- * @version: 1.0.0
- * @see: edu.monash.fit2099.edu.monash.fit2099.game.behaviours
+ * @author Vanessa Khoo Ming Yi
+ * @version 1.0.0
+ * @see edu.monash.fit2099.game.behaviours
  */
 public class AttackBehaviour implements Behaviour {
 

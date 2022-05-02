@@ -72,7 +72,7 @@ public abstract class Item implements Printable, Capable {
 	/**
 	 * Create and return an action to pick this Item up.
 	 * If this Item is not portable, returns null. 
-	 * 
+	 * @param actor actor performing the action
 	 * @return a new PickUpItemAction if this Item is portable, null otherwise.
 	 */
 	public PickUpItemAction getPickUpAction(Actor actor) {

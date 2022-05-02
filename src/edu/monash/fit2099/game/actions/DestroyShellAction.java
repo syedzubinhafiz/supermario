@@ -8,9 +8,9 @@ import edu.monash.fit2099.game.items.SuperMushroom;
 /**
  * Special DestroyShellAction that allows an actor to destroy the shell of a Koopa.
  *
- * @author: Vanessa Khoo Ming Yi
- * @version: 1.0.0
- * @see: edu.monash.fit2099.edu.monash.fit2099.game.actions
+ * @author Vanessa Khoo Ming Yi
+ * @version 1.0.0
+ * @see edu.monash.fit2099.game.actions
  */
 public class DestroyShellAction extends AttackAction {
 
@@ -33,7 +33,7 @@ public class DestroyShellAction extends AttackAction {
 
 
     /**
-     * Executes the DestroyShellAction by dropping a SuperMushroom on the location & removing the actor (Koopa) from the map.
+     * Executes the DestroyShellAction by dropping a SuperMushroom on the location and removing the actor (Koopa) from the map.
      * @param actor The actor performing the action.
      * @param map The map the actor is on.
      * @return a String to show the message output after execution.

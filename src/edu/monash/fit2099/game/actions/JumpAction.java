@@ -9,9 +9,9 @@ import edu.monash.fit2099.game.Utils;
 /**
  * This class handles the 'jump' functionality of the actor in the edu.monash.fit2099.game
  *
- * @author: Syed Zubin Hafiz
- * @version: 1.0.0
- * @see: edu.monash.fit2099.edu.monash.fit2099.game.actions
+ * @author Syed Zubin Hafiz
+ * @version 1.0.0
+ * @see edu.monash.fit2099.game.actions
  */
 public class JumpAction extends MoveActorAction {
     /**

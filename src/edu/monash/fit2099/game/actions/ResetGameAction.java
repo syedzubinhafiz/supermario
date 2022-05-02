@@ -8,9 +8,9 @@ import edu.monash.fit2099.game.managers.ResetManager;
 /**
  * Special ResetGameAction that allows an actor to reset the edu.monash.fit2099.game.
  *
- * @author: Vanessa Khoo Ming Yi
- * @version: 1.0.0
- * @see: edu.monash.fit2099.edu.monash.fit2099.game.actions
+ * @author Vanessa Khoo Ming Yi
+ * @version 1.0.0
+ * @see edu.monash.fit2099.game.actions
  */
 public class ResetGameAction extends Action {
 

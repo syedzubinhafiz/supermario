@@ -3,9 +3,9 @@ package edu.monash.fit2099.game.items;
 /**
  * This class represents the Wallet objects in the edu.monash.fit2099.game
  *
- * @author: Vanessa Khoo Ming Yi
- * @version: 1.0.0
- * @see: edu.monash.fit2099.edu.monash.fit2099.game.items
+ * @author Vanessa Khoo Ming Yi
+ * @version 1.0.0
+ * @see edu.monash.fit2099.game.items
  */
 public class Wallet {
 
@@ -57,6 +57,7 @@ public class Wallet {
 
     /**
      * Setter for the total balance
+     * @param totalBalance balance
      */
     public void setTotalBalance(int totalBalance) {
         this.totalBalance = totalBalance;

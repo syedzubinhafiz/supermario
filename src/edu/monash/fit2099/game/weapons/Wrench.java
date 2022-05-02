@@ -10,9 +10,9 @@ import edu.monash.fit2099.game.interfaces.Tradeable;
 /**
  * This class represents the Wrench weapon in the edu.monash.fit2099.game
  *
- * @author: Vanessa Khoo Ming Yi
- * @version: 1.0.0
- * @see: edu.monash.fit2099.edu.monash.fit2099.game.weapons
+ * @author Vanessa Khoo Ming Yi
+ * @version 1.0.0
+ * @see edu.monash.fit2099.game.weapons
  */
 public class Wrench extends WeaponItem implements Tradeable {
 

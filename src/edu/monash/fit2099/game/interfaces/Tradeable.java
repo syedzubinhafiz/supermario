@@ -5,9 +5,9 @@ import edu.monash.fit2099.game.actions.TradeAction;
 /**
  * Interface for Tradeable items
  *
- * @author: Vanessa Khoo Ming Yi
- * @version: 1.0.0
- * @see: edu.monash.fit2099.edu.monash.fit2099.game.interfaces
+ * @author Vanessa Khoo Ming Yi
+ * @version 1.0.0
+ * @see edu.monash.fit2099.game.interfaces
  */
 public interface Tradeable {
 

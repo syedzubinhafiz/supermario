@@ -11,9 +11,9 @@ import edu.monash.fit2099.game.interfaces.Resettable;
 /**
  * This class represents the Coin objects in the edu.monash.fit2099.game
  *
- * @author: Syed Zubin Hafiz
- * @version: 1.0.0
- * @see: edu.monash.fit2099.edu.monash.fit2099.game.items
+ * @author  Syed Zubin Hafiz
+ * @version 1.0.0
+ * @see edu.monash.fit2099.game.items
  */
 public class Coin extends Item implements Resettable {
     /**
@@ -28,7 +28,7 @@ public class Coin extends Item implements Resettable {
     /**
      * Constructor of Coin
      * Initializes the coinValue object
-     * @param coinValue
+     * @param coinValue value of the coin
      */
     public Coin(int coinValue) {
         super("Coin", '$', false);
@@ -38,7 +38,7 @@ public class Coin extends Item implements Resettable {
 
     /**
      * Used to access the value of Coin
-     * @return
+     * @return int coin value
      */
     public int getCoinValue() {
         return coinValue;

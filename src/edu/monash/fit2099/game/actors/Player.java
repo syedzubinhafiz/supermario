@@ -15,9 +15,9 @@ import edu.monash.fit2099.game.items.Wallet;
 /**
  * Class representing the Player.
  *
- * @author: Vanessa Khoo Ming Yi
- * @version: 1.0.0
- * @see: edu.monash.fit2099.edu.monash.fit2099.game.actors
+ * @author Vanessa Khoo Ming Yi
+ * @version 1.0.0
+ * @see edu.monash.fit2099.game.actors
  */
 public class Player extends Actor implements Resettable {
 
@@ -105,7 +105,7 @@ public class Player extends Actor implements Resettable {
 
 	/**
 	 * Getter for the wallet attribute
-	 * @return
+	 * @return Wallet wallet item
 	 */
 	public Wallet getWallet() {
 		return wallet;

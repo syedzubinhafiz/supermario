@@ -13,9 +13,9 @@ import edu.monash.fit2099.game.interfaces.Behaviour;
 /**
  * A class that figures out an Action that will allow the actor to wander around the map.
  *
- * @author: Vanessa Khoo Ming Yi
- * @version: 1.0.0
- * @see: edu.monash.fit2099.edu.monash.fit2099.game.behaviours
+ * @author Vanessa Khoo Ming Yi
+ * @version 1.0.0
+ * @see edu.monash.fit2099.game.behaviours
  */
 public class WanderBehaviour extends Action implements Behaviour {
 

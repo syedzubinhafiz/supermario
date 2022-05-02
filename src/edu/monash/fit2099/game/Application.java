@@ -20,6 +20,10 @@ import edu.monash.fit2099.game.weapons.Wrench;
  */
 public class Application {
 
+	/**
+	 * Main method in driver class
+	 * @param args arguments from command line
+	 */
 	public static void main(String[] args) {
 
 			World world = new World(new Display());

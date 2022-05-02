@@ -7,9 +7,9 @@ import edu.monash.fit2099.engine.positions.GameMap;
 /**
  * Special Action for removing/killing actors instantly
  *
- * @author: Vanessa Khoo Ming Yi
- * @version: 1.0.0
- * @see: edu.monash.fit2099.edu.monash.fit2099.game.actions
+ * @author Vanessa Khoo Ming Yi
+ * @version 1.0.0
+ * @see edu.monash.fit2099.game.actions
  */
 public class GetRemovedAction extends Action {
 

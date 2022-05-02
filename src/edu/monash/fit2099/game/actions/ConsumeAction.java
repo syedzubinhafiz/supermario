@@ -10,9 +10,9 @@ import edu.monash.fit2099.game.interfaces.FadeableItem;
 /**
  * Special PickUpItemAction that allows an actor to consume consumable items.
  *
- * @author: Vanessa Khoo Ming Yi
- * @version: 1.0.0
- * @see: edu.monash.fit2099.edu.monash.fit2099.game.actions
+ * @author Vanessa Khoo Ming Yi
+ * @version 1.0.0
+ * @see edu.monash.fit2099.game.actions
  */
 public class ConsumeAction extends PickUpItemAction {
 

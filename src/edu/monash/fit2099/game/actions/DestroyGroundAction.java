@@ -13,9 +13,9 @@ import java.util.HashMap;
 /**
  * Special DestroyGroundAction that allows an actor to destroy any ground to dirt.
  *
- * @author: Vanessa Khoo Ming Yi
- * @version: 1.0.0
- * @see: edu.monash.fit2099.edu.monash.fit2099.game.actions
+ * @author Vanessa Khoo Ming Yi
+ * @version 1.0.0
+ * @see edu.monash.fit2099.game.actions
  */
 public class DestroyGroundAction extends MoveActorAction {
 

@@ -6,9 +6,9 @@ import java.util.Random;
  * This class represents a utility class which essentially generates a random number
  * which is used to account for probability in the edu.monash.fit2099.game
  *
- * @author: Syed Zubin Hafiz
- * @version: 1.0.0
- * @see: edu.monash.fit2099.edu.monash.fit2099.game
+ * @author Syed Zubin Hafiz
+ * @version 1.0.0
+ * @see edu.monash.fit2099.game
  */
 public class Utils {
     /**
@@ -30,7 +30,7 @@ public class Utils {
 
     /**
      * This method is used to get a random integer from an arrayList of integers
-     * @param list
+     * @param list list of integers
      * @return a number represented by a random index within the list
      */
     public static int getRandomFrom(ArrayList<Integer> list) {

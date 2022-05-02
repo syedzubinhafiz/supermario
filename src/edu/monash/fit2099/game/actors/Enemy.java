@@ -20,9 +20,9 @@ import java.util.Map;
 /**
  * Abstract class that represents an Enemy to the Actor
  *
- * @author: Vanessa Khoo Ming Yi
- * @version: 1.0.0
- * @see: edu.monash.fit2099.edu.monash.fit2099.game.actors
+ * @author Vanessa Khoo Ming Yi
+ * @version 1.0.0
+ * @see edu.monash.fit2099.game.actors
  */
 public abstract class Enemy extends Actor implements Resettable {
 

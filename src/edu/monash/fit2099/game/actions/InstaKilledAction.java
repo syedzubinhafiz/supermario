@@ -10,9 +10,9 @@ import edu.monash.fit2099.engine.weapons.Weapon;
 /**
  * Special InstaKilledAction that allows an actor to instantly kill its opponents.
  *
- * @author: Vanessa Khoo Ming Yi
- * @version: 1.0.0
- * @see: edu.monash.fit2099.edu.monash.fit2099.game.actions
+ * @author Vanessa Khoo Ming Yi
+ * @version 1.0.0
+ * @see edu.monash.fit2099.game.actions
  */
 public class InstaKilledAction extends AttackAction {
 

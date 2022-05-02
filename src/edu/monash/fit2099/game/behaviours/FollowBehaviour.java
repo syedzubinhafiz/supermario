@@ -12,9 +12,9 @@ import edu.monash.fit2099.game.interfaces.Behaviour;
  * A class that figures out a MoveAction that will move the actor one step 
  * closer to a target Actor.
  *
- * @author: Vanessa Khoo Ming Yi
- * @version: 1.0.0
- * @see: edu.monash.fit2099.edu.monash.fit2099.game.behaviours
+ * @author Vanessa Khoo Ming Yi
+ * @version 1.0.0
+ * @see edu.monash.fit2099.game.behaviours
  */
 public class FollowBehaviour implements Behaviour {
 

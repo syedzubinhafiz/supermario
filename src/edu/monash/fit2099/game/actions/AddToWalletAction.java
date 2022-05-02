@@ -11,9 +11,9 @@ import edu.monash.fit2099.game.items.Wallet;
 /**
  * Special PickUpItemAction that allows an actor to add coin items to wallet.
  *
- * @author: Vanessa Khoo Ming Yi
- * @version: 1.0.0
- * @see: edu.monash.fit2099.edu.monash.fit2099.game.actions
+ * @author Vanessa Khoo Ming Yi
+ * @version 1.0.0
+ * @see edu.monash.fit2099.game.actions
  */
 public class AddToWalletAction extends PickUpItemAction {
 

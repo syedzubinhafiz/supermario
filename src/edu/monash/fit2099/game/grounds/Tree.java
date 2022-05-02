@@ -12,15 +12,30 @@ import edu.monash.fit2099.game.interfaces.Resettable;
 /**
  * An abstract class representing a Tree in the edu.monash.fit2099.game
  *
- * @author: Syed Zubin Hafiz
- * @version: 1.0.0
- * @see: edu.monash.fit2099.edu.monash.fit2099.game.grounds
+ * @author Vanessa Khoo Ming Yi
+ * @version 1.0.0
+ * @see edu.monash.fit2099.game.grounds
  */
 public abstract class Tree extends Ground implements Resettable, HigherGround {
+    /**
+     * success_rate of a MUST_JUMP actor jumping onto Tree
+     */
     protected final double success_rate;
+    /**
+     * damage to actor if jump fails
+     */
     protected final int damage;
+    /**
+     * name of the tree instance
+     */
     protected final String name;
+    /**
+     * counter for the number of turns the instance has went through
+     */
     protected int turnCounter;
+    /**
+     * list of actions the Tree provides to actors near to it
+     */
     protected ActionList actions;
 
     /**
