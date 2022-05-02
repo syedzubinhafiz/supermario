@@ -31,8 +31,6 @@ public class Sprout extends Tree {
      */
     public void tick(Location location){
         super.tick(location);
-
-        turnCounter++;
         if (Utils.getRandomBias() <= 0.1 && (!location.containsAnActor())) {
             Goomba g = new Goomba();
             location.addActor(g);

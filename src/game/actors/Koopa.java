@@ -55,19 +55,15 @@ public class Koopa extends Enemy implements Resettable, Dormant {
         }
 
         // we assume enemies cannot pick up items, thus this should only be for Player
-        if (this.hasDormancy() && otherActor.hasCapability(Status.HAS_WRENCH)) {
+        else if (this.hasDormancy() && otherActor.hasCapability(Status.HAS_WRENCH)) {
             actions.add(new DestroyShellAction(this, direction));
         }
 
-
         //As per implementation requirement, "Try to attack Koopa until it is unconscious...
         //...It will hide inside its shell, so the display character should change to D.  You must NOT have an attack action to it anymore."
-        if( otherActor.hasCapability(Status.HOSTILE_TO_ENEMY) && !this.hasDormancy() ) {
-
+        else if( otherActor.hasCapability(Status.HOSTILE_TO_ENEMY) && !this.hasDormancy() ) {
             actions.add( super.getAttackedAction( this, direction ) );
-            //New way to get AttackAction using the interface's method
-        } else if  (otherActor.hasCapability(Status.INVINCIBLE)) {
-            actions.add(new InstaKilledAction(this, direction));
+            //New way to get AttackAction using the parent class's method
         }
 
         return actions;

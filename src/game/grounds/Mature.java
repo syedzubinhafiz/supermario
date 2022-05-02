@@ -40,17 +40,12 @@ public class Mature extends Tree {
      */
     public void tick(Location location){
         super.tick(location);
-        turnCounter++;
         if (Utils.getRandomBias() <= 0.15 && !location.containsAnActor()) {
             location.addActor(new Koopa());
         }
-        else if (Utils.getRandomBias() <= 0.2) {
-            location.setGround(new Dirt());
-        }
-        else if (turnCounter % 5 == 0) {
-
+        if (turnCounter % 5 == 0) {
             // make an empty list of all surrounding exits that have fertile ground in the game map
-            List<Exit> matureExits = new ArrayList<Exit>();
+            ArrayList<Exit> matureExits = new ArrayList<Exit>();
             for (Exit exit : location.getExits()){
                 if (exit.getDestination().getGround().getDisplayChar() == '.') {
                         matureExits.add(exit);
@@ -63,6 +58,9 @@ public class Mature extends Tree {
             if ((matureExits.size() > 0 && indexes.size() > 0)) {
                 matureExits.get(Utils.getRandomFrom(indexes)).getDestination().setGround(new Sprout());
             }
+        }
+        if (Utils.getRandomBias() <= 0.2) {
+            location.setGround(new Dirt());
         }
     }
 

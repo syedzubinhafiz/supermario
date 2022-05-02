@@ -50,6 +50,7 @@ public abstract class Tree extends Ground implements Resettable, HigherGround {
      *
      */
     public void tick(Location location) {
+        turnCounter++;
         if (this.hasCapability(Status.RESET) && (Utils.getRandomBias() <= 0.5)) {
             Dirt d = new Dirt();
             location.setGround(d);

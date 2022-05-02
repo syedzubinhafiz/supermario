@@ -26,7 +26,7 @@ public class Goomba extends Enemy implements Resettable {
 	 * Constructor.
 	 */
 	public Goomba() {
-		super("Goomba", 'g', 100);
+		super("Goomba", 'g', 20);
 		//Keep track of number of Goombas
 		goombaCount += 1;
 		//WHAT WE CAN DO IS IN PLAYTURN OF EACH GOOMBA, CHECK THE GOOMBACOUNT AND KILL THAT GOOMBA IF THE LIMIT IS EXCEEDED.
