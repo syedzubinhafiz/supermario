@@ -89,6 +89,7 @@ public class AttackAction extends Action {
 					map.removeActor(target);
 				}
 				result += System.lineSeparator() + target + " is knocked out.";
+				//Changed to be more suitable for Koopa
 			}
 		}
 		if (target instanceof Enemy) {
