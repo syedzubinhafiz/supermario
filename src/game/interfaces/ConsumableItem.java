@@ -12,4 +12,7 @@ public interface ConsumableItem {
     }
 
     void consumedBy(Actor actor);
+
+    String getConsumableName();
+
 }

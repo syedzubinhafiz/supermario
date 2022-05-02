@@ -22,6 +22,7 @@ public class PowerStar extends Item implements Tradeable, ConsumableItem, Fadeab
     private int fadingTimeOnPlayer;
     private boolean isConsumed;
     private ConsumeAction consumeAction;
+    private final String itemName = "PowerStar";
 
     /***
 //     * Constructor.
@@ -85,12 +86,14 @@ public class PowerStar extends Item implements Tradeable, ConsumableItem, Fadeab
             this.consumeAction = getConsumeAction(actor);
             addAction(consumeAction);
         }
+
         if (!isConsumed) {
             fadingTimeOnFloorInventory -= 1;
             if (fadingTimeOnFloorInventory < 0) {
                 actor.removeItemFromInventory(this);
             }
         }
+
         else {
             if(this.consumeAction != null) {
                 removeAction(this.consumeAction);
@@ -127,6 +130,11 @@ public class PowerStar extends Item implements Tradeable, ConsumableItem, Fadeab
         setIsConsumed(true);
         this.addCapability(Status.INVINCIBLE);
 
+    }
+
+    @Override
+    public String getConsumableName() {
+        return itemName;
     }
 
 }

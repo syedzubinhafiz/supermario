@@ -58,6 +58,7 @@ public class AttackAction extends Action {
 		String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 
 		if (target.hasCapability(Status.TALL)) {
+
 			System.out.println("no EFFECT??");
 			((Player)target).callSetDisplayChar('m');
 			System.out.println("no EFFECT??"+target.getDisplayChar());

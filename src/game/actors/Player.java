@@ -51,7 +51,8 @@ public class Player extends Actor implements Resettable {
 	// be called in other classes
 	// this is because to be extended for all other
 	public void callSetDisplayChar( char displayChar ){
-		this.setDisplayChar( displayChar );
+		setDisplayChar( displayChar );
+
 	}
 
 
@@ -92,7 +93,9 @@ public class Player extends Actor implements Resettable {
 
 	@Override
 	public char getDisplayChar(){
-		return this.hasCapability(Status.TALL) ? Character.toUpperCase(super.getDisplayChar()): super.getDisplayChar();
+		return  super.getDisplayChar();
+//		return this.hasCapability(Status.TALL) ? Character.toUpperCase(super.getDisplayChar()): super.getDisplayChar();
+//This was preventing the effect of character becoming lower-cased
 	}
 
 	public Wallet getWallet() {

@@ -24,6 +24,7 @@ public class SuperMushroom extends Item implements Tradeable, ConsumableItem {
     private final Status buffStatus = Status.TALL;
     private boolean isConsumed;
     private ConsumeAction consumeAction;
+    private final String itemName = "SuperMushroom";
 
     public SuperMushroom() {
         super("Super Mushroom", '^', true);
@@ -87,6 +88,11 @@ public class SuperMushroom extends Item implements Tradeable, ConsumableItem {
 
     private void setIsConsumed(boolean b) {
         isConsumed=b;
+    }
+
+    @Override
+    public String getConsumableName() {
+        return itemName;
     }
 
 }

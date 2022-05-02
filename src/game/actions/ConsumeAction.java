@@ -14,7 +14,7 @@ public class ConsumeAction extends PickUpItemAction {
     private String message;
 
     public ConsumeAction (ConsumableItem item) {
-        super(item);
+        super((Item) item);
         this.consumableItem = (ConsumableItem) item;
 //        this.maxHealthIncrease = ((ConsumableItem)item).getHealthIncrease();
 //        this.charChange = item.getCharChange();
@@ -54,7 +54,8 @@ public class ConsumeAction extends PickUpItemAction {
 //            ((PowerStar)consumableItem).setIsConsumed( true );
 //        }
 
-        return actor +" consumed " + this+".";
+        //Updated to show consumable item name properly.
+        return actor +" consumed " + consumableItem.getConsumableName() +".";
     }
 
 
