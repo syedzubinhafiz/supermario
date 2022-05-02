@@ -85,6 +85,7 @@ public class Player extends Actor implements Resettable {
 //This was preventing the effect of character becoming lower-cased
 	}
 
+
 	public Wallet getWallet() {
 		return wallet;
 	}

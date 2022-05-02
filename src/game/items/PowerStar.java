@@ -120,6 +120,7 @@ public class PowerStar extends Item implements Tradeable, ConsumableItem, Fadeab
         }
     }
 
+
     @Override
     public DropItemAction getDropAction(Actor actor) {
         return null;

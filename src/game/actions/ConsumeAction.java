@@ -15,7 +15,7 @@ public class ConsumeAction extends PickUpItemAction {
 
     public ConsumeAction (ConsumableItem item) {
         super((Item) item);
-        this.consumableItem = (ConsumableItem) item;
+        this.consumableItem = item;
 
     }
 
@@ -46,6 +46,7 @@ public class ConsumeAction extends PickUpItemAction {
         //Updated to show consumable item name properly.
         return actor +" consumed " + consumableItem.getConsumableName() +".";
     }
+
 
 
     @Override
