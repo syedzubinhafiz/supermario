@@ -8,13 +8,10 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 import game.actions.ResetGameAction;
-import game.actions.TalkWithToadAction;
 import game.enums.Status;
 import game.interfaces.Resettable;
 import game.items.Wallet;
-import game.weapons.Wrench;
 
-import java.util.HashMap;
 
 /**
  * Class representing the Player.
@@ -22,8 +19,8 @@ import java.util.HashMap;
 public class Player extends Actor implements Resettable {
 
 	private final Menu menu = new Menu();
-	private Wallet wallet;
-
+	private final Wallet wallet;
+	private final int DEFAULT_HP = 100;
 
 
 	/**
@@ -37,14 +34,10 @@ public class Player extends Actor implements Resettable {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Status.MUST_JUMP);
-		this.addCapability(Status.HAS_WALLET);
-		this.wallet = new Wallet();
-		this.addItemToInventory(this.wallet);
-		this.resetMaxHp(500);
+		this.wallet = new Wallet(0);
+		this.resetMaxHp(DEFAULT_HP);
 		Resettable.super.registerInstance();
 	}
-
-
 
 
 	//New method to call SetDisplayChar from the Actor abstract class, since setDisplayChar is protected attribute and so cannot
@@ -60,7 +53,6 @@ public class Player extends Actor implements Resettable {
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
 		//Display object to display messages in console
 		Display display1 = new Display();
-
 
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
@@ -82,14 +74,9 @@ public class Player extends Actor implements Resettable {
 		}
 
 		// Add action to be able to talk with Toad.
-		actions.add(new TalkWithToadAction());
 		// return/print the console menu
 		return menu.showMenu(this, actions, display);
 	}
-
-
-
-
 
 	@Override
 	public char getDisplayChar(){
@@ -118,9 +105,10 @@ public class Player extends Actor implements Resettable {
 			this.removeCapability(Status.INVINCIBLE);
 		} else if(this.hasCapability(Status.TALL)) {
 			this.removeCapability(Status.TALL);
+			this.setDisplayChar(Character.toLowerCase(getDisplayChar()));
 		}
 		// heal player to maximum
-		this.resetMaxHp(100);
+		this.heal(getMaxHp());
 
 		// Make a note that player has been reset once
 		this.addCapability(Status.RESET);
@@ -129,18 +117,6 @@ public class Player extends Actor implements Resettable {
 	}
 
 
-
-	//Method to check if player has wrench
-	public boolean hasWrench() {
-		boolean retVal = false;
-		for (Item item : this.getInventory()) {
-			if (item instanceof Wrench) {
-				retVal = true;
-				break;
-			}
-		}
-		return retVal;
-	}
 
 
 }

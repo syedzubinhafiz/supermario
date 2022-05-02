@@ -29,7 +29,12 @@ public class Wrench extends WeaponItem implements Tradeable {
 
     @Override
     public TradeAction getTradeAction() {
-        return new TradeAction(this, VALUE, "c");
+        return new TradeAction(this, VALUE);
+    }
+
+    @Override
+    public Tradeable newInstance() {
+        return new Wrench();
     }
 
     @Override

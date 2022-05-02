@@ -27,11 +27,11 @@ public class DestroyShellAction extends AttackAction {
         //chances to allow players to make enemies drop their items
         map.locationOf(target).addItem(mushroomDrop);
         map.removeActor(target);
-        return "You have destoyed"+ target+"'s shell!";
+        return "You have destoyed"+ target+"(dormant)";
     }
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " destroys the "+ target + "\'s shell at "+direction;
+        return actor + " destroys the "+ target + "(dormant) at "+direction;
     }
 }

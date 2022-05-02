@@ -58,12 +58,11 @@ public class AttackAction extends Action {
 		String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 
 		if (target.hasCapability(Status.TALL)) {
-
-			System.out.println("no EFFECT??");
-			((Player)target).callSetDisplayChar('m');
-			System.out.println("no EFFECT??"+target.getDisplayChar());
+			char newChar = Character.toLowerCase(target.getDisplayChar());
+			((Player)target).callSetDisplayChar(newChar);
+			target.removeCapability(Status.TALL);
 		}
-		if(target.hasCapability(Status.INVINCIBLE)) {
+		if (target.hasCapability(Status.INVINCIBLE)) {
 			result = target + " is immune to " + actor+"\'s attack.";
 		}
         else {

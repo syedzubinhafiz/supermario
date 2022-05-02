@@ -1,4 +1,4 @@
-package game;
+package game.managers;
 
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.interfaces.Resettable;
@@ -51,9 +51,7 @@ public class ResetManager {
         for (int i=0;i< resettableList.size();i++){
             // get instance & do instance.resetInstance() method
             resettableList.get(i).resetInstance();
-
         }
-
     }
 
     /**

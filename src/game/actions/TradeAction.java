@@ -13,13 +13,11 @@ public class TradeAction extends Action {
 
     private Tradeable itemToTrade;
     private int tradeValue;
-    private String hotkey;
 
 
-    public TradeAction(Tradeable itemToTrade, int tradeValue, String hotkey) {
+    public TradeAction(Tradeable itemToTrade, int tradeValue) {
         this.itemToTrade = itemToTrade;
         this.tradeValue = tradeValue;
-        this.hotkey = hotkey;
     }
 
     @Override
@@ -27,13 +25,13 @@ public class TradeAction extends Action {
         Player player = (Player) actor;
         boolean reduced = player.getWallet().reduceBalance(tradeValue);
         if (reduced) {
-           // remove tradeableItem from Toad's inventory
+            // remove tradeableItem from Toad's inventory
             Toad.removeTradeableItem(itemToTrade);
-           // Add tradeableItem to Player's inventory
-           player.addItemToInventory(((Item) itemToTrade));
+            // Add tradeableItem to Player's inventory
+            player.addItemToInventory(((Item) itemToTrade));
             return actor + " obtained " + itemToTrade;
         }
-        return "Insufficient balance";
+        return "You don't have enough coins!";
     }
 
     @Override
@@ -41,8 +39,5 @@ public class TradeAction extends Action {
         return actor + " buys " + itemToTrade + " ($" + itemToTrade.getValue()+")";
     }
 
-    public String hotkey() {
-        return this.hotkey;
-    }
 
 }

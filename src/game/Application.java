@@ -9,11 +9,13 @@ import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
 import game.actors.Goomba;
+import game.actors.Koopa;
 import game.actors.Player;
 import game.actors.Toad;
 import game.grounds.*;
 import game.items.PowerStar;
 import game.items.SuperMushroom;
+import game.weapons.Wrench;
 
 /**
  * The main class for the Mario World game.
@@ -51,8 +53,8 @@ public class Application {
 			GameMap gameMap = new GameMap(groundFactory, map);
 			world.addGameMap(gameMap);
 			// add toad here
-			Actor toad = new Toad();
-			world.addPlayer(toad, gameMap.at(42, 12));
+			Actor toad = Toad.getInstance();
+			world.addPlayer(toad, gameMap.at(43, 11));
 
 
 			Actor mario = new Player("Mario", 'm', 100);
@@ -64,7 +66,9 @@ public class Application {
 
 			// add some magical items (supermushroom & powerstar) - for checking
 			gameMap.at(42, 10).addItem(new SuperMushroom());
-			gameMap.at(42, 10).addItem(new SuperMushroom());
+			gameMap.at(42, 10).addItem(new Wrench());
+			gameMap.at(42, 8).addActor(new Koopa());
+
 			gameMap.at(42, 10).addItem(new PowerStar());
 			gameMap.at(42, 10).addItem(new PowerStar());
 

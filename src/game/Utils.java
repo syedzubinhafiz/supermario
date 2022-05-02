@@ -29,15 +29,6 @@ public class Utils {
     }
 
     /**
-     * A new method to use for any percentage based interactions
-     * @param percentageNum
-     * @return
-     */
-    public static boolean getRandomBias( int percentageNum ) {
-        return rand.nextDouble() <= percentageNum;
-    }
-
-    /**
      * This method is used to get a random integer from an arrayList of integers
      * @param list
      * @return a number represented by a random index within the list

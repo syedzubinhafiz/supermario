@@ -9,41 +9,11 @@ import game.enums.Status;
 import game.interfaces.HigherGround;
 import game.interfaces.Resettable;
 
-
-
-/**
- * The Tree class represents the Tree object in the game
- *
- * @author: Syed Zubin Hafiz
- * @version: 1.0.0
- * @see: edu.monash.fit2099.game.grounds
- */
 public abstract class Tree extends Ground implements Resettable, HigherGround {
-    /**
-     * Protected Attributes
-     */
-
-    /**
-     * A constant for success_rate of jumps to higher ground
-     */
     protected final double SUCCESS_RATE;
-    /**
-     * A constant for damage when failing to jump to higher ground
-     */
     protected final int DAMAGE;
-    /**
-     * A constant for the name of the tree cycle stage
-     */
     protected final String NAME;
-
-    /**
-     * A variable called turnCounter which keeps track of turns being played
-     */
     protected int turnCounter;
-    /**
-     * An instance of the ActionList class called 'actions'
-     */
-
     protected ActionList actions;
 
     /**

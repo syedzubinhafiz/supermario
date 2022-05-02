@@ -2,19 +2,18 @@ package game.actions;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.displays.Display;
-import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.Utils;
-import game.actors.Player;
-import game.actors.Toad;
 import game.enums.Status;
-import game.weapons.Wrench;
-
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class TalkWithToadAction extends Action {
+
+    private static final String[] sentences = new String[] {"You might need a wrench to smash Koopa's hard shells.",
+            "You better get back to finding the Power Stars.", "The Princess is depending on you! You are our only hope.",
+            "Being imprisoned in these walls can drive a fungus crazy :("};
+
 
 
     @Override
@@ -30,18 +29,22 @@ public class TalkWithToadAction extends Action {
         if (hasWrench && !hasPowerStarEffect) {
             indexes.add(1); indexes.add(2); indexes.add(3);
         }
-        else if (hasWrench && hasPowerStarEffect) {
-            indexes.add(2); indexes.add(3);
-        }
         else if (!hasWrench && hasPowerStarEffect) {
             indexes.add(0); indexes.add(2); indexes.add(3);
+        }
+        else if (hasWrench && hasPowerStarEffect) {
+            indexes.add(2); indexes.add(3);
         }
         else {
             indexes.add(0); indexes.add(1); indexes.add(2); indexes.add(3);
         }
         int index = Utils.getRandomFrom(indexes);
-        sentence = Toad.getSentence(index);
+        sentence = getSentence(index);
         return "Toad: "+"\""+sentence+"\"";
+    }
+
+    public String getSentence(int index) {
+        return this.sentences[index];
     }
 
     @Override
@@ -51,6 +54,6 @@ public class TalkWithToadAction extends Action {
 
     @Override
     public String hotkey() {
-        return "d";
+        return null;
     }
 }

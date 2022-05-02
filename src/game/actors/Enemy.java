@@ -5,7 +5,9 @@ import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
+import game.Utils;
 import game.actions.AttackAction;
+import game.actions.GetRemovedAction;
 import game.behaviours.AttackBehaviour;
 import game.behaviours.FollowBehaviour;
 import game.behaviours.WanderBehaviour;
@@ -38,7 +40,6 @@ public abstract class Enemy extends Actor implements Resettable {
         this.behaviours.put(2, new FollowBehaviour(player));
     }
 
-    //Implementation of enemy interface method
 
     public AttackAction getAttackedAction(Actor targetActor, String direction) {
         return new AttackAction( targetActor, direction );
@@ -46,7 +47,6 @@ public abstract class Enemy extends Actor implements Resettable {
 
     @Override
     public void resetInstance() {
-        // be killed (removed from map)
         this.addCapability(Status.RESET);
     }
 
