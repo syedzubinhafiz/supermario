@@ -50,6 +50,7 @@ public class SuperMushroom extends Item implements Tradeable, ConsumableItem {
         super.tick(currentLocation, actor);
     }
 
+
     @Override
     public void tick(Location currentLocation) {
         super.tick(currentLocation);

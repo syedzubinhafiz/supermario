@@ -79,7 +79,8 @@ public class AttackAction extends Action {
 				if (!(target instanceof Dormant)) {
 					map.removeActor(target);
 				}
-				result += System.lineSeparator() + target + " is killed.";
+				result += System.lineSeparator() + target + " is knocked out.";
+				//Changed to be more suitable for Koopa
 			}
 		}
 		if (target instanceof Enemy) {

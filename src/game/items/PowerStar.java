@@ -91,12 +91,14 @@ public class PowerStar extends Item implements Tradeable, ConsumableItem, Fadeab
             this.consumeAction = getConsumeAction(actor);
             addAction(consumeAction);
         }
+
         if (!isConsumed) {
             fadingTimeOnFloorInventory -= 1;
             if (fadingTimeOnFloorInventory < 0) {
                 actor.removeItemFromInventory(this);
             }
         }
+
         else {
             if(this.consumeAction != null) {
                 removeAction(this.consumeAction);
@@ -116,6 +118,7 @@ public class PowerStar extends Item implements Tradeable, ConsumableItem, Fadeab
             currentLocation.removeItem( this );
         }
     }
+
 
     @Override
     public DropItemAction getDropAction(Actor actor) {
