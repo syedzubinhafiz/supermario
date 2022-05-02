@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.actions.DestroyGroundAction;
 import game.actions.JumpAction;
 import game.enums.Status;
+
 /**
  * This interface handles the interaction player has with higher grounds in the map of the game
  *

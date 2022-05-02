@@ -6,6 +6,7 @@ import game.actors.Goomba;
 
 /**
  * The Sprout class represents the first tree cycle stage and handles all the functionalities,the actor has with sprout
+ *
  * @author: Syed Zubin Hafiz
  * @version: 1.0.0
  * @see: edu.monash.fit2099.game.grounds

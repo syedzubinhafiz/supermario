@@ -2,10 +2,17 @@ package game.interfaces;
 
 import game.managers.ResetManager;
 
+/**
+ * Interface for Resettable items
+ *
+ * @author: Vanessa Khoo Ming Yi
+ * @version: 1.0.0
+ * @see: edu.monash.fit2099.game.interfaces
+ */
 public interface Resettable {
     /**
      * Allows any classes that use this interface to reset abilities, attributes, and/or items.
-     * HINT: play around with capability, the actual implementation happens in the tick or playTurn method.
+     * The actual implementation of a reset happens in the tick or playTurn method of resettable instances.
      * This method is executed in a reset manager later.
      */
     void resetInstance();

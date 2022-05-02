@@ -10,8 +10,18 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.interfaces.Behaviour;
 
+/**
+ * A class that figures out an Action that will allow the actor to wander around the map.
+ *
+ * @author: Vanessa Khoo Ming Yi
+ * @version: 1.0.0
+ * @see: edu.monash.fit2099.game.behaviours
+ */
 public class WanderBehaviour extends Action implements Behaviour {
-	
+
+	/**
+	 * Final Random object attribute
+	 */
 	private final Random random = new Random();
 
 	/**
@@ -43,11 +53,23 @@ public class WanderBehaviour extends Action implements Behaviour {
 	}
 
 	@Override
+	/**
+	 * Executes the action of wandering.
+	 * @param actor The actor performing the action.
+	 * @param map The map the actor is on.
+	 * @return a String to show the message output after execution.
+	 * @see Action#execute(Actor actor, GameMap map)
+	 */
 	public String execute(Actor actor, GameMap map) {
 		return menuDescription(actor);
 	}
 
 	@Override
+	/**
+	 * Returns a descriptive statement for the wandering behaviour
+	 * @param actor The actor peforming the action
+	 * @return a String describing the actor wandering
+	 */
 	public String menuDescription(Actor actor) {
 		return "Raagrh...";
 	}

@@ -4,7 +4,6 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
-import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 import game.actions.ResetGameAction;
@@ -15,11 +14,26 @@ import game.items.Wallet;
 
 /**
  * Class representing the Player.
+ *
+ * @author: Vanessa Khoo Ming Yi
+ * @version: 1.0.0
+ * @see: edu.monash.fit2099.game.actors
  */
 public class Player extends Actor implements Resettable {
 
+	/**
+	 * menu represents the console menu
+	 */
 	private final Menu menu = new Menu();
+
+	/**
+	 * wallet item of the Player
+	 */
 	private final Wallet wallet;
+
+	/**
+	 * The default starting HP of the player (100 is not mentioned in requirement, but we put it as 100 first).
+	 */
 	private static final int DEFAULT_HP = 100;
 
 
@@ -40,15 +54,26 @@ public class Player extends Actor implements Resettable {
 	}
 
 
-	//New method to call SetDisplayChar from the Actor abstract class, since setDisplayChar is protected attribute and so cannot
-	// be called in other classes
-	// this is because to be extended for all other
+	/**
+	 * Method to call SetDisplayChar from the Actor abstract class, since it is protected and final in Actor class,
+	 * other classes cannot call on this.
+	 * @param displayChar the new displayChar to be set
+	 */
 	public void callSetDisplayChar( char displayChar ){
 		this.setDisplayChar( displayChar );
 	}
 
 
 	@Override
+	/**
+	 * Method to return the action that needs to be done for the current turn of the Player.
+	 * @param actions    collection of possible Actions for this Actor
+	 * @param lastAction The Action this Actor took last turn.
+	 * @param map        the map containing the Actor
+	 * @param display    the I/O object to which messages may be written
+	 * @return the Action to be played
+	 * @see Actor#playTurn(ActionList, Action, GameMap, Display)
+	 */
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
 		//Display object to display messages in console
 		Display display1 = new Display();
@@ -77,23 +102,20 @@ public class Player extends Actor implements Resettable {
 		return menu.showMenu(this, actions, display);
 	}
 
-	@Override
-	public char getDisplayChar(){
-		return super.getDisplayChar();
-	}
 
+	/**
+	 * Getter for the wallet attribute
+	 * @return
+	 */
 	public Wallet getWallet() {
 		return wallet;
 	}
 
-
 	@Override
-	public void addItemToInventory(Item item) {
-		super.addItemToInventory(item);
-	}
-
-
-	@Override
+	/**
+	 * Implements the resetInstance() method in Resettable interface.
+	 * @see Resettable#resetInstance()
+	 */
 	public void resetInstance() {
 		//resets player straight away here instead of in playTurn
 		if (this.hasCapability(Status.INVINCIBLE)) {

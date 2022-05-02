@@ -9,6 +9,13 @@ import game.enums.Status;
 import game.interfaces.HigherGround;
 import game.interfaces.Resettable;
 
+/**
+ * An abstract class representing a Tree in the game
+ *
+ * @author: Syed Zubin Hafiz
+ * @version: 1.0.0
+ * @see: edu.monash.fit2099.game.grounds
+ */
 public abstract class Tree extends Ground implements Resettable, HigherGround {
     protected final double success_rate;
     protected final int damage;
@@ -36,7 +43,7 @@ public abstract class Tree extends Ground implements Resettable, HigherGround {
     /**
      * Returns name of the Tree Stage
      *
-     * @return
+     * @return String name of the Tree stage
      */
     public String getName() {
         return this.name;
@@ -83,6 +90,7 @@ public abstract class Tree extends Ground implements Resettable, HigherGround {
      * @param location Location of the ground
      * @param direction Direction the actor can jump to
      * @return an instance of the ActionList
+     * @see Ground#allowableActions(Actor, Location, String) 
      */
     public ActionList allowableActions(Actor actor, Location location, String direction) {
         actions = new ActionList();
@@ -93,7 +101,10 @@ public abstract class Tree extends Ground implements Resettable, HigherGround {
 
     @Override
     /**
-     * Sets a RESET capability in the enum Status class to invoke the Reset functionality on the Tree class
+     * Implements the resetInstance() method in Resettable interface.
+     * Sets a RESET capability in the enum Status class to invoke the Reset functionality
+     * on the Tree class.
+     * @see Resettable#resetInstance()
      */
     public void resetInstance() {
         this.addCapability(Status.RESET);

@@ -7,18 +7,32 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.Weapon;
 
+/**
+ * Special InstaKilledAction that allows an actor to instantly kill its opponents.
+ *
+ * @author: Vanessa Khoo Ming Yi
+ * @version: 1.0.0
+ * @see: edu.monash.fit2099.game.actions
+ */
 public class InstaKilledAction extends AttackAction {
 
     /**
      * Constructor.
      *
-     * @param target    the Actor to attack
-     * @param direction
+     * @param target    the target actor to attack
+     * @param direction the direction of attack
      */
     public InstaKilledAction(Actor target, String direction) {
         super(target, direction);
     }
 
+    /**
+     * Executes the InstaKillAction
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return a String to show the message output after execution.
+     * @see Action#execute(Actor actor, GameMap map)
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
         String result = "";
@@ -37,7 +51,6 @@ public class InstaKilledAction extends AttackAction {
                 dropActions.add(item.getDropAction(actor));
             for (Action drop : dropActions)
                 drop.execute(target, map);
-            // remove actor if it can't be dormant
             map.removeActor(target);
         }
         return result;

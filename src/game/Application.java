@@ -60,7 +60,6 @@ public class Application {
 			Actor mario = new Player("Mario", 'm', 100);
 			world.addPlayer(mario, gameMap.at(42, 10));
 
-
 			world.run();
 
 	}

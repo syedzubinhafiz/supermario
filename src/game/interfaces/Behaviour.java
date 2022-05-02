@@ -4,6 +4,13 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 
+/**
+ * Interface for classes that are behaviours.
+ *
+ * @author: Vanessa Khoo Ming Yi
+ * @version: 1.0.0
+ * @see: edu.monash.fit2099.game.interfaces
+ */
 public interface Behaviour {
 	
 	/**

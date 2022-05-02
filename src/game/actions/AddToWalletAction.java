@@ -8,9 +8,18 @@ import game.actors.Player;
 import game.items.Coin;
 import game.items.Wallet;
 
+/**
+ * Special PickUpItemAction that allows an actor to add coin items to wallet.
+ *
+ * @author: Vanessa Khoo Ming Yi
+ * @version: 1.0.0
+ * @see: edu.monash.fit2099.game.actions
+ */
 public class AddToWalletAction extends PickUpItemAction {
 
-    //attribute
+    /**
+     * Coin attribute that was picked up
+     */
     Coin coin;
 
     /**
@@ -20,11 +29,19 @@ public class AddToWalletAction extends PickUpItemAction {
      */
     public AddToWalletAction(Item item) {
         super(item);
-        // since item is a private attribute in PickUpItemAction, it is NOT inherited, so we need to introduce another attribute for Coin
         this.coin = (Coin) item;
+        // since item is a private attribute in PickUpItemAction, it is NOT inherited, so we need to introduce another attribute for Coin
     }
 
     @Override
+    /**
+     * Executes the add to wallet action by adding the value to actor's wallet balance and removing the item from the location.
+     * from the map.
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return a String to show the message output after execution.
+     * @see PickUpItemAction#execute(Actor actor, GameMap map)
+     */
     public String execute(Actor actor, GameMap map) {
         map.locationOf(actor).removeItem(coin);
         Wallet w = ((Player) actor).getWallet();
@@ -33,6 +50,11 @@ public class AddToWalletAction extends PickUpItemAction {
     }
 
     @Override
+    /**
+     * Returns a descriptive statement for the AddToWalletAction
+     * @param actor The actor performing the certain action
+     * @return a String describing actor adding coin to wallet
+     */
     public String menuDescription(Actor actor) {
         return super.menuDescription(actor) + " ("+ coin.getCoinValue()+")";
     }

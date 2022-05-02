@@ -5,6 +5,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import game.Utils;
+
 /**
  * This class handles the 'jump' functionality of the actor in the game
  *
@@ -18,38 +19,33 @@ public class JumpAction extends MoveActorAction {
      */
 
     /**
-     * A constant for success_rate which represents the probability of completion of jump
+     * A attribute for success_rate which represents the probability of completion of jump
      */
-    private final double SUCCESS_RATE;
+    private final double successRate;
     /**
-     * A constant for damage dealt when actor fails to complete the jump
+     * A attribute for damage dealt when actor fails to complete the jump
      */
-    private final int DAMAGE;
-    /**
-     * A constant for direction of the jump
-     */
-    private final String DIRECTION;
+    private final int damage;
 
     /**
-     * A constant for the name of the tree cycle stage
+     * A attribute for the name of the higher ground
      */
-    private final String NAME;
+    private final String name;
 
 
     /**
      * JumpAction Constructor initialising all the input parameters
-     * @param location
-     * @param success_rate
-     * @param damage
-     * @param direction
-     * @param name
+     * @param location location to jump to
+     * @param success_rate success_rate of the jump
+     * @param damage damage of the jump if it fails
+     * @param direction direction of the jump
+     * @param name name of the higher ground
      */
     public JumpAction(Location location, double success_rate, int damage, String direction, String name) {
         super(location, direction);
-        this.SUCCESS_RATE = success_rate;
-        this.DAMAGE = damage;
-        this.DIRECTION = direction;
-        this.NAME = name;
+        this.successRate = success_rate;
+        this.damage = damage;
+        this.name = name;
     }
 
     @Override
@@ -65,14 +61,14 @@ public class JumpAction extends MoveActorAction {
      */
     public String execute(Actor actor, GameMap map) {
         String result = "";
-        if(Utils.getRandomBias() <= this.SUCCESS_RATE){
+        if(Utils.getRandomBias() <= this.successRate){
             map.moveActor(actor, this.moveToLocation); //jump onto the surface
-            result = "You have successfully jumped onto the " + this.NAME+"!";
+            result = "You have successfully jumped onto the " + this.name +"!";
         }
         else {
-            actor.hurt(this.DAMAGE);
+            actor.hurt(this.damage);
             result = "Oh no! You couldn't make the jump and fell down :(. \n" +
-                    "Damage Received from Fall: " + this.DAMAGE;
+                    "Damage Received from Fall: " + this.damage;
 
         }
         return result;
@@ -82,11 +78,11 @@ public class JumpAction extends MoveActorAction {
     @Override
     /**
      * Returns a descriptive statement
-     * @oaram actor The actor who might be performing a certain action
+     * @param actor The actor who might be performing a certain action
      * @return a String describing the exact location coordinates once the actor is on the higher ground
      */
     public String menuDescription(Actor actor) {
-        return actor + " jumps to the " + this.DIRECTION + " " + this.NAME + " ("+ this.moveToLocation.x() + ", " + this.moveToLocation.y()+")";
+        return actor + " jumps to the " + this.direction + " " + this.name + " ("+ this.moveToLocation.x() + ", " + this.moveToLocation.y()+")";
     }
 
 

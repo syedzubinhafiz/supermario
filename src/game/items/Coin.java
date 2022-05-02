@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.actions.AddToWalletAction;
 import game.enums.Status;
 import game.interfaces.Resettable;
+
 /**
  * This class represents the Coin objects in the game
  *

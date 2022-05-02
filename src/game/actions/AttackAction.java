@@ -15,6 +15,10 @@ import game.enums.Status;
 
 /**
  * Special Action for attacking other Actors.
+ *
+ * @author: Vanessa Khoo Ming Yi
+ * @version: 1.0.0
+ * @see: edu.monash.fit2099.game.actions
  */
 public class AttackAction extends Action {
 
@@ -37,12 +41,20 @@ public class AttackAction extends Action {
 	 * Constructor.
 	 * 
 	 * @param target the Actor to attack
+	 * @param direction the direction of attack
 	 */
 	public AttackAction(Actor target, String direction) {
 		this.target = target;
 		this.direction = direction;
 	}
 
+	/**
+	 * Executes the attack action
+	 * @param actor The actor performing the action.
+	 * @param map The map the actor is on.
+	 * @return a String to show the message output after execution.
+	 * @see Action#execute(Actor actor, GameMap map)
+	 */
 	@Override
 	public String execute(Actor actor, GameMap map) {
 
@@ -87,6 +99,11 @@ public class AttackAction extends Action {
 		return result;
 	}
 
+	/**
+	 * Returns a descriptive statement for the AttackAction
+	 * @param actor The actor performing the certain action
+	 * @return a String describing actor attacking a target actor at a certain direction
+	 */
 	@Override
 	public String menuDescription(Actor actor) {
 		return actor + " attacks " + target + " at " + direction;

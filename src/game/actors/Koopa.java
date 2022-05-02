@@ -15,22 +15,47 @@ import game.enums.Status;
 import game.interfaces.Behaviour;
 import game.interfaces.Resettable;
 
+
+/**
+ * Class that represents a Koopa (like a turtle), who is an enemy to the player.
+ *
+ * @author: Vanessa Khoo Ming Yi
+ * @version: 1.0.0
+ * @see: edu.monash.fit2099.game.actors
+ */
 public class Koopa extends Enemy implements Resettable {
 
+    /**
+     * DormantAction attribute to store an instance of dormantAction
+     */
     private DormantAction dormantState;
 
-
+    /**
+     * Constructor of Koopa
+     */
     public Koopa() {
         super("Koopa", 'K', 100);
-        dormantState = new DormantAction( this );
+        dormantState = new DormantAction( this, 'D' );
         this.hasCapability(Status.HAS_DORMANCY);
     }
 
-    //New method to call SetDisplayChar from the Actor abstract class, instead of changing it from final to something else
+    /**
+     * Method to call SetDisplayChar from the Actor abstract class, since it is protected and final in Actor class,
+     * other classes cannot call on this.
+     * @param displayChar the new displayChar to be set
+     */
     public void callSetDisplayChar( char displayChar ){
         this.setDisplayChar( displayChar );
     }
 
+    /**
+     * Method to return an ActionList containing the allowedActions Koopa provides to actor when actor is near it.
+     * @param otherActor the Actor that might be performing attack
+     * @param direction  String representing the direction of the other Actor
+     * @param map        current GameMap
+     * @return an ActionList that stores the allowable actions
+     * @see Actor#allowableActions(Actor, String, GameMap)
+     */
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = new ActionList();
@@ -38,23 +63,29 @@ public class Koopa extends Enemy implements Resettable {
         if  (otherActor.hasCapability(Status.INVINCIBLE)) {
             actions.add(new InstaKilledAction(this, direction));
         }
-
-        // we assume enemies cannot pick up items, thus this should only be for Player
         else if (this.hasDormancy() && otherActor.hasCapability(Status.HAS_WRENCH)) {
             actions.add(new DestroyShellAction(this, direction));
         }
-
         //As per implementation requirement, "Try to attack Koopa until it is unconscious...
         //...It will hide inside its shell, so the display character should change to D.  You must NOT have an attack action to it anymore."
         else if( otherActor.hasCapability(Status.HOSTILE_TO_ENEMY) && !this.hasDormancy() ) {
             actions.add( super.getAttackedAction( this, direction ) );
-            //New way to get AttackAction using the parent class's method
+            // get AttackAction using the parent class's method
         }
 
         return actions;
     }
 
 
+    /**
+     * Method to return the action that needs to be done for the current turn of the Koopa.
+     * @param actions    collection of possible Actions for this Actor
+     * @param lastAction The Action this Actor took last turn.
+     * @param map        the map containing the Actor
+     * @param display    the I/O object to which messages may be written
+     * @return the Action to be played
+     * @see Actor#playTurn(ActionList, Action, GameMap, Display)
+     */
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
 
@@ -78,22 +109,38 @@ public class Koopa extends Enemy implements Resettable {
         return new DoNothingAction();
     }
 
+    /**
+     * Implements the resetInstance() method in Resettable interface.
+     * @see Resettable#resetInstance()
+     */
     @Override
     public void resetInstance() {
         // be killed
         this.addCapability(Status.RESET);
     }
 
+    /**
+     * Method to see if Koopa is Dormant or not.
+     * @return true if Koopa is Dormant, false otherwise
+     */
     public boolean hasDormancy() {
         return this.hasCapability(Status.DORMANT);
     }
 
     @Override
+    /**
+     * Overrides the getWeapon() method to return only the intrinsicWeapon of Koopa.
+     * @see Actor#getWeapon()
+     */
     public Weapon getWeapon() {
         return this.getIntrinsicWeapon();
     }
 
     @Override
+    /**
+     * Overrides the getIntrinsicWeapon class to return the specific intrinsic weapon Koopa has.
+     * @see Actor#getIntrinsicWeapon()
+     */
     public IntrinsicWeapon getIntrinsicWeapon() {
         return new IntrinsicWeapon(30, "punches");
     }

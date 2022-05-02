@@ -11,10 +11,16 @@ import game.interfaces.Behaviour;
 /**
  * A class that figures out a MoveAction that will move the actor one step 
  * closer to a target Actor.
- * @see edu.monash.fit2099.demo.mars.Application
+ *
+ * @author: Vanessa Khoo Ming Yi
+ * @version: 1.0.0
+ * @see: edu.monash.fit2099.game.behaviours
  */
 public class FollowBehaviour implements Behaviour {
 
+	/**
+	 * Final attribute target actor to follow
+	 */
 	private final Actor target;
 
 	/**
@@ -27,6 +33,11 @@ public class FollowBehaviour implements Behaviour {
 	}
 
 	@Override
+	/** Method to return the action that the actor should perform based on the follow behaviour
+	 * @param actor actor with behaviour
+	 * @param map GameMap of the current game
+	 * @see Behaviour#getAction(Actor, GameMap)
+	 */
 	public Action getAction(Actor actor, GameMap map) {
 		if(!map.contains(target) || !map.contains(actor))
 			return null;

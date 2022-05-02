@@ -12,16 +12,27 @@ import game.interfaces.Behaviour;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Behaviour class that represents an attack behaviour of the actor
+ *
+ * @author: Vanessa Khoo Ming Yi
+ * @version: 1.0.0
+ * @see: edu.monash.fit2099.game.behaviours
+ */
 public class AttackBehaviour implements Behaviour {
 
+    /**
+     * Random object attribute
+     */
     private final Random random = new Random();
 
-    public AttackBehaviour() {
 
-    }
-
-    // TODO: develop and use it to attack the player automatically.
     @Override
+    /** Method to return the action that the actor should perform based on the attack behaviour
+     * @param actor actor with behaviour
+     * @param map GameMap of the current game
+     * @see Behaviour#getAction(Actor, GameMap)
+     */
     public Action getAction(Actor actor, GameMap map) {
 
         // find surrounding actor

@@ -7,17 +7,41 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import game.interfaces.ConsumableItem;
 import game.interfaces.FadeableItem;
 
+/**
+ * Special PickUpItemAction that allows an actor to consume consumable items.
+ *
+ * @author: Vanessa Khoo Ming Yi
+ * @version: 1.0.0
+ * @see: edu.monash.fit2099.game.actions
+ */
 public class ConsumeAction extends PickUpItemAction {
 
-
+    //attributes
+    /**
+     * The consumableItem to be consumed
+     */
     private ConsumableItem consumableItem;
 
+
+    /**
+     * Constructor
+     * @param item the item to consume
+     */
     public ConsumeAction (ConsumableItem item) {
         super((Item) item);
         this.consumableItem = item;
 
     }
 
+
+    /**
+     * Executes the consume action by making the consumable item consumed by actor and removing the consumed item
+     * from the map.
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return a String to show the message output after execution.
+     * @see PickUpItemAction#execute(Actor actor, GameMap map)
+     */
     @Override
     public String execute(Actor actor, GameMap map) {
 
@@ -27,7 +51,11 @@ public class ConsumeAction extends PickUpItemAction {
         return actor +" consumed " + consumableItem+".";
     }
 
-
+    /**
+     * Returns a descriptive statement for the ConsumeAction
+     * @param actor The actor performing the certain action
+     * @return a String describing actor consuming the item
+     */
     @Override
     public String menuDescription(Actor actor) {
         String result= actor + " consumes "+ consumableItem ;
