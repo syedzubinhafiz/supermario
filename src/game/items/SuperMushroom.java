@@ -18,9 +18,9 @@ import static java.lang.Character.toUpperCase;
 
 public class SuperMushroom extends Item implements Tradeable, ConsumableItem {
 
-    private final int VALUE = 400;
-    private final int healthIncrease = 50;
-    private final Status buffStatus = Status.TALL;
+    private final static int VALUE = 400;
+    private final static int HEALTH_INCREASE = 50;
+    private final static Status BUFF_STATUS = Status.TALL;
     private boolean isConsumed;
     private ConsumeAction consumeAction;
 
@@ -81,9 +81,9 @@ public class SuperMushroom extends Item implements Tradeable, ConsumableItem {
 
     @Override
     public void consumedBy(Actor actor) {
-        actor.increaseMaxHp( healthIncrease );
+        actor.increaseMaxHp(HEALTH_INCREASE);
         ((Player)actor).callSetDisplayChar( toUpperCase(actor.getDisplayChar()) );
-        actor.addCapability( buffStatus );
+        actor.addCapability(BUFF_STATUS);
         setIsConsumed(true);
     }
 

@@ -27,7 +27,7 @@ public class DestroyShellAction extends AttackAction {
         //chances to allow players to make enemies drop their items
         map.locationOf(target).addItem(mushroomDrop);
         map.removeActor(target);
-        return "You have destoyed"+ target+"(dormant)";
+        return "You have destoyed "+ target+"(dormant)";
     }
 
     @Override

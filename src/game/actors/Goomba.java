@@ -75,7 +75,6 @@ public class Goomba extends Enemy implements Resettable {
 			if (action != null) {
 				return action;
 			}
-
 		}
 
 		return new DoNothingAction();

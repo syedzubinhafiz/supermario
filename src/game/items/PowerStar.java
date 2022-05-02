@@ -14,21 +14,15 @@ import game.interfaces.Tradeable;
 
 public class PowerStar extends Item implements Tradeable, ConsumableItem, FadeableItem {
 
-
-    private final int VALUE = 600;
-    private final int healthHealAmt = 200;
-    private final Status buffStatus = Status.INVINCIBLE;
+    private final static int VALUE = 600;
+    private final static int HEALTH_HEAL_AMT = 200;
+    private final static Status BUFF_STATUS = Status.INVINCIBLE;
     private int fadingTimeOnFloorInventory;
     private int fadingTimeOnPlayer;
     private boolean isConsumed;
     private ConsumeAction consumeAction;
 
-    /***
-//     * Constructor.
-//     *  @param name the name of this Item
-//     * @param displayChar the character to use to represent this item if it is on the ground
-//     * @param portable true if and only if the Item can be picked up
-//     */
+
     public PowerStar() {
         super("Power Star", '*', true);
         fadingTimeOnFloorInventory = 10;
@@ -58,11 +52,11 @@ public class PowerStar extends Item implements Tradeable, ConsumableItem, Fadeab
     }
 
     public int getHealthHealAmt(){
-        return healthHealAmt;
+        return HEALTH_HEAL_AMT;
     }
 
     public Status getBuffStatus(){
-        return buffStatus;
+        return BUFF_STATUS;
     }
 
     public int getFadingTimeOnFloorInventory(){
@@ -88,7 +82,7 @@ public class PowerStar extends Item implements Tradeable, ConsumableItem, Fadeab
     //Ticking/Fading when powerstar in players inventory
     //Also removes item from inventory
     public void tick(Location currentLocation, Actor actor) {
-        if (!isConsumed &&  !actor.hasCapability(buffStatus)) {
+        if (!isConsumed &&  !actor.hasCapability(BUFF_STATUS)) {
             if(this.consumeAction !=null){
                 removeAction(this.consumeAction);
             }
@@ -136,7 +130,7 @@ public class PowerStar extends Item implements Tradeable, ConsumableItem, Fadeab
 
     @Override
     public void consumedBy(Actor actor) {
-        actor.heal( healthHealAmt );
+        actor.heal(HEALTH_HEAL_AMT);
         setIsConsumed(true);
         this.addCapability(Status.INVINCIBLE);
 

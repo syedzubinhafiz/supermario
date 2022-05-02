@@ -17,23 +17,8 @@ import game.interfaces.Resettable;
 
 public class Koopa extends Enemy implements Resettable {
 
-
-    //CHECK FOR ERROR
     private DormantAction dormantState;
 
-//    /**
-//     * Constructor.
-//     *
-//     * @param name        the name of the Actor
-//     * @param displayChar the character that will represent the Actor in the display
-//     * @param hitPoints   the Actor's starting hit points
-//     */
-//Commented out, incase some error, comment back in
-//    public Koopa(String name, char displayChar, int hitPoints) {
-//        super(name, displayChar, hitPoints);
-//        this.behaviours.put(10, new WanderBehaviour());
-//        Resettable.super.registerInstance();
-//    }
 
     public Koopa() {
         super("Koopa", 'K', 100);

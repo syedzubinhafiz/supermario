@@ -20,7 +20,7 @@ public class Player extends Actor implements Resettable {
 
 	private final Menu menu = new Menu();
 	private final Wallet wallet;
-	private final int DEFAULT_HP = 100;
+	private static final int DEFAULT_HP = 100;
 
 
 	/**

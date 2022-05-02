@@ -9,7 +9,7 @@ import game.interfaces.Tradeable;
 
 public class Wrench extends WeaponItem implements Tradeable {
 
-    private final int VALUE = 200;
+    private final static int VALUE = 200;
 
     /**
      * Constructor.
