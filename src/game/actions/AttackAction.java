@@ -66,16 +66,8 @@ public class AttackAction extends Action {
 			result = target + " is immune to " + actor+"\'s attack.";
 		}
         else {
-        	if(actor.hasCapability(Status.INVINCIBLE)) {
-        		// attack until it becomes unconscous, insta kill action not needed
-				while (target.isConscious()) {
-					target.hurt(damage);
-				}
-				result = actor + " instantly kills " + target+".";
-			}
-        	else {
-        		target.hurt(damage);
-        	}
+        	target.hurt(damage);
+
 			if (!target.isConscious()) {
 				ActionList dropActions = new ActionList();
 				// drop all items

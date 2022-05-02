@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.actions.AttackAction;
 import game.actions.GetRemovedAction;
+import game.actions.InstaKilledAction;
 import game.behaviours.AttackBehaviour;
 import game.behaviours.FollowBehaviour;
 import game.behaviours.WanderBehaviour;
@@ -33,6 +34,7 @@ public abstract class Enemy extends Actor implements Resettable {
         if (this.hasCapability(Status.RESET)) {
             return new GetRemovedAction();
         }
+
         return null;
     }
 
@@ -50,6 +52,7 @@ public abstract class Enemy extends Actor implements Resettable {
     public void resetInstance() {
         this.addCapability(Status.RESET);
     }
+
 
 }
 

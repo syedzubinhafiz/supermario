@@ -65,7 +65,7 @@ public class Player extends Actor implements Resettable {
 		display1.println(this.name+printHp()+" at ("+map.locationOf(this).x()+", "+map.locationOf(this).y()+")");
 
 		//print wallet balance
-		display1.println(this.getWallet() +": $"+this.getWallet().getTotalBalance());
+		display1.println("Wallet : $"+this.getWallet().getTotalBalance());
 
 		//print if powerstar effect is still there
 		if (hasCapability(Status.INVINCIBLE)) {
@@ -79,7 +79,7 @@ public class Player extends Actor implements Resettable {
 
 	@Override
 	public char getDisplayChar(){
-		return this.hasCapability(Status.TALL) ? Character.toUpperCase(super.getDisplayChar()): super.getDisplayChar();
+		return super.getDisplayChar();
 	}
 
 	public Wallet getWallet() {

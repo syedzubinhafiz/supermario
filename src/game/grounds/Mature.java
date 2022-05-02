@@ -57,7 +57,6 @@ public class Mature extends Tree {
                     }
                 }
             }
-
             ArrayList<Integer> indexes = new ArrayList();
             for (int i=0;i < matureExits.size();i++){
                 indexes.add(i);

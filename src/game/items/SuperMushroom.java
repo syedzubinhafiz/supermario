@@ -76,7 +76,6 @@ public class SuperMushroom extends Item implements Tradeable, ConsumableItem {
 
     @Override
     public PickUpItemAction getPickUpAction(Actor actor) {
-
         return super.getPickUpAction(actor);
     }
 
@@ -87,6 +86,8 @@ public class SuperMushroom extends Item implements Tradeable, ConsumableItem {
         actor.addCapability( buffStatus );
         setIsConsumed(true);
     }
+
+
 
     private void setIsConsumed(boolean b) {
         isConsumed=b;

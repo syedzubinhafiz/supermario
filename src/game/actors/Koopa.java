@@ -10,6 +10,7 @@ import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.actions.DestroyShellAction;
 import game.actions.DormantAction;
+import game.actions.InstaKilledAction;
 import game.enums.Status;
 import game.interfaces.Behaviour;
 import game.interfaces.Dormant;
@@ -49,6 +50,9 @@ public class Koopa extends Enemy implements Resettable, Dormant {
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = new ActionList();
 
+        if  (otherActor.hasCapability(Status.INVINCIBLE)) {
+            actions.add(new InstaKilledAction(this, direction));
+        }
 
         // we assume enemies cannot pick up items, thus this should only be for Player
         if (this.hasDormancy() && otherActor.hasCapability(Status.HAS_WRENCH)) {
@@ -62,6 +66,8 @@ public class Koopa extends Enemy implements Resettable, Dormant {
 
             actions.add( super.getAttackedAction( this, direction ) );
             //New way to get AttackAction using the interface's method
+        } else if  (otherActor.hasCapability(Status.INVINCIBLE)) {
+            actions.add(new InstaKilledAction(this, direction));
         }
 
         return actions;

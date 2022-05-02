@@ -27,11 +27,8 @@ public class AttackBehaviour implements Behaviour {
         // find surrounding actor
         ArrayList<Action> actions = new ArrayList<Action>();
         for (Exit exit : map.locationOf(actor).getExits()) {
-
             Location destination = exit.getDestination();
-//            System.out.println("exit"+exit.getName()+destination.getActor());
             if ((destination.getActor() instanceof Player)) {
-//                System.out.println("exit has player");
                 actions.add(new AttackAction(destination.getActor(), exit.getName()));
             }
         }
