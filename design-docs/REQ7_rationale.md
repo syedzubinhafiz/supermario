@@ -2,7 +2,7 @@
 
 **1: ResetGameAction**
 
-To be able to reset the game, the player needs to have an option to reset the game.
+To be able to reset the edu.monash.fit2099.game, the player needs to have an option to reset the edu.monash.fit2099.game.
 Thus, we have the ResetGameAction that extends the abstract Action class.
 
 Note that currently, ResetGameAction has dependencies to a few classes (Tree, Utils, Dirt, Player, Coin, Enemy).
@@ -13,8 +13,8 @@ in the map. Then, for each location we will check for the Trees, the Enemys and 
 resetting for each of them if they exist at the location. 
 Thus, note that it is straightforward if the execute() method does this.
 2. Single Responsibility Principle.
-Currently, we want the resetting of the game to be done by a single class, and therefore, we have the ResetGameAction class that
-is added to the player's actions list if the player has not yet reset the game. Thus, we believe having the checking and dependencies
+Currently, we want the resetting of the edu.monash.fit2099.game to be done by a single class, and therefore, we have the ResetGameAction class that
+is added to the player's actions list if the player has not yet reset the edu.monash.fit2099.game. Thus, we believe having the checking and dependencies
 within the ResetGameAction allows for the responsibility to be completed in a single class.
 
 Therefore, due to the rationale above, we believe that the introduced dependencies make the implementation straightforward and supports

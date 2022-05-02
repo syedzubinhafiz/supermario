@@ -145,7 +145,7 @@ public abstract class Actor implements Capable, Printable {
 	 * Returns true if the current Actor has positive hit points.
 	 * Actors on zero hit points are deemed to be unconscious.
 	 * 
-	 * Depending on the game client, this status may be interpreted as either
+	 * Depending on the edu.monash.fit2099.game client, this status may be interpreted as either
 	 * unconsciousness or death, or inflict some other kind of status.
 	 *
 	 * @return true if and only if hitPoints is positive.
@@ -180,7 +180,7 @@ public abstract class Actor implements Capable, Printable {
 	 * overflow, hitpoints are silently capped at the maximum.
 	 *
 	 * Does not check for consciousness: unconscious Actors can still be healed
-	 * if the game client allows.
+	 * if the edu.monash.fit2099.game client allows.
 	 *
 	 * @param points number of hitpoints to add.
 	 */

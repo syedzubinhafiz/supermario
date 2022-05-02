@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- * Class representing the game world, including the locations of all Actors, the
+ * Class representing the edu.monash.fit2099.game world, including the locations of all Actors, the
  * player, and the playing grid.
  */
 public class World {
@@ -57,10 +57,10 @@ public class World {
 	}
 
 	/**
-	 * Run the game.
+	 * Run the edu.monash.fit2099.game.
 	 *
 	 * On each iteration the gameloop does the following: - displays the player's
-	 * map - processes the actions of every Actor in the game, regardless of map
+	 * map - processes the actions of every Actor in the edu.monash.fit2099.game, regardless of map
 	 *
 	 * We could either only process the actors on the current map, which would make
 	 * time stop on the other maps, or we could process all the actors. We chose to
@@ -77,7 +77,7 @@ public class World {
 			lastActionMap.put(actor, new DoNothingAction());
 		}
 
-		// This loop is basically the whole game
+		// This loop is basically the whole edu.monash.fit2099.game
 		while (stillRunning()) {
 			GameMap playersMap = actorLocations.locationOf(player).map();
 			playersMap.draw(display);
@@ -151,9 +151,9 @@ public class World {
 	}
 
 	/**
-	 * Returns true if the game is still running.
+	 * Returns true if the edu.monash.fit2099.game is still running.
 	 *
-	 * The game is considered to still be running if the player is still around.
+	 * The edu.monash.fit2099.game is considered to still be running if the player is still around.
 	 *
 	 * @return true if the player is still on the map.
 	 */
@@ -162,7 +162,7 @@ public class World {
 	}
 
 	/**
-	 * Return a string that can be displayed when the game ends.
+	 * Return a string that can be displayed when the edu.monash.fit2099.game ends.
 	 *
 	 * @return the string "Game Over"
 	 */

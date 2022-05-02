@@ -12,7 +12,7 @@ import edu.monash.fit2099.engine.weapons.Weapon;
 import java.util.List;
 
 /**
- * Abstract base class representing a physical object in the game world.
+ * Abstract base class representing a physical object in the edu.monash.fit2099.game world.
  *
  */
 public abstract class Item implements Printable, Capable {

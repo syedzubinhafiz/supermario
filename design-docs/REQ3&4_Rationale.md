@@ -3,7 +3,7 @@
 1. Implementing Dormancy
 
 For REQ3 we mainly had to implement a dormant effect for all Koopa classes that were knocked unconscious by the player. In order to do this
-, we had to first create a new Koopa class to represent the new enemy type we were going to introduce into the game.
+, we had to first create a new Koopa class to represent the new enemy type we were going to introduce into the edu.monash.fit2099.game.
 
 
 Following what was done for the Goomba class we decided to extend the Actor class and keep the same behaviour attribute. Instead of using a HashMap this time
@@ -13,7 +13,7 @@ the highest priority and actually have priority selection function. This allows 
 
 Alternatively, using a for loop ranging from 0 to the size of the HashMap for indexing would have been a plausible method to loop through entries with priority.
 However, this would require us to have the keys entered from 1-10 ( highest to lowest priority ). This method as a whole is just more troublesome to code and would have
-likely made the performance of the game worse. Aside from that future programmers would also have had to been made aware of this to avoid any mistakes.
+likely made the performance of the edu.monash.fit2099.game worse. Aside from that future programmers would also have had to been made aware of this to avoid any mistakes.
 
 
 We plan to keep Koopa's from performing any unwanted actions by returning null constantly when getActions() of the new DormantBehaviour class is called.
@@ -48,14 +48,14 @@ functionality of consuming PowerStar or SuperMushroom to another class.
 We also plan to implement a Consumable interface with a getAction method that returns ConsumeAction for the allowableActions method
 in the PowerStar/SuperMushrooms class to use. Has to check if item is consumed using it's isConsumed() method. Returns consumeAction if isConsumed() returns False.
 This implementation of the Consumable interface will allow us to code with the Open-Closed Principle. This is because
-any new consumable items added to the game after the initial implementation of the action in the player class
+any new consumable items added to the edu.monash.fit2099.game after the initial implementation of the action in the player class
 will be able to be consumed without having to modify any code. You would only have to add the item itself. 
 This ensures that the actions will be made available to the players whenever a magical item is present in their inventory.
 
 Without the interface, we would have had to check for the individual items in the inventory to see if they were instances of SuperMushroom or PowerStar.
 With the Consumable interface, we can just check if items are an instance of the interface.
 
-Since this implementation aligns with two principles of design, we have deemed it to be good design for our game code.
+Since this implementation aligns with two principles of design, we have deemed it to be good design for our edu.monash.fit2099.game code.
 
 
 For the actual consumption of items, we decided on using a separate ConsumeAction class that extends Actions.

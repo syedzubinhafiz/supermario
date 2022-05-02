@@ -18,8 +18,8 @@ Classes that have other colours (other than black & yellow) are classes added/mo
 1. Class Overall Responsibility:
 
     This class is a class that is used to implement a wallet system where only the player can have an 
-    assigned wallet item that contains coins and monetary value for trading items within the game.
-    It is also used to get/reduce/add the total balance of value of coins that the player has during the game.
+    assigned wallet item that contains coins and monetary value for trading items within the edu.monash.fit2099.game.
+    It is also used to get/reduce/add the total balance of value of coins that the player has during the edu.monash.fit2099.game.
     This assigned item should automatically be in the inventory list of the player during player construction,
     since it is fixed and cannot be removed from every player.
 
@@ -158,7 +158,7 @@ Classes that have other colours (other than black & yellow) are classes added/mo
 **Toad**
 1. Class Overall Responsibility:
 
-    This class is a singleton class since each game instantiated should only ever have one Toad. It is responsible for representing a Toad
+    This class is a singleton class since each edu.monash.fit2099.game instantiated should only ever have one Toad. It is responsible for representing a Toad
     who is friendly and who sells several items (for now: wrench, supermushroom, powerstar) to players.
     
 2. Relationship with other classes:

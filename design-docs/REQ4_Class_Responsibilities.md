@@ -72,7 +72,7 @@ SuperMushroom, ConsumeAction, PowerStar, InstaKillAction, Consumable interface, 
 1. Class Overall Responsibility
 
    To give player ability to walk freely and heal player by 200 health points.
-   Buff lasts 10 ticks in game. Needs to make player invincible to damage. Execute methods of any actions that
+   Buff lasts 10 ticks in edu.monash.fit2099.game. Needs to make player invincible to damage. Execute methods of any actions that
    damage player actor have to be changed to check for INVINCIBLE status.
    Allows player to use InstaKillAction when having status and walk over walls and trees.
    Has to convert walls and trees into dirt and drop a coin ($5)

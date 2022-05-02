@@ -148,7 +148,7 @@ Koopa, DestroyShellAction, Wrench, Dormant behaviour, SuperMushroom, Enemy inter
 
 5. Methods:
 
-   Overridden getAction() method that requires Koopa object and game map as input. Will check if Koopa is on map.
+   Overridden getAction() method that requires Koopa object and edu.monash.fit2099.game map as input. Will check if Koopa is on map.
    Returns null always so playTurn does not receive any actions for Koopa object.
 
 

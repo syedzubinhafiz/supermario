@@ -9,8 +9,8 @@ import java.util.*;
 
 
 /**
- * Class representing a location in the game map.  This includes keeping track of exits,
- * character representation, terrain type, and other game data.
+ * Class representing a location in the edu.monash.fit2099.game map.  This includes keeping track of exits,
+ * character representation, terrain type, and other edu.monash.fit2099.game data.
  */
 public class Location implements Printable {
 

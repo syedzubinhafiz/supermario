@@ -8,14 +8,14 @@ import java.util.Set;
  * A collection of Capability objects.
  * 
  * 
- * The original purpose of Capabilities was to allow game clients to check whether Actors could do particular Actions,
+ * The original purpose of Capabilities was to allow edu.monash.fit2099.game clients to check whether Actors could do particular Actions,
  * whether Items provided (or required) certain abilities, whether terrain was passable under particular
- * circumstances, etc.  Consider Capabilities an all-purpose mechanism for enabling game capabilities, statuses, etc.
+ * circumstances, etc.  Consider Capabilities an all-purpose mechanism for enabling edu.monash.fit2099.game capabilities, statuses, etc.
  * 
  * Don't be too literal about the name. You can keep all sorts of things in here.
  * PURPLE, FLAT, HOUSE_RAVENCLAW, TEAM_HERBIVORE, etc.  
  * 
- * Any Enum type can be used to represent a Capability, so these classes can and should be defined in the game client.
+ * Any Enum type can be used to represent a Capability, so these classes can and should be defined in the edu.monash.fit2099.game client.
  */
 public class CapabilitySet implements Capable {
 	/**

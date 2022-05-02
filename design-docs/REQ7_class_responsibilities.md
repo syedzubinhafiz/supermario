@@ -5,7 +5,7 @@ ResetGameAction is a new class.
 
 **Player**
 1. Attributes:
-   resetStatus boolean, true if game has been reset, false if not.
+   resetStatus boolean, true if edu.monash.fit2099.game has been reset, false if not.
 2. Methods:
    resetPlayerStatus, to reset the player's status & remove any effect from SuperMushroom and PowerStar
         
@@ -13,7 +13,7 @@ ResetGameAction is a new class.
 **ResetGameAction**
 1. Class Overall Responsibility:
 
-    This class is used to represent the act of Player resetting the game.
+    This class is used to represent the act of Player resetting the edu.monash.fit2099.game.
     This will be added to the player's actions list if the player's resetStatus is false.
 
 2. Relationship with other classes:
