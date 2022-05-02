@@ -11,9 +11,7 @@ import edu.monash.fit2099.engine.weapons.Weapon;
 import game.actors.Enemy;
 import game.actors.Player;
 import game.enums.Status;
-import game.interfaces.Dormant;
 
-import static java.lang.Character.toLowerCase;
 
 /**
  * Special Action for attacking other Actors.
@@ -76,14 +74,14 @@ public class AttackAction extends Action {
 				for (Action drop : dropActions)
 					drop.execute(target, map);
 				// remove actor if it can't be dormant
-				if (!(target instanceof Dormant)) {
+				if (!(target.hasCapability(Status.HAS_DORMANCY))) {
 					map.removeActor(target);
 				}
 				result += System.lineSeparator() + target + " is knocked out.";
 				//Changed to be more suitable for Koopa
 			}
 		}
-		if (target instanceof Enemy) {
+		if (target.hasCapability(Status.ENEMY)) {
 			((Enemy) target).addFollowBehaviour(actor);
 		}
 		return result;

@@ -11,7 +11,6 @@ import game.enums.Status;
 import game.interfaces.ConsumableItem;
 import game.interfaces.FadeableItem;
 import game.interfaces.Tradeable;
-import game.weapons.Wrench;
 
 public class PowerStar extends Item implements Tradeable, ConsumableItem, FadeableItem {
 
@@ -46,6 +45,11 @@ public class PowerStar extends Item implements Tradeable, ConsumableItem, Fadeab
     @Override
     public Tradeable newInstance() {
         return new PowerStar();
+    }
+
+    @Override
+    public boolean canFade() {
+        return true;
     }
 
     @Override

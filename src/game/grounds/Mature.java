@@ -6,9 +6,8 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.Utils;
 import game.actors.Koopa;
 
-
 import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  * The Sprout class represents the first third and final cycle stage and handles all the functionalities,the actor has with mature

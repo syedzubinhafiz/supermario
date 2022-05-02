@@ -10,8 +10,9 @@ public enum Status {
     MUST_JUMP,
     INVINCIBLE,
     RESET,
-    DORMANT, // status for dormant actors
+    DORMANT, // status for currently dormant actors
     HAS_WRENCH,
-    ENEMY
+    ENEMY,
+    HAS_DORMANCY // status for the ability to be DORMANT
     // use this status to tell that current instance has "grown" and the MUST_JUMP to signify that the actor cannot simply walk over certain surfaces and must jump onto that surface .
 }

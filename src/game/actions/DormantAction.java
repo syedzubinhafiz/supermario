@@ -5,7 +5,6 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.actors.Koopa;
 import game.enums.Status;
-import game.interfaces.Dormant;
 
 public class DormantAction extends Action {
 

@@ -1,10 +1,8 @@
 package game.interfaces;
 
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.items.Item;
 import game.actions.ConsumeAction;
-import game.actors.Player;
-import game.enums.Status;
+
 
 public interface ConsumableItem {
 
@@ -13,4 +11,6 @@ public interface ConsumableItem {
     }
 
     void consumedBy(Actor actor);
+
+    boolean canFade();
 }

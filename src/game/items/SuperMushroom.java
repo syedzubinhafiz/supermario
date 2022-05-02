@@ -1,6 +1,6 @@
 package game.items;
 
-import edu.monash.fit2099.engine.actions.Action;
+
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.DropItemAction;
 import edu.monash.fit2099.engine.items.Item;
@@ -13,7 +13,6 @@ import game.enums.Status;
 import game.interfaces.ConsumableItem;
 import game.interfaces.Tradeable;
 
-import java.util.List;
 
 import static java.lang.Character.toUpperCase;
 
@@ -88,7 +87,10 @@ public class SuperMushroom extends Item implements Tradeable, ConsumableItem {
         setIsConsumed(true);
     }
 
-
+    @Override
+    public boolean canFade() {
+        return false;
+    }
 
     private void setIsConsumed(boolean b) {
         isConsumed=b;

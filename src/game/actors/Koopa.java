@@ -13,10 +13,9 @@ import game.actions.DormantAction;
 import game.actions.InstaKilledAction;
 import game.enums.Status;
 import game.interfaces.Behaviour;
-import game.interfaces.Dormant;
 import game.interfaces.Resettable;
 
-public class Koopa extends Enemy implements Resettable, Dormant {
+public class Koopa extends Enemy implements Resettable {
 
 
     //CHECK FOR ERROR
@@ -39,6 +38,7 @@ public class Koopa extends Enemy implements Resettable, Dormant {
     public Koopa() {
         super("Koopa", 'K', 100);
         dormantState = new DormantAction( this );
+        this.hasCapability(Status.HAS_DORMANCY);
     }
 
     //New method to call SetDisplayChar from the Actor abstract class, instead of changing it from final to something else

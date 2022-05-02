@@ -31,7 +31,7 @@ public class ConsumeAction extends PickUpItemAction {
     @Override
     public String menuDescription(Actor actor) {
         String result= actor + " consumes "+ consumableItem ;
-        if (consumableItem instanceof FadeableItem) {
+        if (consumableItem.canFade()) {
             result = actor + " consumes "+ consumableItem + " - " + ((FadeableItem) consumableItem).getFadingTimeOnFloorInventory() + " turns remaining";
         }
         return result;
