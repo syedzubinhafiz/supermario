@@ -5,12 +5,10 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.items.PickUpItemAction;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.actors.Player;
-import game.enums.Status;
 import game.items.Coin;
 import game.items.Wallet;
 
 public class AddToWalletAction extends PickUpItemAction {
-    // might change to be removed
 
     //attribute
     Coin coin;

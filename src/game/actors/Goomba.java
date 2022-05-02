@@ -31,7 +31,6 @@ public class Goomba extends Enemy implements Resettable {
 		super("Goomba", 'g', 20);
 		this.behaviours.put(10, new WanderBehaviour());
 		this.behaviours.put(1, new AttackBehaviour());
-		this.addCapability(Status.ENEMY);
 		//Keep track of number of Goombas
 		goombaCount += 1;
 		//WHAT WE CAN DO IS IN PLAYTURN OF EACH GOOMBA, CHECK THE GOOMBACOUNT AND KILL THAT GOOMBA IF THE LIMIT IS EXCEEDED.
@@ -66,7 +65,6 @@ public class Goomba extends Enemy implements Resettable {
 	 */
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-
 		if ( Utils.getRandomBias() <= 0.10 || this.hasCapability(Status.RESET)) {
 			return new GetRemovedAction();
 		}

@@ -11,7 +11,6 @@ import game.actions.ResetGameAction;
 import game.enums.Status;
 import game.interfaces.Resettable;
 import game.items.Wallet;
-import game.weapons.Wrench;
 
 
 /**
@@ -20,7 +19,7 @@ import game.weapons.Wrench;
 public class Player extends Actor implements Resettable {
 
 	private final Menu menu = new Menu();
-	private Wallet wallet;
+	private final Wallet wallet;
 	private final int DEFAULT_HP = 100;
 
 
@@ -35,14 +34,10 @@ public class Player extends Actor implements Resettable {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Status.MUST_JUMP);
-		this.wallet = new Wallet();
-		this.addItemToInventory(this.wallet);
+		this.wallet = new Wallet(0);
 		this.resetMaxHp(DEFAULT_HP);
-		wallet.addBalance(500);
 		Resettable.super.registerInstance();
 	}
-
-
 
 
 	//New method to call SetDisplayChar from the Actor abstract class, since setDisplayChar is protected attribute and so cannot
@@ -57,7 +52,6 @@ public class Player extends Actor implements Resettable {
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
 		//Display object to display messages in console
 		Display display1 = new Display();
-
 
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
@@ -82,10 +76,6 @@ public class Player extends Actor implements Resettable {
 		// return/print the console menu
 		return menu.showMenu(this, actions, display);
 	}
-
-
-
-
 
 	@Override
 	public char getDisplayChar(){
@@ -124,18 +114,6 @@ public class Player extends Actor implements Resettable {
 	}
 
 
-
-	//Method to check if player has wrench
-	public boolean hasWrench() {
-		boolean retVal = false;
-		for (Item item : this.getInventory()) {
-			if (item instanceof Wrench) {
-				retVal = true;
-				break;
-			}
-		}
-		return retVal;
-	}
 
 
 }

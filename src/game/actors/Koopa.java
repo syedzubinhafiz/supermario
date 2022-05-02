@@ -8,7 +8,6 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import edu.monash.fit2099.engine.weapons.Weapon;
-import game.Utils;
 import game.actions.DestroyShellAction;
 import game.actions.DormantAction;
 import game.actions.GetRemovedAction;
@@ -46,7 +45,7 @@ public class Koopa extends Enemy implements Resettable, Dormant {
         super("Koopa", 'K', 100);
         this.behaviours.put(10, new WanderBehaviour());
         this.behaviours.put(1, new AttackBehaviour());
-        this.addCapability(Status.ENEMY);
+
         dormantState = new DormantAction( this );
     }
 
@@ -80,23 +79,16 @@ public class Koopa extends Enemy implements Resettable, Dormant {
 
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-        //for checking
+
         if (this.hasCapability(Status.RESET)) {
             return new GetRemovedAction();
         }
-
-//        if (this.hasDormancy()) {
-//            return new GetRemovedAction();
-//        }
-
         else if ( this.hasCapability(Status.DORMANT) ) {
             return new DoNothingAction();
         }
-
         else if ( !this.isConscious() && !this.hasDormancy()) {
             return dormantState;
         }
-
 
         for(Behaviour Behaviour : behaviours.values()) {
             Action action = Behaviour.getAction(this, map);

@@ -57,9 +57,13 @@ public class SuperMushroom extends Item implements Tradeable, ConsumableItem {
 
     @Override
     public TradeAction getTradeAction() {
-        return new TradeAction(this, VALUE, "b");
+        return new TradeAction(this, VALUE);
     }
 
+    @Override
+    public Tradeable newInstance() {
+        return new PowerStar();
+    }
     @Override
     public int getValue() {
         return VALUE;

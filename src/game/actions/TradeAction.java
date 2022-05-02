@@ -6,7 +6,6 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.actors.Player;
 import game.actors.Toad;
-import game.enums.Status;
 import game.interfaces.Tradeable;
 
 public class TradeAction extends Action {
@@ -14,13 +13,11 @@ public class TradeAction extends Action {
 
     private Tradeable itemToTrade;
     private int tradeValue;
-    private String hotkey;
 
 
-    public TradeAction(Tradeable itemToTrade, int tradeValue, String hotkey) {
+    public TradeAction(Tradeable itemToTrade, int tradeValue) {
         this.itemToTrade = itemToTrade;
         this.tradeValue = tradeValue;
-        this.hotkey = hotkey;
     }
 
     @Override
@@ -34,7 +31,6 @@ public class TradeAction extends Action {
             player.addItemToInventory(((Item) itemToTrade));
             return actor + " obtained " + itemToTrade;
         }
-
         return "You don't have enough coins!";
     }
 
@@ -43,8 +39,5 @@ public class TradeAction extends Action {
         return actor + " buys " + itemToTrade + " ($" + itemToTrade.getValue()+")";
     }
 
-    public String hotkey() {
-        return this.hotkey;
-    }
 
 }
