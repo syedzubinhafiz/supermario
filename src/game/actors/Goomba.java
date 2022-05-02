@@ -11,8 +11,6 @@ import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import game.Utils;
 import game.actions.GetRemovedAction;
-import game.behaviours.AttackBehaviour;
-import game.behaviours.WanderBehaviour;
 import game.enums.Status;
 import game.interfaces.Behaviour;
 import game.interfaces.Resettable;
@@ -28,9 +26,7 @@ public class Goomba extends Enemy implements Resettable {
 	 * Constructor.
 	 */
 	public Goomba() {
-		super("Goomba", 'g', 20);
-		this.behaviours.put(10, new WanderBehaviour());
-		this.behaviours.put(1, new AttackBehaviour());
+		super("Goomba", 'g', 100);
 		//Keep track of number of Goombas
 		goombaCount += 1;
 		//WHAT WE CAN DO IS IN PLAYTURN OF EACH GOOMBA, CHECK THE GOOMBACOUNT AND KILL THAT GOOMBA IF THE LIMIT IS EXCEEDED.
@@ -54,8 +50,6 @@ public class Goomba extends Enemy implements Resettable {
 			actions.add( super.getAttackedAction( this, direction ) );
 			//New way to get AttackAction using the interface's method
 		}
-
-
 		return actions;
 	}
 
@@ -65,7 +59,11 @@ public class Goomba extends Enemy implements Resettable {
 	 */
 	@Override
 	public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-		if ( Utils.getRandomBias() <= 0.10 || this.hasCapability(Status.RESET)) {
+
+		if(super.playTurn(actions, lastAction, map, display) != null) {
+			return super.playTurn(actions, lastAction, map, display);
+		}
+		else if ( Utils.getRandomBias() <= 0.10) {
 			return new GetRemovedAction();
 		}
 
@@ -73,7 +71,6 @@ public class Goomba extends Enemy implements Resettable {
 			Action action = Behaviour.getAction(this, map);
 			// for attackBehaviour the finding of the player is done in getAction method
 			// if player is not found the action would be null
-
 
 			if (action != null) {
 				return action;

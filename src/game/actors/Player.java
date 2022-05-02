@@ -93,14 +93,12 @@ public class Player extends Actor implements Resettable {
 	@Override
 	public void addItemToInventory(Item item) {
 		super.addItemToInventory(item);
-
 	}
 
 
 	@Override
 	public void resetInstance() {
-		//resets player straight away here instead
-		//reset player status
+		//resets player straight away here instead of in playTurn
 		if (this.hasCapability(Status.INVINCIBLE)) {
 			this.removeCapability(Status.INVINCIBLE);
 		} else if(this.hasCapability(Status.TALL)) {

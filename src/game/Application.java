@@ -54,6 +54,9 @@ public class Application {
 			world.addGameMap(gameMap);
 			// add toad here
 			Actor toad = Toad.getInstance();
+			Toad.getTradeableInventory().add(new PowerStar());
+			Toad.getTradeableInventory().add(new SuperMushroom());
+			Toad.getTradeableInventory().add(new Wrench());
 			world.addPlayer(toad, gameMap.at(43, 11));
 
 
