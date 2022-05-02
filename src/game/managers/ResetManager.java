@@ -48,7 +48,7 @@ public class ResetManager {
      * By doing this way, it will avoid using `instanceof` all over the place.
      */
     public void run(GameMap map){
-        for (int i=0;i< resettableList.size();i++){
+        for (int i=0;i< resettableList.size();i++) {
             // get instance & do instance.resetInstance() method
             resettableList.get(i).resetInstance();
         }

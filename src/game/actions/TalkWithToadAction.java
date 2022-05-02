@@ -15,7 +15,6 @@ public class TalkWithToadAction extends Action {
             "Being imprisoned in these walls can drive a fungus crazy :("};
 
 
-
     @Override
     public String execute(Actor actor, GameMap map) {
         // check if player has a wrench

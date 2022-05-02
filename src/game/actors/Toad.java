@@ -8,9 +8,6 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import game.actions.TalkWithToadAction;
 import game.interfaces.Tradeable;
-import game.items.PowerStar;
-import game.items.SuperMushroom;
-import game.weapons.Wrench;
 import java.util.ArrayList;
 
 
@@ -22,9 +19,6 @@ public class Toad extends Actor {
     private Toad() {
         super("Toad", 'O', 100);
         this.tradeableInventory = new ArrayList<>();
-        tradeableInventory.add(new PowerStar());
-        tradeableInventory.add(new SuperMushroom());
-        tradeableInventory.add(new Wrench());
     }
 
     @Override

@@ -24,7 +24,6 @@ public class AddToWalletAction extends PickUpItemAction {
         this.coin = (Coin) item;
     }
 
-
     @Override
     public String execute(Actor actor, GameMap map) {
         map.locationOf(actor).removeItem(coin);
