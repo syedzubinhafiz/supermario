@@ -46,10 +46,7 @@ public class Wall extends Ground implements HigherGround {
      * @return true if can enter, false otherwise
      */
     public boolean canActorEnter(Actor actor) {
-        if (actor.hasCapability(Status.MUST_JUMP)) {
-            return false;
-        }
-        return true;
+        return !actor.hasCapability(Status.MUST_JUMP);
     }
 
     @Override

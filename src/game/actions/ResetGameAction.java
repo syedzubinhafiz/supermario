@@ -17,7 +17,7 @@ public class ResetGameAction extends Action {
     /**
      * Attribute to store the singleton ResetManager instance.
      */
-    private static ResetManager manager = ResetManager.getInstance();
+    private static final ResetManager manager = ResetManager.getInstance();
 
     @Override
     /**

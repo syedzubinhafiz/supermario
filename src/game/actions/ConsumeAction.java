@@ -20,7 +20,7 @@ public class ConsumeAction extends PickUpItemAction {
     /**
      * The consumableItem to be consumed
      */
-    private ConsumableItem consumableItem;
+    private final ConsumableItem consumableItem;
 
 
     /**

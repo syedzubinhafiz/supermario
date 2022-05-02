@@ -200,7 +200,7 @@ public class GameMap {
 	}
 	
 	/**
-	 * Returns an enumerable NumberRange representing the valid X values of the game map. 
+	 * Returns an enumerable NumberRange representing the valid X values of the game map.
 	 * 
 	 * @return the valid X indices
 	 */
@@ -209,7 +209,7 @@ public class GameMap {
 	}
 
 	/**
-	 * Returns an enumerable NumberRange representing the valid Y values of the game map. 
+	 * Returns an enumerable NumberRange representing the valid Y values of the game map.
 	 * 
 	 * @return the valid Y indices
 	 */

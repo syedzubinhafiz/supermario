@@ -73,7 +73,7 @@ public class AttackAction extends Action {
 			target.removeCapability(Status.TALL);
 		}
 		if (target.hasCapability(Status.INVINCIBLE)) {
-			result = target + " is immune to " + actor+"\'s attack.";
+			result = target + " is immune to " + actor+ "'s attack.";
 		}
         else {
         	target.hurt(damage);

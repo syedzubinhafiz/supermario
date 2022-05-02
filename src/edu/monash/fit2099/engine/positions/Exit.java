@@ -38,7 +38,7 @@ public class Exit {
 	}
 	
 	/**
-	 * The preferred hotkey to use for a MoveAction. Lets the game always use the same keys for movement, and makes marking so much easier. 
+	 * The preferred hotkey to use for a MoveAction. Lets the game always use the same keys for movement, and makes marking so much easier.
 	 * @return the hotkey
 	 */
 	public String getHotKey() {

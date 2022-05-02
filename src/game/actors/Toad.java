@@ -34,7 +34,7 @@ public class Toad extends Actor {
      */
     private Toad() {
         super("Toad", 'O', 100);
-        this.tradeableInventory = new ArrayList<>();
+        tradeableInventory = new ArrayList<>();
     }
 
     @Override

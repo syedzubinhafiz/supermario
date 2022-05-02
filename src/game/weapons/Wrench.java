@@ -34,6 +34,9 @@ public class Wrench extends WeaponItem implements Tradeable {
         super(name, displayChar, damage, verb, hitRate);
     }
 
+    /**
+     * Constructor
+     */
     public Wrench() {
         super("Wrench", 'w', 50, "hits", 80);
     }

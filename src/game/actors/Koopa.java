@@ -28,7 +28,7 @@ public class Koopa extends Enemy implements Resettable {
     /**
      * DormantAction attribute to store an instance of dormantAction
      */
-    private DormantAction dormantState;
+    private final DormantAction dormantState;
 
     /**
      * Constructor of Koopa

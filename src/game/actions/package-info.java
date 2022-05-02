@@ -1,13 +1,13 @@
 /**
- * This module is about impact of the final keyword on performance
+ * This module is about the actions that can be performed by actors in the game
  * <p>
- * This module explores  if there are any performance benefits from
- * using the final keyword in our code. This module examines the performance
- * implications of using final on a variable, method, and class level.
+ * This module explores the different actions that can be done by actors
+ * that have different capabilities or situations.
+ *  Note that all actons in this package has Action abstract class as one of its parent class.
  * </p>
  *
- * @since 1.0
- * @author baeldung
- * @version 1.1
+ * @since 1.0.0
+ * @author Vanessa Khoo Min Yi
+ * @version 1.0.0
  */
 package game.actions;

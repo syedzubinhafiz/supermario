@@ -21,12 +21,12 @@ public class TradeAction extends Action {
     /**
      * The item to be traded
      */
-    private Tradeable itemToTrade;
+    private final Tradeable itemToTrade;
 
     /**
      * The value of the trade (the amount it costs)
      */
-    private int tradeValue;
+    private final int tradeValue;
 
 
     /**

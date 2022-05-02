@@ -145,7 +145,7 @@ public abstract class Actor implements Capable, Printable {
 	 * Returns true if the current Actor has positive hit points.
 	 * Actors on zero hit points are deemed to be unconscious.
 	 * 
-	 * Depending on the game client, this status may be interpreted as either 
+	 * Depending on the game client, this status may be interpreted as either
 	 * unconsciousness or death, or inflict some other kind of status.
 	 *
 	 * @return true if and only if hitPoints is positive.

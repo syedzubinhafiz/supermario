@@ -64,7 +64,7 @@ public class TalkWithToadAction extends Action {
      * @return String sentence that was chosen
      */
     public String getSentence(int index) {
-        return this.sentences[index];
+        return sentences[index];
     }
 
     /**

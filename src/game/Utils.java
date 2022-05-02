@@ -18,7 +18,7 @@ public class Utils {
     /**
      * A static variable Random which represents an instance of the Random java.util class
      */
-    private static Random rand= new Random();
+    private static final Random rand= new Random();
 
     /**
      * This method returns a random double number

@@ -18,7 +18,7 @@ public class ResetManager {
      * A list of resettable instances (any classes that implements Resettable,
      * such as Player implements Resettable will be stored in here)
      */
-    private List<Resettable> resettableList;
+    private final List<Resettable> resettableList;
 
     /**
      * A singleton reset manager instance

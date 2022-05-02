@@ -23,7 +23,7 @@ public class Coin extends Item implements Resettable {
     /**
      * An integer variable which is assigned to value of a coin
      */
-    private int coinValue;
+    private final int coinValue;
 
     /**
      * Constructor of Coin
