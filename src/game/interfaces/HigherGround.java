@@ -44,7 +44,6 @@ public interface HigherGround {
             JumpAction j = new JumpAction(location, 1, 0, direction, getName());
             action = j;
         }
-
         return action;
     }
 
