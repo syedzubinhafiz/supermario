@@ -163,7 +163,7 @@ public class GameMap {
 	 * Draws Actors, then locations. These need to be printed in rows because that's the way the
 	 * console works.
 	 * 
-	 * @param display Display that will draw the state of the game
+	 * @param display Display that will draw the state of the edu.monash.fit2099.game
 	 */
 	public void draw(Display display) {
 		for (int y : heights) {
@@ -200,7 +200,7 @@ public class GameMap {
 	}
 	
 	/**
-	 * Returns an enumerable NumberRange representing the valid X values of the game map. 
+	 * Returns an enumerable NumberRange representing the valid X values of the edu.monash.fit2099.game map.
 	 * 
 	 * @return the valid X indices
 	 */
@@ -209,7 +209,7 @@ public class GameMap {
 	}
 
 	/**
-	 * Returns an enumerable NumberRange representing the valid Y values of the game map. 
+	 * Returns an enumerable NumberRange representing the valid Y values of the edu.monash.fit2099.game map.
 	 * 
 	 * @return the valid Y indices
 	 */

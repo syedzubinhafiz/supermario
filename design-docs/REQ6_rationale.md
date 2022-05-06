@@ -5,7 +5,7 @@
 To be able to interact with Toad, the player needs to have an option to talk with it.
 Thus, we have the TalkWithToadAction that extends the abstract Action class.
 
-In this game, the ideal way to interact with the object is by attaching an appropriate action to its corresponding object 
+In this edu.monash.fit2099.game, the ideal way to interact with the object is by attaching an appropriate action to its corresponding object 
 (aligns with the meaning of "object-oriented").
 Thus, this is shown with this: **Player ---<<uses>>---> Action** (dependency, not shown in the class diagram for REQ6 as it was already 
 existing in the basecode), and **TalkWithToadAction ---<<interacts with>>---> Player** (association). 

@@ -9,7 +9,7 @@ We want tradeAction to inherit from Action, so that there is an "is-a" relations
 Wallet extends Item. This would allow an actor who has a Wallet to use their Wallet item to perform this tradeAction action.
 
 
-In this game, the ideal way to interact with the object is by attaching an appropriate action to its corresponding object 
+In this edu.monash.fit2099.game, the ideal way to interact with the object is by attaching an appropriate action to its corresponding object 
 (aligns with the meaning of "object-oriented").
 Thus, this is shown with this: **Wallet ---<<create >>---> TradeAction** (association), and 
 **Player ---<<stores>>---> Wallet** (association). 
@@ -58,7 +58,7 @@ to go with this design for these 3 classes.
 
 ** ADD: WHY IS WALLET NOT A SINGLETON CLASS
 ** ADD: WHY IS COIN IN COIN ARRAYLIST AND NOT DESTROYED
-        - could be scoring system for the game later on
+        - could be scoring system for the edu.monash.fit2099.game later on
         
 
 **3: Toad and Tradeable**
