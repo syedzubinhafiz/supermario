@@ -77,7 +77,6 @@ public class AttackAction extends Action {
 		}
         else {
         	target.hurt(damage);
-
 			if (!target.isConscious()) {
 				ActionList dropActions = new ActionList();
 				// drop all items

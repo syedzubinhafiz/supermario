@@ -39,6 +39,7 @@ public class Wrench extends WeaponItem implements Tradeable {
      */
     public Wrench() {
         super("Wrench", 'w', 50, "hits", 80);
+        this.addCapability(Status.HAS_WRENCH);
     }
 
     @Override

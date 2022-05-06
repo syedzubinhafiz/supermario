@@ -48,7 +48,7 @@ public class Player extends Actor implements Resettable {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Status.MUST_JUMP);
-		this.wallet = new Wallet(0);
+		this.wallet = new Wallet(700);
 		this.resetMaxHp(DEFAULT_HP);
 		Resettable.super.registerInstance();
 	}

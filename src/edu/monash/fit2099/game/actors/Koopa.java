@@ -36,7 +36,7 @@ public class Koopa extends Enemy implements Resettable {
     public Koopa() {
         super("Koopa", 'K', 100);
         dormantState = new DormantAction( this, 'D' );
-        this.hasCapability(Status.HAS_DORMANCY);
+        this.addCapability(Status.HAS_DORMANCY);
     }
 
     /**
