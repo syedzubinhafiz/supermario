@@ -46,5 +46,6 @@ public enum Status {
      * status for the ability to be DORMANT
      */
     HAS_DORMANCY,
-    CAN_STAND_LAVA
+    CAN_STAND_LAVA,
+    FIRE_ATTACK_EFFECT
 }
