@@ -1,4 +1,4 @@
-package edu.monash.fit2099.game.grounds;
+package edu.monash.fit2099.game.items;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
@@ -49,7 +49,7 @@ public class FireFlower extends Item implements ConsumableItem {
 
     @Override
     public boolean canFade() {
-        return true;
+        return false;
     }
 
     public void tick(Location currentLocation, Actor actor) {
@@ -64,7 +64,7 @@ public class FireFlower extends Item implements ConsumableItem {
         }
         // if already consumed, remove the consumeAction if it was there for the previous turn
         // and decrement the turns left for fire attack effect.
-        if (this.consumeAction != null) {
+        else if ( isConsumed && this.consumeAction != null) {
             removeAction(this.consumeAction);
             this.consumeAction = null;
         }
@@ -81,4 +81,6 @@ public class FireFlower extends Item implements ConsumableItem {
         setIsConsumed(true);
         this.addCapability(FIRE_ATTACK);
     }
+
+
 }

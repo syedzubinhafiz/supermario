@@ -3,6 +3,7 @@ package edu.monash.fit2099.game.grounds;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.game.Utils;
 import edu.monash.fit2099.game.actors.Goomba;
+import edu.monash.fit2099.game.items.FireFlower;
 
 /**
  * The Sprout class represents the first tree cycle stage and handles all the functionalities,the actor has with sprout

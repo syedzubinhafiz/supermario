@@ -5,6 +5,7 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.game.Utils;
 import edu.monash.fit2099.game.actors.Koopa;
+import edu.monash.fit2099.game.items.FireFlower;
 
 import java.util.ArrayList;
 
