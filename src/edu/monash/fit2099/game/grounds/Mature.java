@@ -43,6 +43,9 @@ public class Mature extends Tree {
         if (Utils.getRandomBias() <= 0.15 && !location.containsAnActor()) {
             location.addActor(new Koopa());
         }
+        if (Utils.getRandomBias()<=0.5){
+            location.addItem(new FireFlower());
+        }
         if (turnCounter % 5 == 0) {
             // make an empty list of all surrounding exits that have fertile ground in the edu.monash.fit2099.game map
             ArrayList<Exit> matureExits = new ArrayList<Exit>();

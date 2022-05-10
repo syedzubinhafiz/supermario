@@ -36,6 +36,9 @@ public class Sapling extends Tree{
         if (Utils.getRandomBias() <= 0.1) {
             location.addItem(new Coin(20));
         }
+        if(Utils.getRandomBias()<=0.5){
+            location.addItem(new FireFlower());
+        }
         if (turnCounter == 10) {
             location.setGround(new Mature());
         }

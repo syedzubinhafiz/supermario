@@ -178,8 +178,6 @@ public class PowerStar extends Item implements Tradeable, ConsumableItem, Fadeab
         }
     }
 
-
-
     @Override
     /**
      * Method to perform what happens when PowerStar is consumed by actor
@@ -189,7 +187,6 @@ public class PowerStar extends Item implements Tradeable, ConsumableItem, Fadeab
         actor.heal(HEALTH_HEAL_AMT);
         setIsConsumed(true);
         this.addCapability(Status.INVINCIBLE);
-
     }
 
 }

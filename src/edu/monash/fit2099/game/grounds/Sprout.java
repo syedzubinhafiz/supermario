@@ -30,16 +30,17 @@ public class Sprout extends Tree {
      *
      * @param location Location of the ground
      */
-    public void tick(Location location){
+    public void tick(Location location) {
         super.tick(location);
         if (Utils.getRandomBias() <= 0.1 && (!location.containsAnActor())) {
             Goomba g = new Goomba();
             location.addActor(g);
         }
+        if (Utils.getRandomBias() <= 0.5) {
+            location.addItem(new FireFlower());
+        }
         if (turnCounter == 10) {
             location.setGround(new Sapling());
         }
     }
-
-
 }

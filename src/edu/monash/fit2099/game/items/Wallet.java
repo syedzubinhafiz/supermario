@@ -21,7 +21,7 @@ public class Wallet {
      * @param initialAmount initial amouunt the actor can have in its wallet
      */
     public Wallet(int initialAmount){
-        this.totalBalance=initialAmount;
+        this.totalBalance=1200;
     }
 
 
