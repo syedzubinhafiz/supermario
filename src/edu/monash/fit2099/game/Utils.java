@@ -37,4 +37,8 @@ public class Utils {
         int index = rand.nextInt(list.size());
         return list.get(index);
     }
+
+    public static int getRandom(int i) {
+        return rand.nextInt(i);
+    }
 }

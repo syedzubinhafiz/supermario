@@ -3,6 +3,8 @@ package edu.monash.fit2099.game;
 import java.util.Arrays;
 import java.util.List;
 
+import edu.monash.fit2099.demo.mars.items.MartianItem;
+import edu.monash.fit2099.engine.actions.MoveActorAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
@@ -28,9 +30,11 @@ public class Application {
 
 			World world = new World(new Display());
 
-			FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Sprout());
 
-			List<String> map = Arrays.asList(
+
+			// FIRST MAP
+			FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Sprout());
+			List<String> map1 = Arrays.asList(
 				"..........................................##..........+.........................",
 				"............+............+..................#...................................",
 				"............................................#...................................",
@@ -51,20 +55,59 @@ public class Application {
 				"......................................................#.........................",
 				".......................................................##.......................");
 
-			GameMap gameMap = new GameMap(groundFactory, map);
-			world.addGameMap(gameMap);
+			GameMap gameMap1 = new GameMap(groundFactory, map1);
+			world.addGameMap(gameMap1);
 			// add toad here
 			Actor toad = Toad.getInstance();
 			Toad.getTradeableInventory().add(new PowerStar());
 			Toad.getTradeableInventory().add(new SuperMushroom());
 			Toad.getTradeableInventory().add(new Wrench());
-			world.addPlayer(toad, gameMap.at(43, 11));
+			gameMap1.at(43, 11).addActor(toad);
 
 
+			// SECOND MAP
+			FancyGroundFactory groundFactory2 = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Sprout(), new Lava());
+			List<String> map2 = Arrays.asList(
+					"......................................................L......",
+					"............................+................................",
+					"...L.........................................................",
+					"....+........................................................",
+					".......................L..................+..................",
+					"........................#____#...............................",
+					"........................#____#.............L.................",
+					"........L...............#____#...............................",
+					".............................................................",
+					".............................................................",
+					"...................+.............................L...........",
+					".............................................................");
+
+			GameMap gameMap2 = new GameMap(groundFactory2, map2);
+			world.addGameMap(gameMap2);
+
+			// Add princess peach in gameMap2
+			gameMap2.at(17, 2).addActor(new PrincessPeach());
+			gameMap2.at(16, 2).addActor(new Bowser());
+
+
+			// ADD WARP PIPES
+			// IN GAMEMAP1
+			gameMap1.at(40,8).setGround(new WarpPipe(gameMap2));
+			gameMap1.at(20,2).setGround(new WarpPipe(gameMap2));
+			gameMap1.at(10,18).setGround(new WarpPipe(gameMap2));
+			gameMap1.at(53,13).setGround(new WarpPipe(gameMap2));
+
+			// IN GAMEMAP2
+			// set reference from map2's wrap pipe to map1 after map1 has been created
+			WarpPipe warpPipe = new WarpPipe(gameMap1);
+			warpPipe.setSecondMap(true);
+			gameMap2.at(0,0).setGround(warpPipe);
+
+
+			// Add player
 			Actor mario = new Player("Mario", 'm', 100);
-			world.addPlayer(mario, gameMap.at(42, 10));
+			world.addPlayer(mario, gameMap1.at(42, 10));
 
-			world.run();
+		world.run();
 
 	}
 }

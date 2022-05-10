@@ -12,6 +12,7 @@ import edu.monash.fit2099.engine.weapons.Weapon;
 import edu.monash.fit2099.game.Utils;
 import edu.monash.fit2099.game.actions.GetRemovedAction;
 import edu.monash.fit2099.game.actions.InstaKilledAction;
+import edu.monash.fit2099.game.actions.Monologue;
 import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.Behaviour;
 import edu.monash.fit2099.game.interfaces.Resettable;
@@ -25,6 +26,7 @@ import edu.monash.fit2099.game.interfaces.Resettable;
  */
 public class Goomba extends Enemy implements Resettable {
 
+	private boolean turnToSpeak;
 
 	/**
 	 * Constructor.
@@ -75,6 +77,12 @@ public class Goomba extends Enemy implements Resettable {
 			return new GetRemovedAction();
 		}
 
+		Display d = new Display();
+		if(turnToSpeak()) {
+			String s = Monologue.getSentence("Goomba");
+			d.println(s);
+		}
+
 		for(Behaviour Behaviour : super.behaviours.values()) {
 			Action action = Behaviour.getAction(this, map);
 
@@ -112,4 +120,14 @@ public class Goomba extends Enemy implements Resettable {
 	public IntrinsicWeapon getIntrinsicWeapon() {
 		return new IntrinsicWeapon(10, "kicks");
 	}
+
+	public boolean turnToSpeak() {
+		if(turnToSpeak) {
+			turnToSpeak=false;
+			return true;
+		}
+		turnToSpeak=true;
+		return false;
+	}
+
 }

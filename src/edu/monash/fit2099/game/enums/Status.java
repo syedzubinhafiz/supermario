@@ -45,6 +45,6 @@ public enum Status {
     /**
      * status for the ability to be DORMANT
      */
-    HAS_DORMANCY
-
+    HAS_DORMANCY,
+    CAN_STAND_LAVA
 }
