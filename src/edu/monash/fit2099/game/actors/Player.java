@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
+import edu.monash.fit2099.game.actions.Monologue;
 import edu.monash.fit2099.game.actions.ResetGameAction;
 import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.Resettable;
@@ -48,6 +49,7 @@ public class Player extends Actor implements Resettable {
 		super(name, displayChar, hitPoints);
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Status.MUST_JUMP);
+		this.addCapability(Status.CAN_STAND_LAVA);
 		this.wallet = new Wallet(700);
 		this.resetMaxHp(DEFAULT_HP);
 		Resettable.super.registerInstance();
@@ -95,7 +97,12 @@ public class Player extends Actor implements Resettable {
 		//print if powerstar effect is still there
 		if (hasCapability(Status.INVINCIBLE)) {
 			display1.println(this + " is INVINCIBLE!");
+			Monologue.setHasInvibility(true);
 		}
+		if(hasCapability(Status.HAS_WRENCH)) {
+			Monologue.setHasWrench(true);
+		}
+
 
 		// Add action to be able to talk with Toad.
 		// return/print the console menu

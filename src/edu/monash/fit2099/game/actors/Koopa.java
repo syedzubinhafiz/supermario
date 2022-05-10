@@ -11,6 +11,7 @@ import edu.monash.fit2099.engine.weapons.Weapon;
 import edu.monash.fit2099.game.actions.DestroyShellAction;
 import edu.monash.fit2099.game.actions.DormantAction;
 import edu.monash.fit2099.game.actions.InstaKilledAction;
+import edu.monash.fit2099.game.actions.Monologue;
 import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.Behaviour;
 import edu.monash.fit2099.game.interfaces.Resettable;
@@ -29,6 +30,8 @@ public class Koopa extends Enemy implements Resettable {
      * DormantAction attribute to store an instance of dormantAction
      */
     private final DormantAction dormantState;
+    private boolean turnToSpeak;
+
 
     /**
      * Constructor of Koopa
@@ -99,6 +102,12 @@ public class Koopa extends Enemy implements Resettable {
             return dormantState;
         }
 
+        Display d = new Display();
+        if(turnToSpeak()) {
+            String s = Monologue.getSentence("Koopa");
+            d.println(s);
+        }
+
         for(Behaviour Behaviour : behaviours.values()) {
             Action action = Behaviour.getAction(this, map);
             if (action != null) {
@@ -144,4 +153,14 @@ public class Koopa extends Enemy implements Resettable {
     public IntrinsicWeapon getIntrinsicWeapon() {
         return new IntrinsicWeapon(30, "punches");
     }
+
+    public boolean turnToSpeak() {
+        if(turnToSpeak) {
+            turnToSpeak=false;
+            return true;
+        }
+        turnToSpeak=true;
+        return false;
+    }
+
 }
