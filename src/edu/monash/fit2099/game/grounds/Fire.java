@@ -13,10 +13,12 @@ public class Fire extends Ground {
 
     public void tick(Location location) {
         turnCounter++;
-        while (turnCounter <= 3) {
+        if (turnCounter <= 3) {
             if (location.getActor() != null) {
                 location.getActor().hurt(20);
             }
+        }
+        else {
             location.setGround(new Dirt());
         }
     }

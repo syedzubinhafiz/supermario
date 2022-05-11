@@ -27,10 +27,12 @@ public class Monologue {
             "Koopi koopi koopii~!",
             "Pam pam pam!",
             "Slsstssthshs~! (Never gonna say goodbye~)",
-            "Ohmnom nom nom nom."));
+            "Ohmnom nom nom nom.",
+            "I am free! Thank you Mario, how will I ever repay you..."));
 
     public static boolean hasWrench=false;
     public static boolean hasInvibility=false;
+    public static boolean isLocked=true;
 
 
     public static String getSentence(String actor) {
@@ -38,15 +40,21 @@ public class Monologue {
         ArrayList<Integer> indexes = new ArrayList<Integer>();
 
         if (actor=="Princess Peach") {
-            indexes.add(0); indexes.add(1); indexes.add(2);
+            if(isLocked) {
+                indexes.add(0);
+                indexes.add(1);
+                indexes.add(2);
+            } else {
+                indexes.add(19);
+            }
         } else if (actor=="Toad") {
             // Different sentences based on the scenario
             indexes.add(3); indexes.add(4); indexes.add(5); indexes.add(6);
             if(hasWrench) {
-                indexes.remove(3);
+                indexes.remove(0);
             }
             if (hasInvibility) {
-                indexes.remove(4);
+                indexes.remove(1);
             }
         } else if (actor=="Bowser") {
             indexes.add(7); indexes.add(8); indexes.add(9); indexes.add(10);
@@ -70,5 +78,9 @@ public class Monologue {
 
     public static void setHasInvibility(boolean hasInvibility) {
         Monologue.hasInvibility = hasInvibility;
+    }
+
+    public static void setIsLocked(boolean isLocked) {
+        Monologue.isLocked = isLocked;
     }
 }

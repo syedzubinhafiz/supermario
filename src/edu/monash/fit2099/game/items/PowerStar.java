@@ -1,6 +1,7 @@
 package edu.monash.fit2099.game.items;
 
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.items.DropItemAction;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.game.actions.ConsumeAction;
@@ -189,4 +190,8 @@ public class PowerStar extends Item implements Tradeable, ConsumableItem, Fadeab
         this.addCapability(Status.INVINCIBLE);
     }
 
+    @Override
+    public DropItemAction getDropAction(Actor actor) {
+        return null;
+    }
 }

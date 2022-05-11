@@ -38,6 +38,8 @@ public abstract class Tree extends Ground implements Resettable, HigherGround {
      */
     protected ActionList actions;
 
+    public final static boolean CAN_BE_DESTROYED=true;
+
     /**
      * Constructor.
      *
@@ -106,7 +108,7 @@ public abstract class Tree extends Ground implements Resettable, HigherGround {
      */
     public ActionList allowableActions(Actor actor, Location location, String direction) {
         actions = new ActionList();
-        actions.add(getMovementAction(actor, location, direction, success_rate, damage)); // from default interface method
+        actions.add(getMovementAction(actor, location, direction, success_rate, damage, CAN_BE_DESTROYED)); // from default interface method
         return actions;
     }
 

@@ -6,6 +6,8 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.Weapon;
+import edu.monash.fit2099.game.enums.Status;
+import edu.monash.fit2099.game.items.Key;
 
 /**
  * Special InstaKilledAction that allows an actor to instantly kill its opponents.

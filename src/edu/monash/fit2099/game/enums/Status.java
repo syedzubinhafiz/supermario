@@ -47,5 +47,6 @@ public enum Status {
      */
     HAS_DORMANCY,
     CAN_STAND_LAVA,
-    FIRE_ATTACK_EFFECT
+    FIRE_ATTACK_EFFECT,
+    END_GAME
 }

@@ -2,6 +2,7 @@ package edu.monash.fit2099.game.items;
 
 
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.items.DropItemAction;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.game.actions.ConsumeAction;
@@ -144,6 +145,12 @@ public class SuperMushroom extends Item implements Tradeable, ConsumableItem {
      */
     private void setIsConsumed(boolean b) {
         isConsumed=b;
+    }
+
+
+    @Override
+    public DropItemAction getDropAction(Actor actor) {
+        return null;
     }
 
 }

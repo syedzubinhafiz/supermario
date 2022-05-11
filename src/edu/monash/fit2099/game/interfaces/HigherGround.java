@@ -32,18 +32,25 @@ public interface HigherGround {
      * @param damage Damage dealt when jump to higher ground fails
      * @return An instance of MoveActorAction
      */
-    default MoveActorAction getMovementAction(Actor actor, Location location, String direction, double success_rate, int damage) {
+    default MoveActorAction getMovementAction(Actor actor, Location location, String direction, double success_rate, int damage, boolean canBeDestroyed) {
         MoveActorAction action = null;
-
-        if (actor != location.getActor() && actor.hasCapability(Status.MUST_JUMP) && actor.hasCapability(Status.INVINCIBLE)) {
-            DestroyGroundAction des = new DestroyGroundAction(location, direction);
-            action = des;
-        } else if (actor != location.getActor() && actor.hasCapability(Status.MUST_JUMP) && !actor.hasCapability(Status.TALL)) {
-            JumpAction j = new JumpAction(location, success_rate, damage, direction, getName());
-            action = j;
-        } else if (actor != location.getActor() && actor.hasCapability(Status.MUST_JUMP) && actor.hasCapability(Status.TALL)) {
-            JumpAction j = new JumpAction(location, 1, 0, direction, getName());
-            action = j;
+        if(actor != location.getActor() && actor.hasCapability(Status.MUST_JUMP)) {
+            if (actor.hasCapability(Status.INVINCIBLE)) {
+                if(canBeDestroyed) {
+                    DestroyGroundAction des = new DestroyGroundAction(location, direction);
+                    action=des;
+                }
+                else {
+                    JumpAction j = new JumpAction(location, 1, 0, direction, getName());
+                    action = j;
+                }
+            } else if (!actor.hasCapability(Status.TALL)) {
+                JumpAction j = new JumpAction(location, success_rate, damage, direction, getName());
+                action = j;
+            } else if (actor.hasCapability(Status.TALL)) {
+                JumpAction j = new JumpAction(location, 1, 0, direction, getName());
+                action = j;
+            }
         }
         return action;
     }

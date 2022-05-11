@@ -4,8 +4,13 @@ import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
+import edu.monash.fit2099.engine.items.Item;
+import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
+import edu.monash.fit2099.engine.positions.Location;
+import edu.monash.fit2099.game.actions.AttackAction;
+import edu.monash.fit2099.game.actions.FireAttackAction;
 import edu.monash.fit2099.game.actions.Monologue;
 import edu.monash.fit2099.game.actions.ResetGameAction;
 import edu.monash.fit2099.game.enums.Status;
@@ -35,7 +40,7 @@ public class Player extends Actor implements Resettable {
 	/**
 	 * The default starting HP of the player (100 is not mentioned in requirement, but we put it as 100 first).
 	 */
-	private static final int DEFAULT_HP = 100;
+	private static final int DEFAULT_HP = 500;
 
 
 	/**
@@ -83,8 +88,8 @@ public class Player extends Actor implements Resettable {
 		// Handle multi-turn Actions
 		if (lastAction.getNextAction() != null)
 			return lastAction.getNextAction();
-		// If player has NOT YET BEEN reset, add the resetGameAction
-		if (!this.hasCapability(Status.RESET)) {
+		// If player has NOT YET BEEN reset && no key in surrounding, add the resetGameAction
+		if (!this.hasCapability(Status.RESET) && !hasKey(map) && !this.hasCapability(Status.END_GAME)) {
 			actions.add(new ResetGameAction());
 		}
 
@@ -109,7 +114,23 @@ public class Player extends Actor implements Resettable {
 		return menu.showMenu(this, actions, display);
 	}
 
-
+	public boolean hasKey(GameMap map){
+		//find for key
+		for(Item item :map.locationOf(this).getItems()) {
+			if (item.hasCapability(Status.END_GAME)) {
+				return true;
+			}
+		}
+		for (Exit exit : map.locationOf(this).getExits()) {
+			Location destination = exit.getDestination();
+			for(Item item :destination.getItems()) {
+				if (item.hasCapability(Status.END_GAME)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 	/**
 	 * Getter for the wallet attribute
 	 * @return Wallet wallet item

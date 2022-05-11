@@ -17,6 +17,8 @@ import edu.monash.fit2099.game.interfaces.HigherGround;
  */
 public class Wall extends Ground implements HigherGround {
 
+    public final static boolean CAN_BE_DESTROYED=true;
+
     /**
      * success_rate private final attribute representing the rate of success of a jump to wall
      */
@@ -58,6 +60,7 @@ public class Wall extends Ground implements HigherGround {
         return "Wall";
     }
 
+
     @Override
     /**
      * Returns true to represent that a wall can block thrown objects.
@@ -77,7 +80,7 @@ public class Wall extends Ground implements HigherGround {
      */
     public ActionList allowableActions(Actor actor, Location location, String direction) {
         actions = new ActionList();
-        actions.add(getMovementAction(actor, location, direction, successRate, damage)); // from default interface method
+        actions.add(getMovementAction(actor, location, direction, successRate, damage, CAN_BE_DESTROYED)); // from default interface method
         return actions;
     }
 }

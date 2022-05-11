@@ -48,7 +48,7 @@ public class Goomba extends Enemy implements Resettable {
 	public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
 		ActionList actions = new ActionList();
 		// it can be attacked only by the HOSTILE opponent, and this action will not attack the HOSTILE enemy back.
-		if  (otherActor.hasCapability(Status.INVINCIBLE) &&otherActor.hasCapability(Status.HOSTILE_TO_ENEMY) ) {
+		if  (otherActor.hasCapability(Status.INVINCIBLE) && otherActor.hasCapability(Status.HOSTILE_TO_ENEMY) ) {
 			actions.add(new InstaKilledAction(this, direction));
 		}
 		else if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {

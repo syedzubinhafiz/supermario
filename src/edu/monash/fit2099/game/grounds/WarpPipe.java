@@ -18,7 +18,7 @@ public class WarpPipe extends Ground implements HigherGround {
     GameMap mapToPortal;
     Location previousWarpPipe;
     boolean secondMap=false;
-
+    public final static boolean CAN_BE_DESTROYED=false;
 
     public void setSecondMap(boolean secondMap) {
         this.secondMap = secondMap;
@@ -78,7 +78,7 @@ public class WarpPipe extends Ground implements HigherGround {
     public ActionList allowableActions(Actor actor, Location location, String direction) {
         ActionList actions = new ActionList();
         if( location.getActor() == null ){
-            actions.add(getMovementAction(actor, location, direction, 1, 0)); // from default interface method
+            actions.add(getMovementAction(actor, location, direction, 1, 0, CAN_BE_DESTROYED)); // from default interface method
         }
         if(location.getActor() == actor) {
             if(previousWarpPipe==null) {

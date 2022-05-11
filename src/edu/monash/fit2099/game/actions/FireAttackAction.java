@@ -11,16 +11,19 @@ import edu.monash.fit2099.game.grounds.Fire;
 public class FireAttackAction extends Action {
     protected Actor target;
     protected int turnCounter = 0;
+    protected String direction;
 
 
-    public FireAttackAction() {
+    public FireAttackAction(Actor target, String direction) {
+        this.target = target;
+        this.direction = direction;
     }
 
     @Override
     public String execute(Actor actor, GameMap map) {
         turnCounter++;
         map.locationOf(target).setGround(new Fire());
-        return "Mario has attacked " + target + " with fire!";
+        return actor + " has attacked " + target + " with fire!";
     }
 
     @Override
