@@ -42,7 +42,6 @@ public abstract class Enemy extends Actor implements Resettable {
         super(name, displayChar, hitPoints);
         this.behaviours.put(10, new WanderBehaviour());
         this.behaviours.put(1, new AttackBehaviour());
-        this.addCapability(Status.ENEMY);
         Resettable.super.registerInstance();
     }
 

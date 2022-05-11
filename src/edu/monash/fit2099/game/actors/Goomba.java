@@ -33,6 +33,7 @@ public class Goomba extends Enemy implements Resettable {
 	 */
 	public Goomba() {
 		super("Goomba", 'g', 20);
+		this.addCapability(Status.FOLLOW);
 	}
 
 

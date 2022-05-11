@@ -28,7 +28,7 @@ public class Bowser extends Enemy implements Resettable {
      */
     public Bowser(Location location) {
         super("Bowser", 'B', 500);
-        this.behaviours.remove(10); // remove the wander behaviour from enemies
+        this.behaviours.remove(10); // remove the wander behaviour
         this.behaviours.remove(1); // remove the attack action
         this.addItemToInventory(new Key());
         original = location;

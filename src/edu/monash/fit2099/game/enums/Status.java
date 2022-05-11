@@ -39,14 +39,12 @@ public enum Status {
      */
     HAS_WRENCH,
     /**
-     * status for whether the actor is an enemy to Player
-     */
-    ENEMY,
-    /**
      * status for the ability to be DORMANT
      */
     HAS_DORMANCY,
     CAN_STAND_LAVA,
     FIRE_ATTACK_EFFECT,
-    END_GAME
+    END_GAME,
+    CAN_ENTER_FLOOR,
+    FOLLOW
 }

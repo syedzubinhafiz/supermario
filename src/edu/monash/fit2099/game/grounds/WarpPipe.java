@@ -10,8 +10,9 @@ import edu.monash.fit2099.game.actions.MoveMapAction;
 import edu.monash.fit2099.game.actors.PiranhaPlant;
 import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.HigherGround;
+import edu.monash.fit2099.game.interfaces.Resettable;
 
-public class WarpPipe extends Ground implements HigherGround {
+public class WarpPipe extends Ground implements HigherGround, Resettable {
 
 //    boolean firstTurn=true;
     boolean hasPiranha=false;
@@ -42,6 +43,7 @@ public class WarpPipe extends Ground implements HigherGround {
     public WarpPipe(GameMap map) {
         super('C');
         this.mapToPortal=map;
+        Resettable.super.registerInstance();
     }
 
 
@@ -57,6 +59,9 @@ public class WarpPipe extends Ground implements HigherGround {
 
     @Override
     public void tick(Location location) {
+        if(this.hasCapability(Status.RESET)) {
+            hasPiranha=false;
+        }
         if (location.getActor() == null && !hasPiranha) {
             //spawn piranha on top of it
             location.addActor(new PiranhaPlant());
@@ -89,6 +94,11 @@ public class WarpPipe extends Ground implements HigherGround {
             }
         }
         return actions;
+    }
+
+    @Override
+    public void resetInstance() {
+        this.addCapability(Status.RESET);
     }
 
 //    public void addGameMap(GameMap map){

@@ -30,7 +30,7 @@ public class Floor extends Ground {
 	public boolean canActorEnter( Actor actor ) {
 		boolean retVal = true;
 
-		if ( actor.hasCapability(Status.ENEMY) ) {
+		if ( actor.hasCapability(Status.CAN_ENTER_FLOOR) ) {
 			retVal = false;
 		}
 

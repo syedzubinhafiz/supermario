@@ -92,7 +92,7 @@ public class AttackAction extends Action {
 				//Changed to be more suitable for Koopa
 			}
 		}
-		if (target.hasCapability(Status.ENEMY)) {
+		if (target.hasCapability(Status.FOLLOW)) {
 			((Enemy) target).addFollowBehaviour(actor);
 		}
 		return result;
