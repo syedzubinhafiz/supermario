@@ -13,6 +13,7 @@ import edu.monash.fit2099.engine.positions.World;
 import edu.monash.fit2099.game.actions.EndGameAction;
 import edu.monash.fit2099.game.actors.*;
 import edu.monash.fit2099.game.grounds.*;
+import edu.monash.fit2099.game.items.Bottle;
 import edu.monash.fit2099.game.items.PowerStar;
 import edu.monash.fit2099.game.items.SuperMushroom;
 import edu.monash.fit2099.game.weapons.Wrench;
@@ -50,9 +51,9 @@ public class Application {
 				".......................................+#______###....+.........................",
 				"........................................+#_____###..............................",
 				".................................................##.............................",
-				"............................+...............+......#............................",
+				"............................+......................#............................",
 				"....................................................#...........................",
-				".....................................................#..........................",
+				"............................................+........#..........................",
 				"......................................................#.........................",
 				".......................................................##.......................");
 
@@ -63,7 +64,10 @@ public class Application {
 			Toad.getTradeableInventory().add(new PowerStar());
 			Toad.getTradeableInventory().add(new SuperMushroom());
 			Toad.getTradeableInventory().add(new Wrench());
+			Toad.getObtainables().add(new Bottle());
 			gameMap1.at(43, 11).addActor(toad);
+			gameMap1.at(43, 14).setGround(new PowerFountain());
+			gameMap1.at(42, 14).setGround(new HealthFountain());
 
 
 			// SECOND MAP

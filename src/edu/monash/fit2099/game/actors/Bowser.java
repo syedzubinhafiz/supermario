@@ -17,11 +17,14 @@ import edu.monash.fit2099.game.items.Key;
 
 import java.util.Random;
 
-public class Bowser extends Enemy implements Resettable {
+public class Bowser extends Enemy implements Resettable{
 
     private boolean turnToSpeak;
     Display d = new Display();
     Location original;
+    public int damage;
+
+
     /**
      * Constructor.
 
@@ -32,6 +35,12 @@ public class Bowser extends Enemy implements Resettable {
         this.behaviours.remove(1); // remove the attack action
         this.addItemToInventory(new Key());
         original = location;
+        this.intrinsicDamage=80;
+    }
+
+    @Override
+    public void setIntrinsicDamage() {
+        this.damage+=15;
     }
 
     @Override
@@ -117,7 +126,7 @@ public class Bowser extends Enemy implements Resettable {
             actions.add(new InstaKilledAction(this, direction));
         }
         else if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
-            actions.add( super.getAttackedAction( this, direction ) );
+            actions.add( super.getAttackedAction( otherActor, this, direction ) );
             //New way to get AttackAction using the interface's method
         }
         return actions;
@@ -134,7 +143,7 @@ public class Bowser extends Enemy implements Resettable {
 
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
-        return new IntrinsicWeapon(80, "punch");
+        return new IntrinsicWeapon(damage, "punch");
     }
 
     /**
@@ -146,6 +155,7 @@ public class Bowser extends Enemy implements Resettable {
         // move Bowser back to the original position, heal it to maximum, and it will stand there until Mario is within Bowser's attack range
         this.addCapability(Status.RESET);
     }
+
 
 
 }

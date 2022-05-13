@@ -41,6 +41,7 @@ public class Koopa extends Enemy implements Resettable {
         dormantState = new DormantAction( this, 'D' );
         this.addCapability(Status.HAS_DORMANCY);
         this.addCapability(Status.FOLLOW);
+        this.intrinsicDamage=30;
     }
 
     public Koopa(String name, char f, int i) {
@@ -48,6 +49,7 @@ public class Koopa extends Enemy implements Resettable {
         dormantState = new DormantAction( this, 'D' );
         this.addCapability(Status.HAS_DORMANCY);
         this.addCapability(Status.FOLLOW);
+        this.intrinsicDamage=30;
     }
 
 
@@ -174,4 +176,8 @@ public class Koopa extends Enemy implements Resettable {
         return false;
     }
 
+    @Override
+    public void setIntrinsicDamage() {
+        this.intrinsicDamage+=15;
+    }
 }

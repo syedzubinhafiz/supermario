@@ -9,10 +9,12 @@ import edu.monash.fit2099.game.actions.AttackAction;
 import edu.monash.fit2099.game.actions.FireAttackAction;
 import edu.monash.fit2099.game.actions.GetRemovedAction;
 import edu.monash.fit2099.game.behaviours.AttackBehaviour;
+import edu.monash.fit2099.game.behaviours.DrinkBehaviour;
 import edu.monash.fit2099.game.behaviours.FollowBehaviour;
 import edu.monash.fit2099.game.behaviours.WanderBehaviour;
 import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.Behaviour;
+import edu.monash.fit2099.game.interfaces.Drinker;
 import edu.monash.fit2099.game.interfaces.Resettable;
 
 import java.util.HashMap;
@@ -25,8 +27,9 @@ import java.util.Map;
  * @version 1.0.0
  * @see edu.monash.fit2099.game.actors
  */
-public abstract class Enemy extends Actor implements Resettable {
+public abstract class Enemy extends Actor implements Resettable, Drinker {
 
+    protected int intrinsicDamage;
     /**
      * Map of behaviours to store the behaviour of the enemy along with its priority.
      * It is protected visibility to allow child-classes to have access.
@@ -42,6 +45,7 @@ public abstract class Enemy extends Actor implements Resettable {
     public Enemy(String name, char displayChar, int hitPoints){
         super(name, displayChar, hitPoints);
         this.behaviours.put(10, new WanderBehaviour());
+        this.behaviours.put(5, new DrinkBehaviour());
         this.behaviours.put(1, new AttackBehaviour());
         Resettable.super.registerInstance();
         this.addCapability(Status.MUST_JUMP);

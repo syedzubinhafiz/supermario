@@ -47,5 +47,8 @@ public enum Status {
     END_GAME,
     CAN_ENTER_FLOOR,
     FOLLOW,
-    HIGHER_GROUND
+    HIGHER_GROUND,
+    HAS_BOTTLE,
+    FOUNTAIN,
+    CAN_DRINK
 }

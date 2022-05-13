@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.game.actions.Monologue;
 import edu.monash.fit2099.game.enums.Status;
+import edu.monash.fit2099.game.interfaces.Obtainable;
 import edu.monash.fit2099.game.interfaces.Tradeable;
 import java.util.ArrayList;
 
@@ -35,12 +36,15 @@ public class Toad extends Actor {
      */
     private static ArrayList<Tradeable> tradeableInventory;
 
+    private static ArrayList<Obtainable> obtainables;
+
     /**
      * Constructor.
      */
     private Toad() {
         super("Toad", 'O', 100);
         tradeableInventory = new ArrayList<>();
+        obtainables = new ArrayList<>();
         this.addCapability(Status.CAN_ENTER_FLOOR);
     }
 
@@ -82,6 +86,10 @@ public class Toad extends Actor {
         return tradeableInventory;
     }
 
+    public static ArrayList<Obtainable> getObtainables() {
+        return obtainables;
+    }
+
     /**
      * Method to remove the tradeable item from the inventory and also replenish the inventory of Toad
      * @param itemToTrade item to be traded
@@ -90,6 +98,9 @@ public class Toad extends Actor {
         Tradeable newItem = itemToTrade.newInstance();
         tradeableInventory.remove(itemToTrade);
         tradeableInventory.add(newItem);
+    }
+    public static void removeObtainableItem(Obtainable item) {
+        obtainables.remove(item);
     }
 
 
@@ -116,7 +127,9 @@ public class Toad extends Actor {
         for (Tradeable item : getTradeableInventory()) {
             actions.add(item.getTradeAction());
         }
-//        actions.add(getTalkAction(otherActor));
+        for (Obtainable item : getObtainables()) {
+            actions.add(item.getObtainedAction());
+        }
         return actions;
     }
 

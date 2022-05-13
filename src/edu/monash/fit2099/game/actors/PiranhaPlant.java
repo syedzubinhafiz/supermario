@@ -22,6 +22,7 @@ public class PiranhaPlant extends Enemy implements Resettable  {
     public PiranhaPlant() {
         super("Piranha Plant", 'Y', 150);
         this.behaviours.remove(10); // remove the wander behaviour from enemies
+        this.intrinsicDamage=90;
     }
 
     @Override
@@ -86,4 +87,8 @@ public class PiranhaPlant extends Enemy implements Resettable  {
     }
 
 
+    @Override
+    public void setIntrinsicDamage() {
+        this.intrinsicDamage+=15;
+    }
 }

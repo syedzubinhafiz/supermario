@@ -43,6 +43,7 @@ public class Player extends Actor implements Resettable {
 	 */
 	private static final int DEFAULT_HP = 500;
 
+	private Bottle bottle;
 
 	/**
 	 * Constructor.
@@ -59,10 +60,16 @@ public class Player extends Actor implements Resettable {
 		this.addCapability(Status.CAN_ENTER_FLOOR);
 		this.wallet = new Wallet(700);
 		this.resetMaxHp(DEFAULT_HP);
-		this.addItemToInventory(new Bottle());
 		Resettable.super.registerInstance();
 	}
 
+	public Bottle getBottle() {
+		return bottle;
+	}
+
+	public void setBottle(Bottle bottle) {
+		this.bottle=bottle;
+	}
 
 	/**
 	 * Method to call SetDisplayChar from the Actor abstract class, since it is protected and final in Actor class,
@@ -145,6 +152,8 @@ public class Player extends Actor implements Resettable {
 		return wallet;
 	}
 
+
+
 	@Override
 	/**
 	 * Implements the resetInstance() method in Resettable interface.
@@ -166,8 +175,6 @@ public class Player extends Actor implements Resettable {
 		// for player ONLY, Status.RESET means that it has been reset before. For others, it means that they must be RESET in the turn.
 
 	}
-
-
 
 
 }

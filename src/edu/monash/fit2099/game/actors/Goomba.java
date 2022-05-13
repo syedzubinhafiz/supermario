@@ -34,6 +34,7 @@ public class Goomba extends Enemy implements Resettable {
 	public Goomba() {
 		super("Goomba", 'g', 20);
 		this.addCapability(Status.FOLLOW);
+		this.intrinsicDamage=10;
 	}
 
 
@@ -130,6 +131,11 @@ public class Goomba extends Enemy implements Resettable {
 		}
 		turnToSpeak=true;
 		return false;
+	}
+
+	@Override
+	public void setIntrinsicDamage() {
+		this.intrinsicDamage+=15;
 	}
 
 }
