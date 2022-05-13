@@ -29,11 +29,8 @@ public class PiranhaPlant extends Enemy implements Resettable  {
         Display d = new Display();
 
         if(super.playTurn(actions, lastAction, map, display) != null) {
-
             //increase hp by 50 & heal to max
             this.increaseMaxHp(50);
-
-
         }
         if(turnToSpeak()) {
             String s = Monologue.getSentence("Piranha");
@@ -59,7 +56,7 @@ public class PiranhaPlant extends Enemy implements Resettable  {
             actions.add(new InstaKilledAction(this, direction));
         }
         else if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
-            actions.add( super.getAttackedAction( this, direction ) );
+            actions.add( super.getAttackedAction(otherActor, this, direction ) );
             //New way to get AttackAction using the interface's method
         }
         return actions;

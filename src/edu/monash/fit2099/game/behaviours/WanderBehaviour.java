@@ -8,7 +8,9 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
+import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.Behaviour;
+import edu.monash.fit2099.game.interfaces.HigherGround;
 
 /**
  * A class that figures out an Action that will allow the actor to wander around the map.
@@ -41,6 +43,11 @@ public class WanderBehaviour extends Action implements Behaviour {
             if (destination.canActorEnter(actor)) {
             	actions.add(exit.getDestination().getMoveAction(actor, "around", exit.getHotKey()));
             }
+			else if ( !map.isAnActorAt(destination) && actor.hasCapability(Status.MUST_JUMP)
+					&& destination.getGround().hasCapability(Status.HIGHER_GROUND)) {
+				HigherGround g = (HigherGround) destination.getGround();
+				return g.getFinalMovementAction(actor, destination,exit.getName());
+			}
         }
 		
 		if (!actions.isEmpty()) {

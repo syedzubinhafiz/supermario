@@ -4,6 +4,7 @@ package edu.monash.fit2099.game.grounds;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.game.Utils;
+import edu.monash.fit2099.game.actors.FlyingKoopa;
 import edu.monash.fit2099.game.actors.Koopa;
 import edu.monash.fit2099.game.items.FireFlower;
 
@@ -42,7 +43,12 @@ public class Mature extends Tree {
     public void tick(Location location){
         super.tick(location);
         if (Utils.getRandomBias() <= 0.15 && !location.containsAnActor()) {
-            location.addActor(new Koopa());
+            if(Utils.getRandomBias() <= 0.5) {
+                location.addActor(new Koopa());
+            }else {
+                location.addActor(new FlyingKoopa());
+            }
+
         }
         if (Utils.getRandomBias()<=0.5){
             location.addItem(new FireFlower());

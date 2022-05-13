@@ -1,6 +1,7 @@
 package edu.monash.fit2099.game.grounds;
 
 import edu.monash.fit2099.engine.actions.ActionList;
+import edu.monash.fit2099.engine.actions.MoveActorAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
@@ -55,6 +56,7 @@ public abstract class Tree extends Ground implements Resettable, HigherGround {
         this.name = name;
         this.turnCounter = 0;
         Resettable.super.registerInstance();
+        this.addCapability(Status.HIGHER_GROUND);
     }
 
     /**
@@ -108,10 +110,15 @@ public abstract class Tree extends Ground implements Resettable, HigherGround {
      */
     public ActionList allowableActions(Actor actor, Location location, String direction) {
         actions = new ActionList();
-        actions.add(getMovementAction(actor, location, direction, success_rate, damage, CAN_BE_DESTROYED)); // from default interface method
+        actions.add(getFinalMovementAction(actor, location, direction)); // from default interface method
         return actions;
     }
 
+
+    @Override
+    public MoveActorAction getFinalMovementAction(Actor actor, Location location, String direction) {
+        return getMovementAction(actor, location, direction, success_rate, damage, CAN_BE_DESTROYED);
+    }
 
     @Override
     /**

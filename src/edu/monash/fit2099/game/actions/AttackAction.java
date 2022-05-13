@@ -92,8 +92,11 @@ public class AttackAction extends Action {
 				//Changed to be more suitable for Koopa
 			}
 		}
-		if (target.hasCapability(Status.FOLLOW)) {
+		if (target.hasCapability(Status.FOLLOW) && actor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
 			((Enemy) target).addFollowBehaviour(actor);
+		}
+		if (actor.hasCapability(Status.FOLLOW) && actor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
+			((Enemy) actor).addFollowBehaviour(target);
 		}
 		return result;
 	}

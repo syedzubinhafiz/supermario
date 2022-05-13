@@ -15,6 +15,7 @@ import edu.monash.fit2099.game.actions.Monologue;
 import edu.monash.fit2099.game.actions.ResetGameAction;
 import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.Resettable;
+import edu.monash.fit2099.game.items.Bottle;
 import edu.monash.fit2099.game.items.Wallet;
 
 
@@ -55,8 +56,10 @@ public class Player extends Actor implements Resettable {
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Status.MUST_JUMP);
 		this.addCapability(Status.CAN_STAND_LAVA);
+		this.addCapability(Status.CAN_ENTER_FLOOR);
 		this.wallet = new Wallet(700);
 		this.resetMaxHp(DEFAULT_HP);
+		this.addItemToInventory(new Bottle());
 		Resettable.super.registerInstance();
 	}
 
@@ -106,6 +109,9 @@ public class Player extends Actor implements Resettable {
 		}
 		if(hasCapability(Status.HAS_WRENCH)) {
 			Monologue.setHasWrench(true);
+		}
+		if(hasCapability(Status.FIRE_ATTACK_EFFECT)){
+			display1.println(this + " can fire attack!");
 		}
 
 

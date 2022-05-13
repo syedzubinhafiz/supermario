@@ -6,7 +6,10 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.actions.MoveActorAction;
+import edu.monash.fit2099.game.actions.JumpAction;
+import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.Behaviour;
+import edu.monash.fit2099.game.interfaces.HigherGround;
 
 /**
  * A class that figures out a MoveAction that will move the actor one step 
@@ -53,6 +56,11 @@ public class FollowBehaviour implements Behaviour {
 				if (newDistance < currentDistance) {
 					return new MoveActorAction(destination, exit.getName());
 				}
+			}
+			else if (!map.isAnActorAt(destination) && actor.hasCapability(Status.MUST_JUMP) && destination.getGround().hasCapability(Status.HIGHER_GROUND)) {
+				System.out.println(this+"DESTINATION2"+destination.getGround()+actor+exit.getName());
+				HigherGround g = (HigherGround) destination.getGround();
+				return g.getFinalMovementAction(actor, destination,exit.getName());
 			}
 		}
 

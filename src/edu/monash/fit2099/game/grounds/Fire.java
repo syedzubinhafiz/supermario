@@ -16,6 +16,7 @@ public class Fire extends Ground {
         if (turnCounter <= 3) {
             if (location.getActor() != null) {
                 location.getActor().hurt(20);
+                System.out.println(location.getActor()+" is being hurt by fire!");
             }
         }
         else {

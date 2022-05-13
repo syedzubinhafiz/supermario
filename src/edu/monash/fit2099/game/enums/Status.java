@@ -46,5 +46,6 @@ public enum Status {
     FIRE_ATTACK_EFFECT,
     END_GAME,
     CAN_ENTER_FLOOR,
-    FOLLOW
+    FOLLOW,
+    HIGHER_GROUND
 }

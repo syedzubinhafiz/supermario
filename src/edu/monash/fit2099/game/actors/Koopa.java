@@ -43,6 +43,14 @@ public class Koopa extends Enemy implements Resettable {
         this.addCapability(Status.FOLLOW);
     }
 
+    public Koopa(String name, char f, int i) {
+        super(name, f, i);
+        dormantState = new DormantAction( this, 'D' );
+        this.addCapability(Status.HAS_DORMANCY);
+        this.addCapability(Status.FOLLOW);
+    }
+
+
     /**
      * Method to call SetDisplayChar from the Actor abstract class, since it is protected and final in Actor class,
      * other classes cannot call on this.
@@ -73,7 +81,7 @@ public class Koopa extends Enemy implements Resettable {
         //As per implementation requirement, "Try to attack Koopa until it is unconscious...
         //...It will hide inside its shell, so the display character should change to D.  You must NOT have an attack action to it anymore."
         else if( otherActor.hasCapability(Status.HOSTILE_TO_ENEMY) && !this.hasDormancy() ) {
-            actions.add( super.getAttackedAction( this, direction ) );
+            actions.add( super.getAttackedAction( otherActor, this, direction ) );
             // get AttackAction using the parent class's method
         }
 
@@ -109,9 +117,11 @@ public class Koopa extends Enemy implements Resettable {
             d.println(s);
         }
 
-        for(Behaviour Behaviour : behaviours.values()) {
-            Action action = Behaviour.getAction(this, map);
+        for(Behaviour behaviour : behaviours.values()) {
+            Action action = behaviour.getAction(this, map);
+            System.out.println("BEHAVIOUR"+behaviour);
             if (action != null) {
+                System.out.println("BEHAVIOUR RETURNED"+behaviour);
                 return action;
             }
         }

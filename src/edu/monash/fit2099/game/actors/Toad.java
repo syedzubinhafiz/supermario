@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.game.actions.Monologue;
+import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.Tradeable;
 import java.util.ArrayList;
 
@@ -40,6 +41,7 @@ public class Toad extends Actor {
     private Toad() {
         super("Toad", 'O', 100);
         tradeableInventory = new ArrayList<>();
+        this.addCapability(Status.CAN_ENTER_FLOOR);
     }
 
     @Override

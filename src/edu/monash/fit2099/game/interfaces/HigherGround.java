@@ -22,6 +22,7 @@ public interface HigherGround {
      */
     String getName();
 
+    MoveActorAction getFinalMovementAction(Actor actor, Location location, String direction);
     /**
      *This method checks if the actor possesses any magical items and accounts for their effects on its jumping capabilities
      * while also adding the jump option to the allowableActionsList

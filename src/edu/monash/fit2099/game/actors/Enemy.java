@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.game.actions.AttackAction;
+import edu.monash.fit2099.game.actions.FireAttackAction;
 import edu.monash.fit2099.game.actions.GetRemovedAction;
 import edu.monash.fit2099.game.behaviours.AttackBehaviour;
 import edu.monash.fit2099.game.behaviours.FollowBehaviour;
@@ -43,6 +44,7 @@ public abstract class Enemy extends Actor implements Resettable {
         this.behaviours.put(10, new WanderBehaviour());
         this.behaviours.put(1, new AttackBehaviour());
         Resettable.super.registerInstance();
+        this.addCapability(Status.MUST_JUMP);
     }
 
     /**
@@ -78,7 +80,10 @@ public abstract class Enemy extends Actor implements Resettable {
      * @param direction   the direction of attack
      * @return an AttackAction
      */
-    public AttackAction getAttackedAction(Actor targetActor, String direction) {
+    public AttackAction getAttackedAction(Actor otherActor, Actor targetActor, String direction) {
+        if(otherActor.hasCapability(Status.FIRE_ATTACK_EFFECT)){
+            return new FireAttackAction(targetActor, direction);
+        }
         return new AttackAction( targetActor, direction );
     }
 

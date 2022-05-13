@@ -53,7 +53,7 @@ public class Goomba extends Enemy implements Resettable {
 			actions.add(new InstaKilledAction(this, direction));
 		}
 		else if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
-			actions.add( super.getAttackedAction( this, direction ) );
+			actions.add( super.getAttackedAction( otherActor, this, direction ) );
 			//New way to get AttackAction using the interface's method
 		}
 		return actions;
@@ -84,10 +84,11 @@ public class Goomba extends Enemy implements Resettable {
 			d.println(s);
 		}
 
-		for(Behaviour Behaviour : super.behaviours.values()) {
-			Action action = Behaviour.getAction(this, map);
+		for(Behaviour behaviour : super.behaviours.values()) {
+			Action action = behaviour.getAction(this, map);
 
 			if (action != null) {
+
 				return action;
 			}
 		}

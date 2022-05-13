@@ -2,6 +2,7 @@ package edu.monash.fit2099.game.grounds;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
+import edu.monash.fit2099.engine.actions.MoveActorAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Ground;
@@ -83,7 +84,7 @@ public class WarpPipe extends Ground implements HigherGround, Resettable {
     public ActionList allowableActions(Actor actor, Location location, String direction) {
         ActionList actions = new ActionList();
         if( location.getActor() == null ){
-            actions.add(getMovementAction(actor, location, direction, 1, 0, CAN_BE_DESTROYED)); // from default interface method
+            actions.add(getFinalMovementAction(actor, location, direction)); // from default interface method
         }
         if(location.getActor() == actor) {
             if(previousWarpPipe==null) {
@@ -95,7 +96,10 @@ public class WarpPipe extends Ground implements HigherGround, Resettable {
         }
         return actions;
     }
-
+    @Override
+    public MoveActorAction getFinalMovementAction(Actor actor, Location location, String direction) {
+        return getMovementAction(actor, location, direction, 1, 0, CAN_BE_DESTROYED);
+    }
     @Override
     public void resetInstance() {
         this.addCapability(Status.RESET);
