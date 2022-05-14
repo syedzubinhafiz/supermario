@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
 import edu.monash.fit2099.engine.positions.Location;
+import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import edu.monash.fit2099.game.actions.AttackAction;
 import edu.monash.fit2099.game.actions.FireAttackAction;
 import edu.monash.fit2099.game.actions.Monologue;
@@ -43,7 +44,12 @@ public class Player extends Actor implements Resettable {
 	 */
 	private static final int DEFAULT_HP = 500;
 
+
+	//Made bottle static since mario should only have one
 	private Bottle bottle;
+
+	//New for updating player damage
+	private int intrinsicDamage;
 
 	/**
 	 * Constructor.
@@ -54,6 +60,10 @@ public class Player extends Actor implements Resettable {
 	 */
 	public Player(String name, char displayChar, int hitPoints) {
 		super(name, displayChar, hitPoints);
+
+		//For new attribute for intrinsic damage
+		intrinsicDamage = 5;
+
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Status.MUST_JUMP);
 		this.addCapability(Status.CAN_STAND_LAVA);
@@ -174,6 +184,17 @@ public class Player extends Actor implements Resettable {
 		this.addCapability(Status.RESET);
 		// for player ONLY, Status.RESET means that it has been reset before. For others, it means that they must be RESET in the turn.
 
+	}
+
+	public IntrinsicWeapon getGetIntrinsicWeapon() {
+		return new IntrinsicWeapon(intrinsicDamage, "punches");
+	}
+
+	public int getIntrinsicDamage( int intrinsicDamage ) {
+		return intrinsicDamage;
+	}
+	public void setIntrinsicDamage( int intrinsicDamage ) {
+		this.intrinsicDamage = intrinsicDamage;
 	}
 
 

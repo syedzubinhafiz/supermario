@@ -50,5 +50,7 @@ public enum Status {
     HIGHER_GROUND,
     HAS_BOTTLE,
     FOUNTAIN,
-    CAN_DRINK
+    CAN_DRINK,
+
+    FLYING
 }

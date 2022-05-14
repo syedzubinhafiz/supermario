@@ -29,4 +29,11 @@ public class PowerFountain extends MagicalFountain {
         Water newWater = new PowerWater();
         return newWater;
     }
+
+    @Override
+    public void fillFountain() {
+        for (int i=0; i < FINAL_WATER_CAPACITY; i++) {
+            fountainWaterList.add(new PowerWater() );
+        }
+    }
 }

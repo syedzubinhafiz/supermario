@@ -61,10 +61,16 @@ public class Application {
 			world.addGameMap(gameMap1);
 			// add toad here
 			Actor toad = Toad.getInstance();
+
+			// add singleton bottle
+			Bottle bottle = Bottle.getInstance();
+
 			Toad.getTradeableInventory().add(new PowerStar());
 			Toad.getTradeableInventory().add(new SuperMushroom());
 			Toad.getTradeableInventory().add(new Wrench());
-			Toad.getObtainables().add(new Bottle());
+
+			//Changed to account for singleton bottle class, ED mentioned only one bottle at a time
+			Toad.getObtainables().add( bottle );
 			gameMap1.at(43, 11).addActor(toad);
 			gameMap1.at(43, 14).setGround(new PowerFountain());
 			gameMap1.at(42, 14).setGround(new HealthFountain());
@@ -101,6 +107,16 @@ public class Application {
 			// Add player
 			Actor mario = new Player("Mario", 'm', 100);
 			world.addPlayer(mario, gameMap1.at(42, 10));
+
+			Wrench wrench = new Wrench();
+			SuperMushroom sm = new SuperMushroom();
+			PowerStar ps = new PowerStar();
+			mario.addItemToInventory( wrench );
+			mario.addItemToInventory(sm );
+			mario.addItemToInventory(ps);
+
+			Actor koopa = new Koopa();
+			world.addPlayer(koopa, gameMap1.at(46, 10));
 
 			world.run();
 

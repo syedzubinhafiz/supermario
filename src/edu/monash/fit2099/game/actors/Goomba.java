@@ -28,6 +28,7 @@ public class Goomba extends Enemy implements Resettable {
 
 	private boolean turnToSpeak;
 
+
 	/**
 	 * Constructor.
 	 */
@@ -136,6 +137,10 @@ public class Goomba extends Enemy implements Resettable {
 	@Override
 	public void setIntrinsicDamage() {
 		this.intrinsicDamage+=15;
+	}
+
+	public int getIntrinsicDamage(){
+		return this.intrinsicDamage;
 	}
 
 }

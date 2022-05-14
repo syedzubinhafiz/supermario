@@ -4,7 +4,6 @@ import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
-import edu.monash.fit2099.game.actions.ConsumeAction;
 import edu.monash.fit2099.game.actions.RefillBottleAction;
 import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.items.Water;
@@ -14,7 +13,9 @@ import java.util.ArrayList;
 public abstract class MagicalFountain extends Ground {
 
     protected ArrayList<Water> fountainWaterList;
-    protected int FINAL_WATER_CAPACITY=10;
+    protected final int FINAL_WATER_CAPACITY=10;
+
+    private int WATER_REFILL_COUNT = 0;
 
     /**
      * Constructor.
@@ -26,10 +27,16 @@ public abstract class MagicalFountain extends Ground {
         this.addCapability(Status.FOUNTAIN);
     }
 
+    //Implementation for Refilling water
     @Override
     public void tick(Location location) {
         if(fountainWaterList.isEmpty()) {
+            WATER_REFILL_COUNT++;
 
+        }
+        if(fountainWaterList.isEmpty() && WATER_REFILL_COUNT == 5) {
+            this.fillFountain();
+            WATER_REFILL_COUNT = 0;
         }
     }
 
@@ -49,4 +56,7 @@ public abstract class MagicalFountain extends Ground {
     public void removeWater(){
         fountainWaterList.remove(0);
     }
+
+    //New method to fill fountain
+    public abstract void fillFountain();
 }

@@ -24,4 +24,11 @@ public class HealthFountain extends MagicalFountain {
         Water newWater = new HealthWater();
         return newWater;
     }
+
+    @Override
+    public void fillFountain() {
+        for (int i=0; i < FINAL_WATER_CAPACITY; i++) {
+            fountainWaterList.add(new HealthWater() );
+        }
+    }
 }

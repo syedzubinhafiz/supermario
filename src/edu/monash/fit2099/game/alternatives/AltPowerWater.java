@@ -1,15 +1,12 @@
-package edu.monash.fit2099.game.items;
+package edu.monash.fit2099.game.alternatives;
 
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.game.interfaces.Drinker;
 
-public class PowerWater extends Water {
-
+public class AltPowerWater {
     @Override
     public void consumedBy(Actor actor) {
-        Drinker actorDrink = (Drinker) actor;
-
-        actorDrink.setIntrinsicDamage();
+        int val = ((Drinker)actor).getIntrinsicDamage() + 15
+        ((Drinker)actor).setIntrinsicDamage( val );
         //Added instrinsic damage value
 
     }
