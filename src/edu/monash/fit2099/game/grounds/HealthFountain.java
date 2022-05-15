@@ -19,6 +19,7 @@ public class HealthFountain extends MagicalFountain {
             fountainWaterList.add(new HealthWater() );
         }
     }
+
     @Override
     public void tick(Location location) {
         if(fountainWaterList.isEmpty()) {
@@ -33,5 +34,10 @@ public class HealthFountain extends MagicalFountain {
         }
     }
 
-
+    @Override
+    public void fillFountain() {
+        for (int i=0; i < FINAL_WATER_CAPACITY; i++) {
+            fountainWaterList.add(new HealthWater() );
+        }
+    }
 }

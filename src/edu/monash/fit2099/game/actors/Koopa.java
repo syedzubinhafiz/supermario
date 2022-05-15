@@ -109,7 +109,7 @@ public class Koopa extends Enemy implements Resettable {
         else if ( this.hasCapability(Status.DORMANT) ) {
             return new DoNothingAction();
         }
-        else if ( !this.isConscious() && !this.hasDormancy()) {
+        else if ( !this.isConscious() && !this.hasDormancy() ) {
             return dormantState;
         }
 
@@ -180,4 +180,10 @@ public class Koopa extends Enemy implements Resettable {
     public void setIntrinsicDamage() {
         this.intrinsicDamage+=15;
     }
+
+    //Added this
+    public int getIntrinsicDamage(){
+        return this.intrinsicDamage;
+    }
+
 }

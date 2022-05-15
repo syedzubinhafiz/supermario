@@ -45,6 +45,17 @@ public class ConsumeAction extends PickUpItemAction {
     @Override
     public String execute(Actor actor, GameMap map) {
 
+        //Alternative
+//        if consumableItem.isWater(){
+//            ((Player)actor).getBottle(). consumableItem);
+//            return actor +" consumed " + consumableItem+".";
+//        }
+//
+//        if consumableItem.isNotWater(){
+//            map.locationOf(actor).removeItem((Item) consumableItem);
+//            return actor +" consumed " + consumableItem+".";
+//        }
+
         consumableItem.consumedBy(actor);
 
         map.locationOf(actor).removeItem((Item) consumableItem);

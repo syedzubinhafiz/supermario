@@ -102,6 +102,11 @@ public abstract class Enemy extends Actor implements Resettable, Drinker {
         this.addCapability(Status.RESET);
     }
 
+    //IMPORTANT!!
+    //Remove if not following JY alternative
+    public void setIntrinsicDamage( int intrinsicDamage ){
+        this.intrinsicDamage = intrinsicDamage;
+    }
 
 }
 

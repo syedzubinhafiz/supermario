@@ -38,5 +38,10 @@ public class PowerFountain extends MagicalFountain {
         }
     }
 
-
+    @Override
+    public void fillFountain() {
+        for (int i=0; i < FINAL_WATER_CAPACITY; i++) {
+            fountainWaterList.add(new PowerWater() );
+        }
+    }
 }

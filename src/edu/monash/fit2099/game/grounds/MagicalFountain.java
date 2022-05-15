@@ -14,6 +14,9 @@ import java.util.ArrayList;
 public abstract class MagicalFountain extends Ground {
 
     protected ArrayList<Water> fountainWaterList;
+    protected final int FINAL_WATER_CAPACITY=10;
+
+    private int WATER_REFILL_COUNT = 0;
     public int FINAL_WATER_CAPACITY=10;
     protected int rechargeTimer=0;
 
@@ -27,7 +30,18 @@ public abstract class MagicalFountain extends Ground {
         this.addCapability(Status.FOUNTAIN);
     }
 
+    //Implementation for Refilling water
+    @Override
+    public void tick(Location location) {
+        if(fountainWaterList.isEmpty()) {
+            WATER_REFILL_COUNT++;
 
+        }
+        if(fountainWaterList.isEmpty() && WATER_REFILL_COUNT == 5) {
+            this.fillFountain();
+            WATER_REFILL_COUNT = 0;
+        }
+    }
 
     @Override
     public ActionList allowableActions(Actor actor, Location location, String direction) {
@@ -45,6 +59,9 @@ public abstract class MagicalFountain extends Ground {
     public void removeWater(){
         fountainWaterList.remove(0);
     }
+
+    //New method to fill fountain
+    public abstract void fillFountain();
 
     public int getCapacity() { return fountainWaterList.size();}
 
