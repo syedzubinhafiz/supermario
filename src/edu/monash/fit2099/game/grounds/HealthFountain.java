@@ -20,19 +20,6 @@ public class HealthFountain extends MagicalFountain {
         }
     }
 
-    @Override
-    public void tick(Location location) {
-        if(fountainWaterList.isEmpty()) {
-            // replenish in next 5 turns once empty
-            rechargeTimer++;
-            if(rechargeTimer==5) {
-                // replenish
-                for(int i=0;i<FINAL_WATER_CAPACITY; i++){
-                    fountainWaterList.add(new HealthWater());
-                }
-            }
-        }
-    }
 
     @Override
     public void fillFountain() {
