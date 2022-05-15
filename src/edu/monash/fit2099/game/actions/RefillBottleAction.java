@@ -22,7 +22,7 @@ public class RefillBottleAction extends Action {
         Player player = (Player) actor;
         player.getBottle().addWater(water);
         fountain.removeWater();
-        return "Water has been added to " + actor + "\'s bottle.";
+        return "Mario refills bottle from " + fountain + " (" + fountain.getCapacity()+ "/"+fountain.getMaxCapacity()+")";
     }
 
     @Override

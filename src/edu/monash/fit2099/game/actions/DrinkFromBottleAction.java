@@ -21,11 +21,11 @@ public class DrinkFromBottleAction extends ConsumeAction {
     public String execute(Actor actor, GameMap map) {
         consumableItem.consumedBy(actor);
         bottle.removeWater();
-        return actor + " has drank from his bottle";
+        return actor + " has drank from his bottle.";
     }
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + "consumes from bottle.";
+        return actor + "consumes water from bottle.";
     }
 }

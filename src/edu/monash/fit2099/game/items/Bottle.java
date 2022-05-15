@@ -13,10 +13,12 @@ import edu.monash.fit2099.game.interfaces.Obtainable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class Bottle extends Item implements Obtainable {
 
-    ArrayList<Water> waterArrayList = new ArrayList<Water>();
+//    ArrayList<Water> waterArrayList = new ArrayList<Water>();
+    Stack<Water> waterStack = new Stack<Water>();
 
     /***
      * Constructor.
@@ -27,19 +29,20 @@ public class Bottle extends Item implements Obtainable {
     }
 
     public void addWater(Water water) {
-        waterArrayList.add(water);
+        waterStack.push(water);
     }
 
     public void removeWater() {
-        waterArrayList.remove(0);
+        waterStack.pop();
     }
 
-    public boolean isEmpty() { return waterArrayList.size() == 0; }
+    public boolean isEmpty() { return waterStack.isEmpty(); }
+
     @Override
     public List<Action> getAllowableActions() {
         List<Action> actions = new ArrayList<>();
         if(!isEmpty()) {
-            actions.add(new DrinkFromBottleAction(waterArrayList.get(0), this));
+            actions.add(new DrinkFromBottleAction(waterStack.peek(), this));
         }
         return actions;
     }
@@ -55,6 +58,5 @@ public class Bottle extends Item implements Obtainable {
         actor.addItemToInventory(this);
         Player player = (Player) actor;
         player.setBottle(this);
-
     }
 }

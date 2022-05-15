@@ -61,14 +61,22 @@ public class WarpPipe extends Ground implements HigherGround, Resettable {
     @Override
     public void tick(Location location) {
         if(this.hasCapability(Status.RESET)) {
+            System.out.println("WHY1");
             hasPiranha=false;
         }
         if (location.getActor() == null && !hasPiranha) {
             //spawn piranha on top of it
+            System.out.println("WHY2");
             location.addActor(new PiranhaPlant());
             hasPiranha=true;
         }
-
+        if(location.getActor() == null) {
+            System.out.println("no actor");
+        }
+        if(!hasPiranha) {
+            System.out.println("no piranha");
+        }
+        System.out.println("WHY3");
         super.tick(location);
     }
 

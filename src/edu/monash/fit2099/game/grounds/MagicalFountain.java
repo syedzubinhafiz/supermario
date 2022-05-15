@@ -14,7 +14,8 @@ import java.util.ArrayList;
 public abstract class MagicalFountain extends Ground {
 
     protected ArrayList<Water> fountainWaterList;
-    protected int FINAL_WATER_CAPACITY=10;
+    public int FINAL_WATER_CAPACITY=10;
+    protected int rechargeTimer=0;
 
     /**
      * Constructor.
@@ -26,12 +27,7 @@ public abstract class MagicalFountain extends Ground {
         this.addCapability(Status.FOUNTAIN);
     }
 
-    @Override
-    public void tick(Location location) {
-        if(fountainWaterList.isEmpty()) {
 
-        }
-    }
 
     @Override
     public ActionList allowableActions(Actor actor, Location location, String direction) {
@@ -49,4 +45,8 @@ public abstract class MagicalFountain extends Ground {
     public void removeWater(){
         fountainWaterList.remove(0);
     }
+
+    public int getCapacity() { return fountainWaterList.size();}
+
+    public int getMaxCapacity() { return FINAL_WATER_CAPACITY;}
 }

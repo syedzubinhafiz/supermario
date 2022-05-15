@@ -24,9 +24,19 @@ public class PowerFountain extends MagicalFountain {
             fountainWaterList.add(new PowerWater() );
         }
     }
-
-    public Water getWater() {
-        Water newWater = new PowerWater();
-        return newWater;
+    @Override
+    public void tick(Location location) {
+        if(fountainWaterList.isEmpty()) {
+            // replenish in next 5 turns once empty
+            rechargeTimer++;
+            if(rechargeTimer==5) {
+                // replenish
+                for(int i=0;i<FINAL_WATER_CAPACITY; i++){
+                    fountainWaterList.add(new PowerWater());
+                }
+            }
+        }
     }
+
+
 }

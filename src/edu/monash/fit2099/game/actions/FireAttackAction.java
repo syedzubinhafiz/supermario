@@ -19,6 +19,6 @@ public class FireAttackAction extends AttackAction {
 
     @Override
     public String menuDescription(Actor actor) {
-        return "Attack "+ target + " with fire";
+        return actor + " attacks "+ target + " at " + direction + " with fire!";
     }
 }

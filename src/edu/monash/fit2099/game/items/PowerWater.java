@@ -9,7 +9,6 @@ public class PowerWater extends Water {
     public void consumedBy(Actor actor) {
         Drinker actorDrink = (Drinker) actor;
         actorDrink.setIntrinsicDamage();
-
     }
 
     @Override
