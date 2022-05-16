@@ -1,7 +1,12 @@
 package edu.monash.fit2099.game.interfaces;
 
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.game.actions.ConsumeAction;
+import edu.monash.fit2099.game.actions.itemrelated.ConsumeAction;
+import edu.monash.fit2099.game.actions.itemrelated.ConsumeInventoryItemAction;
+import edu.monash.fit2099.game.actions.itemrelated.DrinkFromBottleAction;
+import edu.monash.fit2099.game.actions.itemrelated.DrinkFromFountainAction;
+import edu.monash.fit2099.game.grounds.MagicalFountain;
+import edu.monash.fit2099.game.items.Bottle;
 
 /**
  * Interface for Consumable items
@@ -18,11 +23,16 @@ public interface ConsumableItem {
      * @return ConsumeAction instance of consume action
      */
     default ConsumeAction getConsumeAction(ConsumableItem this, Actor actor){
-        return new ConsumeAction(this);
+        return new ConsumeInventoryItemAction(this);
+    }
+
+
+    default ConsumeAction getDrinkFromFountainAction(ConsumableItem this, MagicalFountain fountain){
+        return new DrinkFromFountainAction( this, fountain );
     }
 
     /**
-     * Method to implemented, responsible for what happens when the conumable item gets consumed by the actor
+     * Method to implemented, responsible for what happens when the consumable item gets consumed by the actor
      * @param actor consuming the item
      */
     void consumedBy(Actor actor);

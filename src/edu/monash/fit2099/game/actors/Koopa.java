@@ -177,8 +177,8 @@ public class Koopa extends Enemy implements Resettable {
     }
 
     @Override
-    public void setIntrinsicDamage() {
-        this.intrinsicDamage+=15;
+    public void setIntrinsicDamage( int intrinsicDamage ) {
+        this.intrinsicDamage = intrinsicDamage;
     }
 
     //Added this

@@ -4,9 +4,8 @@ import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
-import edu.monash.fit2099.game.actions.RefillBottleAction;
+import edu.monash.fit2099.game.actions.itemrelated.RefillBottleAction;
 import edu.monash.fit2099.game.enums.Status;
-import edu.monash.fit2099.game.items.PowerWater;
 import edu.monash.fit2099.game.items.Water;
 
 import java.util.ArrayList;

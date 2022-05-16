@@ -1,4 +1,4 @@
-package edu.monash.fit2099.game.actions;
+package edu.monash.fit2099.game.actions.itemrelated;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
@@ -14,7 +14,7 @@ import edu.monash.fit2099.game.interfaces.FadeableItem;
  * @version 1.0.0
  * @see edu.monash.fit2099.game.actions
  */
-public class ConsumeAction extends PickUpItemAction {
+public abstract class ConsumeAction extends PickUpItemAction {
 
     //attributes
     /**
@@ -42,8 +42,11 @@ public class ConsumeAction extends PickUpItemAction {
      * @return a String to show the message output after execution.
      * @see PickUpItemAction#execute(Actor actor, GameMap map)
      */
+    //Could remove method entirely
     @Override
     public String execute(Actor actor, GameMap map) {
+
+        return null;
 
         //Alternative
 //        if consumableItem.isWater(){
@@ -56,11 +59,10 @@ public class ConsumeAction extends PickUpItemAction {
 //            return actor +" consumed " + consumableItem+".";
 //        }
 
-        consumableItem.consumedBy(actor);
+//        consumableItem.consumedBy(actor);
+//        map.locationOf(actor).removeItem((Item) consumableItem);
+//        return actor +" consumed " + consumableItem+".";
 
-        map.locationOf(actor).removeItem((Item) consumableItem);
-
-        return actor +" consumed " + consumableItem+".";
     }
 
     /**
@@ -68,12 +70,14 @@ public class ConsumeAction extends PickUpItemAction {
      * @param actor The actor performing the certain action
      * @return a String describing actor consuming the item
      */
+    //Could remove method entirely
     @Override
     public String menuDescription(Actor actor) {
-        String result= actor + " consumes "+ consumableItem ;
-        if (consumableItem.canFade()) {
-            result = actor + " consumes "+ consumableItem + " - " + ((FadeableItem) consumableItem).getFadingTimeOnFloorInventory() + " turns remaining";
-        }
-        return result;
+//        String result= actor + " consumes "+ consumableItem ;
+//        if (consumableItem.canFade()) {
+//            result = actor + " consumes "+ consumableItem + " - " + ((FadeableItem) consumableItem).getFadingTimeOnFloorInventory() + " turns remaining";
+//        }
+//        return result;
+        return null;
     }
 }

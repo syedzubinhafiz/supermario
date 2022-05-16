@@ -39,8 +39,13 @@ public class Bowser extends Enemy implements Resettable{
     }
 
     @Override
-    public void setIntrinsicDamage() {
-        this.damage+=15;
+    public void setIntrinsicDamage( int intrinsicDamage ) {
+        this.damage = intrinsicDamage;
+    }
+
+    @Override
+    public int getIntrinsicDamage() {
+        return this.damage;
     }
 
     @Override

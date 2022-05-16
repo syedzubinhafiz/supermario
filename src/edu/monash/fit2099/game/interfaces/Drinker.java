@@ -2,6 +2,8 @@ package edu.monash.fit2099.game.interfaces;
 
 public interface Drinker {
 
-    void setIntrinsicDamage();
+    void setIntrinsicDamage(int intrinsicDamage);
+
+    int getIntrinsicDamage();
 
 }

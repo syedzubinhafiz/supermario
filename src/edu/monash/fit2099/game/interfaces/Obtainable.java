@@ -1,7 +1,7 @@
 package edu.monash.fit2099.game.interfaces;
 
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.game.actions.ObtainedAction;
+import edu.monash.fit2099.game.actions.itemrelated.ObtainedAction;
 
 public interface Obtainable {
 

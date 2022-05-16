@@ -15,6 +15,7 @@ import edu.monash.fit2099.game.actions.FireAttackAction;
 import edu.monash.fit2099.game.actions.Monologue;
 import edu.monash.fit2099.game.actions.ResetGameAction;
 import edu.monash.fit2099.game.enums.Status;
+import edu.monash.fit2099.game.interfaces.Drinker;
 import edu.monash.fit2099.game.interfaces.Resettable;
 import edu.monash.fit2099.game.items.Bottle;
 import edu.monash.fit2099.game.items.Wallet;
@@ -27,7 +28,7 @@ import edu.monash.fit2099.game.items.Wallet;
  * @version 1.0.0
  * @see edu.monash.fit2099.game.actors
  */
-public class Player extends Actor implements Resettable {
+public class Player extends Actor implements Resettable, Drinker {
 
 	/**
 	 * menu represents the console menu
@@ -190,9 +191,12 @@ public class Player extends Actor implements Resettable {
 		return new IntrinsicWeapon(intrinsicDamage, "punches");
 	}
 
-	public int getIntrinsicDamage( int intrinsicDamage ) {
+	@Override
+	public int getIntrinsicDamage() {
 		return intrinsicDamage;
 	}
+
+	@Override
 	public void setIntrinsicDamage( int intrinsicDamage ) {
 		this.intrinsicDamage = intrinsicDamage;
 	}

@@ -1,8 +1,8 @@
-package edu.monash.fit2099.game.actions;
+package edu.monash.fit2099.game.actions.itemrelated;
 
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.game.actions.itemrelated.ConsumeAction;
 import edu.monash.fit2099.game.interfaces.ConsumableItem;
 import edu.monash.fit2099.game.items.Bottle;
 

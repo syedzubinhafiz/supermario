@@ -88,7 +88,12 @@ public class PiranhaPlant extends Enemy implements Resettable  {
 
 
     @Override
-    public void setIntrinsicDamage() {
-        this.intrinsicDamage+=15;
+    public void setIntrinsicDamage( int intrinsicDamage ) {
+        this.intrinsicDamage = intrinsicDamage;
+    }
+
+    @Override
+    public int getIntrinsicDamage() {
+        return this.intrinsicDamage;
     }
 }
