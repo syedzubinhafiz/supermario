@@ -45,7 +45,7 @@ public abstract class ConsumeAction extends PickUpItemAction {
     //Could remove method entirely
     @Override
     public String execute(Actor actor, GameMap map) {
-
+        consumableItem.consumedBy( actor );
         return null;
 
         //Alternative

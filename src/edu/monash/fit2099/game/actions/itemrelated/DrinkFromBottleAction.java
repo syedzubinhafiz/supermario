@@ -19,7 +19,7 @@ public class DrinkFromBottleAction extends ConsumeAction {
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        consumableItem.consumedBy(actor);
+
         bottle.removeWater();
         return actor + " has drank from his bottle.";
     }
