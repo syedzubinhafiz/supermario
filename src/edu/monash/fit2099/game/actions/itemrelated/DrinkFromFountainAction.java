@@ -20,14 +20,17 @@ public class DrinkFromFountainAction extends ConsumeAction {
 
     @Override
     public String execute(Actor actor, GameMap map) {
-
+        super.execute(actor, map);
         // remove water from fountain
         fountain.removeWater();
+        // consume/remove water from fountain
+        ConsumableItem secondWater = fountain.removeWater();
+        secondWater.consumedBy(actor);
         return actor + " drank from " + fountain;
     }
 
     @Override
     public String menuDescription(Actor actor) {
-        return "";
+        return "Drink from " + fountain;
     }
 }

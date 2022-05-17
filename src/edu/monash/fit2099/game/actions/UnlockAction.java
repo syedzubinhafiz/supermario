@@ -8,7 +8,7 @@ import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.game.actors.PrincessPeach;
 import edu.monash.fit2099.game.enums.Status;
 
-public class EndGameAction extends Action {
+public class UnlockAction extends Action {
 
 
     public static void setPp(PrincessPeach pp1) {

@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.game.actions.AttackAction;
 import edu.monash.fit2099.game.actions.FireAttackAction;
 import edu.monash.fit2099.game.actions.GetRemovedAction;
+import edu.monash.fit2099.game.actions.InstaKilledAction;
 import edu.monash.fit2099.game.behaviours.AttackBehaviour;
 import edu.monash.fit2099.game.behaviours.DrinkBehaviour;
 import edu.monash.fit2099.game.behaviours.FollowBehaviour;
@@ -87,6 +88,8 @@ public abstract class Enemy extends Actor implements Resettable, Drinker {
     public AttackAction getAttackedAction(Actor otherActor, Actor targetActor, String direction) {
         if(otherActor.hasCapability(Status.FIRE_ATTACK_EFFECT)){
             return new FireAttackAction(targetActor, direction);
+        } else if (otherActor.hasCapability(Status.INVINCIBLE) ){
+            return new InstaKilledAction(targetActor, direction);
         }
         return new AttackAction( targetActor, direction );
     }

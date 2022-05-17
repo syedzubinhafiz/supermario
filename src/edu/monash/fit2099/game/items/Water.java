@@ -9,7 +9,8 @@ public abstract class Water extends Item implements ConsumableItem {
     /***
      * Constructor.
      */
-    public Water() {
-        super("Water", 'z', false);
+    public Water(String name, char dc) {
+
+        super(name, dc, false);
     }
 }

@@ -23,6 +23,7 @@ public class Sapling extends Tree{
      */
     public Sapling() {
         super('t', 0.8, 20, "Sapling");
+        firstTurn=true;
     }
 
 
@@ -37,8 +38,9 @@ public class Sapling extends Tree{
         if (Utils.getRandomBias() <= 0.1) {
             location.addItem(new Coin(20));
         }
-        if(Utils.getRandomBias()<=0.5){
+        if(Utils.getRandomBias()<=0.5 && firstTurn){
             location.addItem(new FireFlower());
+            firstTurn=false;
         }
         if (turnCounter == 10) {
             location.setGround(new Mature());

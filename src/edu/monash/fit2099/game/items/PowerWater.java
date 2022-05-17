@@ -6,6 +6,13 @@ import edu.monash.fit2099.game.interfaces.Drinker;
 
 public class PowerWater extends Water {
 
+    /***
+     * Constructor.
+     */
+    public PowerWater() {
+        super("Power Water", 'p');
+    }
+
     @Override
     public void consumedBy(Actor actor) {
         Drinker actorDrink = (Drinker) actor;

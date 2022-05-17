@@ -3,7 +3,7 @@ package edu.monash.fit2099.game.actions;
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
-import edu.monash.fit2099.game.actors.Koopa;
+import edu.monash.fit2099.game.actors.KoopaBase;
 import edu.monash.fit2099.game.enums.Status;
 
 /**
@@ -46,7 +46,7 @@ public class DormantAction extends Action {
      */
     public String execute(Actor actor, GameMap map) {
         target.addCapability(Status.DORMANT);
-        ((Koopa)target).callSetDisplayChar( newDisplayChar );
+        ((KoopaBase)target).callSetDisplayChar( newDisplayChar );
 
         return target + " is now Dormant!";
     }

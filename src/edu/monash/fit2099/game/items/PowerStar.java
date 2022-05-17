@@ -137,7 +137,7 @@ public class PowerStar extends Item implements Tradeable, ConsumableItem, Fadeab
     public void tick(Location currentLocation, Actor actor) {
         // if not yet consumed and powerstar doesn't have the effect turned on,
         // then add a consume action to the actor
-        if (!isConsumed && !actor.hasCapability(BUFF_STATUS)) {
+        if (!isConsumed && !this.hasCapability(Status.INVINCIBLE)) {
             if(this.consumeAction !=null){
                 removeAction(this.consumeAction);
             }

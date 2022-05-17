@@ -8,7 +8,7 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
-import edu.monash.fit2099.game.actions.EndGameAction;
+import edu.monash.fit2099.game.actions.UnlockAction;
 import edu.monash.fit2099.game.actions.Monologue;
 import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.Resettable;
@@ -26,7 +26,7 @@ public class PrincessPeach extends Actor implements Resettable {
     public PrincessPeach(Location location) {
         super("Princess Peach", 'P', 100);
         this.addCapability(Status.INVINCIBLE);
-        EndGameAction.setPp(this);
+        UnlockAction.setPp(this);
         original=location;
         Resettable.super.registerInstance();
     }

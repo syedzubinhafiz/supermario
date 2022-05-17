@@ -46,22 +46,7 @@ public abstract class ConsumeAction extends PickUpItemAction {
     @Override
     public String execute(Actor actor, GameMap map) {
         consumableItem.consumedBy( actor );
-        return null;
-
-        //Alternative
-//        if consumableItem.isWater(){
-//            ((Player)actor).getBottle(). consumableItem);
-//            return actor +" consumed " + consumableItem+".";
-//        }
-//
-//        if consumableItem.isNotWater(){
-//            map.locationOf(actor).removeItem((Item) consumableItem);
-//            return actor +" consumed " + consumableItem+".";
-//        }
-
-//        consumableItem.consumedBy(actor);
-//        map.locationOf(actor).removeItem((Item) consumableItem);
-//        return actor +" consumed " + consumableItem+".";
+        return "consumed";
 
     }
 
@@ -73,11 +58,10 @@ public abstract class ConsumeAction extends PickUpItemAction {
     //Could remove method entirely
     @Override
     public String menuDescription(Actor actor) {
-//        String result= actor + " consumes "+ consumableItem ;
-//        if (consumableItem.canFade()) {
-//            result = actor + " consumes "+ consumableItem + " - " + ((FadeableItem) consumableItem).getFadingTimeOnFloorInventory() + " turns remaining";
-//        }
-//        return result;
-        return null;
+        String result= actor + " consumes "+ consumableItem ;
+        if (consumableItem.canFade()) {
+            result = actor + " consumes "+ consumableItem + " - " + ((FadeableItem) consumableItem).getFadingTimeOnFloorInventory() + " turns remaining";
+        }
+        return result;
     }
 }

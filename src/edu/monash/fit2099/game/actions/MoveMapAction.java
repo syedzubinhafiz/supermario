@@ -31,8 +31,6 @@ public class MoveMapAction extends MoveActorAction {
         else {
             map.moveActor(actor, moveToLocation);
         }
-        //set warpPipe's previous location as where it went to for warppipe's future
-//        wp.setPreviousWarpPipe(moveToLocation);
 
         //set destination warppipe's location to be
         if(!wp.isSecondMap()) {

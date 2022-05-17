@@ -22,7 +22,6 @@ public class Bowser extends Enemy implements Resettable{
     private boolean turnToSpeak;
     Display d = new Display();
     Location original;
-    public int damage;
 
 
     /**
@@ -40,18 +39,18 @@ public class Bowser extends Enemy implements Resettable{
 
     @Override
     public void setIntrinsicDamage( int intrinsicDamage ) {
-        this.damage = intrinsicDamage;
+        this.intrinsicDamage = intrinsicDamage;
     }
 
     @Override
     public int getIntrinsicDamage() {
-        return this.damage;
+        return this.intrinsicDamage;
     }
 
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
 
-        if(super.playTurn(actions, lastAction, map, display) != null) {
+        if(super.playTurn(actions, lastAction, map, display) != null && isConscious()) {
             // move bowser back to original position if its not already at original position
             if(map.locationOf(this)!=original) {
                 if (!map.isAnActorAt(original)) {
@@ -110,9 +109,10 @@ public class Bowser extends Enemy implements Resettable{
             Location destination = exit.getDestination();
             if ((destination.getActor() != null && destination.getActor().hasCapability(Status.HOSTILE_TO_ENEMY))) {
                 AttackAction a = new AttackAction(destination.getActor(), exit.getName());
-                d.println(a.execute(this, map)); // attack & follow the actor
+                String result = a.execute(this, map);
+                d.println(result); // attack & follow the actor
                 addFollowBehaviour(destination.getActor());
-                if(!destination.getActor().isConscious()) {
+                if(result.toUpperCase().contains("MISSES")) {
                     return null;
                 }
                 else {
@@ -127,10 +127,11 @@ public class Bowser extends Enemy implements Resettable{
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = new ActionList();
 
-        if  (otherActor.hasCapability(Status.INVINCIBLE) && otherActor.hasCapability(Status.HOSTILE_TO_ENEMY) ) {
-            actions.add(new InstaKilledAction(this, direction));
-        }
-        else if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
+//        if  (otherActor.hasCapability(Status.INVINCIBLE) && otherActor.hasCapability(Status.HOSTILE_TO_ENEMY) ) {
+//            actions.add(new InstaKilledAction(this, direction));
+//        }
+//        else
+        if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
             actions.add( super.getAttackedAction( otherActor, this, direction ) );
             //New way to get AttackAction using the interface's method
         }
@@ -148,7 +149,7 @@ public class Bowser extends Enemy implements Resettable{
 
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
-        return new IntrinsicWeapon(damage, "punch");
+        return new IntrinsicWeapon(intrinsicDamage, "punch");
     }
 
     /**

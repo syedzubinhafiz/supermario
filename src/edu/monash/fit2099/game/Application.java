@@ -3,14 +3,11 @@ package edu.monash.fit2099.game;
 import java.util.Arrays;
 import java.util.List;
 
-import edu.monash.fit2099.demo.mars.items.MartianItem;
-import edu.monash.fit2099.engine.actions.MoveActorAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
-import edu.monash.fit2099.game.actions.EndGameAction;
 import edu.monash.fit2099.game.actors.*;
 import edu.monash.fit2099.game.grounds.*;
 import edu.monash.fit2099.game.items.Bottle;
@@ -84,7 +81,11 @@ public class Application {
 
 			GameMap gameMap2 = new GameMap(groundFactory2, map2);
 			world.addGameMap(gameMap2);
-
+			// Add some lava
+			gameMap2.at(2, 1).setGround(new Lava());
+			gameMap2.at(0, 1).setGround(new Lava());
+			gameMap2.at(9, 0).setGround(new Lava());
+			gameMap2.at(11, 1).setGround(new Lava());
 			// Add princess peach & bowser in gameMap2
 			gameMap2.at(3, 1).addActor(new PrincessPeach(gameMap2.at(3, 1)));
 			gameMap2.at(4, 1).addActor(new Bowser(gameMap2.at(4, 1)));
@@ -93,7 +94,7 @@ public class Application {
 			// ADD WARP PIPES
 			// IN GAMEMAP1
 			gameMap1.at(40,8).setGround(new WarpPipe(gameMap2));
-//			gameMap1.at(20,2).setGround(new WarpPipe(gameMap2));
+			gameMap1.at(38,8).setGround(new WarpPipe(gameMap2));
 //			gameMap1.at(10,18).setGround(new WarpPipe(gameMap2));
 //			gameMap1.at(53,13).setGround(new WarpPipe(gameMap2));
 
@@ -108,15 +109,15 @@ public class Application {
 			Actor mario = new Player("Mario", 'm', 100);
 			world.addPlayer(mario, gameMap1.at(42, 10));
 
-			Wrench wrench = new Wrench();
-			SuperMushroom sm = new SuperMushroom();
-			PowerStar ps = new PowerStar();
-			mario.addItemToInventory( wrench );
-			mario.addItemToInventory(sm );
-			mario.addItemToInventory(ps);
-
+//			Wrench wrench = new Wrench();
+//			SuperMushroom sm = new SuperMushroom();
+//			PowerStar ps = new PowerStar();
+//			mario.addItemToInventory( wrench );
+//			mario.addItemToInventory(sm );
+//			mario.addItemToInventory(ps);
+//
 			Actor koopa = new Koopa();
-			world.addPlayer(koopa, gameMap1.at(46, 10));
+			gameMap1.at(46, 10).addActor(koopa);
 
 			world.run();
 

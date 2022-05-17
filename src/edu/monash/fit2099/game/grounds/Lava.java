@@ -17,7 +17,7 @@ public class Lava extends Ground {
         // inflict damage on actor at location if actor is there
         if(location.getActor() != null) {
             location.getActor().hurt(15);
-
+            System.out.println("Lava has hurt "+ location.getActor()+" by 15 damage!");
         }
     }
 

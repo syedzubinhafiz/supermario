@@ -77,6 +77,7 @@ public class FireFlower extends Item implements ConsumableItem {
     public void consumedBy(Actor actor) {
         setIsConsumed(true);
         this.addCapability(FIRE_ATTACK);
+        togglePortability();
     }
 
 

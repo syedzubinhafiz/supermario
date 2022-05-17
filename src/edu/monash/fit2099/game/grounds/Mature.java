@@ -27,6 +27,7 @@ public class Mature extends Tree {
      */
     public Mature() {
         super('T', 0.7, 30,  "Mature");
+        firstTurn=true;
     }
 
 
@@ -50,8 +51,9 @@ public class Mature extends Tree {
             }
 
         }
-        if (Utils.getRandomBias()<=0.5){
+        if(Utils.getRandomBias()<=0.5 && firstTurn){
             location.addItem(new FireFlower());
+            firstTurn=false;
         }
         if (turnCounter % 5 == 0) {
             // make an empty list of all surrounding exits that have fertile ground in the edu.monash.fit2099.game map

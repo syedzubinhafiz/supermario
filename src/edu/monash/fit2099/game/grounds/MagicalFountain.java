@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.game.actions.itemrelated.RefillBottleAction;
 import edu.monash.fit2099.game.enums.Status;
+import edu.monash.fit2099.game.interfaces.ConsumableItem;
 import edu.monash.fit2099.game.items.Water;
 
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public abstract class MagicalFountain extends Ground {
         if(fountainWaterList.isEmpty()) {
             // replenish in next 5 turns once empty
             rechargeTimer++;
-            if(rechargeTimer==5) {
+            if(rechargeTimer==6) {
                 // replenish
                 for(int i=0;i<FINAL_WATER_CAPACITY; i++){
                     this.fillFountain();
@@ -52,11 +53,18 @@ public abstract class MagicalFountain extends Ground {
     }
 
     public Water getWater() {
-        return fountainWaterList.get(0);
+        if(!fountainWaterList.isEmpty()) {
+            return fountainWaterList.get(0);
+        }
+        return null;
     }
 
-    public void removeWater(){
-        fountainWaterList.remove(0);
+    public ConsumableItem removeWater(){
+        ConsumableItem water = getWater();
+        if(water!=null) {
+            fountainWaterList.remove(0);
+        }
+        return water;
     }
 
     //New method to fill fountain

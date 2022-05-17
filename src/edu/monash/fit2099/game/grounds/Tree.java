@@ -41,6 +41,8 @@ public abstract class Tree extends Ground implements Resettable, HigherGround {
 
     public final static boolean CAN_BE_DESTROYED=true;
 
+    protected boolean firstTurn;
+
     /**
      * Constructor.
      *

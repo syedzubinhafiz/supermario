@@ -1,14 +1,16 @@
-package edu.monash.fit2099.game.grounds;
+package edu.monash.fit2099.game.items;
 
+import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
+import edu.monash.fit2099.game.grounds.Dirt;
 
-public class Fire extends Ground {
+public class Fire extends Item {
 
     int turnCounter;
 
     public Fire() {
-        super('v');
+        super("Fire", 'v', false);
     }
 
     public void tick(Location location) {

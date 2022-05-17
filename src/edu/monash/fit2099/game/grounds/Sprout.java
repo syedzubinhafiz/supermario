@@ -37,9 +37,6 @@ public class Sprout extends Tree {
             Goomba g = new Goomba();
             location.addActor(g);
         }
-        if (Utils.getRandomBias() <= 0.5) {
-            location.addItem(new FireFlower());
-        }
         if (turnCounter == 10) {
             location.setGround(new Sapling());
         }
