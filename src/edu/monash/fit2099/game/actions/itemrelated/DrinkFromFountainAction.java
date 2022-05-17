@@ -9,6 +9,7 @@ import edu.monash.fit2099.game.interfaces.ConsumableItem;
 public class DrinkFromFountainAction extends ConsumeAction {
 
     MagicalFountain fountain;
+    public ConsumableItem secondWater;
 
     /**
      * Constructor
@@ -24,7 +25,7 @@ public class DrinkFromFountainAction extends ConsumeAction {
         // remove water from fountain
         fountain.removeWater();
         // consume/remove water from fountain
-        ConsumableItem secondWater = fountain.removeWater();
+        secondWater = fountain.removeWater();
         secondWater.consumedBy(actor);
         return actor + " drank from " + fountain;
     }

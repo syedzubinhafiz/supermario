@@ -7,15 +7,16 @@ import edu.monash.fit2099.game.actions.itemrelated.DrinkFromBottleAction;
 import edu.monash.fit2099.game.actions.itemrelated.ObtainedAction;
 import edu.monash.fit2099.game.actors.Player;
 import edu.monash.fit2099.game.enums.Status;
+import edu.monash.fit2099.game.interfaces.ConsumableItem;
 import edu.monash.fit2099.game.interfaces.Obtainable;
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
 public class Bottle extends Item implements Obtainable {
 
-//    ArrayList<Water> waterArrayList = new ArrayList<Water>();
     Stack<Water> waterStack = new Stack<Water>();
     private static Bottle instance;
 
@@ -31,11 +32,36 @@ public class Bottle extends Item implements Obtainable {
         waterStack.push(water);
     }
 
-    public void removeWater() {
-        waterStack.pop();
+    public ConsumableItem removeWater() {
+        Water water=null;
+        if(!waterStack.isEmpty()) {
+            water=waterStack.pop();
+        }
+        return water;
     }
 
     public boolean isEmpty() { return waterStack.isEmpty(); }
+
+    public String getItems() {
+        // Get the slice of the Array
+        String slice = "[";
+        Object[] waters = waterStack.toArray();
+
+        // Copy elements of arr to slice
+        if(waters != null) {
+            if (waters.length > 1) {
+                for (int i = 0; i < 2; i++) {
+                    slice += waters[i]+ ", ";
+                }
+            } else {
+                slice += waters[0]+", ";
+            }
+
+        }
+        // return the slice
+        slice = slice.substring(0, slice.length()-2) + "]";
+        return slice;
+    }
 
     @Override
     public List<Action> getAllowableActions() {
