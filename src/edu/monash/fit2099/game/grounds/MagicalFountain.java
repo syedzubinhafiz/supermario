@@ -39,7 +39,6 @@ public abstract class MagicalFountain extends Ground {
                 this.fillFountain();
                 //to reset for the next time the fountain goes empty
                 rechargeTimer = 0;
-
             }
         }
     }
