@@ -79,9 +79,7 @@ public class Bottle extends Item implements Obtainable {
     @Override
     public void obtainedBy(Actor actor) {
         actor.addCapability(Status.HAS_BOTTLE);
-        actor.addItemToInventory(this);
-        Player player = (Player) actor;
-        player.setBottle(this);
+
     }
 
     public static Bottle getInstance() {
