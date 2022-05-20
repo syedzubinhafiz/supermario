@@ -27,10 +27,6 @@ public interface ConsumableItem {
     }
 
 
-    default ConsumeAction getDrinkFromFountainAction(ConsumableItem this, MagicalFountain fountain){
-        return new DrinkFromFountainAction( this, fountain );
-    }
-
     /**
      * Method to implemented, responsible for what happens when the consumable item gets consumed by the actor
      * @param actor consuming the item
