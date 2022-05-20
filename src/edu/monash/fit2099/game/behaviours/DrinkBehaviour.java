@@ -17,7 +17,10 @@ public class DrinkBehaviour implements Behaviour {
     public Action getAction(Actor actor, GameMap map) {
         if(map.locationOf(actor).getGround().hasCapability(Status.FOUNTAIN)) {
             MagicalFountain fountain = (MagicalFountain) map.locationOf(actor).getGround();
-            return new DrinkFromFountainAction(fountain.getWater(), fountain);
+            if ( fountain.getCapacity() > 0 ) {
+                return new DrinkFromFountainAction(fountain.getWater(), fountain);
+            }
+
         }
         return null;
     }
