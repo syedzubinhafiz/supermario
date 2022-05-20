@@ -11,16 +11,16 @@ public class PowerFountain extends MagicalFountain {
      */
     public PowerFountain() {
         super('A');
-        this.fountainWaterList=new ArrayList<>();
+        this.fountainWater =new ArrayList<>();
         for (int i=0; i < FINAL_WATER_CAPACITY; i++) {
-            fountainWaterList.add(new PowerWater() );
+            fountainWater.add(new PowerWater() );
         }
     }
 
     @Override
     public void fillFountain() {
         for (int i=0; i < FINAL_WATER_CAPACITY; i++) {
-            fountainWaterList.add(new PowerWater());
+            fountainWater.add(new PowerWater());
         }
     }
 }

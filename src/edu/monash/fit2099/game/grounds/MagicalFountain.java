@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public abstract class MagicalFountain extends Ground {
 
-    protected ArrayList<Water> fountainWaterList;
+    protected ArrayList<Water> fountainWater;
     protected final int FINAL_WATER_CAPACITY=10;
 
     private int rechargeTimer = 0;
@@ -31,14 +31,15 @@ public abstract class MagicalFountain extends Ground {
     //Implementation for Refilling water
     @Override
     public void tick(Location location) {
-        if(fountainWaterList.isEmpty()) {
+        if(fountainWater.isEmpty()) {
             // replenish in next 5 turns once empty
             rechargeTimer++;
             if(rechargeTimer==6) {
                 // replenish
-                for(int i=0;i<FINAL_WATER_CAPACITY; i++){
-                    this.fillFountain();
-                }
+                this.fillFountain();
+                //to reset for the next time the fountain goes empty
+                rechargeTimer = 0;
+
             }
         }
     }
@@ -46,15 +47,15 @@ public abstract class MagicalFountain extends Ground {
     @Override
     public ActionList allowableActions(Actor actor, Location location, String direction) {
         ActionList actions=new ActionList();
-        if(actor.hasCapability(Status.HAS_BOTTLE) && !fountainWaterList.isEmpty() && location.getActor()==actor){
+        if(actor.hasCapability(Status.HAS_BOTTLE) && !fountainWater.isEmpty() && location.getActor()==actor){
             actions.add(new RefillBottleAction(getWater(), this));
         }
         return actions;
     }
 
     public Water getWater() {
-        if(!fountainWaterList.isEmpty()) {
-            return fountainWaterList.get(0);
+        if(!fountainWater.isEmpty()) {
+            return fountainWater.get(0);
         }
         return null;
     }
@@ -62,7 +63,7 @@ public abstract class MagicalFountain extends Ground {
     public ConsumableItem removeWater(){
         ConsumableItem water = getWater();
         if(water!=null) {
-            fountainWaterList.remove(0);
+            fountainWater.remove(0);
         }
         return water;
     }
@@ -70,7 +71,7 @@ public abstract class MagicalFountain extends Ground {
     //New method to fill fountain
     public abstract void fillFountain();
 
-    public int getCapacity() { return fountainWaterList.size();}
+    public int getCapacity() { return fountainWater.size();}
 
     public int getMaxCapacity() { return FINAL_WATER_CAPACITY;}
 }
