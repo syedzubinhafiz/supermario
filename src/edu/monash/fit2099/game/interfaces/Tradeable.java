@@ -1,6 +1,6 @@
 package edu.monash.fit2099.game.interfaces;
 
-import edu.monash.fit2099.game.actions.itemrelated.TradeAction;
+import edu.monash.fit2099.game.actions.TradeAction;
 
 /**
  * Interface for Tradeable items

@@ -1,8 +1,7 @@
-package edu.monash.fit2099.game.actions.itemrelated;
+package edu.monash.fit2099.game.actions;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
-import edu.monash.fit2099.game.actions.itemrelated.ConsumeAction;
 import edu.monash.fit2099.game.grounds.MagicalFountain;
 import edu.monash.fit2099.game.interfaces.ConsumableItem;
 

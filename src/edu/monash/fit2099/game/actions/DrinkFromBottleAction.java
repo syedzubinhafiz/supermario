@@ -1,11 +1,9 @@
-package edu.monash.fit2099.game.actions.itemrelated;
+package edu.monash.fit2099.game.actions;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
-import edu.monash.fit2099.game.actions.itemrelated.ConsumeAction;
 import edu.monash.fit2099.game.interfaces.ConsumableItem;
 import edu.monash.fit2099.game.items.Bottle;
-import edu.monash.fit2099.game.items.Water;
 
 public class DrinkFromBottleAction extends ConsumeAction {
 

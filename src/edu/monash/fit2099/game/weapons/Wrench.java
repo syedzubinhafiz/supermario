@@ -3,7 +3,7 @@ package edu.monash.fit2099.game.weapons;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.PickUpItemAction;
 import edu.monash.fit2099.engine.weapons.WeaponItem;
-import edu.monash.fit2099.game.actions.itemrelated.TradeAction;
+import edu.monash.fit2099.game.actions.TradeAction;
 import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.Tradeable;
 

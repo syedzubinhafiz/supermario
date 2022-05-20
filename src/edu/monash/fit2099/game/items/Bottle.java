@@ -3,14 +3,13 @@ package edu.monash.fit2099.game.items;
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
-import edu.monash.fit2099.game.actions.itemrelated.DrinkFromBottleAction;
-import edu.monash.fit2099.game.actions.itemrelated.ObtainedAction;
+import edu.monash.fit2099.game.actions.DrinkFromBottleAction;
+import edu.monash.fit2099.game.actions.ObtainedAction;
 import edu.monash.fit2099.game.actors.Player;
 import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.ConsumableItem;
 import edu.monash.fit2099.game.interfaces.Obtainable;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;

@@ -1,4 +1,4 @@
-package edu.monash.fit2099.game.actions.itemrelated;
+package edu.monash.fit2099.game.actions;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;

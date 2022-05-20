@@ -3,7 +3,7 @@ package edu.monash.fit2099.game.behaviours;
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
-import edu.monash.fit2099.game.actions.itemrelated.DrinkFromFountainAction;
+import edu.monash.fit2099.game.actions.DrinkFromFountainAction;
 import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.grounds.MagicalFountain;
 import edu.monash.fit2099.game.interfaces.Behaviour;

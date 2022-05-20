@@ -3,7 +3,7 @@ package edu.monash.fit2099.game.items;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.Location;
-import edu.monash.fit2099.game.actions.itemrelated.ConsumeAction;
+import edu.monash.fit2099.game.actions.ConsumeAction;
 import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.ConsumableItem;
 

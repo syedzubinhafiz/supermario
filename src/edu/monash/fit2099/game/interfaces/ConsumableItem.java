@@ -1,12 +1,8 @@
 package edu.monash.fit2099.game.interfaces;
 
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.game.actions.itemrelated.ConsumeAction;
-import edu.monash.fit2099.game.actions.itemrelated.ConsumeInventoryItemAction;
-import edu.monash.fit2099.game.actions.itemrelated.DrinkFromBottleAction;
-import edu.monash.fit2099.game.actions.itemrelated.DrinkFromFountainAction;
-import edu.monash.fit2099.game.grounds.MagicalFountain;
-import edu.monash.fit2099.game.items.Bottle;
+import edu.monash.fit2099.game.actions.ConsumeAction;
+import edu.monash.fit2099.game.actions.ConsumeInventoryItemAction;
 
 /**
  * Interface for Consumable items
