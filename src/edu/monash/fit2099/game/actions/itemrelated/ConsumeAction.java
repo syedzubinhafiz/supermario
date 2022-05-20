@@ -1,5 +1,6 @@
 package edu.monash.fit2099.game.actions.itemrelated;
 
+import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.items.PickUpItemAction;
@@ -14,7 +15,7 @@ import edu.monash.fit2099.game.interfaces.FadeableItem;
  * @version 1.0.0
  * @see edu.monash.fit2099.game.actions
  */
-public abstract class ConsumeAction extends PickUpItemAction {
+public abstract class ConsumeAction extends Action {
 
     //attributes
     /**
@@ -28,7 +29,6 @@ public abstract class ConsumeAction extends PickUpItemAction {
      * @param item the item to consume
      */
     public ConsumeAction (ConsumableItem item) {
-        super((Item) item);
         this.consumableItem = item;
 
     }

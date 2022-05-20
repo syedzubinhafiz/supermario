@@ -187,7 +187,7 @@ public class Player extends Actor implements Resettable, Drinker {
 
 	}
 
-	public IntrinsicWeapon getGetIntrinsicWeapon() {
+	public IntrinsicWeapon getIntrinsicWeapon() {
 		return new IntrinsicWeapon(intrinsicDamage, "punches");
 	}
 

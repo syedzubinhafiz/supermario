@@ -151,15 +151,5 @@ public abstract class KoopaBase extends Enemy implements Resettable {
         return false;
     }
 
-    @Override
-    public void setIntrinsicDamage( int intrinsicDamage ) {
-        this.intrinsicDamage = intrinsicDamage;
-    }
-
-    //Added this
-    public int getIntrinsicDamage(){
-        return this.intrinsicDamage;
-    }
-
 
 }
