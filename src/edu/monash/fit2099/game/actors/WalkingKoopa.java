@@ -10,13 +10,13 @@ import edu.monash.fit2099.game.interfaces.Resettable;
  * @version 1.0.0
  * @see edu.monash.fit2099.game.actors
  */
-public class NormalKoopa extends Koopa implements Resettable {
+public class WalkingKoopa extends Koopa implements Resettable {
 
 
     /**
      * Constructor of Koopa
      */
-    public NormalKoopa() {
+    public WalkingKoopa() {
         super("Koopa", 'K', 100);
     }
 

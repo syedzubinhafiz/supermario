@@ -9,10 +9,8 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.Behaviour;
-import edu.monash.fit2099.game.interfaces.Resettable;
 
 public class PiranhaPlant extends Enemy {
-
 
     /**
      * Constructor.
@@ -61,14 +59,6 @@ public class PiranhaPlant extends Enemy {
         return new IntrinsicWeapon(90, "chomps");
     }
 
-    /**
-     * Implements the resetInstance() method in Resettable interface.
-     * @see Resettable#resetInstance()
-     */
-    @Override
-    public void resetInstance() {
-        this.addCapability(Status.RESET);
-    }
 
 
 }

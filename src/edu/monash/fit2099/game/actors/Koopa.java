@@ -12,14 +12,12 @@ import edu.monash.fit2099.game.actions.DestroyShellAction;
 import edu.monash.fit2099.game.actions.DormantAction;
 import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.Behaviour;
-import edu.monash.fit2099.game.interfaces.Resettable;
 
-public abstract class Koopa extends Enemy implements Resettable {
+public abstract class Koopa extends Enemy {
     /**
      * DormantAction attribute to store an instance of dormantAction
      */
     private final DormantAction dormantState;
-    private boolean turnToSpeak;
 
     /**
      * Constructor of Koopa
@@ -105,14 +103,6 @@ public abstract class Koopa extends Enemy implements Resettable {
         return new DoNothingAction();
     }
 
-    /**
-     * Implements the resetInstance() method in Resettable interface.
-     * @see Resettable#resetInstance()
-     */
-    @Override
-    public void resetInstance() {
-        this.addCapability(Status.RESET); // be killed
-    }
 
     /**
      * Method to see if Koopa is Dormant or not.

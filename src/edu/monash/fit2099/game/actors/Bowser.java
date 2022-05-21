@@ -9,14 +9,15 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
-import edu.monash.fit2099.game.actions.*;
+import edu.monash.fit2099.game.actions.FireAttackAction;
+import edu.monash.fit2099.game.actions.GetRemovedAction;
+import edu.monash.fit2099.game.actions.AttackAction;
 import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.Behaviour;
-import edu.monash.fit2099.game.interfaces.Resettable;
 import edu.monash.fit2099.game.items.Key;
 
 
-public class Bowser extends Enemy implements Resettable {
+public class Bowser extends Enemy {
 
     Location original;
     /**
@@ -148,15 +149,6 @@ public class Bowser extends Enemy implements Resettable {
         return new IntrinsicWeapon(intrinsicDamage, "punch");
     }
 
-    /**
-     * Implements the resetInstance() method in Resettable interface.
-     * @see Resettable#resetInstance()
-     */
-    @Override
-    public void resetInstance() {
-        // move Bowser back to the original position, heal it to maximum, and it will stand there until Mario is within Bowser's attack range
-        this.addCapability(Status.RESET);
-    }
 
 
 
