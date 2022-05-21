@@ -13,7 +13,6 @@ import edu.monash.fit2099.game.Utils;
 import edu.monash.fit2099.game.actions.GetRemovedAction;
 import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.Behaviour;
-import edu.monash.fit2099.game.interfaces.Resettable;
 
 /**
  * A little fungus guy.
@@ -22,7 +21,7 @@ import edu.monash.fit2099.game.interfaces.Resettable;
  * @version 1.0.0
  * @see edu.monash.fit2099.game.actors
  */
-public class Goomba extends Enemy implements Resettable {
+public class Goomba extends Enemy {
 
 
 	/**
@@ -91,15 +90,6 @@ public class Goomba extends Enemy implements Resettable {
 		}
 
 		return new DoNothingAction();
-	}
-
-	/**
-	 * Implements the resetInstance() method in Resettable interface.
-	 * @see Resettable#resetInstance()
-	 */
-	@Override
-	public void resetInstance() {
-		this.addCapability(Status.RESET);
 	}
 
 	/**
