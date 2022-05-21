@@ -1,5 +1,6 @@
 package edu.monash.fit2099.game.items;
 
+import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
@@ -9,6 +10,9 @@ public class Fire extends Item {
 
     int turnCounter;
 
+    /**
+     *
+     */
     public Fire() {
         super("Fire", 'v', false);
     }
@@ -18,7 +22,8 @@ public class Fire extends Item {
         if (turnCounter <= 3) {
             if (location.getActor() != null) {
                 location.getActor().hurt(20);
-                System.out.println(location.getActor()+" is being hurt by fire!");
+                Display d = new Display();
+                d.println(location.getActor()+" is being hurt by fire!");
             }
         }
         else {

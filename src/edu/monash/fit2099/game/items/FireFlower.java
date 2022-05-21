@@ -7,6 +7,12 @@ import edu.monash.fit2099.game.actions.ConsumeAction;
 import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.ConsumableItem;
 
+/**
+ * FireFlower class represents all the functionalities the fireflower has within the game
+ * @author: Syed Zubin Hafiz
+ * @version: 1.0.0
+ * @see edu.monash.fit2099.game.items
+ */
 
 public class FireFlower extends Item implements ConsumableItem {
 
@@ -44,11 +50,25 @@ public class FireFlower extends Item implements ConsumableItem {
         this.isConsumed = isConsumed;
     }
 
+
+    /**
+     * A method which decides if the player keeps an item in his inventory, which can fade with turns.
+     * @return
+     */
     @Override
     public boolean canFade() {
         return false;
     }
-
+    /**
+     * method to check if item on the current ground location has been consumed.
+     * We initially check if the item has been consumed.
+     * If not yet consumed, we add the consume action for the actor.
+     * If item has been consumed, we remove the option for the actor, given it was there on the previous turn
+     * We also keep track of the fading time. Once the limited number of turns has been reached, the item is removed
+     * from the actor's inventory.
+     * @param currentLocation of the actor
+     * @param  actor who picks up the flower
+     */
     public void tick(Location currentLocation, Actor actor) {
         // if not yet consumed and the Fire Attack effect hasn't been put to use,
         // then add a consume action to the actor
@@ -61,7 +81,7 @@ public class FireFlower extends Item implements ConsumableItem {
         }
         // if already consumed, remove the consumeAction if it was there for the previous turn
         // and decrement the turns left for fire attack effect.
-        else if ( isConsumed && this.consumeAction != null) {
+        else if (isConsumed && this.consumeAction != null) {
             removeAction(this.consumeAction);
             this.consumeAction = null;
         }
@@ -73,6 +93,11 @@ public class FireFlower extends Item implements ConsumableItem {
         }
     }
 
+
+    /**
+     * Method to add capability to the actor who consumed the FireFlower item.
+     * @param actor consuming the item
+     */
     @Override
     public void consumedBy(Actor actor) {
         setIsConsumed(true);

@@ -19,7 +19,7 @@ public class FireAttackAction extends AttackAction {
         String result = "";
         Location location = map.locationOf(target);
 
-        if(actor.hasCapability(Status.INVINCIBLE)) {
+        if (actor.hasCapability(Status.INVINCIBLE)) {
             InstaKilledAction instaKilledAction = new InstaKilledAction(target, direction);
             result = instaKilledAction.execute(actor, map);
             result += " And ";
@@ -38,6 +38,6 @@ public class FireAttackAction extends AttackAction {
 
     @Override
     public String menuDescription(Actor actor) {
-        return actor + " attacks "+ target + " at " + direction + " with fire!";
+        return actor + " attacks " + target + " at " + direction + " with fire!";
     }
 }
