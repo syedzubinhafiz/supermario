@@ -18,9 +18,8 @@ import edu.monash.fit2099.game.items.Key;
 
 import java.util.Random;
 
-public class Bowser extends Enemy implements Resettable, Speakable {
+public class Bowser extends Enemy implements Resettable {
 
-    private boolean turnToSpeak;
     Location original;
 
 
@@ -134,14 +133,6 @@ public class Bowser extends Enemy implements Resettable, Speakable {
         return actions;
     }
 
-    public boolean turnToSpeak() {
-        if(turnToSpeak) {
-            turnToSpeak=false;
-            return true;
-        }
-        turnToSpeak=true;
-        return false;
-    }
 
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {

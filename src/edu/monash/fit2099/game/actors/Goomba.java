@@ -25,9 +25,7 @@ import edu.monash.fit2099.game.interfaces.Speakable;
  * @version 1.0.0
  * @see edu.monash.fit2099.game.actors
  */
-public class Goomba extends Enemy implements Resettable, Speakable {
-
-	private boolean turnToSpeak;
+public class Goomba extends Enemy implements Resettable {
 
 
 	/**
@@ -82,7 +80,6 @@ public class Goomba extends Enemy implements Resettable, Speakable {
 			return new GetRemovedAction();
 		}
 
-		Display d = new Display();
 		if(turnToSpeak()) {
 			speak(name);
 		}
@@ -124,15 +121,6 @@ public class Goomba extends Enemy implements Resettable, Speakable {
 	@Override
 	public IntrinsicWeapon getIntrinsicWeapon() {
 		return new IntrinsicWeapon(10, "kicks");
-	}
-
-	public boolean turnToSpeak() {
-		if(turnToSpeak) {
-			turnToSpeak=false;
-			return true;
-		}
-		turnToSpeak=true;
-		return false;
 	}
 
 

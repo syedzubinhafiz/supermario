@@ -7,15 +7,13 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
-import edu.monash.fit2099.game.actions.Monologue;
 import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.Behaviour;
 import edu.monash.fit2099.game.interfaces.Resettable;
-import edu.monash.fit2099.game.interfaces.Speakable;
 
-public class PiranhaPlant extends Enemy implements Speakable {
+public class PiranhaPlant extends Enemy {
 
-    private boolean turnToSpeak;
+
     /**
      * Constructor.
      */
@@ -27,8 +25,6 @@ public class PiranhaPlant extends Enemy implements Speakable {
 
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-        Display d = new Display();
-
         if(super.playTurn(actions, lastAction, map, display) != null) {
             //increase hp by 50 & heal to max
             this.increaseMaxHp(50);
@@ -59,14 +55,6 @@ public class PiranhaPlant extends Enemy implements Speakable {
         return actions;
     }
 
-    public boolean turnToSpeak() {
-        if(turnToSpeak) {
-            turnToSpeak=false;
-            return true;
-        }
-        turnToSpeak=true;
-        return false;
-    }
 
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
@@ -83,13 +71,4 @@ public class PiranhaPlant extends Enemy implements Speakable {
     }
 
 
-    @Override
-    public void setIntrinsicDamage( int intrinsicDamage ) {
-        this.intrinsicDamage = intrinsicDamage;
-    }
-
-    @Override
-    public int getIntrinsicDamage() {
-        return this.intrinsicDamage;
-    }
 }

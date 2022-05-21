@@ -17,6 +17,7 @@ import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.Behaviour;
 import edu.monash.fit2099.game.interfaces.Drinker;
 import edu.monash.fit2099.game.interfaces.Resettable;
+import edu.monash.fit2099.game.interfaces.Speakable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,9 +29,10 @@ import java.util.Map;
  * @version 1.0.0
  * @see edu.monash.fit2099.game.actors
  */
-public abstract class Enemy extends Actor implements Resettable, Drinker {
+public abstract class Enemy extends Actor implements Resettable, Drinker, Speakable {
 
     protected int intrinsicDamage;
+    private boolean turnToSpeak;
     /**
      * Map of behaviours to store the behaviour of the enemy along with its priority.
      * It is protected visibility to allow child-classes to have access.
@@ -113,6 +115,15 @@ public abstract class Enemy extends Actor implements Resettable, Drinker {
 
     public int getIntrinsicDamage(){
         return this.intrinsicDamage;
+    }
+
+    public boolean turnToSpeak() {
+        if(turnToSpeak) {
+            turnToSpeak=false;
+            return true;
+        }
+        turnToSpeak=true;
+        return false;
     }
 
 }
