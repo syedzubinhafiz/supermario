@@ -1,6 +1,5 @@
 package edu.monash.fit2099.game.actions;
 
-import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.MoveActorAction;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
@@ -10,13 +9,13 @@ import edu.monash.fit2099.game.grounds.WarpPipe;
 public class MoveMapAction extends MoveActorAction {
 
     Location current;
-    WarpPipe wp;
+    WarpPipe previousWp;
     String description;
 
     public MoveMapAction(Location moveToLocation, String direction, Location currentLocation, WarpPipe wp, String description) {
         super(moveToLocation, direction);
         this.current = currentLocation;
-        this.wp=wp;
+        this.previousWp = wp;
         this.description=description;
     }
 
@@ -32,8 +31,8 @@ public class MoveMapAction extends MoveActorAction {
             map.moveActor(actor, moveToLocation);
         }
 
-        //set destination warppipe's location to be
-        if(!wp.isSecondMap()) {
+        //set destination of previous warpPipe's if the previous warp pipe is from the first map
+        if(!previousWp.isSecondMap()) {
             WarpPipe dest = (WarpPipe) moveToLocation.getGround();
             dest.setPreviousWarpPipe(current);
         }

@@ -16,6 +16,7 @@ import edu.monash.fit2099.game.actions.Monologue;
 import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.Behaviour;
 import edu.monash.fit2099.game.interfaces.Resettable;
+import edu.monash.fit2099.game.interfaces.Speakable;
 
 /**
  * A little fungus guy.
@@ -24,7 +25,7 @@ import edu.monash.fit2099.game.interfaces.Resettable;
  * @version 1.0.0
  * @see edu.monash.fit2099.game.actors
  */
-public class Goomba extends Enemy implements Resettable {
+public class Goomba extends Enemy implements Resettable, Speakable {
 
 	private boolean turnToSpeak;
 
@@ -83,8 +84,7 @@ public class Goomba extends Enemy implements Resettable {
 
 		Display d = new Display();
 		if(turnToSpeak()) {
-			String s = Monologue.getSentence("Goomba");
-			d.println(s);
+			speak(name);
 		}
 
 		for(Behaviour behaviour : super.behaviours.values()) {

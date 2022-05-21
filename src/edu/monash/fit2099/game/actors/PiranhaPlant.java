@@ -7,13 +7,13 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
-import edu.monash.fit2099.game.actions.InstaKilledAction;
 import edu.monash.fit2099.game.actions.Monologue;
 import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.Behaviour;
 import edu.monash.fit2099.game.interfaces.Resettable;
+import edu.monash.fit2099.game.interfaces.Speakable;
 
-public class PiranhaPlant extends Enemy implements Resettable  {
+public class PiranhaPlant extends Enemy implements Speakable {
 
     private boolean turnToSpeak;
     /**
@@ -34,8 +34,7 @@ public class PiranhaPlant extends Enemy implements Resettable  {
             this.increaseMaxHp(50);
         }
         if(turnToSpeak()) {
-            String s = Monologue.getSentence("Piranha");
-            d.println(s);
+            speak(name);
         }
 
         for(Behaviour behaviour : super.behaviours.values()) {
@@ -52,11 +51,7 @@ public class PiranhaPlant extends Enemy implements Resettable  {
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = new ActionList();
-        // it can be attacked only by the HOSTILE opponent, and this action will not attack the HOSTILE enemy back.
-//        if  (otherActor.hasCapability(Status.INVINCIBLE) &&otherActor.hasCapability(Status.HOSTILE_TO_ENEMY) ) {
-//            actions.add(new InstaKilledAction(this, direction));
-//        }
-//        else
+
         if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
             actions.add( super.getAttackedAction(otherActor, this, direction ) );
             //New way to get AttackAction using the interface's method

@@ -14,8 +14,9 @@ import edu.monash.fit2099.game.actions.Monologue;
 import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.Behaviour;
 import edu.monash.fit2099.game.interfaces.Resettable;
+import edu.monash.fit2099.game.interfaces.Speakable;
 
-public abstract class KoopaBase extends Enemy implements Resettable {
+public abstract class KoopaBase extends Enemy implements Resettable, Speakable {
     /**
      * DormantAction attribute to store an instance of dormantAction
      */
@@ -93,8 +94,7 @@ public abstract class KoopaBase extends Enemy implements Resettable {
 
         Display d = new Display();
         if(turnToSpeak()) {
-            String s = Monologue.getSentence("Koopa");
-            d.println(s);
+            speak(name);
         }
 
         for(Behaviour behaviour : behaviours.values()) {

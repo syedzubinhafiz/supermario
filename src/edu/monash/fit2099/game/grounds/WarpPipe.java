@@ -1,6 +1,5 @@
 package edu.monash.fit2099.game.grounds;
 
-import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actions.MoveActorAction;
 import edu.monash.fit2099.engine.actors.Actor;
@@ -15,7 +14,6 @@ import edu.monash.fit2099.game.interfaces.Resettable;
 
 public class WarpPipe extends Ground implements HigherGround, Resettable {
 
-//    boolean firstTurn=true;
     boolean hasPiranha=false;
     GameMap mapToPortal;
     Location previousWarpPipe;
@@ -87,7 +85,7 @@ public class WarpPipe extends Ground implements HigherGround, Resettable {
         }
         if(location.getActor() == actor) {
             if(previousWarpPipe==null) {
-                actions.add(new MoveMapAction(mapToPortal.at(0, 0), " to " + mapToPortal, location, this, " to Lavazone"));
+                actions.add(new MoveMapAction(mapToPortal.at(0, 0), " to " + mapToPortal, location, this, " to Lava Zone"));
             }
             else {
                 actions.add(new MoveMapAction(previousWarpPipe, " to " + previousWarpPipe, location, this, " back to previous pipe"));

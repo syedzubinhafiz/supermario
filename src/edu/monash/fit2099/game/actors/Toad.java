@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.game.actions.Monologue;
 import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.Obtainable;
+import edu.monash.fit2099.game.interfaces.Speakable;
 import edu.monash.fit2099.game.interfaces.Tradeable;
 import java.util.ArrayList;
 
@@ -19,12 +20,8 @@ import java.util.ArrayList;
  * @version 1.0.0
  * @see edu.monash.fit2099.game.actors
  */
-public class Toad extends Actor {
+public class Toad extends Actor implements Speakable {
 
-//    public static final String[] sentences = new String[] {"You might need a wrench to smash Koopa's hard shells.",
-//            "You better get back to finding the Power Stars.", "The Princess is depending on you! You are our only hope.",
-//            "Being imprisoned in these walls can drive a fungus crazy :("};
-//    private static ArrayList<Monologue> monologues = new ArrayList<Monologue>();
     private boolean turnToSpeak=false;
     /**
      * Singleton Toad instance
@@ -59,10 +56,8 @@ public class Toad extends Actor {
      * @see Actor#playTurn(ActionList, Action, GameMap, Display)
      */
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-        Display d = new Display();
         if(turnToSpeak()) {
-            String s = Monologue.getSentence("Toad");
-            d.println(s);
+            speak(name);
         }
         return new DoNothingAction();
     }

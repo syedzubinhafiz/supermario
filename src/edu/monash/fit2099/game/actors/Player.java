@@ -138,23 +138,7 @@ public class Player extends Actor implements Resettable, Drinker {
 		return menu.showMenu(this, actions, display);
 	}
 
-//	public boolean hasKey(GameMap map){
-//		//find for key
-//		for(Item item :map.locationOf(this).getItems()) {
-//			if (item.hasCapability(Status.END_GAME)) {
-//				return true;
-//			}
-//		}
-//		for (Exit exit : map.locationOf(this).getExits()) {
-//			Location destination = exit.getDestination();
-//			for(Item item :destination.getItems()) {
-//				if (item.hasCapability(Status.END_GAME)) {
-//					return true;
-//				}
-//			}
-//		}
-//		return false;
-//	}
+
 	/**
 	 * Getter for the wallet attribute
 	 * @return Wallet wallet item

@@ -12,8 +12,9 @@ import edu.monash.fit2099.game.actions.UnlockAction;
 import edu.monash.fit2099.game.actions.Monologue;
 import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.Resettable;
+import edu.monash.fit2099.game.interfaces.Speakable;
 
-public class PrincessPeach extends Actor implements Resettable {
+public class PrincessPeach extends Actor implements Resettable, Speakable {
 
 
     private boolean turnToSpeak;
@@ -34,7 +35,7 @@ public class PrincessPeach extends Actor implements Resettable {
 
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
-        Display d = new Display();
+
         if(this.hasCapability(Status.RESET)){
             // move pp back to original position
             if(map.locationOf(this)!=original) {
@@ -52,8 +53,7 @@ public class PrincessPeach extends Actor implements Resettable {
             }
         }
         if(turnToSpeak()){
-            String s = Monologue.getSentence("Princess Peach");
-            d.println(s);
+            speak(name);
         }
         return new DoNothingAction();
     }
@@ -80,4 +80,5 @@ public class PrincessPeach extends Actor implements Resettable {
     public void resetInstance() {
         this.addCapability(Status.RESET);
     }
+
 }

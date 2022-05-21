@@ -13,14 +13,14 @@ import edu.monash.fit2099.game.actions.*;
 import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.Behaviour;
 import edu.monash.fit2099.game.interfaces.Resettable;
+import edu.monash.fit2099.game.interfaces.Speakable;
 import edu.monash.fit2099.game.items.Key;
 
 import java.util.Random;
 
-public class Bowser extends Enemy implements Resettable{
+public class Bowser extends Enemy implements Resettable, Speakable {
 
     private boolean turnToSpeak;
-    Display d = new Display();
     Location original;
 
 
@@ -80,8 +80,7 @@ public class Bowser extends Enemy implements Resettable{
             return new GetRemovedAction();
         }
         else if(turnToSpeak()) {
-            String s = Monologue.getSentence("Bowser");
-            d.println(s);
+            speak(name);
         }
 
         // attack & follow player, then drop fire.
@@ -105,6 +104,7 @@ public class Bowser extends Enemy implements Resettable{
 
     public FireAttackAction attackAndFollowActor(GameMap map) {
         //find for player
+        Display d = new Display();
         for (Exit exit : map.locationOf(this).getExits()) {
             Location destination = exit.getDestination();
             if ((destination.getActor() != null && destination.getActor().hasCapability(Status.HOSTILE_TO_ENEMY))) {
@@ -127,10 +127,6 @@ public class Bowser extends Enemy implements Resettable{
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = new ActionList();
 
-//        if  (otherActor.hasCapability(Status.INVINCIBLE) && otherActor.hasCapability(Status.HOSTILE_TO_ENEMY) ) {
-//            actions.add(new InstaKilledAction(this, direction));
-//        }
-//        else
         if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
             actions.add( super.getAttackedAction( otherActor, this, direction ) );
             //New way to get AttackAction using the interface's method

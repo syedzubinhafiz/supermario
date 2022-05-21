@@ -76,12 +76,18 @@ public class Application {
 			// SECOND MAP
 			FancyGroundFactory groundFactory2 = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Sprout(), new Lava());
 			List<String> map2 = Arrays.asList(
-					"................",
-					"................");
+					"......................................................",
+					"......................................................",
+					"......................................................",
+					"......................................................",
+					"......................................................",
+					"......................................................",
+					"......................................................",
+					"......................................................");
 
 			GameMap gameMap2 = new GameMap(groundFactory2, map2);
 			world.addGameMap(gameMap2);
-			// Add some lava
+			// Add some lava to second map
 			gameMap2.at(2, 1).setGround(new Lava());
 			gameMap2.at(0, 1).setGround(new Lava());
 			gameMap2.at(9, 0).setGround(new Lava());
@@ -95,8 +101,8 @@ public class Application {
 			// IN GAMEMAP1
 			gameMap1.at(40,8).setGround(new WarpPipe(gameMap2));
 			gameMap1.at(38,8).setGround(new WarpPipe(gameMap2));
-//			gameMap1.at(10,18).setGround(new WarpPipe(gameMap2));
-//			gameMap1.at(53,13).setGround(new WarpPipe(gameMap2));
+			gameMap1.at(10,18).setGround(new WarpPipe(gameMap2));
+			gameMap1.at(53,13).setGround(new WarpPipe(gameMap2));
 
 			// IN GAMEMAP2
 			// set reference from map2's wrap pipe to map1 after map1 has been created
@@ -109,15 +115,9 @@ public class Application {
 			Actor mario = new Player("Mario", 'm', 100);
 			world.addPlayer(mario, gameMap1.at(42, 10));
 
-//			Wrench wrench = new Wrench();
-//			SuperMushroom sm = new SuperMushroom();
-//			PowerStar ps = new PowerStar();
-//			mario.addItemToInventory( wrench );
-//			mario.addItemToInventory(sm );
-//			mario.addItemToInventory(ps);
-//
-			Actor koopa = new Koopa();
-			gameMap1.at(46, 10).addActor(koopa);
+			// (for debugging) add koopa
+//			Actor koopa = new Koopa();
+//			gameMap1.at(46, 10).addActor(koopa);
 
 			world.run();
 
