@@ -10,11 +10,9 @@ import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import edu.monash.fit2099.game.actions.DestroyShellAction;
 import edu.monash.fit2099.game.actions.DormantAction;
-import edu.monash.fit2099.game.actions.Monologue;
 import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.Behaviour;
 import edu.monash.fit2099.game.interfaces.Resettable;
-import edu.monash.fit2099.game.interfaces.Speakable;
 
 public abstract class Koopa extends Enemy implements Resettable {
     /**

@@ -8,28 +8,36 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
-import edu.monash.fit2099.game.actions.UnlockAction;
-import edu.monash.fit2099.game.actions.Monologue;
 import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.Resettable;
 import edu.monash.fit2099.game.interfaces.Speakable;
 
 public class PrincessPeach extends Actor implements Resettable, Speakable {
 
-
     private boolean turnToSpeak;
     private boolean allowedToLeave;
     Location original;
 
     /**
+     * Singleton pp instance
+     */
+    private static PrincessPeach instance;
+
+    /**
      * Constructor.
      */
-    public PrincessPeach(Location location) {
+    private PrincessPeach(Location location) {
         super("Princess Peach", 'P', 100);
         this.addCapability(Status.INVINCIBLE);
-        UnlockAction.setPp(this);
         original=location;
         Resettable.super.registerInstance();
+    }
+
+    public static PrincessPeach getInstance(Location location) {
+        if (instance == null) {
+            instance = new PrincessPeach(location);
+        }
+        return instance;
     }
 
 
@@ -80,5 +88,6 @@ public class PrincessPeach extends Actor implements Resettable, Speakable {
     public void resetInstance() {
         this.addCapability(Status.RESET);
     }
+
 
 }

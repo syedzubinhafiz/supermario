@@ -13,21 +13,22 @@ import edu.monash.fit2099.game.actions.*;
 import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.Behaviour;
 import edu.monash.fit2099.game.interfaces.Resettable;
-import edu.monash.fit2099.game.interfaces.Speakable;
 import edu.monash.fit2099.game.items.Key;
 
-import java.util.Random;
 
 public class Bowser extends Enemy implements Resettable {
 
     Location original;
-
+    /**
+     * Singleton bow instance
+     */
+    private static Bowser instance;
 
     /**
      * Constructor.
 
      */
-    public Bowser(Location location) {
+    private Bowser(Location location) {
         super("Bowser", 'B', 500);
         this.behaviours.remove(10); // remove the wander behaviour
         this.behaviours.remove(1); // remove the attack action
@@ -35,6 +36,14 @@ public class Bowser extends Enemy implements Resettable {
         original = location;
         this.intrinsicDamage=80;
     }
+
+    public static Bowser getInstance(Location location) {
+        if (instance == null) {
+            instance = new Bowser(location);
+        }
+        return instance;
+    }
+
 
     @Override
     public void setIntrinsicDamage( int intrinsicDamage ) {

@@ -1,7 +1,7 @@
 package edu.monash.fit2099.game.interfaces;
 
 import edu.monash.fit2099.engine.displays.Display;
-import edu.monash.fit2099.game.actions.Monologue;
+import edu.monash.fit2099.game.Monologue;
 
 public interface Speakable {
 

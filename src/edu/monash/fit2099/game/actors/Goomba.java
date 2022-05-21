@@ -11,12 +11,9 @@ import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import edu.monash.fit2099.engine.weapons.Weapon;
 import edu.monash.fit2099.game.Utils;
 import edu.monash.fit2099.game.actions.GetRemovedAction;
-import edu.monash.fit2099.game.actions.InstaKilledAction;
-import edu.monash.fit2099.game.actions.Monologue;
 import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.Behaviour;
 import edu.monash.fit2099.game.interfaces.Resettable;
-import edu.monash.fit2099.game.interfaces.Speakable;
 
 /**
  * A little fungus guy.

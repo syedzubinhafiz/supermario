@@ -1,6 +1,4 @@
-package edu.monash.fit2099.game.actions;
-
-import edu.monash.fit2099.game.Utils;
+package edu.monash.fit2099.game;
 
 import java.util.ArrayList;
 import java.util.Arrays;
