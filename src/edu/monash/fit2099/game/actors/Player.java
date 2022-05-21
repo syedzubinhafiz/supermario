@@ -40,10 +40,6 @@ public class Player extends Actor implements Resettable, Drinker {
 	 */
 	private static final int DEFAULT_HP = 500;
 
-
-	//Made bottle static since mario should only have one
-	private Bottle bottle;
-
 	//New for updating player damage
 	private int intrinsicDamage;
 
@@ -67,14 +63,6 @@ public class Player extends Actor implements Resettable, Drinker {
 		this.wallet = new Wallet(700);
 		this.resetMaxHp(DEFAULT_HP);
 		Resettable.super.registerInstance();
-	}
-
-	public Bottle getBottle() {
-		return bottle;
-	}
-
-	public void setBottle(Bottle bottle) {
-		this.bottle=bottle;
 	}
 
 	/**

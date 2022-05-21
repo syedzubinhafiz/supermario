@@ -4,7 +4,6 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.game.interfaces.ConsumableItem;
-import edu.monash.fit2099.game.interfaces.FadeableItem;
 
 public class ConsumeInventoryItemAction extends ConsumeAction {
 
@@ -17,15 +16,7 @@ public class ConsumeInventoryItemAction extends ConsumeAction {
         super.execute(actor, map);
         map.locationOf(actor).removeItem((Item) consumableItem);
         return actor +" consumed " + consumableItem+".";
-
     }
 
-    @Override
-    public String menuDescription(Actor actor) {
-        String result= actor + " consumes "+ consumableItem ;
-        if (consumableItem.canFade()) {
-            result = actor + " consumes "+ consumableItem + " - " + ((FadeableItem) consumableItem).getFadingTimeOnFloorInventory() + " turns remaining";
-        }
-        return result;
-    }
+
 }

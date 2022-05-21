@@ -7,8 +7,8 @@ import edu.monash.fit2099.game.interfaces.ConsumableItem;
 
 public class DrinkFromFountainAction extends ConsumeAction {
 
-    MagicalFountain fountain;
-    public ConsumableItem secondWater;
+    private MagicalFountain fountain;
+    private ConsumableItem secondWater;
 
     /**
      * Constructor

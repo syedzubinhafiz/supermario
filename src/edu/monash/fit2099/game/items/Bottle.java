@@ -5,7 +5,6 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.game.actions.DrinkFromBottleAction;
 import edu.monash.fit2099.game.actions.ObtainedAction;
-import edu.monash.fit2099.game.actors.Player;
 import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.ConsumableItem;
 import edu.monash.fit2099.game.interfaces.Obtainable;
@@ -66,7 +65,7 @@ public class Bottle extends Item implements Obtainable {
     public List<Action> getAllowableActions() {
         List<Action> actions = new ArrayList<>();
         if(!isEmpty()) {
-            actions.add(new DrinkFromBottleAction(waterStack.peek(), this));
+            actions.add(new DrinkFromBottleAction(waterStack.peek()));
         }
         return actions;
     }

@@ -35,15 +35,5 @@ public interface ConsumableItem {
      */
     boolean canFade();
 
-    //Alternatively
-
-    //Can use either pair to make use of consumable item instead of having to make many many classes, which makes the UML diagrams very difficult to draw and more cluttered.
-    //See consumeAction for implementation
-//    boolean isWater();
-//    boolean isNotWater();
-
-//    boolean isInInventory();
-//    boolean isInBottle();
-
 
 }
