@@ -31,13 +31,26 @@ import java.util.Map;
  */
 public abstract class Enemy extends Actor implements Resettable, Drinker, Speakable {
 
+    /**
+     * Attribute
+     * Integer representing the intrinsic/base damage of the Enemy
+     */
     protected int intrinsicDamage;
+
+
+    /**
+     * Attribute
+     * Boolean attribute to flag when the Enemy is supposed to speak
+     */
     private boolean turnToSpeak;
+
+
     /**
      * Map of behaviours to store the behaviour of the enemy along with its priority.
      * It is protected visibility to allow child-classes to have access.
      */
     protected final Map<Integer, Behaviour> behaviours = new HashMap<>(); // priority, behaviour
+
 
     /**
      * Constructor.
@@ -53,6 +66,7 @@ public abstract class Enemy extends Actor implements Resettable, Drinker, Speaka
         Resettable.super.registerInstance();
         this.addCapability(Status.MUST_JUMP);
     }
+
 
     /**
      * Method to return an Action that would be executed for the actor in the current turn.
@@ -71,6 +85,7 @@ public abstract class Enemy extends Actor implements Resettable, Drinker, Speaka
 
         return null;
     }
+
 
     /**
      * Adds a follow behaviour to the Enemy to follow the actor
@@ -96,6 +111,7 @@ public abstract class Enemy extends Actor implements Resettable, Drinker, Speaka
         return new AttackAction( targetActor, direction );
     }
 
+
     /**
      * Implements the resetInstance() method in Resettable interface.
      * Sets a RESET capability in the enum Status class to invoke the Reset functionality
@@ -107,16 +123,29 @@ public abstract class Enemy extends Actor implements Resettable, Drinker, Speaka
         this.addCapability(Status.RESET);
     }
 
-    //IMPORTANT!!
-    //Remove if not following JY alternative
+
+    /**
+     * Setter for the intrinsic damage attribute of the Enemy
+     * @param intrinsicDamage value for damage to be set to
+     */
     public void setIntrinsicDamage( int intrinsicDamage ){
         this.intrinsicDamage = intrinsicDamage;
     }
 
+
+    /**
+     * Gets the attribute related to intrinsic damage of the Enemy
+     * @return Integer representing the current damage value of the enemy
+     */
     public int getIntrinsicDamage(){
         return this.intrinsicDamage;
     }
 
+
+    /**
+     * Method to check if it is the Enemy entities turn to speak.
+     * @return True/False representing whether the Enemy should speak.
+     */
     public boolean turnToSpeak() {
         if(turnToSpeak) {
             turnToSpeak=false;

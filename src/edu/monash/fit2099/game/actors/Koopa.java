@@ -13,14 +13,25 @@ import edu.monash.fit2099.game.actions.DormantAction;
 import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.Behaviour;
 
+
+/**
+ * Abstract Class housing all basic features and functions of all Koopa types; Dormancy, behaviours and damage
+ */
 public abstract class Koopa extends Enemy {
+
+
     /**
-     * DormantAction attribute to store an instance of dormantAction
+     * Attribute
+     * DormantAction attribute to store an instance of dormantAction for the Koopa to use
      */
     private final DormantAction dormantState;
 
+
     /**
      * Constructor of Koopa
+     * @param name String describing the type of Koopa.
+     * @param displayChar Character to be displayed on the map.
+     * @param hitPoints Integer used to initialise the health of the Koopa.
      */
     public Koopa(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
@@ -30,17 +41,19 @@ public abstract class Koopa extends Enemy {
         this.intrinsicDamage=30;
     }
 
+
     /**
-     * Method to call SetDisplayChar from the Actor abstract class, since it is protected and final in Actor class,
-     * other classes cannot call on this.
+     * Method to provide access to SetDisplayChar from the Actor abstract class, since it is protected and final in Actor class and we cannot change engine code,
+     * other classes cannot call on this except for subclasses.
      * @param displayChar the new displayChar to be set
      */
     public void callSetDisplayChar( char displayChar ){
         this.setDisplayChar( displayChar );
     }
 
+
     /**
-     * Method to return an ActionList containing the allowedActions Koopa provides to actor when actor is near it.
+     * Method to return an ActionList containing the general allowedActions that all Koopas provide to actors when near it.
      * @param otherActor the Actor that might be performing attack
      * @param direction  String representing the direction of the other Actor
      * @param map        current GameMap
@@ -67,7 +80,7 @@ public abstract class Koopa extends Enemy {
 
 
     /**
-     * Method to return the action that needs to be done for the current turn of the Koopa.
+     * Method to return general actions that needs to be done for the current turn of all Koopa types.
      * @param actions    collection of possible Actions for this Actor
      * @param lastAction The Action this Actor took last turn.
      * @param map        the map containing the Actor
@@ -111,24 +124,24 @@ public abstract class Koopa extends Enemy {
         return this.hasCapability(Status.DORMANT);
     }
 
-    @Override
+
     /**
      * Overrides the getWeapon() method to return only the intrinsicWeapon of Koopa.
      * @see Actor#getWeapon()
      */
+    @Override
     public Weapon getWeapon() {
         return this.getIntrinsicWeapon();
     }
 
-    @Override
+
     /**
      * Overrides the getIntrinsicWeapon class to return the specific intrinsic weapon Koopa has.
      * @see Actor#getIntrinsicWeapon()
      */
+    @Override
     public IntrinsicWeapon getIntrinsicWeapon() {
         return new IntrinsicWeapon(30, "punches");
     }
-
-
 
 }

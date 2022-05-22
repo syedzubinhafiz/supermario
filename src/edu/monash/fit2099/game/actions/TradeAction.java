@@ -8,6 +8,7 @@ import edu.monash.fit2099.game.actors.Player;
 import edu.monash.fit2099.game.actors.Toad;
 import edu.monash.fit2099.game.interfaces.Tradeable;
 
+
 /**
  * Special TradeActopm that allows an actor to trade items with Toad.
  *
@@ -22,6 +23,7 @@ public class TradeAction extends Action {
      * The item to be traded
      */
     private final Tradeable itemToTrade;
+
 
     /**
      * The value of the trade (the amount it costs)
@@ -39,6 +41,7 @@ public class TradeAction extends Action {
         this.itemToTrade = itemToTrade;
         this.tradeValue = tradeValue;
     }
+
 
     /**
      * Executes the TradeAction by reducing the balance from the actor if sufficient and transferring the item to the actor's inventory.
@@ -62,15 +65,15 @@ public class TradeAction extends Action {
         return "You don't have enough coins!";
     }
 
+
     /**
      * Returns a descriptive statement for the TradeAction
      * @param actor The actor who might be performing a certain action
-     * @return a String describing what the trade was
+     * @return a String describing the trade action for menu use
      */
     @Override
     public String menuDescription(Actor actor) {
         return actor + " buys " + itemToTrade + " ($" + itemToTrade.getValue()+")";
     }
-
 
 }
