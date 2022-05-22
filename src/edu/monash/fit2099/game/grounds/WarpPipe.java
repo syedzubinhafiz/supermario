@@ -28,9 +28,17 @@ public class WarpPipe extends Ground implements HigherGround, Resettable {
      */
     boolean hasPiranha;
 
-
+    /**
+     * Map to portal to
+     */
     GameMap mapToPortal;
+    /**
+     * The location of the previous warp pipe (if the current player came from a different warp pipe)
+     */
     Location previousWarpPipe;
+    /**
+     * Boolean representing if its in the second map
+     */
     boolean secondMap;
 
     /**
