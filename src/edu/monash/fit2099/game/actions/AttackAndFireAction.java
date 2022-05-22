@@ -1,9 +1,9 @@
 package edu.monash.fit2099.game.actions;
 
 import edu.monash.fit2099.engine.actors.Actor;
-import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.game.actors.Enemy;
+import edu.monash.fit2099.game.enums.Status;
 
 public class AttackAndFireAction extends AttackAction {
 
@@ -19,12 +19,13 @@ public class AttackAndFireAction extends AttackAction {
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        Display d = new Display();
         AttackAction a = new AttackAction(target, direction);
         String result = a.execute(actor, map);
 
         // attack & follow the actor
-        ((Enemy) actor).addFollowBehaviour(target);
+        if(actor.hasCapability(Status.FOLLOW)) {
+            ((Enemy) actor).addFollowBehaviour(target);
+        }
         if(!result.toUpperCase().contains("MISSES")) {
             if(target.isConscious()) {
                 FireAttackAction f = new FireAttackAction(target, direction);
