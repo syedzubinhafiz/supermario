@@ -18,8 +18,8 @@ public class WarpPipe extends Ground implements HigherGround, Resettable {
     GameMap mapToPortal;
     Location previousWarpPipe;
     boolean secondMap;
+    public final static String NAME = "Warp Pipe";
     public final static boolean CAN_BE_DESTROYED = false;
-
 
     /**
      * Constructor.
@@ -51,7 +51,7 @@ public class WarpPipe extends Ground implements HigherGround, Resettable {
 
     @Override
     public String getName() {
-        return "Warp Pipe";
+        return NAME;
     }
 
     @Override
