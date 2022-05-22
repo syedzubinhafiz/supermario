@@ -156,15 +156,28 @@ public class Player extends Actor implements Resettable, Drinker {
 
 	}
 
+	/**
+	 * Overrides the getIntrinsicWeapon class to return the specific intrinsic weapon Player has.
+	 * @see Actor#getIntrinsicWeapon()
+	 */
+	@Override
 	public IntrinsicWeapon getIntrinsicWeapon() {
 		return new IntrinsicWeapon(intrinsicDamage, "punches");
 	}
 
+	/**
+	 * Implements the getIntrinsicDamage interface to return the specific intrinsicdamage
+	 * @see Drinker#getIntrinsicDamage()
+	 */
 	@Override
 	public int getIntrinsicDamage() {
 		return intrinsicDamage;
 	}
 
+	/**
+	 * Implements the setIntrinsicDamage interface to set the specific intrinsicdamage
+	 * @see Drinker#getIntrinsicDamage()
+	 */
 	@Override
 	public void setIntrinsicDamage( int intrinsicDamage ) {
 		this.intrinsicDamage = intrinsicDamage;
