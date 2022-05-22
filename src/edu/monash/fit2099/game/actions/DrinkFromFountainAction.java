@@ -65,7 +65,7 @@ public class DrinkFromFountainAction extends ConsumeAction {
     /**
      * Returns a descriptive statement for DrinkFromFountainAction.
      * @param actor The actor performing the certain action.
-     * @return a String describing a non-player entity has drank from the fountain.
+     * @return a String describing a non-player entity drinking from the fountain.
      */
     @Override
     public String menuDescription(Actor actor) {

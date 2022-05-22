@@ -54,7 +54,7 @@ public class MoveMapAction extends MoveActorAction {
 
     /**
      * Executes the MoveMapAction by sending the player to new map.
-     * Saves the location of the Warp Pipe on the original map to send the player back
+     * Saves the location of the Warp Pipe of the original map to the Warp Pipe in the new location, for travel back to the old map.
      * @param actor The actor performing the action.
      * @param map The map the actor is on.
      * @return String to show the message output after the execution of the action
@@ -76,9 +76,15 @@ public class MoveMapAction extends MoveActorAction {
         return message;
     }
 
+    /**
+     * Returns a descriptive statement for MoveMapAction
+     * @param actor The actor performing the action.
+     * @return a String describing travel to the new map
+     */
     @Override
     public String menuDescription(Actor actor) {
         return "Teleport" +description;
     }
+
 }
 
