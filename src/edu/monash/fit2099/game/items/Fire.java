@@ -6,7 +6,7 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.game.enums.Status;
-import edu.monash.fit2099.game.grounds.Dirt;
+
 /**
  * Fire class represents the Fire dropped on the ground due to Mario's FireAttackAction
  * @author: Syed Zubin Hafiz

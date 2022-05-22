@@ -5,9 +5,9 @@ import edu.monash.fit2099.game.Monologue;
 
 public interface Speakable {
 
-    default void speak(String key){
+    default void speak(String name){
         Display d = new Display();
-        String s = Monologue.getSentence(key);
+        String s = Monologue.getSentence(name);
         d.println(s);
     }
 

@@ -15,7 +15,7 @@ public class UnlockAction extends Action {
         String message;
         Display d = new Display();
 
-        PrincessPeach.getInstance().setLocked(true);
+        PrincessPeach.getInstance().setLocked(false);
 
         String sentence = Monologue.getSentence("Princess Peach"); // free the princess
         d.println(sentence);
