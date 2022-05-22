@@ -12,7 +12,6 @@ import edu.monash.fit2099.game.actions.ResetGameAction;
 import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.Drinker;
 import edu.monash.fit2099.game.interfaces.Resettable;
-import edu.monash.fit2099.game.items.Bottle;
 import edu.monash.fit2099.game.items.Wallet;
 
 
