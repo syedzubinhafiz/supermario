@@ -12,13 +12,34 @@ import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.interfaces.HigherGround;
 import edu.monash.fit2099.game.interfaces.Resettable;
 
+
+/**
+ * A class representing a Warp Pipe map obstacle on the Game Map.
+ *
+ * @author Chong Jin Yao & Vanessa Khoo
+ * @version 3.0.0
+ * @see edu.monash.fit2099.game.grounds
+ */
 public class WarpPipe extends Ground implements HigherGround, Resettable {
 
+    /**
+     * Attribute
+     * A boolean attribute to flag if there is a Piranha Plant enemy present in the Warp Pipe
+     */
     boolean hasPiranha;
+
+
     GameMap mapToPortal;
     Location previousWarpPipe;
     boolean secondMap;
+
+    /**
+     * Attribute
+     * a String representing the name of this object
+     */
     public final static String NAME = "Warp Pipe";
+
+
     public final static boolean CAN_BE_DESTROYED = false;
 
     /**

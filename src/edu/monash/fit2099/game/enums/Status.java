@@ -42,14 +42,38 @@ public enum Status {
      * status for the ability to be DORMANT
      */
     HAS_DORMANCY,
+    /**
+     * status for the ability to stand in lava
+     */
     CAN_STAND_LAVA,
+    /**
+     * status for representing fire attack buff
+     */
     FIRE_ATTACK_EFFECT,
+    /**
+     * status appended to key for checking purposes
+     */
     END_GAME,
+    /**
+     * status for actor being able to enter Floor ground type
+     */
     CAN_ENTER_FLOOR,
+    /**
+     * status for all Enemies that can follow the player
+     */
     FOLLOW,
     HIGHER_GROUND,
+    /**
+     * status for actor having obtained a bottle
+     */
     HAS_BOTTLE,
+    /**
+     * status for Fountain ground types
+     */
     FOUNTAIN,
     CAN_DRINK,
+    /**
+     * status for actors that can fly
+     */
     FLYING
 }
