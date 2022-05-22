@@ -53,7 +53,7 @@ public class Player extends Actor implements Resettable, Drinker {
 		super(name, displayChar, hitPoints);
 
 		//For new attribute for intrinsic damage
-		intrinsicDamage = 5;
+		intrinsicDamage = 50; // for our team, we set player's intrinsic damage to 50
 
 		this.addCapability(Status.HOSTILE_TO_ENEMY);
 		this.addCapability(Status.MUST_JUMP);
@@ -117,7 +117,6 @@ public class Player extends Actor implements Resettable, Drinker {
 		if(hasCapability(Status.FIRE_ATTACK_EFFECT)){
 			display1.println(this + " can fire attack!");
 		}
-
 
 		// Add action to be able to talk with Toad.
 		// return/print the console menu

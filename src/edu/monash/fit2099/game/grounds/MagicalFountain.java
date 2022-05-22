@@ -15,6 +15,7 @@ public abstract class MagicalFountain extends Ground {
 
     protected ArrayList<Water> fountainWater;
     protected final int FINAL_WATER_CAPACITY=10;
+    protected String name;
 
     private int rechargeTimer = 0;
 
@@ -23,8 +24,9 @@ public abstract class MagicalFountain extends Ground {
      *
      * @param displayChar character to display for this type of terrain
      */
-    public MagicalFountain(char displayChar) {
+    public MagicalFountain(char displayChar, String name) {
         super(displayChar);
+        this.name=name;
         this.addCapability(Status.FOUNTAIN);
     }
 
@@ -73,4 +75,6 @@ public abstract class MagicalFountain extends Ground {
     public int getCapacity() { return fountainWater.size();}
 
     public int getMaxCapacity() { return FINAL_WATER_CAPACITY;}
+
+    public String getName() {return this.name;}
 }

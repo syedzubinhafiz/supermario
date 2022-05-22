@@ -43,7 +43,7 @@ public class FireAttackAction extends AttackAction {
             result = instaKilledAction.execute(actor, map);
             result += " And ";
         }
-        location.addItem(new Fire());
+        location.addItem(new Fire(map));
 
         if (target.isConscious() && target.hasCapability(Status.FOLLOW) && actor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
             ((Enemy) target).addFollowBehaviour(actor);
@@ -51,7 +51,10 @@ public class FireAttackAction extends AttackAction {
         if (actor.hasCapability(Status.FOLLOW) && actor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
             ((Enemy) actor).addFollowBehaviour(target);
         }
-        result += actor + " has attacked " + target + " with fire!";
+        result += actor + " has successfully attacked " + target + " with fire!";
+        if(!target.isConscious()) {
+            map.removeActor(target);
+        }
         return result;
     }
 

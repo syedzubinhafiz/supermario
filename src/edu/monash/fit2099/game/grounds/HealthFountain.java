@@ -11,7 +11,7 @@ public class HealthFountain extends MagicalFountain {
      * Constructor.
      */
     public HealthFountain() {
-        super('H');
+        super('H', "Health Fountain");
         this.fountainWater =new ArrayList<>();
         for (int i=0; i < FINAL_WATER_CAPACITY; i++) {
             fountainWater.add(new HealthWater() );

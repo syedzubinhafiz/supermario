@@ -9,8 +9,7 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
-import edu.monash.fit2099.game.actions.AttackAndFollowActor;
-import edu.monash.fit2099.game.actions.FireAttackAction;
+import edu.monash.fit2099.game.actions.AttackAndFireAction;
 import edu.monash.fit2099.game.actions.GetRemovedAction;
 import edu.monash.fit2099.game.actions.AttackAction;
 import edu.monash.fit2099.game.enums.Status;
@@ -45,7 +44,6 @@ public class Bowser extends Enemy {
         }
         return instance;
     }
-
 
     @Override
     public void setIntrinsicDamage( int intrinsicDamage ) {
@@ -93,12 +91,7 @@ public class Bowser extends Enemy {
             speak(name);
         }
 
-        // attack & follow player, then drop fire.
-
-//        FireAttackAction attackToActor = attackAndFollowActor(map);
-//        if (attackToActor!=null) {
-//            return attackToActor;
-//        }
+        // attack & follow player
         AttackAction attackToActor = getAttackAction(map);
         if (attackToActor!=null) {
             return attackToActor;
@@ -117,32 +110,10 @@ public class Bowser extends Enemy {
 
     public AttackAction getAttackAction(GameMap map) {
         //find for player
-        Display d = new Display();
         for (Exit exit : map.locationOf(this).getExits()) {
             Location destination = exit.getDestination();
             if ((destination.getActor() != null && destination.getActor().hasCapability(Status.HOSTILE_TO_ENEMY))) {
-                return new AttackAndFollowActor(destination.getActor(), exit.getName());
-            }
-        }
-        return null;
-    }
-
-    public FireAttackAction attackAndFollowActor(GameMap map) {
-        //find for player
-        Display d = new Display();
-        for (Exit exit : map.locationOf(this).getExits()) {
-            Location destination = exit.getDestination();
-            if ((destination.getActor() != null && destination.getActor().hasCapability(Status.HOSTILE_TO_ENEMY))) {
-                AttackAction a = new AttackAction(destination.getActor(), exit.getName());
-                String result = a.execute(this, map);
-                d.println(result); // attack & follow the actor
-                addFollowBehaviour(destination.getActor());
-                if(result.toUpperCase().contains("MISSES")) {
-                    return null;
-                }
-                else {
-                    return new FireAttackAction(destination.getActor(), exit.getName());
-                }
+                return new AttackAndFireAction(destination.getActor(), exit.getName());
             }
         }
         return null;

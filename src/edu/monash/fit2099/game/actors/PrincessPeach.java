@@ -30,6 +30,7 @@ public class PrincessPeach extends Actor implements Resettable, Speakable {
         super("Princess Peach", 'P', 100);
         this.addCapability(Status.INVINCIBLE);
         Resettable.super.registerInstance();
+        locked = true;
     }
 
     public static PrincessPeach getInstance() {

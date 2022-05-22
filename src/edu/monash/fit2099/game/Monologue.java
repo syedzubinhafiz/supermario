@@ -32,8 +32,6 @@ public class Monologue {
 
     public static boolean hasWrench=false;
     public static boolean hasInvibility=false;
-    public static boolean isLocked=true;
-
 
     public static String getSentence(String actor) {
         String result;
@@ -65,7 +63,7 @@ public class Monologue {
             if(actor=="Flying Koopa") {
                 indexes.add(16);
             }
-        } else if (actor=="Piranha") {
+        } else if (actor=="Piranha Plant") {
             indexes.add(17); indexes.add(18);
         }
         int index = Utils.getRandomFrom(indexes);
@@ -81,8 +79,5 @@ public class Monologue {
         Monologue.hasInvibility = hasInvibility;
     }
 
-    public static void setIsLocked(boolean isLocked) {
-        Monologue.isLocked = isLocked;
-    }
 
 }
