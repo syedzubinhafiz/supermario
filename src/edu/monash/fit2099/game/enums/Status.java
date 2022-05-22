@@ -71,7 +71,6 @@ public enum Status {
      * status for Fountain ground types
      */
     FOUNTAIN,
-    CAN_DRINK,
     /**
      * status for actors that can fly
      */

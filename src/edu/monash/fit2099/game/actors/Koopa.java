@@ -16,6 +16,10 @@ import edu.monash.fit2099.game.interfaces.Behaviour;
 
 /**
  * Abstract Class housing all basic features and functions of all Koopa types; Dormancy, behaviours and damage
+ *
+ * @author Vanessa Khoo Ming Yi
+ * @version 1.0.0
+ * @see edu.monash.fit2099.game.actors
  */
 public abstract class Koopa extends Enemy {
 
