@@ -26,16 +26,14 @@ public class AttackAndFireAction extends AttackAction {
         if(actor.hasCapability(Status.FOLLOW)) {
             ((Enemy) actor).addFollowBehaviour(target);
         }
-        if(!result.toUpperCase().contains("MISSES")) {
-            if(target.isConscious()) {
-                FireAttackAction f = new FireAttackAction(target, direction);
-                if (result.toUpperCase().contains("IMMUNE")) {
-                    result += " But since Mario is not immune to fire, ";
-                } else {
-                    result += " And ";
-                }
-                result += f.execute(actor, map);
+        if(!result.toUpperCase().contains("MISSES") && target.isConscious()) {
+            if (result.toUpperCase().contains("IMMUNE")) {
+                result += " But since Mario is not immune to fire, ";
+            } else {
+                result += " And ";
             }
+            FireAttackAction f = new FireAttackAction(target, direction);
+            result += f.execute(actor, map);
         }
         if(!target.isConscious()) {
             map.removeActor(target);
