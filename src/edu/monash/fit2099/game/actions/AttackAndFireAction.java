@@ -6,7 +6,7 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.game.actors.Enemy;
 
-public class AttackAndFollowAction extends AttackAction {
+public class AttackAndFireAction extends AttackAction {
 
     /**
      * Constructor.
@@ -14,7 +14,7 @@ public class AttackAndFollowAction extends AttackAction {
      * @param target    the Actor to attack
      * @param direction the direction of attack
      */
-    public AttackAndFollowAction(Actor target, String direction) {
+    public AttackAndFireAction(Actor target, String direction) {
         super(target, direction);
     }
 

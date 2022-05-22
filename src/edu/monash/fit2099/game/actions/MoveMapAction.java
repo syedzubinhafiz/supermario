@@ -25,8 +25,7 @@ public class MoveMapAction extends MoveActorAction {
             // instantly kill actor (piranha) at the warp pipe
             map.removeActor(moveToLocation.getActor());
         }
-        map.moveActor(actor, moveToLocation); //move actor
-        //super.execute(actor, map); //move actor TRYTHIS
+        super.execute(actor, map); //move actor
 
         // set the previous warp pipe location of destination warpPipe as the current location (before moving)
         if(!previousWp.isSecondMap()) {
