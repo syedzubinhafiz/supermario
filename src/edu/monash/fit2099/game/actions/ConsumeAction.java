@@ -7,8 +7,10 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.game.interfaces.ConsumableItem;
 import edu.monash.fit2099.game.interfaces.FadeableItem;
 
+
 /**
- * Special PickUpItemAction that allows an actor to consume consumable items.
+ * Base ConsumeAction class that provides basic functionality required with consuming ConsumableItem objects.
+ * Extended by subclasses for further specific functionality.
  *
  * @author Vanessa Khoo Ming Yi
  * @version 1.0.0
@@ -16,8 +18,9 @@ import edu.monash.fit2099.game.interfaces.FadeableItem;
  */
 public abstract class ConsumeAction extends Action {
 
-    //attributes
+
     /**
+     * Attribute
      * The consumableItem to be consumed
      */
     protected final ConsumableItem consumableItem;
@@ -35,22 +38,22 @@ public abstract class ConsumeAction extends Action {
 
     /**
      * Executes the consume action by making the consumable item consumed by actor and removing the consumed item
-     * from the map.
+     * from the map/inventory/bottle/fountain.
+     * Makes use of the consumable item's mandatory consumedBy() method to make changes required.
      * @param actor The actor performing the action.
      * @param map The map the actor is on.
      * @return a String to show the message output after execution.
-     * @see PickUpItemAction#execute(Actor actor, GameMap map)
+     * @see ConsumeInventoryItemAction#execute(Actor actor, GameMap map)
      */
-    //Could remove method entirely
     @Override
     public String execute(Actor actor, GameMap map) {
         consumableItem.consumedBy( actor );
         return consumableItem + " is consumed.";
-
     }
 
+
     /**
-     * Returns a descriptive statement for the ConsumeAction
+     * Returns a descriptive statement about ConsumeAction for menu use
      * @param actor The actor performing the certain action
      * @return a String describing actor consuming the item
      */
@@ -63,4 +66,5 @@ public abstract class ConsumeAction extends Action {
         }
         return result;
     }
+
 }
