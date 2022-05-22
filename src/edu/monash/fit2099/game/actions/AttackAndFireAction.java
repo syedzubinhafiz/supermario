@@ -19,8 +19,7 @@ public class AttackAndFireAction extends AttackAction {
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        AttackAction a = new AttackAction(target, direction);
-        String result = a.execute(actor, map);
+        String result = super.execute(actor, map);
 
         // attack & follow the actor
         if(actor.hasCapability(Status.FOLLOW)) {
