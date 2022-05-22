@@ -2,7 +2,7 @@ package edu.monash.fit2099.game.actors;
 
 
 /**
- * Class that represents a Koopa (like a turtle), who is an enemy to the player.
+ * Class that represents a Normal Walking Koopa (like a turtle), who is an enemy to the player.
  *
  * @author Vanessa Khoo Ming Yi
  * @version 1.0.0
@@ -12,7 +12,7 @@ public class WalkingKoopa extends Koopa {
 
 
     /**
-     * Constructor of Koopa
+     * Constructor of Walking Koopa
      */
     public WalkingKoopa() {
         super("Koopa", 'K', 100);

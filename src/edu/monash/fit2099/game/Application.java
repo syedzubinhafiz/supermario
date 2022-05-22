@@ -17,7 +17,9 @@ import edu.monash.fit2099.game.weapons.Wrench;
 
 /**
  * The main class for the Mario World edu.monash.fit2099.game.
- *
+ * @author Vanessa Khoo Ming Yi
+ * @version 1.0.0
+ * @see edu.monash.fit2099.game
  */
 public class Application {
 

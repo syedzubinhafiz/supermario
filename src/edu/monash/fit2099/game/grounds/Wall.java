@@ -87,6 +87,10 @@ public class Wall extends Ground implements HigherGround {
     }
 
     @Override
+    /**
+     * Method to get the final movement action. Implements the method from HigherGround interface.
+     * @return MoveActorAction action
+     */
     public MoveActorAction getFinalMovementAction(Actor actor, Location location, String direction) {
         return getMovementAction(actor, location, direction, successRate, damage, CAN_BE_DESTROYED);
     }

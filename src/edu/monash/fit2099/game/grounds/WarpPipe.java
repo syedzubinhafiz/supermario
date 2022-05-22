@@ -39,7 +39,9 @@ public class WarpPipe extends Ground implements HigherGround, Resettable {
      */
     public final static String NAME = "Warp Pipe";
 
-
+    /**
+     * Boolean constant representing if the WarpPipe can be destroyed or not
+     */
     public final static boolean CAN_BE_DESTROYED = false;
 
     /**
@@ -53,29 +55,59 @@ public class WarpPipe extends Ground implements HigherGround, Resettable {
         Resettable.super.registerInstance();
     }
 
+    /**
+     * Whether or not this WarpPipe belongs to the first map or second map
+     * @return true if its in second map
+     */
     public boolean isSecondMap() {
         return secondMap;
     }
 
+    /**
+     * Set which map to portal to
+     * @param mapToPortal the GameMap to portal to
+     */
     public void setMapToPortal(GameMap mapToPortal) {
         this.mapToPortal = mapToPortal;
     }
 
+    /**
+     * Set the previous location before portaling (previous WarpPipe's location)
+     * @param previousWarpPipe location of previous pipe
+     */
     public void setPreviousWarpPipe(Location previousWarpPipe) {
         this.previousWarpPipe = previousWarpPipe;
     }
 
     @Override
+    /**
+     * Returns true if an Actor can enter this location.
+     *
+     * If only character possesses a power star actor can enter the location,i.e walk over higher ground
+     * Returns false if Actor does not have a special ability and must perform jump action to enter
+     * @param actor the Actor who might be moving
+     * @return true if an Actor can enter this location.
+     *
+     */
     public boolean canActorEnter(Actor actor) {
         return (!actor.hasCapability(Status.MUST_JUMP));
     }
 
     @Override
+    /**
+     * Returns the name, Implements the Speakable interface.
+     * @return String the name of the higher ground
+     */
     public String getName() {
         return NAME;
     }
 
     @Override
+    /**
+     * Overrides the Ground's tick() method
+     * @param location Location of the ground
+     *
+     */
     public void tick(Location location) {
         if(this.hasCapability(Status.RESET)) {
             hasPiranha=false;
@@ -112,11 +144,22 @@ public class WarpPipe extends Ground implements HigherGround, Resettable {
         }
         return actions;
     }
+
     @Override
+    /**
+     * Method to get the final movement action. Implements the method from HigherGround interface.
+     * @return MoveActorAction action
+     */
     public MoveActorAction getFinalMovementAction(Actor actor, Location location, String direction) {
         return getMovementAction(actor, location, direction, 1, 0, CAN_BE_DESTROYED);
     }
     @Override
+    /**
+     * Implements the resetInstance() method in Resettable interface.
+     * Sets a RESET capability in the enum Status class to invoke the Reset functionality
+     * on the WarpPipe class.
+     * @see Resettable#resetInstance()
+     */
     public void resetInstance() {
         this.addCapability(Status.RESET);
     }
