@@ -11,26 +11,25 @@ public class UnlockAction extends Action {
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        String res="";
+        String message;
         Display d = new Display();
 
         Monologue.setIsLocked(false);
 
-        String s = Monologue.getSentence("Princess Peach"); // free the princess
-        d.println(s);
+        String sentence = Monologue.getSentence("Princess Peach"); // free the princess
+        d.println(sentence);
 
         // remove player from map
         map.removeActor(actor);
-        res ="You have won the game!";
+        message ="You have won the game!";
 
-        return res;
+        return message;
     }
 
 
     @Override
     public String menuDescription(Actor actor) {
         return "Free Princess Peach & end the game!";
-
     }
 
 }

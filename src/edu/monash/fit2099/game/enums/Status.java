@@ -51,6 +51,5 @@ public enum Status {
     HAS_BOTTLE,
     FOUNTAIN,
     CAN_DRINK,
-
     FLYING
 }

@@ -1,11 +1,14 @@
 package edu.monash.fit2099.game.grounds;
 
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.game.enums.Status;
 
 public class Lava extends Ground {
+
+    private static final int DAMAGE = 15;
     /**
      * Constructor.
      */
@@ -16,8 +19,10 @@ public class Lava extends Ground {
     public void tick(Location location) {
         // inflict damage on actor at location if actor is there
         if(location.getActor() != null) {
-            location.getActor().hurt(15);
-            System.out.println("Lava has hurt "+ location.getActor()+" by 15 damage!");
+            Actor actor = location.getActor();
+            actor.hurt(DAMAGE);
+            Display d = new Display();
+            d.println("Lava has hurt "+ actor +" by 15 damage!");
         }
     }
 

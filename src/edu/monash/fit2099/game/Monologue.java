@@ -81,4 +81,5 @@ public class Monologue {
     public static void setIsLocked(boolean isLocked) {
         Monologue.isLocked = isLocked;
     }
+
 }

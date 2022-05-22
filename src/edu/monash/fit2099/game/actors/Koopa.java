@@ -88,7 +88,6 @@ public abstract class Koopa extends Enemy {
             return dormantState;
         }
 
-        Display d = new Display();
         if(turnToSpeak()) {
             speak(name);
         }

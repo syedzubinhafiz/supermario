@@ -21,22 +21,16 @@ public class MoveMapAction extends MoveActorAction {
 
     @Override
     public String execute(Actor actor, GameMap map) {
-        //move actor
         if(map.isAnActorAt(moveToLocation)) {
             // instantly kill actor (piranha) at the warp pipe
             map.removeActor(moveToLocation.getActor());
-            map.moveActor(actor, moveToLocation);
         }
-        else {
-            map.moveActor(actor, moveToLocation);
-        }
-
-        //set destination of previous warpPipe's if the previous warp pipe is from the first map
+        map.moveActor(actor, moveToLocation); //move actor
+        // set the previous warp pipe location of destination warpPipe as the current location (before moving)
         if(!previousWp.isSecondMap()) {
             WarpPipe dest = (WarpPipe) moveToLocation.getGround();
             dest.setPreviousWarpPipe(current);
         }
-
         return "moved";
     }
 

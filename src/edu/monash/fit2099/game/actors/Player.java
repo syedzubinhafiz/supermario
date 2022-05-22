@@ -107,9 +107,13 @@ public class Player extends Actor implements Resettable, Drinker {
 		if (hasCapability(Status.INVINCIBLE)) {
 			display1.println(this + " is INVINCIBLE!");
 			Monologue.setHasInvibility(true);
+		} else {
+			Monologue.setHasInvibility(false);
 		}
 		if(hasCapability(Status.HAS_WRENCH)) {
 			Monologue.setHasWrench(true);
+		} else {
+			Monologue.setHasWrench(false);
 		}
 		if(hasCapability(Status.FIRE_ATTACK_EFFECT)){
 			display1.println(this + " can fire attack!");

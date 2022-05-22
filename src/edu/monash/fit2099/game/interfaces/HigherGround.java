@@ -36,9 +36,7 @@ public interface HigherGround {
     default MoveActorAction getMovementAction(Actor actor, Location location, String direction, double success_rate, int damage, boolean canBeDestroyed) {
         MoveActorAction action = null;
 
-        //For flying koopa
-        //Is it violation of principle to update interface?
-        //Or good design working since only interface needed to change, no need to change both
+        // Since only interface needed to change, no need to change both
         // tree and wall to update.
         if(actor != location.getActor() && actor.hasCapability(Status.FLYING)) {
             MoveActorAction move = new MoveActorAction(location, direction);
