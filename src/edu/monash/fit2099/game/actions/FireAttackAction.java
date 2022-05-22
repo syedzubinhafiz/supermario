@@ -67,3 +67,4 @@ public class FireAttackAction extends AttackAction {
     }
 
 }
+

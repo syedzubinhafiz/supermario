@@ -92,3 +92,4 @@ public class JumpAction extends MoveActorAction {
     }
 
 }
+
