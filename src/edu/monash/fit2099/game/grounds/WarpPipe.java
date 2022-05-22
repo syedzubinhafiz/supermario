@@ -14,14 +14,22 @@ import edu.monash.fit2099.game.interfaces.Resettable;
 
 public class WarpPipe extends Ground implements HigherGround, Resettable {
 
-    boolean hasPiranha=false;
+    boolean hasPiranha;
     GameMap mapToPortal;
     Location previousWarpPipe;
-    boolean secondMap=false;
-    public final static boolean CAN_BE_DESTROYED=false;
+    boolean secondMap;
+    public final static boolean CAN_BE_DESTROYED = false;
 
-    public void setSecondMap(boolean secondMap) {
-        this.secondMap = secondMap;
+
+    /**
+     * Constructor.
+     */
+    public WarpPipe(GameMap map, boolean secondMap) {
+        super('C');
+        this.mapToPortal=map;
+        this.secondMap=secondMap;
+        hasPiranha=false;
+        Resettable.super.registerInstance();
     }
 
     public boolean isSecondMap() {
@@ -35,16 +43,6 @@ public class WarpPipe extends Ground implements HigherGround, Resettable {
     public void setPreviousWarpPipe(Location previousWarpPipe) {
         this.previousWarpPipe = previousWarpPipe;
     }
-
-    /**
-     * Constructor.
-     */
-    public WarpPipe(GameMap map) {
-        super('C');
-        this.mapToPortal=map;
-        Resettable.super.registerInstance();
-    }
-
 
     @Override
     public boolean canActorEnter(Actor actor) {

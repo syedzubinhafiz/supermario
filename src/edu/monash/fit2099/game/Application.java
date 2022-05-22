@@ -99,15 +99,14 @@ public class Application {
 
 			// ADD WARP PIPES
 			// IN GAMEMAP1
-			gameMap1.at(40,8).setGround(new WarpPipe(gameMap2));
-			gameMap1.at(38,8).setGround(new WarpPipe(gameMap2));
-			gameMap1.at(10,18).setGround(new WarpPipe(gameMap2));
-			gameMap1.at(53,13).setGround(new WarpPipe(gameMap2));
+			gameMap1.at(40,8).setGround(new WarpPipe(gameMap2, false));
+			gameMap1.at(38,8).setGround(new WarpPipe(gameMap2,false));
+			gameMap1.at(10,18).setGround(new WarpPipe(gameMap2, false));
+			gameMap1.at(53,13).setGround(new WarpPipe(gameMap2, false));
 
 			// IN GAMEMAP2
 			// set reference from map2's wrap pipe to map1 after map1 has been created
-			WarpPipe warpPipe = new WarpPipe(gameMap1);
-			warpPipe.setSecondMap(true);
+			WarpPipe warpPipe = new WarpPipe(gameMap1, true);
 			gameMap2.at(0,0).setGround(warpPipe);
 
 
