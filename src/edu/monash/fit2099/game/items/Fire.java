@@ -18,10 +18,15 @@ public class Fire extends Item {
      * A private attribute turnCounter which keeps track of turns played
      */
     private int turnCounter;
+    /**
+     * A private attribute map which basically allows us to use an instance of the GameMap
+     */
     private GameMap map;
 
     /**
      *Constructor
+     * @params map
+     * Overriden parameters from the super class:
      * @params name of the item
      * @params displayChar of Fire which is to be shown on the game map
      * @params portable to see if the item is transferable
