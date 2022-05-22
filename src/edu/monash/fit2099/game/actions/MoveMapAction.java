@@ -25,13 +25,13 @@ public class MoveMapAction extends MoveActorAction {
 
     /**
      * Attribute
-     * WarpPipe object that allows Player to teleport to the new map
+     * WarpPipe object that allows Player to teleport back to previous pipe/map
      */
     WarpPipe previousWp;
 
     /**
      * Attribute
-     * a String to describe the location the actor( Player ) is travelling to
+     * a String to describe the location the actor ( Player ) is travelling to
      */
     String description;
 
