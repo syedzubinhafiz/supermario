@@ -21,7 +21,7 @@ public class RefillBottleAction extends Action {
         // refills the bottle of player
         Bottle.getInstance().addWater(water);
         fountain.removeWater(); // remove the water from fountain
-        return "Mario refills bottle from " + fountain + " (" + fountain.getCapacity()+ "/"+fountain.getMaxCapacity()+")";
+        return "Mario refills bottle from " + fountain.getName() + " (" + fountain.getCapacity()+ "/"+fountain.getMaxCapacity()+")";
     }
 
     @Override

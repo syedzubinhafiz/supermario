@@ -1,8 +1,11 @@
 package edu.monash.fit2099.game.items;
 
+import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.items.Item;
+import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
+import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.grounds.Dirt;
 /**
  * Fire class represents the Fire dropped on the ground due to Mario's FireAttackAction
@@ -15,6 +18,7 @@ public class Fire extends Item {
      * A private attribute turnCounter which keeps track of turns played
      */
     private int turnCounter;
+    private GameMap map;
 
     /**
      *Constructor
@@ -22,8 +26,9 @@ public class Fire extends Item {
      * @params displayChar of Fire which is to be shown on the game map
      * @params portable to see if the item is transferable
      */
-    public Fire() {
+    public Fire(GameMap map) {
         super("Fire", 'v', false);
+        this.map = map;
     }
 
 
@@ -36,13 +41,17 @@ public class Fire extends Item {
         turnCounter++;
         if (turnCounter <= 3) {
             if (location.getActor() != null) {
-                location.getActor().hurt(20);
+                Actor actor = location.getActor();
+                actor.hurt(20);
                 Display d = new Display();
                 d.println(location.getActor()+" is being hurt by fire!");
+                if(!actor.isConscious() && !actor.hasCapability(Status.DORMANT)){
+                    map.removeActor(actor);
+                }
             }
         }
         else {
-            location.setGround(new Dirt());
+            location.removeItem(this);
         }
     }
 }

@@ -65,7 +65,7 @@ public class Monologue {
             if(actor=="Flying Koopa") {
                 indexes.add(16);
             }
-        } else if (actor=="Piranha") {
+        } else if (actor=="Piranha Plant") {
             indexes.add(17); indexes.add(18);
         }
         int index = Utils.getRandomFrom(indexes);

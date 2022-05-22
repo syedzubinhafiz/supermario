@@ -9,7 +9,7 @@ import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
-import edu.monash.fit2099.game.actions.AttackAndFollowActor;
+import edu.monash.fit2099.game.actions.AttackAndFollowAction;
 import edu.monash.fit2099.game.actions.FireAttackAction;
 import edu.monash.fit2099.game.actions.GetRemovedAction;
 import edu.monash.fit2099.game.actions.AttackAction;
@@ -45,7 +45,6 @@ public class Bowser extends Enemy {
         }
         return instance;
     }
-
 
     @Override
     public void setIntrinsicDamage( int intrinsicDamage ) {
@@ -121,7 +120,7 @@ public class Bowser extends Enemy {
         for (Exit exit : map.locationOf(this).getExits()) {
             Location destination = exit.getDestination();
             if ((destination.getActor() != null && destination.getActor().hasCapability(Status.HOSTILE_TO_ENEMY))) {
-                return new AttackAndFollowActor(destination.getActor(), exit.getName());
+                return new AttackAndFollowAction(destination.getActor(), exit.getName());
             }
         }
         return null;

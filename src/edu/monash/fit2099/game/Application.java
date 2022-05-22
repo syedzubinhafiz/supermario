@@ -74,7 +74,7 @@ public class Application {
 
 
 			// SECOND MAP
-			FancyGroundFactory groundFactory2 = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Sprout(), new Lava());
+			FancyGroundFactory groundFactory2 = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Sprout());
 			List<String> map2 = Arrays.asList(
 					"......................................................",
 					"......................................................",
@@ -88,10 +88,10 @@ public class Application {
 			GameMap gameMap2 = new GameMap(groundFactory2, map2);
 			world.addGameMap(gameMap2);
 			// Add some lava to second map
-			gameMap2.at(2, 1).setGround(new Lava());
-			gameMap2.at(0, 1).setGround(new Lava());
-			gameMap2.at(9, 0).setGround(new Lava());
-			gameMap2.at(11, 1).setGround(new Lava());
+			gameMap2.at(2, 1).setGround(new Lava(gameMap2));
+			gameMap2.at(0, 1).setGround(new Lava(gameMap2));
+			gameMap2.at(9, 0).setGround(new Lava(gameMap2));
+			gameMap2.at(11, 1).setGround(new Lava(gameMap2));
 			// Add princess peach & bowser in gameMap2
 			gameMap2.at(3, 1).addActor(PrincessPeach.getInstance());
 			PrincessPeach.setLocation(gameMap2.at(3, 1));
@@ -115,9 +115,9 @@ public class Application {
 			Actor mario = new Player("Mario", 'm', 100);
 			world.addPlayer(mario, gameMap1.at(42, 10));
 
-			// (for debugging) add koopa
-//			Actor koopa = new Koopa();
-//			gameMap1.at(46, 10).addActor(koopa);
+//			 (for debugging) add koopa
+			Actor koopa = new WalkingKoopa();
+			gameMap1.at(46, 10).addActor(koopa);
 
 			world.run();
 

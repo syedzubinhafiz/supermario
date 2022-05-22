@@ -10,7 +10,7 @@ public class PowerFountain extends MagicalFountain {
      * Constructor.
      */
     public PowerFountain() {
-        super('A');
+        super('A', "Power Fountain");
         this.fountainWater =new ArrayList<>();
         for (int i=0; i < FINAL_WATER_CAPACITY; i++) {
             fountainWater.add(new PowerWater() );
