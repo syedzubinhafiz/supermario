@@ -24,7 +24,7 @@ public class Toad extends Actor implements Speakable {
 
     /**
      * Attribute
-     * An arraylist of Obtainable items
+     * Boolean attribute to flag when Toad is supposed to speak
      */
     private boolean turnToSpeak=false;
 
@@ -40,6 +40,11 @@ public class Toad extends Actor implements Speakable {
      */
     private static ArrayList<Tradeable> tradeableInventory;
 
+
+    /**
+     * Attribute
+     * An arraylist of Obtainable items
+     */
     private static ArrayList<Obtainable> obtainables;
 
     /**
