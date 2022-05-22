@@ -18,6 +18,9 @@ import edu.monash.fit2099.game.interfaces.HigherGround;
  */
 public class Wall extends Ground implements HigherGround {
 
+    /**
+     * Constant Boolean for if wall can be destroyed or not
+     */
     public final static boolean CAN_BE_DESTROYED=true;
 
     /**

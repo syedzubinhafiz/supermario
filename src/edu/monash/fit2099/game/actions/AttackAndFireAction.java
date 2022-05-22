@@ -5,6 +5,13 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.game.actors.Enemy;
 import edu.monash.fit2099.game.enums.Status;
 
+/**
+ * Class representing the attack of normal Attack combined with Fire Action
+ *
+ * @author Chong Jin Yao
+ * @version 3.0.0
+ * @see edu.monash.fit2099.game.actions
+ */
 public class AttackAndFireAction extends AttackAction {
 
     /**
@@ -18,6 +25,12 @@ public class AttackAndFireAction extends AttackAction {
     }
 
     @Override
+    /**
+     * This method is responsible to execute the AttackAndFireAction
+     * @param actor The actor performing the action.
+     * @param map The map the actor is on.
+     * @return result which is a String when enemy is attacked
+     */
     public String execute(Actor actor, GameMap map) {
         String result = super.execute(actor, map);
 

@@ -13,8 +13,10 @@ import edu.monash.fit2099.game.interfaces.ConsumableItem;
  */
 public abstract class Water extends Item implements ConsumableItem {
 
-    /***
-     * Constructor.
+    /**
+     * Constructor
+     * @param name name of water
+     * @param displayChar display character
      */
     public Water(String name, char displayChar) {
         super(name, displayChar, false);

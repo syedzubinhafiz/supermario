@@ -38,6 +38,11 @@ public class Utils {
         return list.get(index);
     }
 
+    /**
+     * Method to get random integer
+     * @param i integer
+     * @return an integer
+     */
     public static int getRandom(int i) {
         return rand.nextInt(i);
     }

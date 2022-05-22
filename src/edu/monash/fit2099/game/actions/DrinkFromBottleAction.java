@@ -9,7 +9,7 @@ import edu.monash.fit2099.game.items.Bottle;
 /**
  * Extension of ConsumeAction class that allows Players to consume consumable items stored in their bottle.
  *
- * @author Chong Jin Yao & Team1
+ * @author Chong Jin Yao
  * @version 3.0.0
  * @see edu.monash.fit2099.engine.actions
  */

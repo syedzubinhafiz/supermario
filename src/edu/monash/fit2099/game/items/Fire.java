@@ -9,8 +9,8 @@ import edu.monash.fit2099.game.enums.Status;
 
 /**
  * Fire class represents the Fire dropped on the ground due to Mario's FireAttackAction
- * @author: Syed Zubin Hafiz
- * @version: 1.0.0
+ * @author Syed Zubin Hafiz
+ * @version 1.0.0
  * @see edu.monash.fit2099.game.items
  */
 public class Fire extends Item {
@@ -25,11 +25,7 @@ public class Fire extends Item {
 
     /**
      *Constructor
-     * @params map
-     * Overriden parameters from the super class:
-     * @params name of the item
-     * @params displayChar of Fire which is to be shown on the game map
-     * @params portable to see if the item is transferable
+     * @param map game map
      */
     public Fire(GameMap map) {
         super("Fire", 'v', false);

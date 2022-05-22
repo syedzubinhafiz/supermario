@@ -3,7 +3,7 @@ package edu.monash.fit2099.game.interfaces;
 /**
  * Interface for Actors that have the ability to drink Water objects.
  *
- * @author Chong Jin Yao & Vanessa Khoo
+ * @author Chong Jin Yao
  * @version 3.0.0
  * @see edu.monash.fit2099.game.interfaces
  */

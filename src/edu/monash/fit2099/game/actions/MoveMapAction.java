@@ -10,7 +10,7 @@ import edu.monash.fit2099.game.grounds.WarpPipe;
 /**
  * Special Action class tasked with moving the Player entity to another map
  *
- * @author Chong Jin Yao & Team1
+ * @author Chong Jin Yao
  * @version 3.0.0
  * @see edu.monash.fit2099.game.actions
  */

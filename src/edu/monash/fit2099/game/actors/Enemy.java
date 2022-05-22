@@ -100,7 +100,7 @@ public abstract class Enemy extends Actor implements Resettable, Drinker, Speaka
      * Gets an attack action
      * @param targetActor the targetAction to be attacked
      * @param direction   the direction of attack
-     * @return an AttackAction
+     * @return AttackAction an AttackAction
      */
     public AttackAction getAttackedAction(Actor otherActor, Actor targetActor, String direction) {
         if(otherActor.hasCapability(Status.FIRE_ATTACK_EFFECT)){

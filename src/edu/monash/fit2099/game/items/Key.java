@@ -8,8 +8,9 @@ import edu.monash.fit2099.game.enums.Status;
 
 /**
  * Key class represents the key to unlock princess peach
- * @author: Vanessa Khoo Ming Yi
- * @version: 1.0.0
+ *
+ * @author Vanessa Khoo Ming Yi
+ * @version 1.0.0
  * @see edu.monash.fit2099.game.items
  */
 public class Key extends Item {

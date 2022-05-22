@@ -15,7 +15,7 @@ import java.util.HashMap;
  * Special DestroyGroundAction that allows an actor to destroy any ground type and turn it into dirt.
  * Moves actor to destroyed ground and drops coin object at the location.
  *
- * @author Vanessa Khoo Ming Yi & Chong Jin Yao
+ * @author Vanessa Khoo Ming Yi
  * @version 3.0.0
  * @see edu.monash.fit2099.game.actions
  */

@@ -62,6 +62,9 @@ public enum Status {
      * status for all Enemies that can follow the player
      */
     FOLLOW,
+    /**
+     * status for higher grounds
+     */
     HIGHER_GROUND,
     /**
      * status for actor having obtained a bottle

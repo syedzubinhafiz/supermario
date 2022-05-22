@@ -9,7 +9,7 @@ import edu.monash.fit2099.game.interfaces.ConsumableItem;
 /**
  * Extension of ConsumeAction class that allows Enemies to consume Water objects in a fountain when they stumble upon it.
  *
- * @author Chong Jin Yao & Team1
+ * @author Chong Jin Yao
  * @version 3.0.0
  * @see edu.monash.fit2099.game.actions
  */

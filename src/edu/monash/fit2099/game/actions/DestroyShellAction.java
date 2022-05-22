@@ -9,7 +9,7 @@ import edu.monash.fit2099.game.items.SuperMushroom;
 /**
  * Special DestroyShellAction that allows an actor to destroy the shell of a dormant Koopa.
  *
- * @author Vanessa Khoo Ming Yi & Chong Jin Yao
+ * @author Vanessa Khoo Ming Yi
  * @version 3.0.0
  * @see edu.monash.fit2099.game.actions
  */

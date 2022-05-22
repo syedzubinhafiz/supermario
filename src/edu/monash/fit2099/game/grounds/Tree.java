@@ -39,8 +39,14 @@ public abstract class Tree extends Ground implements Resettable, HigherGround {
      */
     protected ActionList actions;
 
+    /**
+     * Constant boolean for if Tree can be destroyed
+     */
     public final static boolean CAN_BE_DESTROYED=true;
 
+    /**
+     * Boolean for if its the first turn or not
+     */
     protected boolean firstTurn;
 
     /**

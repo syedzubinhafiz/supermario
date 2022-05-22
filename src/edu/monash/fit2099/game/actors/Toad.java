@@ -15,7 +15,7 @@ import java.util.ArrayList;
 /**
  * A global Singleton class representing the Toad.
  *
- * @author Vanessa Khoo Ming Yi & Chong Jin Yao
+ * @author Vanessa Khoo Ming Yi
  * @version 1.0.0
  * @see edu.monash.fit2099.game.actors
  */
@@ -114,6 +114,11 @@ public class Toad extends Actor implements Speakable {
         tradeableInventory.remove(itemToTrade);
         tradeableInventory.add(newItem);
     }
+
+    /**
+     * Method to remove obtainable items from Toad's inventory
+     * @param item item to remove
+     */
     public static void removeObtainableItem(Obtainable item) {
         obtainables.remove(item);
     }

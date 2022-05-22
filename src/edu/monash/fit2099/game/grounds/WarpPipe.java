@@ -16,7 +16,7 @@ import edu.monash.fit2099.game.interfaces.Resettable;
 /**
  * A class representing a Warp Pipe map obstacle on the Game Map.
  *
- * @author Chong Jin Yao & Vanessa Khoo
+ * @author Vanessa Khoo
  * @version 3.0.0
  * @see edu.monash.fit2099.game.grounds
  */
@@ -53,7 +53,9 @@ public class WarpPipe extends Ground implements HigherGround, Resettable {
     public final static boolean CAN_BE_DESTROYED = false;
 
     /**
-     * Constructor.
+     * Constructor
+     * @param map gamemap map
+     * @param secondMap true if in secondmap
      */
     public WarpPipe(GameMap map, boolean secondMap) {
         super('C');

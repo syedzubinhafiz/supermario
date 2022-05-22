@@ -25,8 +25,10 @@ public class Lava extends Ground {
      * Map lave belongs to
      */
     private GameMap map;
+
     /**
-     * Constructor.
+     * Constructor
+     * @param map gamemap
      */
     public Lava(GameMap map) {
         super('L');

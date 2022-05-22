@@ -11,7 +11,7 @@ import edu.monash.fit2099.game.actors.PrincessPeach;
 /**
  * Special action class tasked with giving the Player the ability to free Princess Peach when in possession of a key.
  *
- * @author Chong Jin Yao & Team1
+ * @author Chong Jin Yao
  * @version 3.0.0
  * @see edu.monash.fit2099.game.actions
  */

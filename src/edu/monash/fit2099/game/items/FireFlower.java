@@ -9,8 +9,8 @@ import edu.monash.fit2099.game.interfaces.ConsumableItem;
 
 /**
  * FireFlower class represents all the functionalities the fireflower has within the game
- * @author: Syed Zubin Hafiz
- * @version: 1.0.0
+ * @author Syed Zubin Hafiz
+ * @version 1.0.0
  * @see edu.monash.fit2099.game.items
  */
 
