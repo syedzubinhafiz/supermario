@@ -98,7 +98,7 @@ public class Bowser extends Enemy {
             return attackToActor;
         }
 
-        // else if attack was unsuccessful or there was no attack, get one of its behaviours (could be a follow behaviour)
+        // if attack was unsuccessful or there was no attack, get one of its behaviours (could be a follow behaviour)
         for(Behaviour behaviour : behaviours.values()) {
             Action action = behaviour.getAction(this, map);
             if (action != null) {
@@ -107,8 +107,6 @@ public class Bowser extends Enemy {
         }
 
         return new DoNothingAction();
-
-
     }
 
     public FireAttackAction attackAndFollowActor(GameMap map) {

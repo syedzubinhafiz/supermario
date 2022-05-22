@@ -21,8 +21,7 @@ public class UnlockAction extends Action {
 
         // remove player from map
         map.removeActor(actor);
-        message ="You have won the game!";
-
+        message = "You have won the game!";
         return message;
     }
 

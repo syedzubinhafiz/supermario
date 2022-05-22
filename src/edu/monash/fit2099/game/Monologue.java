@@ -34,7 +34,7 @@ public class Monologue {
 
 
     public static String getSentence(String actor) {
-        String result="";
+        String result;
         ArrayList<Integer> indexes = new ArrayList<Integer>();
 
         if (actor=="Princess Peach") {
@@ -58,15 +58,16 @@ public class Monologue {
             indexes.add(7); indexes.add(8); indexes.add(9); indexes.add(10);
         } else if (actor=="Goomba") {
             indexes.add(11); indexes.add(12); indexes.add(13);
-        } else if (actor=="Koopa") {
+        } else if (actor.contains("Koopa")) {
             indexes.add(14); indexes.add(15);
-        } else if (actor=="Flying Koopa") {
-            indexes.add(14); indexes.add(15); indexes.add(16);
+            if(actor=="Flying Koopa") {
+                indexes.add(16);
+            }
         } else if (actor=="Piranha") {
             indexes.add(17); indexes.add(18);
         }
         int index = Utils.getRandomFrom(indexes);
-        result= allStrings.get(index);
+        result = allStrings.get(index);
         return  actor + ": \"" + result+"\"";
     }
 

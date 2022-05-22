@@ -31,7 +31,8 @@ public class MoveMapAction extends MoveActorAction {
             WarpPipe dest = (WarpPipe) moveToLocation.getGround();
             dest.setPreviousWarpPipe(current);
         }
-        return "moved";
+        String message = actor + " has moved to " + map;
+        return message;
     }
 
     @Override

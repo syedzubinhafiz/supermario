@@ -30,22 +30,18 @@ public class PiranhaPlant extends Enemy {
         if(turnToSpeak()) {
             speak(name);
         }
-
         for(Behaviour behaviour : super.behaviours.values()) {
             Action action = behaviour.getAction(this, map);
-
             if (action != null) {
                 return action;
             }
         }
-
         return new DoNothingAction();
     }
 
     @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions = new ActionList();
-
         if(otherActor.hasCapability(Status.HOSTILE_TO_ENEMY)) {
             actions.add( super.getAttackedAction(otherActor, this, direction ) );
             //New way to get AttackAction using the interface's method
@@ -56,7 +52,7 @@ public class PiranhaPlant extends Enemy {
 
     @Override
     protected IntrinsicWeapon getIntrinsicWeapon() {
-        return new IntrinsicWeapon(90, "chomps");
+        return new IntrinsicWeapon(intrinsicDamage, "chomps");
     }
 
 
