@@ -40,7 +40,7 @@ public class Monologue {
         ArrayList<Integer> indexes = new ArrayList<Integer>();
 
         if (actor=="Princess Peach") {
-            if(PrincessPeach.getInstance().isAllowedToLeave()) {
+            if(PrincessPeach.getInstance().isLocked()) {
                 indexes.add(0);
                 indexes.add(1);
                 indexes.add(2);

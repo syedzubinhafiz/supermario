@@ -15,7 +15,7 @@ import edu.monash.fit2099.game.interfaces.Speakable;
 public class PrincessPeach extends Actor implements Resettable, Speakable {
 
     private boolean turnToSpeak;
-    private boolean allowedToLeave;
+    private boolean locked;
     private static Location original;
 
     /**
@@ -75,12 +75,12 @@ public class PrincessPeach extends Actor implements Resettable, Speakable {
         return false;
     }
 
-    public boolean isAllowedToLeave() {
-        return allowedToLeave;
+    public boolean isLocked() {
+        return locked;
     }
 
-    public void setAllowedToLeave(boolean allowedToLeave) {
-        this.allowedToLeave = allowedToLeave;
+    public void setLocked(boolean locked) {
+        this.locked = locked;
     }
 
     @Override
