@@ -15,17 +15,25 @@ import java.util.ArrayList;
 /**
  * A global Singleton class representing the Toad.
  *
- * @author Vanessa Khoo Ming Yi
+ * @author Vanessa Khoo Ming Yi & Chong Jin Yao
  * @version 1.0.0
  * @see edu.monash.fit2099.game.actors
  */
 public class Toad extends Actor implements Speakable {
 
+
+    /**
+     * Attribute
+     * An arraylist of Obtainable items
+     */
     private boolean turnToSpeak=false;
+
+
     /**
      * Singleton Toad instance
      */
     private static Toad instance;
+
 
     /**
      * An arraylist of Tradeable items
@@ -61,6 +69,7 @@ public class Toad extends Actor implements Speakable {
         return new DoNothingAction();
     }
 
+
     /**
      * Get the singleton instance of Toad
      * @return Toad singleton instance
@@ -72,6 +81,7 @@ public class Toad extends Actor implements Speakable {
         return instance;
     }
 
+
     /**
      * Getter for the tradeableInventory attribute
      * @return ArrayList of Tradeable items.
@@ -80,9 +90,15 @@ public class Toad extends Actor implements Speakable {
         return tradeableInventory;
     }
 
+
+    /**
+     * Getter for the obtainables attribute
+     * @return Arraylist of Obtainable items
+     */
     public static ArrayList<Obtainable> getObtainables() {
         return obtainables;
     }
+
 
     /**
      * Method to remove the tradeable item from the inventory and also replenish the inventory of Toad
@@ -98,6 +114,10 @@ public class Toad extends Actor implements Speakable {
     }
 
 
+    /**
+     * Method to check if it is the Toad entities turn to speak.
+     * @return True/False representing whether Toad should speak.
+     */
     public boolean turnToSpeak() {
         if(turnToSpeak) {
             turnToSpeak=false;
@@ -107,7 +127,7 @@ public class Toad extends Actor implements Speakable {
         return false;
     }
 
-    @Override
+
     /**
      * Method to return a list of actions that the otherActor can perform if it is near Toad.
      * @param otherActor the Actor that might perform an action.
@@ -116,6 +136,7 @@ public class Toad extends Actor implements Speakable {
      * @return list of actions
      * @see Actor#allowableActions(Actor, String, GameMap)
      */
+    @Override
     public ActionList allowableActions(Actor otherActor, String direction, GameMap map) {
         ActionList actions=new ActionList();
         for (Tradeable item : getTradeableInventory()) {
