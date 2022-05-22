@@ -32,8 +32,6 @@ public class Monologue {
 
     public static boolean hasWrench=false;
     public static boolean hasInvibility=false;
-    public static boolean isLocked=true;
-
 
     public static String getSentence(String actor) {
         String result;
@@ -81,8 +79,5 @@ public class Monologue {
         Monologue.hasInvibility = hasInvibility;
     }
 
-    public static void setIsLocked(boolean isLocked) {
-        Monologue.isLocked = isLocked;
-    }
 
 }
