@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.game.Utils;
 
+
 /**
  * This class handles the 'jump' functionality of the actor in the edu.monash.fit2099.game
  *
@@ -18,14 +19,18 @@ public class JumpAction extends MoveActorAction {
      * Private Attributes
      */
 
+
     /**
      * A attribute for success_rate which represents the probability of completion of jump
      */
     private final double successRate;
+
+
     /**
      * A attribute for damage dealt when actor fails to complete the jump
      */
     private final int damage;
+
 
     /**
      * A attribute for the name of the higher ground
@@ -48,7 +53,7 @@ public class JumpAction extends MoveActorAction {
         this.name = name;
     }
 
-    @Override
+
     /**
      * This method overrides the execute() method which returns a completion statement if the randomBias attained
      * agrees with the probability resulting in the actor jumping on to the higher ground.
@@ -59,6 +64,7 @@ public class JumpAction extends MoveActorAction {
      * @param actor The Actor who might be moving
      * @param map The map in which the actors move
      */
+    @Override
     public String execute(Actor actor, GameMap map) {
         String result = "";
         if(Utils.getRandomBias() <= this.successRate){
@@ -74,15 +80,15 @@ public class JumpAction extends MoveActorAction {
 
     }
 
-    @Override
+
     /**
      * Returns a descriptive statement
      * @param actor The actor who might be performing a certain action
      * @return a String describing the exact location coordinates once the actor is on the higher ground
      */
+    @Override
     public String menuDescription(Actor actor) {
         return actor + " jumps to the " + this.direction + " " + this.name + " ("+ this.moveToLocation.x() + ", " + this.moveToLocation.y()+")";
     }
-
 
 }

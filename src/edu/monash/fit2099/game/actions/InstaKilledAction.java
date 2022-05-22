@@ -9,6 +9,7 @@ import edu.monash.fit2099.engine.weapons.Weapon;
 import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.items.Key;
 
+
 /**
  * Special InstaKilledAction that allows an actor to instantly kill its opponents.
  *
@@ -18,15 +19,16 @@ import edu.monash.fit2099.game.items.Key;
  */
 public class InstaKilledAction extends AttackAction {
 
+
     /**
      * Constructor.
-     *
      * @param target    the target actor to attack
      * @param direction the direction of attack
      */
     public InstaKilledAction(Actor target, String direction) {
         super(target, direction);
     }
+
 
     /**
      * Executes the InstaKillAction
@@ -57,6 +59,5 @@ public class InstaKilledAction extends AttackAction {
         }
         return result;
     }
-
 
 }

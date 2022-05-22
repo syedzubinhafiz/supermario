@@ -6,6 +6,8 @@ import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.game.actors.Enemy;
 import edu.monash.fit2099.game.enums.Status;
 import edu.monash.fit2099.game.items.Fire;
+
+
 /**
  * FireAttackAction class represents the special attack action Mario gains after consuming the FireFlower
  * @author: Syed Zubin Hafiz
@@ -13,6 +15,7 @@ import edu.monash.fit2099.game.items.Fire;
  * @see edu.monash.fit2099.game.actions
  */
 public class FireAttackAction extends AttackAction {
+
 
     /**
      * Constructor for FireAttackAction
@@ -52,6 +55,7 @@ public class FireAttackAction extends AttackAction {
         return result;
     }
 
+
     /**
      * This method adds to the menu description when a successful fire attack action has been performed
      * @param actor The actor performing the certain action
@@ -61,4 +65,5 @@ public class FireAttackAction extends AttackAction {
     public String menuDescription(Actor actor) {
         return actor + " attacks " + target + " at " + direction + " with fire!";
     }
+
 }

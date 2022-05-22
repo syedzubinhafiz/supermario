@@ -9,7 +9,7 @@ import edu.monash.fit2099.game.interfaces.ConsumableItem;
 /**
  * Extension of ConsumeAction class that allows Players to consume items stored in their inventory.
  *
- * @author Chong Jin Yao
+ * @author Chong Jin Yao & Team1
  * @version 3.0.0
  * @see edu.monash.fit2099.game.actions
  */
