@@ -5,9 +5,17 @@ import edu.monash.fit2099.game.actors.PrincessPeach;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * The class to handle all Monologues of speakable actors.
+ * @author Vanessa Khoo Ming Yi
+ * @version 1.0.0
+ * @see edu.monash.fit2099.game
+ */
 public class Monologue {
 
-    // responsible for handling all the sentences
+    /**
+     * Storage of all the sentences
+     */
     static ArrayList<String> allStrings = new ArrayList<String>(Arrays.asList(
             "Dear Mario, I'll be waiting for you...",
             "Never gonna give you up!",
@@ -30,9 +38,20 @@ public class Monologue {
             "Ohmnom nom nom nom.",
             "I am free! Thank you Mario, how will I ever repay you..."));
 
+    /**
+     * Boolean representing whether or not player has wrench
+     */
     public static boolean hasWrench=false;
+    /**
+     * Boolean representing whether or not player is invincible
+     */
     public static boolean hasInvibility=false;
 
+    /**
+     * Method to return the sentence that the actor can say in their turn
+     * @param actor Name of the actor class
+     * @return String sentence to speak at this turn by the actor
+     */
     public static String getSentence(String actor) {
         String result;
         ArrayList<Integer> indexes = new ArrayList<Integer>();
@@ -71,10 +90,18 @@ public class Monologue {
         return  actor + ": \"" + result+"\"";
     }
 
+    /**
+     * Set whether or not player has wrench
+     * @param hasWrench true if player has wrench
+     */
     public static void setHasWrench(boolean hasWrench) {
         Monologue.hasWrench = hasWrench;
     }
 
+    /**
+     * Set whether or not player has invincibility
+     * @param hasInvibility true if player has invincibility
+     */
     public static void setHasInvibility(boolean hasInvibility) {
         Monologue.hasInvibility = hasInvibility;
     }
