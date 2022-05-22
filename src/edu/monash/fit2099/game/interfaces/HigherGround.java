@@ -18,7 +18,7 @@ public interface HigherGround {
 
     /**
      *
-     * @return String to get name of the Tree Cycle Stage
+     * @return String to get name of the Higher Ground
      */
     String getName();
 

@@ -58,7 +58,6 @@ public class FollowBehaviour implements Behaviour {
 				}
 			}
 			else if (!map.isAnActorAt(destination) && actor.hasCapability(Status.MUST_JUMP) && destination.getGround().hasCapability(Status.HIGHER_GROUND)) {
-				System.out.println(this+"DESTINATION2"+destination.getGround()+actor+exit.getName());
 				HigherGround g = (HigherGround) destination.getGround();
 				return g.getFinalMovementAction(actor, destination,exit.getName());
 			}

@@ -19,9 +19,10 @@ public class DrinkFromBottleAction extends ConsumeAction {
     public String execute(Actor actor, GameMap map) {
         // consume/remove first water
         super.execute(actor, map);
-        Bottle.getInstance().removeWater();
+        Bottle bottle = Bottle.getInstance();
+        bottle.removeWater();
         // consume/remove second water
-        secondWater = Bottle.getInstance().removeWater();
+        secondWater = bottle.removeWater();
         if(secondWater!=null) {
             secondWater.consumedBy(actor);
         }

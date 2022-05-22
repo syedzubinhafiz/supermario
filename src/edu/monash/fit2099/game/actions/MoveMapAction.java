@@ -26,6 +26,8 @@ public class MoveMapAction extends MoveActorAction {
             map.removeActor(moveToLocation.getActor());
         }
         map.moveActor(actor, moveToLocation); //move actor
+        //super.execute(actor, map); //move actor TRYTHIS
+
         // set the previous warp pipe location of destination warpPipe as the current location (before moving)
         if(!previousWp.isSecondMap()) {
             WarpPipe dest = (WarpPipe) moveToLocation.getGround();
