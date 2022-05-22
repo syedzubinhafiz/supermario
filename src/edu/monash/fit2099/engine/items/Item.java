@@ -83,8 +83,8 @@ public abstract class Item implements Printable, Capable {
 
 	/**
 	 * Create and return an action to drop this Item.
-	 * If this Item is not portable, returns null.
-	 * @return a new DropItemAction if this Item is portable, null otherwise.
+	 * @param actor actor to drop the item
+	 * @return DropItemAction
 	 */
 	public DropItemAction getDropAction(Actor actor) {
 		if(portable)
