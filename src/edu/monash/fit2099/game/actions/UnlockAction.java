@@ -5,6 +5,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.game.Monologue;
+import edu.monash.fit2099.game.actors.PrincessPeach;
 
 
 public class UnlockAction extends Action {
@@ -14,7 +15,7 @@ public class UnlockAction extends Action {
         String message;
         Display d = new Display();
 
-        Monologue.setIsLocked(false);
+        PrincessPeach.getInstance().setAllowedToLeave(true);
 
         String sentence = Monologue.getSentence("Princess Peach"); // free the princess
         d.println(sentence);
@@ -28,7 +29,7 @@ public class UnlockAction extends Action {
 
     @Override
     public String menuDescription(Actor actor) {
-        return "Free Princess Peach & end the game!";
+        return "Use the key to free Princess Peach & end the game!";
     }
 
 }

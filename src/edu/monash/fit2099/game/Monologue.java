@@ -1,5 +1,7 @@
 package edu.monash.fit2099.game;
 
+import edu.monash.fit2099.game.actors.PrincessPeach;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -38,7 +40,7 @@ public class Monologue {
         ArrayList<Integer> indexes = new ArrayList<Integer>();
 
         if (actor=="Princess Peach") {
-            if(isLocked) {
+            if(PrincessPeach.getInstance().isAllowedToLeave()) {
                 indexes.add(0);
                 indexes.add(1);
                 indexes.add(2);

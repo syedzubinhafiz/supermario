@@ -93,7 +93,8 @@ public class Application {
 			gameMap2.at(9, 0).setGround(new Lava());
 			gameMap2.at(11, 1).setGround(new Lava());
 			// Add princess peach & bowser in gameMap2
-			gameMap2.at(3, 1).addActor(PrincessPeach.getInstance(gameMap2.at(3, 1)));
+			gameMap2.at(3, 1).addActor(PrincessPeach.getInstance());
+			PrincessPeach.setLocation(gameMap2.at(3, 1));
 			gameMap2.at(4, 1).addActor(Bowser.getInstance(gameMap2.at(4, 1)));
 
 

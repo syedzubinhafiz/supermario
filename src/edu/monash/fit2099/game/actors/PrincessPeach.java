@@ -16,7 +16,7 @@ public class PrincessPeach extends Actor implements Resettable, Speakable {
 
     private boolean turnToSpeak;
     private boolean allowedToLeave;
-    Location original;
+    private static Location original;
 
     /**
      * Singleton pp instance
@@ -26,16 +26,15 @@ public class PrincessPeach extends Actor implements Resettable, Speakable {
     /**
      * Constructor.
      */
-    private PrincessPeach(Location location) {
+    private PrincessPeach() {
         super("Princess Peach", 'P', 100);
         this.addCapability(Status.INVINCIBLE);
-        original=location;
         Resettable.super.registerInstance();
     }
 
-    public static PrincessPeach getInstance(Location location) {
+    public static PrincessPeach getInstance() {
         if (instance == null) {
-            instance = new PrincessPeach(location);
+            instance = new PrincessPeach();
         }
         return instance;
     }
@@ -89,5 +88,7 @@ public class PrincessPeach extends Actor implements Resettable, Speakable {
         this.addCapability(Status.RESET);
     }
 
-
+    public static void setLocation(Location location) {
+        original = location;
+    }
 }
