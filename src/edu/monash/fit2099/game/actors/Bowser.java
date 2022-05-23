@@ -45,6 +45,7 @@ public class Bowser extends Enemy {
         this.addItemToInventory(new Key());
         original = location;
         this.intrinsicDamage=80;
+        this.addCapability(Status.FOLLOW);
     }
 
     /**

@@ -72,7 +72,7 @@ public class MoveMapAction extends MoveActorAction {
             WarpPipe dest = (WarpPipe) moveToLocation.getGround();
             dest.setPreviousWarpPipe(current);
         }
-        String message = actor + " has moved to " + map;
+        String message = actor + " has moved" + description;
         return message;
     }
 
