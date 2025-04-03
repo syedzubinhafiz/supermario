@@ -68,16 +68,25 @@ public class JumpAction extends MoveActorAction {
     public String execute(Actor actor, GameMap map) {
         String result = "";
         if(Utils.getRandomBias() <= this.successRate){
-            map.moveActor(actor, this.moveToLocation); //jump onto the surface
+            // Store actor's original location before moving
+            Location originalLocation = map.locationOf(actor);
+            
+            // Move actor to the new location
+            map.moveActor(actor, this.moveToLocation);
+            
+            // Verify move was successful by checking if current location is different from original
+            if (map.locationOf(actor).equals(originalLocation)) {
+                // If actor didn't move, explicitly try again
+                map.moveActor(actor, this.moveToLocation);
+            }
+            
             result = actor +" has successfully jumped onto the " + this.name+ " at " + direction +"!";
         }
         else {
             actor.hurt(this.damage);
             result = "Oh no! " + actor + " couldn't make the jump and fell down :(. Damage Received from Fall: " + this.damage;
-
         }
         return result;
-
     }
 
 
